@@ -2,14 +2,15 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
-import Navbar from "./components/a.navbar/Navbar";
+
+import Index from "./pages/a.client";
 
 
 export default function MainRouter() {
     return (
         <div>
             <Switch>
-                <Route  exact path={"/ahmed"} component={Navbar} />
+                <Route  exact path={"/ahmed"} component={Index} />
 
             </Switch>
         </div>
