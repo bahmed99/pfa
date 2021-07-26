@@ -53,6 +53,8 @@ const carSchema = new mongoose.Schema({
         type: Boolean
     }
 
-})
+},{timestamps : true})
 
-mongoose.model("Car", carSchema)
+Car=mongoose.model("Car", carSchema)
+
+module.exports =Car

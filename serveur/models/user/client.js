@@ -32,6 +32,7 @@ const clientSchema = new mongoose.Schema({
         type: String,
         default: "https://res.cloudinary.com/cnq/image/upload/v1586197723/noimage_d4ipmd.png"
     }
-})
+},{timestamps : true})
 
-mongoose.model("Client", clientSchema)
+Client =mongoose.model("Client", clientSchema)
+module.exports =Client

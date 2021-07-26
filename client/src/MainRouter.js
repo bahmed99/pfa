@@ -2,7 +2,7 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
-import Navbar from "./components/a.navbar/Navbar";
+
 import Signin from "./pages/o.Signin/Signin";
 
 

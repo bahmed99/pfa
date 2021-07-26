@@ -37,6 +37,7 @@ const employeeSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "Car"
     } 
-})
+},{timestamps : true})
 
-mongoose.model("Employee", employeeSchema)
+Employee=mongoose.model("Employee", employeeSchema)
+module.exports ==Employee
