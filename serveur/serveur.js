@@ -18,6 +18,12 @@ app.use(cors())
 
 app.use(morgan('tiny'))
 
+// app.use("/client", require("./routes/client/"))
+// app.use("/client", require("./routes/client/"))
+// app.use("/client", require("./routes/client/"))
+// app.use("/client", require("./routes/client/"))
+// app.use("/client", require("./routes/client/"))
+// app.use("/client", require("./routes/client/"))
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }).then((result) =>
     console.log("connected to database"),
