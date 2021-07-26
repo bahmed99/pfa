@@ -1,0 +1,38 @@
+.auth-card
+{
+    text-align: center;
+    max-width: 550px;
+    margin: 0 auto;
+    border-radius: 10px ;
+    opacity: 90%;
+  
+  }
+  .input-field input[type=text]:focus {
+    border-bottom: 1px solide rgba(151, 14, 206, 0) !important;
+    box-shadow: 0 1px 0 0 rgba(183, 0, 255, 0) !important;
+  }
+.logo-Mod
+{
+    width: 290px;
+    margin: auto auto ;
+    margin-bottom: 50px ;
+}
+.waves-effect
+{
+    margin: 40px auto ;
+    width: 210px;
+    border-radius: 15%;
+}
+.firstOne
+{
+    cursor: default;
+    margin-top: 220px;
+    margin-left: -4px;
+    
+}
+.secondOne
+{
+    cursor: default;
+    margin-top: 272px;
+    margin-left: -4px;
+}
