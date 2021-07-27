@@ -18,7 +18,7 @@ const clientSchema = new mongoose.Schema({
         required: true
     },
     timetable: [{
-        date: { type: Date, required: true },
+        date: { type: Date },
         duration: { type: Number, default: 1 },
         valid: { type: Boolean, default: false },
     }],
@@ -34,4 +34,5 @@ const clientSchema = new mongoose.Schema({
     }
 })
 
-mongoose.model("Client", clientSchema)
+Client =mongoose.model("Client", clientSchema)
+module.exports =Client

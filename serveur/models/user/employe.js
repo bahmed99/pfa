@@ -39,4 +39,5 @@ const employeeSchema = new mongoose.Schema({
     } 
 })
 
-mongoose.model("Employee", employeeSchema)
+Employee =mongoose.model("Employee", employeeSchema)
+module.exports =Employee
