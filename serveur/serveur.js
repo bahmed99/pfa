@@ -25,6 +25,7 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }).
         console.log(`runinig on port ${port}`)
     }
     )
+    
 ).catch(err => {
     console.log("error")
 })
