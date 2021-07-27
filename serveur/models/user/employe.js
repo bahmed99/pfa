@@ -39,5 +39,7 @@ const employeeSchema = new mongoose.Schema({
     } 
 },{timestamps : true})
 
+
 Employee=mongoose.model("Employee", employeeSchema)
 module.exports ==Employee
+
