@@ -72,6 +72,7 @@
   .course{
     margin-top: 50px;
     display: flex;
+   
   }
 
 
@@ -158,33 +159,148 @@
   margin: auto auto;
 	width: 150px;
     height:150px;
-   margin-top: 10px;
+   margin-top: 8px;
     font-size: 20px;
     padding-top: 15px;
     text-align: center;
     background:transparent;
-    border: solid white 2px;
+    border: solid 2px;
+
     color: black;
+    
     border-radius: 50%;
     background-color:#ffffff;
     box-shadow: 0 10px 30px rgba(167, 158, 158, 0.3), 0 15px 12px rgba(26, 25, 25, 0.22);
 }
 
 .containerCercle{
-  
+  box-shadow: 0 30px 30px rgba(167, 158, 158, 0.3), 0 15px 12px rgba(26, 25, 25, 0.22);
+
   margin: auto auto;
 	  width: 200px;
     height:200px;
-   margin-top: 100px;
+   margin-top: 80px;
     font-size: 20px;
     padding-top: 15px;
     text-align: center;
     background-color:#EFEFEF;
-    border: solid white 2px;
+   
     color: black;
     border-radius: 50%;
 }
 .textTimer{
   margin-top: 40px;
   font-weight: lighter;
+}
+
+.Q{
+  color: black;
+}
+/* score */
+
+.score{
+
+  color: black;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.trait{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  border-bottom:4px solid #369579;
+  width: 9%;
+  border-radius: 5px;
+}
+
+.corrige {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.containerCorrige{
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px!important;
+  height:900px;
+  width: 800px;
+}
+
+.cleRep{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+.mauvaise{
+font-size:12px ;
+float: right;
+margin-top: 8px;
+}
+
+.bonne{
+ 
+  font-size:12px ;
+margin-top:8px ;
+
+float: right;
+
+}
+
+.num{
+  height:40px;width:40px;vertical-align:middle;border:1px solid #ccc;border-radius:33px;line-height:39px
+}
+.bg_vert
+{
+  background-color:#06cc00;color:#fff}
+.bg_rouge
+{background-color:red;color:#fff
+}
+
+  .div_vt_reponse_res {
+    width: 30px;
+    height: 30px;
+    border: 3px solid red;
+    border-radius: 16px;
+    background-color: red;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    display:inline-block
+}
+
+.div_bn_reponse_res {
+    width: 29px;
+    height: 29px;
+    border: 2px solid #20ca20;
+    background-color: #20ca20;
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    display:inline-block
+}
+
+/* correction */
+
+
+
+.btnQ1 {
+  border-radius: 5px;
+  padding: 10px;
+  background-color: green;
+  width: 100%;
+  text-align: left;
+  border: solid rgb(221, 217, 217) 1px;
+
+}
+
+
+.btnQ2 {
+  border-radius: 5px;
+  padding: 10px;
+  background-color: red;
+  width: 100%;
+  text-align: left;
+  border: solid rgb(221, 217, 217) 1px;
+
 }

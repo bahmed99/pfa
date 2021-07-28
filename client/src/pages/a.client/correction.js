@@ -1,8 +1,8 @@
 
 import Navbar from '../../components/a.navbarClient'
-import Courses from '../../components/a.courses/course'
 import bg from "../../assets/images/bgScore.jpg"
-export default function Course() {
+import Corrections from '../../components/a.courses/correction'
+export default function Correction() {
     return (
         <div style={{
             backgroundImage: 'url('+bg+')',
@@ -12,10 +12,9 @@ export default function Course() {
             backgroundAttachment:"fixed" ,
             backgroundPosition: "center" ,
             backgroundRepeat:"repeat"
-          }} >
-             <Navbar />
-             <Courses />
+          }}>
+            <Navbar />
+            <Corrections />
         </div>
     )
 }
-// style={{backgroundColor:"#f2f3f5"}}
