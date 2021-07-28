@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
@@ -36,4 +36,20 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+
+#loader {
+  z-index: 1;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 50vh;
+  background-color: rgba(155, 155, 155, 0.7);
+}
+
+.clickable {
+  cursor: pointer;
 }

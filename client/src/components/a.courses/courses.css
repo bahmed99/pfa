@@ -122,7 +122,7 @@
        grid-row-gap: 50px;
     }
   }
-  
+  /* test */
   
   .course{
     margin-top: 50px;
@@ -150,6 +150,7 @@
   .card{
     border-radius: 15px;
     width: 650px;
+
 
   }
 
@@ -379,4 +380,5 @@ float: right;
 .card2{
   margin-right: auto;
   margin-left: auto;
+
 }

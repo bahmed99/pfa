@@ -17,6 +17,8 @@ import NewPassword from "./pages/o.Signin/NewPassword";
 import Correction from "./pages/a.client/correction";
 
 import Footer from "./components/k.footer/footer"
+import Cours from "./pages/a.client/cours";
+import Cour from "./pages/a.client/cour";
 
 export default function MainRouter() {
     return (
@@ -30,6 +32,8 @@ export default function MainRouter() {
                 <Route exact path={"/khadija"} component={Home} />
                 <Route  exact path={"/tests"} component={Courses} />
                 <Route  exact path={"/test/:id"} component={Course} />
+                <Route  exact path={"/cours"} component={Cours} />
+                <Route  exact path={"/cours/:id"} component={Cour} />
 
                 <Route exact path={"/register1"}>
                     <Reset />

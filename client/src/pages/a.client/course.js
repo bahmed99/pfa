@@ -7,7 +7,6 @@ export default function Course() {
         <div style={{
             backgroundImage: 'url('+bg+')',
             backgroundSize: "cover",
-            height: "135vh",
             color: "#f5f5f5" ,
             backgroundAttachment:"fixed" ,
             backgroundPosition: "center" ,

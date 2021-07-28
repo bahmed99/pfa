@@ -68,7 +68,7 @@ console.log("rep",reponse[id])
 
                 <div className="card2 card">
                     <div className="cardImage">
-                        <img src={`/uploads/courses/${datas[id].pic}`} alt="" />
+                        <img src={`/uploads/tests/${datas[id].pic}`} alt="" />
                     </div>
                     <div className="card-content Q">
                         <p>{datas[id].question} :</p>

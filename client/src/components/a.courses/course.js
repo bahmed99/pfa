@@ -195,7 +195,7 @@ console.log(data)
             </Alert>
             <div className="card">
                <div className="cardImage">
-                  <img src={`/uploads/courses/${pic}`} alt="" />
+                  <img src={`/uploads/tests/${pic}`} alt="" />
                </div>
                <div className="card-content Q">
                   <p>{q} :</p>
