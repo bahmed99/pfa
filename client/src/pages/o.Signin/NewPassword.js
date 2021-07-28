@@ -67,8 +67,10 @@ export default function NewPassword() {
                     placeholder=" Nouveau mot de passe"
                     value={password}
                     onChange={(e)=>setPassword(e.target.value)} />
-                    <button onClick={()=>PostData()} className="btn waves-effect waves-light #369579 " type="submit" name="action" style={{opacity:"100% !important"}}>Submit
+                    <br />
+                    <button onClick={()=>PostData()} className="btn waves-effect waves-light #26a69a teal lighten-1 " type="submit" name="action" style={{opacity:"100% !important"}}>Submit
                     </button>
+                    <br />
 
                 </div>
             </div>

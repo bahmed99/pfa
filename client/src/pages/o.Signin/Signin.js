@@ -1,5 +1,5 @@
 import React , {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import './Signin.style.css'
 import image from './o.images/0.png'
 import image1 from './o.images/01234.gif'
@@ -8,6 +8,7 @@ import Alert from 'react-bootstrap/Alert'
 
 
 export default function Signin() {
+    const History = useHistory()
     const [error,setError] = useState(false)
     const [success,setSuccess] = useState(false)
     const [email,setEmail] = useState('')
@@ -34,6 +35,7 @@ export default function Signin() {
             {
                 setSuccess(true)
                 setTimeout(() => setSuccess(false), 2500)
+                History.push('/ahmed')
             }
         }).catch(err=>{
             console.log(err)
@@ -43,7 +45,7 @@ export default function Signin() {
         <div className="firstdiv" style={{
             backgroundImage: 'url('+image1+')',
             backgroundSize: "cover",
-            height: "100vh",
+            height: "90vh",
             color: "#f5f5f5" ,
             backgroundAttachment:"fixed" ,
             backgroundPosition: "center" ,
@@ -73,7 +75,7 @@ export default function Signin() {
                         placeholder="mot de passe"
                         value={password}
                         onChange={(e)=>setPassword(e.target.value)} />
-                        <button onClick={()=>PostData()} className="btn waves-effect waves-light #369579 " type="submit" name="action" style={{opacity:"100% !important"}}>Login
+                        <button onClick={()=>PostData()} className="btn waves-effect waves-light #26a69a teal lighten-1" type="submit" name="action" style={{opacity:"100% !important"}}>Login
                         </button>
                         <br />
                         <br />

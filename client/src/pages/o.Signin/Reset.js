@@ -30,7 +30,7 @@ export default function Reset() {
             {
                 setSuccess(true)
                 setTimeout(() => setSuccess(false), 2500)
-                setInterval(function(){ History.push('/oussama') }, 2000);
+                setInterval(function(){ History.push('/register') }, 2000);
             }
         }).catch(err=>{
             console.log(err)
@@ -40,7 +40,7 @@ export default function Reset() {
         <div className="trydiv" style={{
             backgroundImage: 'url('+image1+')',
             backgroundSize: "cover",
-            height: "100vh",
+            height: "90vh",
             color: "#f5f5f5"
           }}>
             <br /> 
@@ -61,8 +61,10 @@ export default function Reset() {
                     placeholder="email"
                     value={email}
                     onChange={(e)=>setEmail(e.target.value)} />
-                    <button onClick={()=>PostData()} className="btn waves-effect waves-light #369579 " type="submit" name="action" style={{opacity:"100% !important"}}>submit
+                    <br />
+                    <button onClick={()=>PostData()} className="btn waves-effect waves-light #26a69a teal lighten-1 " type="submit" name="action" style={{opacity:"100% !important"}}>submit
                     </button>
+                    <br />
                 </div>
             </div>
         </div>
