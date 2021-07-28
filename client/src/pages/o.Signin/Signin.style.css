@@ -1,16 +1,41 @@
+.second-div
+{
+    display: flex ;
+    justify-content: center;
+}
 .auth-card
 {
     text-align: center;
-    max-width: 550px;
-    margin: 0 auto;
+    max-width: 450px;
+    margin-left: -15px;
+    margin-top: 100px ;
     border-radius: 10px ;
-    opacity: 90%;
+    opacity: 100%;
   
   }
   .input-field input[type=text]:focus {
     border-bottom: 1px solide rgba(151, 14, 206, 0) !important;
-    box-shadow: 0 1px 0 0 rgba(183, 0, 255, 0) !important;
+    box-shadow: 0 0px 0 0 rgba(183, 0, 255, 0) !important;
   }
+.auth-card112
+{
+    margin: auto auto ;
+    justify-content: center;
+    margin-top: 100px;
+}
+.photo-Mod
+{
+    max-width: 450px ;
+    margin-top: 100px;
+    border-top-left-radius: 10px ;
+    border-bottom-left-radius: 10px ;
+    max-width: 450px;
+    border-top-right-radius: 0px ;
+    border-bottom-right-radius: 0px ;
+    max-height: 567px;
+    box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+
+}
 .logo-Mod
 {
     width: 290px;
@@ -30,9 +55,75 @@
     margin-left: -4px;
     
 }
+.firstOne1
+{
+    cursor: default;
+    margin-top: 220px;
+    margin-left: 5px;
+    
+}
 .secondOne
 {
     cursor: default;
     margin-top: 272px;
     margin-left: -4px;
+}
+@media (max-width:900px) {
+    .second-div
+    {
+        display: inline;
+        justify-content: center;
+        
+    }
+    .auth-card
+    {
+        text-align: center;
+        max-width: 300px;
+        margin-left: 0px;
+        border-radius: 10px ;
+        opacity: 100%;
+        margin-top: -320px ;
+        max-height: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    
+    }
+    .photo-Mod
+    {
+        margin-left: auto!important;
+        margin-right: auto !important;
+        max-height: 450px;
+        max-width: 300px !important;
+        margin-top: 30px;
+        border-top-left-radius: 10px ;
+        border-bottom-left-radius: 0px ;
+        border-top-right-radius: 10px ;
+        border-bottom-right-radius: 0px ;
+        box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+        opacity: 0%;
+        
+
+    }
+    .firstOne
+    {
+        max-width: 30px;
+        cursor: default;
+        margin-top: 212px;
+        margin-left: 0px;
+        
+    }
+    .secondOne
+    {
+        cursor: default;
+        margin-top: 250px;
+        margin-left: -5px;
+    }
+    .waves-effect
+    {
+        margin : auto auto ;
+        width: 100px;
+        border-radius: 10%;
+        padding-bottom: 30px;
+    }
+  
 }

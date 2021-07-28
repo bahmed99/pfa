@@ -18,8 +18,8 @@ const employeeSchema = new mongoose.Schema({
         required: true
     },
     timetable: [{
-        type:{type:String,required: true}, //exams , conduite, code... 
-        date: { type: Date, required: true },
+        type:{type:String}, //exams , conduite, code... 
+        date: { type: Date },
         duration: { type: Number, default: 1 },
         valid: { type: Boolean, default: false }
     }],
@@ -41,5 +41,5 @@ const employeeSchema = new mongoose.Schema({
 
 
 Employee=mongoose.model("Employee", employeeSchema)
-module.exports ==Employee
+module.exports = Employee
 
