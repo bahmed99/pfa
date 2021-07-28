@@ -1,10 +1,10 @@
 import React from 'react'
-import { Container,Col,Row } from 'react-bootstrap'
+import { Container,Row } from 'react-bootstrap'
 import './home.style.css'
 
 export default function Apropos() {
     return (
-        <div className="text-center">
+        <div className="textCenter">
         <Container>
           <Row>
            

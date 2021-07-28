@@ -18,4 +18,3 @@ export default function Course() {
         </div>
     )
 }
-// style={{backgroundColor:"#f2f3f5"}}

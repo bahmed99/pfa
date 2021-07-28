@@ -1,4 +1,4 @@
-import { useEffect, useState ,useContext} from 'react'
+import { useEffect, useState } from 'react'
 import axios from "axios"
 import { useParams } from 'react-router-dom'
 import "./courses.css"
@@ -94,7 +94,7 @@ export default function Course() {
       return () => clearInterval(interval);
    }, [isActive, seconde]);
 
-
+console.log(data)
 
    useEffect(() => {
       axios.get(`http://localhost:3001/courses/${id}`)

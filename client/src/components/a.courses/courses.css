@@ -1,7 +1,7 @@
 
   .card1 {
-    width: 320px;
-    height: 250px;
+    width: 270px;
+    height: 200px;
     border-radius: 40px;
     box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
     cursor: pointer;
@@ -27,8 +27,8 @@
     font-family: sans-serif;
     font-weight: bold;
     font-size: 30px;
-    margin-top: -130px;
-    height: 40px;
+    margin-top: -110px;
+    height: 30px;
   }
   
   .card1:hover {
@@ -36,22 +36,77 @@
     box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
       -5px -5px 30px 15px rgba(0,0,0,0.22);
   }
-  
+  .strong-medium{font-weight:500}
+
+
+  .lead-full-text
+  {
+    
+    padding-bottom:51px;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    align-items: center!important;
+    justify-content: center!important;
+    text-align: center!important;
+  }
+ 
   .title-white {
     color: white;
   }
+  .breadcrumbs
   
+  {
+    line-height:20px;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    
+  }
+  
+  .textContainerCourses{
+    background: linear-gradient(0deg,#369579    0%,   #718a8a 70%);
+   border-radius: 12px;
+    /* background-color: #dededf; */
+    padding: 50px 150px;
+  }
   .title-black {
     color: black;
+  }
+
+  .courseContainer{
+    margin-left: auto!important;
+    margin-right: auto!important;
+    align-items: center!important;
+    justify-content: center!important;
+    text-align: center!important;
+    
+   
+  }
+
+  .coursesTitle{
+  margin-top: 50px;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    align-items: center!important;
+    justify-content: center!important;
+    text-align: center!important;
+    
   }
   
 
   .courses{
-      
-  margin-top: 50px!important;
-    margin-left: auto ;
-     margin-right: auto;
-      display:grid;
+    margin-left: 125px;
+    margin-bottom: 150px;
+    align-items: center!important;
+    justify-content: center!important;
+    text-align: center!important;
+    
+    margin-top: 50px!important;
+ 
+    display:grid;
      grid-template-columns: 400px 400px 400px ;
      grid-row-gap: 50px;
   }
