@@ -29,7 +29,7 @@ export default function Index() {
                             <h1>Entraînez-vous au code de la route</h1>
                             <p>Étape obligatoire pour décrocher un jour l'examen du permis de conduire, <span className="strong-medium">le code de la route</span> fait peur à beaucoup
                                 de candidats, alors que pour le réussir il suffit juste de bien y être préparé. C'est pour vous y aider que
-                                iDrive Gears met à votre disposition <span className="strong-medium">des tests de code en ligne gratuits</span>, comprenant 30 questions <span className="strong-medium">conformes à
+                                iDrive Gears met à votre disposition <span className="strong-medium">des tests de code en ligne</span>, comprenant 30 questions <span className="strong-medium">conformes à
                                     celles de l'examen.</span>
                             </p>
                             </div>
@@ -42,7 +42,7 @@ export default function Index() {
             <div className="courses">
 
                 {data.map((element, index) => (
-                    <Link to={`/test/${element._id}`} target="_blank"><div className="card1">
+                    <Link to={`/test/${element._id}`} target="_blank" key={index}><div className="card1">
                         <div className="card_image"> <img src={require("../../assets/images/serie.jpg").default} alt="" />
                         </div>
                         <div className="card_title title-white">

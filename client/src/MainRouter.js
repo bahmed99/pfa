@@ -19,8 +19,10 @@ import Correction from "./pages/a.client/correction";
 import Footer from "./components/k.footer/footer"
 import Cours from "./pages/a.client/cours";
 import Cour from "./pages/a.client/cour";
+import Error404 from "./pages/Error";
 
 export default function MainRouter() {
+    let reponse = JSON.parse(localStorage.getItem("reponse"));
     return (
         <div>
             <Switch>
@@ -30,11 +32,9 @@ export default function MainRouter() {
                 </Route>
                 <Route  exact path={"/ahmed"} component={Index} />
                 <Route exact path={"/khadija"} component={Home} />
-                <Route  exact path={"/tests"} component={Courses} />
-                <Route  exact path={"/test/:id"} component={Course} />
-                <Route  exact path={"/cours"} component={Cours} />
-                <Route  exact path={"/cours/:id"} component={Cour} />
-
+                <Route exact path={"/"} component={Home} />
+                
+                
                 <Route exact path={"/register1"}>
                     <Reset />
                     <Footer />
@@ -44,7 +44,14 @@ export default function MainRouter() {
                     <Footer />
                 </Route> 
 
-                <Route  exact path={"/test/reponse/:id"} component={Correction} />
+                {reponse?<Route  exact path={"/test/reponse/:id"} component={Correction} />:""}
+                
+                <Route  exact path={"/test/:id"} component={Course} />
+                <Route  exact path={"/tests"} component={Courses} />
+                <Route  exact path={"/cours"} component={Cours} />
+                <Route  exact path={"/cours/:id"} component={Cour} />
+
+                <Route exact  component={Error404} />
 
             </Switch>
         </div>

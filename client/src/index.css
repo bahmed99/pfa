@@ -32,3 +32,16 @@ code {
 .bgN{
   color: black;
 }
+
+.btn-brand{
+  background:  linear-gradient(90deg, #3d3e42 0%, #718a8a   100%);
+padding: 13px 25px;
+border-radius: 100px;
+color: white;
+
+
+}
+.btn-brand:hover{
+  color: white;
+  opacity: 80%;
+}

@@ -114,6 +114,7 @@ console.log(data)
             setIsActive(!isActive);
             // setDatas(d)
             localStorage.setItem("datas", JSON.stringify(d));
+            
          }
          )
          .catch(err => {
@@ -171,6 +172,7 @@ console.log(data)
             }
             // setReponse(reponses)
             localStorage.setItem("reponse", JSON.stringify(reponses));
+            
          }
       }
 
