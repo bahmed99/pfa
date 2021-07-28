@@ -279,6 +279,13 @@ float: right;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     display:inline-block
 }
+.bgR{
+  color: red;
+}
+.bgG{
+ color: green;
+}
+
 
 /* correction */
 
@@ -287,7 +294,7 @@ float: right;
 .btnQ1 {
   border-radius: 5px;
   padding: 10px;
-  background-color: green;
+  background-color: rgb(58, 134, 58);
   width: 100%;
   text-align: left;
   border: solid rgb(221, 217, 217) 1px;
@@ -298,9 +305,23 @@ float: right;
 .btnQ2 {
   border-radius: 5px;
   padding: 10px;
-  background-color: red;
+  background-color: rgb(161, 31, 31);
   width: 100%;
   text-align: left;
   border: solid rgb(221, 217, 217) 1px;
 
+}
+
+.course1{
+  margin-top: 50px;
+ 
+ 
+}
+.Correction{
+  
+
+}
+.card2{
+  margin-right: auto;
+  margin-left: auto;
 }

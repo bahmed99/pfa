@@ -7,15 +7,14 @@ import {
   BrowserRouter as Router, 
 } from "react-router-dom";
 import 'font-awesome/css/font-awesome.min.css';
-import ProviderCourses from './Provider.js';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ProviderCourses >
+   
     <Router>
     <App />
     </Router>
-    </ProviderCourses>
+   
   </React.StrictMode>,
   document.getElementById('root')
 );

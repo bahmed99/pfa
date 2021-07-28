@@ -3,10 +3,8 @@ import axios from "axios"
 import { useParams } from 'react-router-dom'
 import "./courses.css"
 import Alert from 'react-bootstrap/Alert'
-import M from 'materialize-css'
-import Score from "./score"
 
-import { Courses } from '../../Provider'
+import Score from "./score"
 
 export default function Course() {
    const { id } = useParams();
@@ -83,6 +81,7 @@ export default function Course() {
                // setReponse(reponses)
                localStorage.setItem("reponse", JSON.stringify(reponses));
                setSeconde(0)
+               setIsActive(false)
 
             }
 
@@ -201,6 +200,7 @@ export default function Course() {
                <div className="card-content Q">
                   <p>{q} :</p>
                </div>
+               
                <div className="action">
                   {r1.r !== "" ? <div><button className="btnQ" onClick={() => { setChoice(r1) }} value={r1.r}><span className="cadreQ">A</span> {r1.r}</button><br /><br /></div>
                      : ""}
