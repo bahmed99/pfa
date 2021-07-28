@@ -64,12 +64,12 @@
     z-index: 1;
     text-align:"center";
     z-index: 1;
-    background-Image: url("./Cover.jpg");
+    background-Image: url("./Cover3.jpg");
     background-position: center;
     background-repeat: no-repeat; 
     background-size: cover;
     padding-bottom: 22% ;
-    padding-top: 27% ;
+    padding-top: 10% ;
 }
 
 .btn-menu{

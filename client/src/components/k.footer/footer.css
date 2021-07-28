@@ -1,0 +1,18 @@
+.logofooter{
+    height: 100%;
+    position: absolute;
+    margin-top:-30px;
+    left: 10%;
+}
+.footer{
+    background-color: #3d3e42;
+    margin-top: -20px;
+   
+}
+.btn{
+    background-color: transparent;
+}
+.justify-content-end{
+    display:flex;
+    margin-top: 30px;
+}
