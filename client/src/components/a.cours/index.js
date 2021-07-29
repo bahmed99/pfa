@@ -28,10 +28,10 @@ export default function Index() {
             <div className="courses">
 
                 {data.map((element, index) => (
-                    <Link to={`/cours/${element.id}`} target="_blank"><div className="card1" key={index}>
-                        <div className="card_image"> <img src={require("../../assets/images/serie.jpg").default} alt="" />
+                    <Link to={`/cours/${element.id}`} target="_blank"><div className="card3" key={index}>
+                        <div className="card_image3"> <img src={require("../../assets/images/bgCours.gif").default} alt="" />
                         </div>
-                        <div className="card_title1 title-white">
+                        <div className="card_title3 title-white">
                             <p>{element.nom}</p>
                         </div>
                     </div></Link>))}
