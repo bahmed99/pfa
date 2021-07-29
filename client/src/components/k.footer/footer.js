@@ -1,50 +1,46 @@
 import React from 'react'
-import { Container,Row,Col } from 'react-bootstrap';
+import { Container, Row, Col} from 'react-bootstrap';
 import './footer.css'
 import { Button, } from "reactstrap";
 function Footer() {
     return (
         <div className="footer">
             <Container>
-                  <Row>
-                       <Col xs={12} md={8}>
-                            <h5 class="white-text">Consultez nos réseaux sociaux</h5>
-                            <p class="grey-text text-lighten-4">Vous y trouverez beaucoup de détails et des offres exclusives.</p>
-                            </Col>
-                            <Col  xs={6} md={4}  className="justify-content-end">
-                            <Row><h5 class="white-text">Liens :</h5></Row>
-                            <Row>
+                <Row>
+                    <Col xs={12} md={8}>
+                        <h5 className="footer-text">Consultez nos réseaux sociaux</h5>
+                        <h6 className="h6-white">Vous y trouverez beaucoup de détails et des offres exclusives.</h6>
+                    </Col>
+                    <Col xs={6} md={4} className="justify-content-end">
+                    <Row>
+                       
+                        
                             <ul>
-                                <Button
-                                    className="btn"
+                                <Button variant="info"
 
-                                    href="#pablo"
-
+                                    
                                 >
                                     <i className="fa fa-facebook" />
                                 </Button>
-                              <Button
-                                    className="btn"
-
-                                    href="#pablo"
-                                    onClick={(e) => e.preventDefault()}
+                                <Button
+                                   
                                 >
                                     <i className="fa fa-instagram" />
                                 </Button>
-                               <Button
+                                <Button
                                     className="btn"
 
-                                    href="#pablo"
+
 
                                 >
                                     <i className="fa fa-linkedin" />
                                 </Button>
 
                             </ul>
-                            </Row>
-                            </Col>
                         </Row>
-                
+                    </Col>
+                </Row>
+
                 <div class="footer-copyright">
                     <div class="container">
                         © 2021 Copyright iDrive Gears

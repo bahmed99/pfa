@@ -47,8 +47,12 @@ export default function Signin() {
                 localStorage.setItem("detect",data.detect)
                 setSuccess(true)
                 setTimeout(() => setSuccess(false), 2500)
-               
+
                 setTimeout(() => History.push('/home'), 500)
+
+                
+               
+
                 setTimeout(() =>window.location.reload(), 500)
                
             }

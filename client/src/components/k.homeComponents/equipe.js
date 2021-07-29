@@ -1,51 +1,48 @@
 import React from 'react'
-import { Image, Container, Col, Row } from 'react-bootstrap'
+import { Container, Carousel } from 'react-bootstrap'
+import './home.style.css'
 
 export default function Equipe() {
     return (
         <div className=" text-center">
             <Container>
-                <Row>
+                <Carousel variant="dark">
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={require("../../assets/images/2.jpg").default}
+                            alt="First slide"
+                        />
+                        <Carousel.Caption>
+                            <h3>Ahmed Bahri</h3>
+                            <p>Instructeur Code et Conduite</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={require("../../assets/images/3.jpg").default}
+                            alt="Second slide"
+                        />
 
-                    <h2 >Voici notre equipe</h2>
-                    <h5 >
-                        This is the paragraph where you can write more details about
-                        your product.
-                    </h5>
+                        <Carousel.Caption>
+                            <h3>Khadija Makhlouf</h3>
+                            <p>Instructeur Code et Conduite</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={require("../../assets/images/2.jpg").default}
+                            alt="Third slide"
+                        />
 
-                </Row>
-                <Row>
-                    <Col>
-                        <Image className="card-avatar" src={require("../../assets/images/ahmed.jpg").default} roundedCircle />
-
-
-                        <h4>Ahmed Bahri</h4>
-                  
-
-                    </Col>
-                    <Col>
-                        <Image className="card-avatar" src={require("../../assets/images/khadija.jpg").default} roundedCircle />
-
-
-                        <h4>Khadija Makhlouf</h4>
-                       
-
-
-                    </Col>
-                    <Col>
-                        <Image className="card-avatar" src={require("../../assets/images/oussama.png").default} roundedCircle />
-
-
-                        <h4>Oussama Kordoghli</h4>
-                 
-
-
-                    </Col>
-
-
-
-                </Row>
-
+                        <Carousel.Caption>
+                            <h3>Oussama Kordoghli</h3>
+                            <p>Instructeur Code et Conduite</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                </Carousel>
             </Container>
         </div>
     )

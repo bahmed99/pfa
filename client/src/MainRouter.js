@@ -12,7 +12,7 @@ import Index from "./pages/a.client";
 import Home from "./pages/k.home/home";
 import Courses from "./pages/a.client/courses";
 import Course from "./pages/a.client/course";
-
+import Employee from "./pages/k.employee/employee"
 import Reset from "./pages/o.Signin/Reset";
 import NewPassword from "./pages/o.Signin/NewPassword";
 
@@ -60,6 +60,14 @@ export default function MainRouter() {
               
                 <Route exact path={"/khadija"} component={Home} />
 
+      <Route exact path={"/khadija2"} component={Employee} />
+                <Route exact path={"/tests"} component={Courses} />
+                <Route exact path={"/test/:id"} component={Course} />
+
+
+
+
+
                { user?  <Route exact path={"/"} component={Index} />:<Route exact path={"/"} component={Home} />}
                 
                 
@@ -85,9 +93,13 @@ export default function MainRouter() {
                         <Route exact path={"/test/:id"} component={Course} />
                         <Route exact path={"/tests"} component={Courses} />
                         <Route exact path={"/cours"} component={Cours} />
-                        <Route exact path={"/cours/:id"} component={Cour} /></div> : ""}
+                        <Route exact path={"/cours/:id"} component={Cour} />
+                        <Route exact path={"/test/reponse/:id"} component={Correction} /></div> : ""}
+
+
 
                 {reponse && user ? <Route exact path={"/test/reponse/:id"} component={Correction} /> : ""}
+
                 {/* <Route exact component={Error404} /> */}
 
             </Switch>
