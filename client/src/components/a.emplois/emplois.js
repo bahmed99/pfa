@@ -18,7 +18,7 @@ const ColoredDateCellWrapper = ({ children }) =>
   })
 
   
-function Notification() {
+function Emplois() {
    
   return (
     <Calendar
@@ -37,4 +37,4 @@ function Notification() {
   />
   )}
 
-export default Notification
+export default Emplois

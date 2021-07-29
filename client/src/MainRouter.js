@@ -8,7 +8,7 @@ import {
 import Signin from "./pages/o.Signin/Signin";
 
 
-import Index from "./pages/a.client";
+import HomeClient from "./pages/a.client";
 import Home from "./pages/k.home/home";
 import Courses from "./pages/a.client/courses";
 import Course from "./pages/a.client/course";
@@ -25,7 +25,8 @@ import NavBarClient from "./components/a.navbarClient/index"
 
 import Cours from "./pages/a.client/cours";
 import Cour from "./pages/a.client/cour";
-import Error404 from "./pages/Error";
+import Emplois from "./pages/a.client/emplois";
+
 
 export default function MainRouter() {
     const history = useHistory()
@@ -37,7 +38,7 @@ export default function MainRouter() {
         // JSON.parse --> trod une chaine de caractere il objet 
         if (user && detect === 1)
         {
-            if(!history.location.pathname.startsWith('/cours') && !history.location.pathname.startsWith('/tests') && !history.location.pathname.startsWith('/test') && !history.location.pathname.startsWith('/avis') && !history.location.pathname.startsWith('/reset')  )
+            if(!history.location.pathname.startsWith('/cours') && !history.location.pathname.startsWith('/tests') && !history.location.pathname.startsWith('/test') && !history.location.pathname.startsWith('/avis') && !history.location.pathname.startsWith('/reset') && !history.location.pathname.startsWith('/emplois') )
             {
                 history.push('/')
             }
@@ -60,7 +61,7 @@ export default function MainRouter() {
               
                 <Route exact path={"/khadija"} component={Home} />
 
-      <Route exact path={"/khadija2"} component={Employee} />
+                <Route exact path={"/khadija2"} component={Employee} />
                 <Route exact path={"/tests"} component={Courses} />
                 <Route exact path={"/test/:id"} component={Course} />
 
@@ -68,7 +69,7 @@ export default function MainRouter() {
 
 
 
-               { user?  <Route exact path={"/"} component={Index} />:<Route exact path={"/"} component={Home} />}
+               { user?  <Route exact path={"/"} component={HomeClient} />:<Route exact path={"/"} component={Home} />}
                 
                 
                 <Route exact path={"/forgot-password"}>
@@ -84,7 +85,8 @@ export default function MainRouter() {
 
                 {user ?
                     <div>
-                        <Route exact path={"/home"} component={Index} />
+                        <Route exact path={"/emplois"} component={Emplois} />
+                        <Route exact path={"/home"} component={HomeClient} />
                         <Route exact path={"/avis"}>
                             <NavBarClient />
                             <Avis />

@@ -13,13 +13,13 @@ export default function Index() {
   return (
     <Navbar className='bgNav' collapseOnSelect expand="lg" variant="dark">
       <Container>
-        <Navbar.Brand href="/ahmed" className="font1">iDrive Gears</Navbar.Brand>
+        <Navbar.Brand href="/" className="font1">iDrive Gears</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
           </Nav>
           <Nav>
-            <Nav.Link href="#deets" className="font">Emploi</Nav.Link>
+            <Nav.Link href="/emplois" className="font">Emplois</Nav.Link>
             <Nav.Link eventKey={2} href="/cours" className="font">Cours</Nav.Link>
             <Nav.Link eventKey={3} href="/tests" className="font">Exercices</Nav.Link>
             <Nav.Link eventKey={4} href="/avis" className="font">Votre avis</Nav.Link>
