@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardGroup, Image, Container, Col, Row, Button } from 'react-bootstrap'
+import { Image, Container, Col, Row } from 'react-bootstrap'
 
 export default function Equipe() {
     return (

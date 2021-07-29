@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card , CardGroup,Image,Container,Col,Row,Button} from 'react-bootstrap'
+import { Card , CardGroup,Container,Row} from 'react-bootstrap'
 import './home.style.css'
 
 export default function Services() {

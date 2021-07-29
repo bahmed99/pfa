@@ -1,38 +1,189 @@
+.second-div
+{
+    display: flex ;
+    justify-content: center;
+}
 .auth-card
 {
     text-align: center;
-    max-width: 550px;
-    margin: 0 auto;
+    max-width: 450px;
+    margin-left: -15px;
+    margin-top: 35px ;
     border-radius: 10px ;
-    opacity: 90%;
-  
-  }
-  .input-field input[type=text]:focus {
-    border-bottom: 1px solide rgba(151, 14, 206, 0) !important;
-    box-shadow: 0 1px 0 0 rgba(183, 0, 255, 0) !important;
-  }
+    opacity: 100%;
+    height: 560px;
+}
+.input-Mod1
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px ;
+    border: none;
+    border-bottom: 2px solid #369579;
+    margin-top: 20px ;
+}
+.input-Mod2
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px ;
+    border: none;
+    border-bottom: 2px solid #369579;
+    margin-top: 20px ;
+}
+input[type="text"], input[type="password"], textarea, select { 
+    outline: none;
+}
+.auth-card112
+{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 450px ;
+    justify-content: center;
+    margin-top: 50px;
+}
+.input-Mod3
+{
+    margin-left: 30px !important;
+    margin-right: auto !important;
+    width: 300px ;
+    border: none;
+    border-bottom: 2px solid #369579;
+}
+.input-Mod4
+{
+
+    margin-left: 20px !important;
+    margin-right: auto !important;
+    width: 300px ;
+    border: none;
+    border-bottom: 2px solid #369579;
+}
+.photo-Mod
+{
+    max-width: 450px ;
+    margin-top: 35px;
+    border-top-left-radius: 10px ;
+    border-bottom-left-radius: 10px ;
+    max-width: 450px;
+    border-top-right-radius: 0px ;
+    border-bottom-right-radius: 0px ;
+    max-height: 560px;
+    box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+
+}
 .logo-Mod
 {
     width: 290px;
-    margin: auto auto ;
+    margin: 30px auto ;
     margin-bottom: 50px ;
+}
+.waves-effect12
+{
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+
+    margin: 30px auto ;
+    background-color: #369579; 
+    color: white;
+    transition-duration: 0.4s;
+
+}
+.waves-effect12:hover
+{
+    background-color: white;
+    color: black;
+    border: 3px solid #369579; 
+    
 }
 .waves-effect
 {
-    margin: 40px auto ;
-    width: 210px;
-    border-radius: 15%;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+
+    margin: 30px auto ;
+    background-color: #369579; 
+    color: white;
+    transition-duration: 0.4s;
 }
-.firstOne
+.waves-effect:hover
 {
-    cursor: default;
-    margin-top: 220px;
-    margin-left: -4px;
+    background-color: white;
+    color: black;
+    border: 3px solid #369579; 
     
 }
-.secondOne
-{
-    cursor: default;
-    margin-top: 272px;
-    margin-left: -4px;
+
+@media (max-width:900px) {
+    .second-div
+    {
+        display: inline;
+        justify-content: center;
+        
+    }
+    .auth-card
+    {
+        text-align: center;
+        max-width: 300px;
+        margin-left: 0px;
+        border-radius: 10px ;
+        opacity: 100%;
+        margin-top: -320px ;
+        max-height: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    
+    }
+    .photo-Mod
+    {
+        margin-left: auto!important;
+        margin-right: auto !important;
+        max-height: 450px;
+        max-width: 300px !important;
+        margin-top: 30px;
+        border-top-left-radius: 10px ;
+        border-bottom-left-radius: 0px ;
+        border-top-right-radius: 10px ;
+        border-bottom-right-radius: 0px ;
+        box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+        opacity: 0%;
+        
+
+    }
+    .waves-effect
+    {
+        margin : auto auto ;
+        width: 150px;
+        border-radius: 10%;
+        height: 30px;
+        margin-top: 30px ;
+    }
+
+
+    .auth-card112
+    {
+        max-width: 300px !important;
+        margin: auto auto ;
+        justify-content: center;
+        margin-top: 35px;
+    }
+    .logo-Mod
+    {
+        width: 250px;
+        margin: 20px auto ;
+        margin-bottom: 50px ;
+    }
+    .input-Mod1
+    {
+        width: 200px ;
+
+    }
+    .input-Mod2
+    {
+        margin-top: -20px;
+        width: 200px ;
+    }
+  
 }

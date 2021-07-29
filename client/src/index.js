@@ -8,11 +8,14 @@ import {
 } from "react-router-dom";
 import 'font-awesome/css/font-awesome.min.css';
 
+
 ReactDOM.render(
   <React.StrictMode>
+   
     <Router>
     <App />
     </Router>
+   
   </React.StrictMode>,
   document.getElementById('root')
 );

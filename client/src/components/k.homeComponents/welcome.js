@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card ,Image} from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import './home.style.css'
 
 export default function Welcome() {

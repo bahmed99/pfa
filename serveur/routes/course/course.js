@@ -50,7 +50,7 @@ router.post("/",  (req, res) => {
         course:data.course
     })
     newCourse.save().then((result) => {
-        res.send(JSON.stringify(result))
+        res.send(result)
         console.log(result)
     }).catch(err => {
         console.log(err)
@@ -62,7 +62,7 @@ router.get("/:id", (req, res) => {
     const id = req.params.id;
 
     Course.findById(id).then((result) => {
-        res.send(JSON.stringify(result))
+        res.send(result)
         console.log(JSON.stringify(result))
     }).catch((err) => { console.log(err) }
     )

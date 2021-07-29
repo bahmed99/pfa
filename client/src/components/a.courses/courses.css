@@ -1,7 +1,7 @@
 
   .card1 {
-    width: 320px;
-    height: 250px;
+    width: 270px;
+    height: 200px;
     border-radius: 40px;
     box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
     cursor: pointer;
@@ -26,9 +26,10 @@
     border-radius: 0px 0px 40px 40px;
     font-family: sans-serif;
     font-weight: bold;
-    font-size: 30px;
-    margin-top: -130px;
-    height: 40px;
+    font-size: 25px;
+    margin-top: -106px;
+    margin-left: 13px;
+    height: 30px;
   }
   
   .card1:hover {
@@ -36,22 +37,66 @@
     box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
       -5px -5px 30px 15px rgba(0,0,0,0.22);
   }
-  
+  .strong-medium{font-weight:500}
+
+
+  .lead-full-text
+  {
+    
+    padding-bottom:51px;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    align-items: center!important;
+    justify-content: center!important;
+    text-align: center!important;
+  }
+ 
   .title-white {
     color: white;
   }
+
+  .breadcrumbs
+  {
+
+    line-height:20px;
+    
+    
+    
+  }
   
+  .textContainerCourses{
+    background: linear-gradient(0deg,#369579    0%,   #718a8a 70%);
+   border-radius: 12px;
+    /* background-color: #dededf; */
+    padding: 50px 250px;
+    width: 90%;
+  }
   .title-black {
     color: black;
+  }
+
+  
+  .coursesTitle{
+  margin-top: 50px;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    align-items: center!important;
+    justify-content: center!important;
+    text-align: center!important;
+    
   }
   
 
   .courses{
-      
-  margin-top: 50px!important;
-    margin-left: auto ;
-     margin-right: auto;
-      display:grid;
+    margin-left: 125px;
+    margin-bottom: 150px;
+    align-items: center!important;
+    justify-content: center!important;
+    text-align: center!important;
+    
+    margin-top: 50px!important;
+ 
+    display:grid;
      grid-template-columns: 400px 400px 400px ;
      grid-row-gap: 50px;
   }
@@ -67,15 +112,22 @@
        grid-row-gap: 50px;
     }
   }
-  
-  
+  /* test */
+  .Q{
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 22px;
+  }
   .course{
     margin-top: 50px;
+    
     display: flex;
+   
   }
 
 
   .questionZone{
+    margin-left: 40px;
       float: left;
       width: 60%;
      
@@ -94,6 +146,7 @@
   .card{
     border-radius: 15px;
     width: 650px;
+
 
   }
 
@@ -158,33 +211,172 @@
   margin: auto auto;
 	width: 150px;
     height:150px;
-   margin-top: 10px;
+   margin-top: 8px;
     font-size: 20px;
     padding-top: 15px;
     text-align: center;
     background:transparent;
-    border: solid white 2px;
+    border: solid 2px;
+
     color: black;
+    
     border-radius: 50%;
     background-color:#ffffff;
     box-shadow: 0 10px 30px rgba(167, 158, 158, 0.3), 0 15px 12px rgba(26, 25, 25, 0.22);
 }
 
 .containerCercle{
-  
+  box-shadow: 0 30px 30px rgba(167, 158, 158, 0.3), 0 15px 12px rgba(26, 25, 25, 0.22);
+
   margin: auto auto;
 	  width: 200px;
     height:200px;
-   margin-top: 100px;
+   margin-top: 80px;
     font-size: 20px;
     padding-top: 15px;
     text-align: center;
     background-color:#EFEFEF;
-    border: solid white 2px;
+   
     color: black;
     border-radius: 50%;
 }
 .textTimer{
   margin-top: 40px;
   font-weight: lighter;
+}
+
+.Q{
+  color: black;
+}
+/* score */
+
+.score{
+
+  color: black;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: -20px;
+}
+
+.trait{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  border-bottom:4px solid #369579;
+  width: 9%;
+  border-radius: 5px;
+}
+
+.corrige{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.containerCorrige{
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px!important;
+  height:700px;
+  width: 800px;
+}
+
+.cleRep{
+  margin-top: 20px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+.mauvaise{
+font-size:12px ;
+float: right;
+margin-top: 8px;
+}
+
+.bonne{
+ 
+  font-size:12px ;
+margin-top:8px ;
+
+float: right;
+
+}
+
+.num{
+  height:40px;width:40px;vertical-align:middle;border:1px solid #ccc;border-radius:33px;line-height:39px
+}
+.bg_vert
+{
+  background-color:#06cc00;color:#fff}
+.bg_rouge
+{background-color:red;color:#fff
+}
+
+  .div_vt_reponse_res {
+    width: 30px;
+    height: 30px;
+    border: 3px solid red;
+    border-radius: 16px;
+    background-color: red;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    display:inline-block
+}
+
+.div_bn_reponse_res {
+    width: 29px;
+    height: 29px;
+    border: 2px solid #20ca20;
+    background-color: #20ca20;
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    display:inline-block
+}
+.bgR{
+  color: red;
+}
+.bgG{
+ color: green;
+}
+
+
+/* correction */
+
+
+
+.btnQ1 {
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgb(58, 134, 58);
+  width: 100%;
+  text-align: left;
+  border: solid rgb(221, 217, 217) 1px;
+
+}
+
+
+.btnQ2 {
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgb(161, 31, 31);
+  width: 100%;
+  text-align: left;
+  border: solid rgb(221, 217, 217) 1px;
+
+}
+
+.course1{
+  margin-top: 50px;
+ 
+ 
+}
+.Correction{
+  
+
+}
+.card2{
+  margin-right: auto;
+  margin-left: auto;
+
 }
