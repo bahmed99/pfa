@@ -60,12 +60,12 @@ export default function Reset() {
                         <input 
                         type="text"
                         className="input-Mod3"
-                        placeholder="email"
+                        placeholder="Email*"
                         value={email}
                         onChange={(e)=>setEmail(e.target.value)} />
                     </div>
                     <br />
-                    <button onClick={()=>PostData()} className="waves-effect12 " type="submit" name="action" style={{opacity:"100% !important"}}>submit
+                    <button onClick={()=>PostData()} className="waves-effect12 " type="submit" name="action" style={{opacity:"100% !important"}}>Envoyer
                     </button>
                     <br />
                 </div>

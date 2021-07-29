@@ -65,13 +65,13 @@ export default function NewPassword() {
                         <label><i class="fa fa-lock" style={{color:"#718a8a" , fontSize:"25px" , marginLeft:"40px"}}></i></label>
                         <input 
                         type="password" 
-                        placeholder=" Nouveau mot de passe"
+                        placeholder=" Nouveau mot de passe*"
                         className="input-Mod4"
                         value={password}
                         onChange={(e)=>setPassword(e.target.value)} />
                     </div>
                     <br />
-                    <button onClick={()=>PostData()} className="waves-effect" type="submit" name="action" style={{opacity:"100% !important"}}>Submit
+                    <button onClick={()=>PostData()} className="waves-effect" type="submit" name="action" style={{opacity:"100% !important"}}>Envoyer
                     </button>
                     <br />
 
