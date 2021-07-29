@@ -14,7 +14,7 @@ export default function cour() {
           }}>
             <Navbar />
             <Cour />
-            <Footer />
+         
         </div>
     )
 }

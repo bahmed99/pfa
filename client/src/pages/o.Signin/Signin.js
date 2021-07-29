@@ -41,7 +41,10 @@ export default function Signin() {
                 localStorage.setItem("user",JSON.stringify(data.user))
                 setSuccess(true)
                 setTimeout(() => setSuccess(false), 2500)
-                History.push('/ahmed')
+                
+                setTimeout(() =>History.push('/home'), 500)
+                setTimeout(() =>window.location.reload(), 550)
+               
             }
         }).catch(err=>{
             console.log(err)

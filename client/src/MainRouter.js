@@ -35,7 +35,7 @@ export default function MainRouter() {
                     <Signin />
                     <Footer />
                 </Route>
-                <Route exact path={"/ahmed"} component={Index} />
+              
                 <Route exact path={"/khadija"} component={Home} />
 
                 <Route exact path={"/tests"} component={Courses} />
@@ -43,7 +43,7 @@ export default function MainRouter() {
 
 
 
-                <Route exact path={"/"} component={Home} />
+               { user?  <Route exact path={"/"} component={Index} />:<Route exact path={"/"} component={Home} />}
                 
                 
                 <Route exact path={"/forgot-password"}>
@@ -59,6 +59,7 @@ export default function MainRouter() {
 
                 {user ?
                     <div>
+                        <Route exact path={"/home"} component={Index} />
                         <Route exact path={"/avis"}>
                             <NavBarClient />
                             <Avis />
