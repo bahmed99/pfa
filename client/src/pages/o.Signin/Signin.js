@@ -42,8 +42,8 @@ export default function Signin() {
                 setSuccess(true)
                 setTimeout(() => setSuccess(false), 2500)
                 
-                setTimeout(() =>History.push('/home'), 500)
-                setTimeout(() =>window.location.reload(), 550)
+                setTimeout(() =>History.push('/'), 500)
+                setTimeout(() =>window.location.reload(), 500)
                
             }
         }).catch(err=>{

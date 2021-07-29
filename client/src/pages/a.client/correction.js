@@ -11,7 +11,7 @@ export default function Correction() {
             backgroundAttachment:"fixed" ,
             backgroundPosition: "center" ,
             backgroundRepeat:"repeat"
-          }}>
+          }}>          
             <Navbar />
             <Corrections />
         </div>

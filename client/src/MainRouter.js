@@ -38,8 +38,6 @@ export default function MainRouter() {
               
                 <Route exact path={"/khadija"} component={Home} />
 
-                <Route exact path={"/tests"} component={Courses} />
-                <Route exact path={"/test/:id"} component={Course} />
 
 
 
@@ -68,10 +66,11 @@ export default function MainRouter() {
                         <Route exact path={"/test/:id"} component={Course} />
                         <Route exact path={"/tests"} component={Courses} />
                         <Route exact path={"/cours"} component={Cours} />
-                        <Route exact path={"/cours/:id"} component={Cour} /></div> : ""}
+                        <Route exact path={"/cours/:id"} component={Cour} />
+                        <Route exact path={"/test/reponse/:id"} component={Correction} /></div> : ""}
 
-                {reponse && user ? <Route exact path={"/test/reponse/:id"} component={Correction} /> : ""}
-                <Route exact component={Error404} />
+
+                {/* <Route exact component={Error404} /> */}
 
             </Switch>
         </div>
