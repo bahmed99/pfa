@@ -69,6 +69,7 @@ export default function Signin() {
                 
                     <div className="card auth-card ">
                         <img alt="" src={image} className="logo-Mod"/>
+
                             <div>
                                 <i class="fa fa-user" style={{color:"#718a8a" , fontSize:"22px",marginRight:"20px" ,}}></i>
                                 <input 
@@ -92,6 +93,7 @@ export default function Signin() {
                             <br />
                             <br />
                             <h6 style={{marginBottom:"50px"}}><Link to='/forgot-password'> Mot de passe oublié ?</Link></h6>
+
                     </div>
                 </div>
             </div>
