@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import {
     Switch,
     Route,
+    useHistory
 } from "react-router-dom";
 
 import Signin from "./pages/o.Signin/Signin";
@@ -26,8 +28,28 @@ import Cour from "./pages/a.client/cour";
 import Error404 from "./pages/Error";
 
 export default function MainRouter() {
+    const history = useHistory()
+    const user = JSON.parse(localStorage.getItem("user"))
     let reponse = JSON.parse(localStorage.getItem("reponse"));
-    let user = JSON.parse(localStorage.getItem("user"));
+    useEffect(()=>{
+        const user = JSON.parse(localStorage.getItem("user"))
+        const detect = JSON.parse(localStorage.getItem("detect"))
+        // JSON.parse --> trod une chaine de caractere il objet 
+        if (user && detect === 1)
+        {
+            if(!history.location.pathname.startsWith('/cours') && !history.location.pathname.startsWith('/tests') && !history.location.pathname.startsWith('/test') && !history.location.pathname.startsWith('/avis') && !history.location.pathname.startsWith('/reset')  )
+            {
+                history.push('/')
+            }
+        }
+        else
+        {
+          if(!history.location.pathname.startsWith('/reset') && !history.location.pathname.startsWith('/forgot-password') && !history.location.pathname.startsWith('/sign-in'))
+          {
+            history.push("/")
+          }
+        }
+      },[])
     return (
         <div>
             <Switch>
@@ -38,9 +60,10 @@ export default function MainRouter() {
               
                 <Route exact path={"/khadija"} component={Home} />
 
-                <Route exact path={"/khadija2"} component={Employee} />
+      <Route exact path={"/khadija2"} component={Employee} />
                 <Route exact path={"/tests"} component={Courses} />
                 <Route exact path={"/test/:id"} component={Course} />
+
 
 
 
@@ -73,6 +96,9 @@ export default function MainRouter() {
                         <Route exact path={"/cours/:id"} component={Cour} />
                         <Route exact path={"/test/reponse/:id"} component={Correction} /></div> : ""}
 
+
+
+                {reponse && user ? <Route exact path={"/test/reponse/:id"} component={Correction} /> : ""}
 
                 {/* <Route exact component={Error404} /> */}
 

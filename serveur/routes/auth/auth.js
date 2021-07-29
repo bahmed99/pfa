@@ -37,9 +37,10 @@ router.post('/login',(req,res)=>{
                 .then(domatch=>{
                     if (domatch)
                     {
+                        const detect = 2
                         const token = jwt.sign({_id:newSavedUser._id} , JWT_SECRET)
                         const {_id,name,email,cin,pic,timetable,employee} = newSavedUser
-                        res.json({token,user:{_id,name,email,cin,pic,timetable,employee}})
+                        res.json({detect,token,user:{_id,name,email,cin,pic,timetable,employee}})
                     }
                     else
                     {
@@ -59,9 +60,10 @@ router.post('/login',(req,res)=>{
             .then(domatch=>{
                 if(domatch)
                 {
+                    const detect = 1
                     const token = jwt.sign({_id:savedUser._id} , JWT_SECRET)
                     const {_id,name,email,cin,pic,timetable,employee} = savedUser
-                    res.json({token,user:{_id,name,email,cin,pic,timetable,employee}})
+                    res.json({detect,token,user:{_id,name,email,cin,pic,timetable,employee}})
                 }
                 else
                 {

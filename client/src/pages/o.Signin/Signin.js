@@ -5,15 +5,18 @@ import image from './o.images/0.png'
 import image1 from './o.images/01234.gif'
 import image2 from './o.images/077.PNG'
 import Alert from 'react-bootstrap/Alert'
+import ReactLoading from 'react-loading';
 
 
 export default function Signin() {
     const History = useHistory()
+    const [loading,setLoading]=useState(false)
     const [error,setError] = useState(false)
     const [success,setSuccess] = useState(false)
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     const PostData = () =>{
+        setLoading(true)
         fetch("http://localhost:3001/auth/login",{
             method:"post",
             headers:{
@@ -28,6 +31,7 @@ export default function Signin() {
             console.log(data)
             if(data.error )
             {
+                setLoading(false)
                 if (password !== "" && email !== "")
                 {
                     setError(true)
@@ -36,13 +40,19 @@ export default function Signin() {
             }
             else
             {
+                setLoading(false)
                 console.log(data.token)
                 localStorage.setItem("jwt",data.token)
                 localStorage.setItem("user",JSON.stringify(data.user))
+                localStorage.setItem("detect",data.detect)
                 setSuccess(true)
                 setTimeout(() => setSuccess(false), 2500)
+
+                setTimeout(() => History.push('/home'), 500)
+
                 
-                setTimeout(() =>History.push('/'), 500)
+               
+
                 setTimeout(() =>window.location.reload(), 500)
                
             }
@@ -91,7 +101,7 @@ export default function Signin() {
                                 value={password}
                                 onChange={(e)=>setPassword(e.target.value)} />
                             </div>
-                            <button onClick={()=>PostData()} className="waves-effect" type="submit" name="action" style={{opacity:"100% !important"}}>Se connecter
+                            <button onClick={()=>PostData()} className="waves-effect" type="submit" name="action" style={{opacity:"100% !important",backgroundColor:loading? "#66CDAA" :''}} disabled={loading}>{loading? <ReactLoading height={'20px'} width={'24px'} className="loading1" type="spin"/>:"Se connecter"}
                             </button>
                             <br />
                             <br />
