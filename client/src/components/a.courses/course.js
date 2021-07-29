@@ -31,6 +31,9 @@ export default function Course() {
    const [r1, setR1] = useState({})
    const [r2, setR2] = useState({})
    const [r3, setR3] = useState({})
+   const [bg1, setBg1] = useState()
+   const [bg2, setBg2] = useState()
+   const [bg3, setBg3] = useState()
 
    // const {datas,setDatas,reponse,setReponse}=useContext(Courses)
 
@@ -54,7 +57,9 @@ export default function Course() {
             setBorder("#369579 #369579 #369579 #369579")
             setSeconde(0)
             if (nb < 30) {
-
+               setBg1("")
+               setBg2("")
+               setBg3("")
                const tab = [...reponses]
                tab.push({valid:false,r:""})
                setReponses(tab)
@@ -94,7 +99,6 @@ export default function Course() {
       return () => clearInterval(interval);
    }, [isActive, seconde]);
 
-console.log(data)
 
    useEffect(() => {
       axios.get(`http://localhost:3001/courses/${id}`)
@@ -114,6 +118,7 @@ console.log(data)
             setIsActive(!isActive);
             // setDatas(d)
             localStorage.setItem("datas", JSON.stringify(d));
+            
          }
          )
          .catch(err => {
@@ -123,7 +128,9 @@ console.log(data)
 
 
    function Next() {
-
+      setBg1("")
+      setBg2("")
+      setBg3("")
       if (Object.keys(choice).length === 0) {
          setError(true)
 
@@ -171,6 +178,7 @@ console.log(data)
             }
             // setReponse(reponses)
             localStorage.setItem("reponse", JSON.stringify(reponses));
+            
          }
       }
 
@@ -186,6 +194,12 @@ console.log(data)
       return <Score  score={score} data={reponses}  />
    }
 
+
+
+
+
+
+
    return (
       <div >
       <div className="course container" >
@@ -195,19 +209,19 @@ console.log(data)
             </Alert>
             <div className="card">
                <div className="cardImage">
-                  <img src={`/uploads/courses/${pic}`} alt="" />
+                  <img src={`/uploads/tests/${pic}`} alt="" />
                </div>
                <div className="card-content Q">
                   <p>{q} :</p>
                </div>
                
                <div className="action">
-                  {r1.r !== "" ? <div><button className="btnQ" onClick={() => { setChoice(r1) }} value={r1.r}><span className="cadreQ">A</span> {r1.r}</button><br /><br /></div>
+                  {r1.r !== "" ? <div><button style ={{backgroundColor:bg1}} className="btnQ" onClick={() => { setChoice(r1); setBg1("green");setBg2("");setBg3("") }} value={r1.r}><span className="cadreQ">A</span> {r1.r}</button><br /><br /></div>
                      : ""}
-                  {r2.r !== "" ? <div> <button className="btnQ" onClick={() => { setChoice(r2) }} value={r2.r}><span className="cadreQ">{r1.r===""?"A":"B"}</span> {r2.r}</button><br /><br /></div>
+                  {r2.r !== "" ? <div> <button className="btnQ" style ={{backgroundColor:bg2}} onClick={() => { setChoice(r2); setBg1("");setBg2("green");setBg3("") }} value={r2.r}><span className="cadreQ">{r1.r===""?"A":"B"}</span> {r2.r}</button><br /><br /></div>
                      : ""}
                   {r3.r !== "" ?
-                     <button className="btnQ" onClick={() => { setChoice(r3) }} value={r3.r}><span className="cadreQ">{r2.r===""?"B":r1.r===""?"B":"C"}</span> {r3.r}</button> : ""}
+                     <button className="btnQ" style ={{backgroundColor:bg3}} onClick={() => { setChoice(r3) ; setBg1("");setBg2("");setBg3("green")}} value={r3.r}><span className="cadreQ">{r2.r===""?"B":r1.r===""?"B":"C"}</span> {r3.r}</button> : ""}
 
                   {r3.r !== "" ? <div><br /><br /></div> : ""}
                </div>
@@ -227,6 +241,7 @@ console.log(data)
             </div>
          </div>
       </div>
+      <br /> 
       </div>
    )
 }

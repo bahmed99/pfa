@@ -26,8 +26,9 @@
     border-radius: 0px 0px 40px 40px;
     font-family: sans-serif;
     font-weight: bold;
-    font-size: 30px;
-    margin-top: -110px;
+    font-size: 25px;
+    margin-top: -106px;
+    margin-left: 13px;
     height: 30px;
   }
   
@@ -53,15 +54,12 @@
   .title-white {
     color: white;
   }
+
   .breadcrumbs
-  
   {
+
     line-height:20px;
-    margin-left: auto!important;
-    margin-right: auto!important;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    
     
     
   }
@@ -70,22 +68,14 @@
     background: linear-gradient(0deg,#369579    0%,   #718a8a 70%);
    border-radius: 12px;
     /* background-color: #dededf; */
-    padding: 50px 150px;
+    padding: 50px 250px;
+    width: 90%;
   }
   .title-black {
     color: black;
   }
 
-  .courseContainer{
-    margin-left: auto!important;
-    margin-right: auto!important;
-    align-items: center!important;
-    justify-content: center!important;
-    text-align: center!important;
-    
-   
-  }
-
+  
   .coursesTitle{
   margin-top: 50px;
     margin-left: auto!important;
@@ -122,16 +112,22 @@
        grid-row-gap: 50px;
     }
   }
-  
-  
+  /* test */
+  .Q{
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 22px;
+  }
   .course{
     margin-top: 50px;
+    
     display: flex;
    
   }
 
 
   .questionZone{
+    margin-left: 40px;
       float: left;
       width: 60%;
      
@@ -150,6 +146,7 @@
   .card{
     border-radius: 15px;
     width: 650px;
+
 
   }
 
@@ -258,6 +255,7 @@
   color: black;
   text-align: center;
   margin-top: 20px;
+  margin-bottom: -20px;
 }
 
 .trait{
@@ -269,7 +267,7 @@
   border-radius: 5px;
 }
 
-.corrige {
+.corrige{
   margin-left: auto;
   margin-right: auto;
 }
@@ -278,11 +276,12 @@
   margin-left: auto;
   margin-right: auto;
   border-radius: 20px!important;
-  height:900px;
+  height:700px;
   width: 800px;
 }
 
 .cleRep{
+  margin-top: 20px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -379,4 +378,5 @@ float: right;
 .card2{
   margin-right: auto;
   margin-left: auto;
+
 }

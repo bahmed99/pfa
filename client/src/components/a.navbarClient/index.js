@@ -13,7 +13,7 @@ export default function Index() {
           </Nav>
           <Nav>
             <Nav.Link href="#deets" className="font">Emploi</Nav.Link>
-            <Nav.Link eventKey={2} href="" className="font">Cours</Nav.Link>
+            <Nav.Link eventKey={2} href="/cours" className="font">Cours</Nav.Link>
             <Nav.Link eventKey={3} href="/tests" className="font">Exercices</Nav.Link>
             <Nav.Link eventKey={4} href="/avis" className="font">Votre avis</Nav.Link>
             <Nav.Link eventKey={5} href="#memes" className="font">Se déconnecter</Nav.Link>

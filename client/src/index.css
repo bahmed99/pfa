@@ -11,3 +11,37 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.control-panel {
+  font-size: 16px;
+  color: black;
+  background-color: white;
+  border-radius: 5px;
+  width: fit-content;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: lightgray;
+}
+
+.bgN{
+  color: black;
+}
+
+.btn-brand{
+  background:  linear-gradient(90deg, #3d3e42 0%, #718a8a   100%);
+padding: 13px 25px;
+border-radius: 100px;
+color: white;
+
+
+}
+.btn-brand:hover{
+  color: white;
+  opacity: 80%;
+}

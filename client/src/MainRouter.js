@@ -17,10 +17,16 @@ import NewPassword from "./pages/o.Signin/NewPassword";
 import Correction from "./pages/a.client/correction";
 
 import Footer from "./components/k.footer/footer"
+
 import Avis from "./pages/a.client/o.avis/Avis";
 import NavBarClient from "./components/a.navbarClient/index"
 
+import Cours from "./pages/a.client/cours";
+import Cour from "./pages/a.client/cour";
+import Error404 from "./pages/Error";
+
 export default function MainRouter() {
+    let reponse = JSON.parse(localStorage.getItem("reponse"));
     return (
         <div>
             <Switch>
@@ -30,10 +36,17 @@ export default function MainRouter() {
                 </Route>
                 <Route  exact path={"/ahmed"} component={Index} />
                 <Route exact path={"/khadija"} component={Home} />
+
                 <Route  exact path={"/tests"} component={Courses} />
                 <Route  exact path={"/test/:id"} component={Course} />
 
                 <Route exact path={"/forgot-password"}>
+
+                <Route exact path={"/"} component={Home} />
+                
+                
+                <Route exact path={"/register1"}>
+
                     <Reset />
                     <Footer />
                 </Route> 
@@ -47,7 +60,14 @@ export default function MainRouter() {
                     <Footer />
                 </Route>
 
-                <Route  exact path={"/test/reponse/:id"} component={Correction} />
+                {reponse?<Route  exact path={"/test/reponse/:id"} component={Correction} />:""}
+                
+                <Route  exact path={"/test/:id"} component={Course} />
+                <Route  exact path={"/tests"} component={Courses} />
+                <Route  exact path={"/cours"} component={Cours} />
+                <Route  exact path={"/cours/:id"} component={Cour} />
+
+                <Route exact  component={Error404} />
 
             </Switch>
         </div>
