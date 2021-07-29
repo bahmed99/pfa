@@ -26,13 +26,19 @@ export default function Signin() {
         }).then(res=>res.json())
         .then(data=>{
             console.log(data)
-            if(data.error)
+            if(data.error )
             {
-                setError(true)
-                setTimeout(() => setError(false), 2500)
+                if (password !== "" && email !== "")
+                {
+                    setError(true)
+                    setTimeout(() => setError(false), 2500)
+                }
             }
             else
             {
+                console.log(data.token)
+                localStorage.setItem("jwt",data.token)
+                localStorage.setItem("user",JSON.stringify(data.user))
                 setSuccess(true)
                 setTimeout(() => setSuccess(false), 2500)
                 History.push('/ahmed')
@@ -45,7 +51,7 @@ export default function Signin() {
         <div className="firstdiv" style={{
             backgroundImage: 'url('+image1+')',
             backgroundSize: "cover",
-            height: "90vh",
+            height: "95vh",
             color: "#f5f5f5" ,
             backgroundAttachment:"fixed" ,
             backgroundPosition: "center" ,
@@ -61,25 +67,35 @@ export default function Signin() {
                     <img alt="" src={image2} className="photo-Mod"/>
                 <div className="mycard">
                 
-                    <div className="card auth-card input-field #fafafa grey lighten-5">
+                    <div className="card auth-card ">
                         <img alt="" src={image} className="logo-Mod"/>
-                        <i className="material-icons firstOne prefix" style={{color:"#3d3e42"}} >person_outline</i>
-                        <i className="material-icons secondOne prefix" style={{color:"#3d3e42"}}>lock_outline</i>
-                        <input 
-                        type="text" 
-                        placeholder="email"
-                        value={email}
-                        onChange={(e)=>setEmail(e.target.value)} />
-                        <input 
-                        type="password" 
-                        placeholder="mot de passe"
-                        value={password}
-                        onChange={(e)=>setPassword(e.target.value)} />
-                        <button onClick={()=>PostData()} className="btn waves-effect waves-light #26a69a teal lighten-1" type="submit" name="action" style={{opacity:"100% !important"}}>Login
-                        </button>
-                        <br />
-                        <br />
-                        <h6 style={{marginBottom:"50px"}}><Link to='/oussama1'> Mot de passe oublié ?</Link></h6>
+                        <form>
+                            <div>
+                                <i class="fa fa-user" style={{color:"#718a8a" , fontSize:"22px",marginRight:"20px" ,}}></i>
+                                <input 
+                                required
+                                type="text" 
+                                className="input-Mod2"
+                                placeholder="Email*"
+                                value={email}
+                                onChange={(e)=>setEmail(e.target.value)} />
+                            </div>
+                            <div>
+                                <i class="fa fa-lock" style={{color:"#718a8a" , fontSize:"25px",marginRight:"20px"}}></i>
+                                <input 
+                                required
+                                type="password" 
+                                className="input-Mod1"
+                                placeholder="Mot De Passe*"
+                                value={password}
+                                onChange={(e)=>setPassword(e.target.value)} />
+                            </div>
+                            <button onClick={()=>PostData()} className="waves-effect" type="submit" name="action" style={{opacity:"100% !important"}}>Se connecter
+                            </button>
+                            <br />
+                            <br />
+                            <h6 style={{marginBottom:"50px"}}><Link to='/forgot-password'> Mot de passe oublié ?</Link></h6>
+                        </form>
                     </div>
                 </div>
             </div>

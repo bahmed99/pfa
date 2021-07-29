@@ -18,7 +18,7 @@ app.use(cors())
 
 app.use(morgan('tiny'))
 
-// app.use("/client", require("./routes/client/"))
+ app.use("/client", require("./routes/client/client"))
 // app.use("/client", require("./routes/client/"))
 // app.use("/client", require("./routes/client/"))
 // app.use("/client", require("./routes/client/"))
