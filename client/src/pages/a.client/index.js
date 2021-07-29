@@ -1,6 +1,6 @@
 
 import Navbar from '../../components/a.navbarClient'
-import Notification from '../../components/a.notification/notification'
+import Notification from '../../components/a.notification/index'
 
 export default function Index() {
     return (

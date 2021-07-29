@@ -42,7 +42,7 @@ export default function Index() {
             <div className="courses">
 
                 {data.map((element, index) => (
-                    <Link style={{ textDecoration: 'none' }} to={`/test/${element._id}`} target="_blank" key={index}><div className="card1">
+                    <Link to={`/test/${element._id}`} target="_blank" key={index}><div className="card1">
                         <div className="card_image"> <img src={require("../../assets/images/serie.jpg").default} alt="" />
                         </div>
                         <div className="card_title title-white">

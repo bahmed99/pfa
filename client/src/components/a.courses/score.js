@@ -39,7 +39,7 @@ export default function Score({ score, data }) {
                                                     <div className="col-1 col-md-1 "></div>
 
                                                     {data.slice(0,5).map((element, index) => (
-                                                        <div className="col-2 col-md-2" key={index }><Link style={{ textDecoration: 'none' }} to={`/test/reponse/${index}`} target="_blank"> <div className={`num ${element.valid ? "bg_vert" : "bg_rouge"}`}>{index + 1}</div></Link >  </div>
+                                                        <div className="col-2 col-md-2" key={index }><Link  to={`/test/reponse/${index}`} target="_blank"> <div className={`num ${element.valid ? "bg_vert" : "bg_rouge"}`}>{index + 1}</div></Link >  </div>
                                                     ))
                                                     }
                                                     <div className="col-1 col-md-1"></div>
@@ -52,7 +52,7 @@ export default function Score({ score, data }) {
                                                     <div className="col-2 col-md-2 "></div>
 
                                                     {data.slice(5, 10).map((element, index) => (
-                                                        <div className="col-2 col-md-2" key={index+6 }><Link style={{ textDecoration: 'none' }} to={`/test/reponse/${index+5}`} target="_blank" > <div className={`num ${element.valid ? "bg_vert" : "bg_rouge"}`}>{index + 6}</div></Link >  </div>
+                                                        <div className="col-2 col-md-2" key={index+6 }><Link  to={`/test/reponse/${index+5}`} target="_blank" > <div className={`num ${element.valid ? "bg_vert" : "bg_rouge"}`}>{index + 6}</div></Link >  </div>
                                                     ))
                                                     }
 
@@ -69,7 +69,7 @@ export default function Score({ score, data }) {
                                                     <div className="col-1 col-md-1 "></div>
 
                                                     {data.slice(10, 15).map((element, index) => (
-                                                        <div className="col-2 col-md-2" key={index+11}><Link style={{ textDecoration: 'none' }} to={`/test/reponse/${index+10}`} target="_blank"> <div className={`num ${element.valid ? "bg_vert" : "bg_rouge"}`}>{index + 11}</div></Link >  </div>
+                                                        <div className="col-2 col-md-2" key={index+11}><Link  to={`/test/reponse/${index+10}`} target="_blank"> <div className={`num ${element.valid ? "bg_vert" : "bg_rouge"}`}>{index + 11}</div></Link >  </div>
                                                     ))
                                                     }
 
@@ -87,7 +87,7 @@ export default function Score({ score, data }) {
                                                     <div className="col-2 col-md-2 "></div>
 
                                                     {data.slice(15, 20).map((element, index) => (
-                                                        <div className="col-2 col-md-2" key={index+16 }> <Link style={{ textDecoration: 'none' }} to={`/test/reponse/${index+15}`} target="_blank"> <div className={`num ${element.valid ? "bg_vert" : "bg_rouge"}`}>{index + 16}</div></Link >  </div>
+                                                        <div className="col-2 col-md-2" key={index+16 }> <Link  to={`/test/reponse/${index+15}`} target="_blank"> <div className={`num ${element.valid ? "bg_vert" : "bg_rouge"}`}>{index + 16}</div></Link >  </div>
                                                     ))
                                                     }
 
@@ -105,7 +105,7 @@ export default function Score({ score, data }) {
                                                     <div className="col-1 col-md-1 "></div>
 
                                                     {data.slice(20, 25).map((element, index) => (
-                                                        <div className="col-2 col-md-2" key={index+21 }><Link style={{ textDecoration: 'none' }} to={`/test/reponse/${index+20}`} target="_blank"> <div className={`num ${element.valid ? "bg_vert" : "bg_rouge"}`}>{index + 21}</div></Link >  </div>
+                                                        <div className="col-2 col-md-2" key={index+21 }><Link  to={`/test/reponse/${index+20}`} target="_blank"> <div className={`num ${element.valid ? "bg_vert" : "bg_rouge"}`}>{index + 21}</div></Link >  </div>
                                                     ))
                                                     }
 
@@ -123,7 +123,7 @@ export default function Score({ score, data }) {
                                                     <div className="col-2 col-md-2 "></div>
 
                                                     {data.slice(25,30).map((element, index) => (
-                                                        <div className="col-2 col-md-2" key={index+26 }><Link style={{ textDecoration: 'none' }} to={`/test/reponse/${index+25}`} target="_blank"> <div className={`num ${element.valid ? "bg_vert" : "bg_rouge"}`}>{index + 26}</div></Link >  </div>
+                                                        <div className="col-2 col-md-2" key={index+26 }><Link  to={`/test/reponse/${index+25}`} target="_blank"> <div className={`num ${element.valid ? "bg_vert" : "bg_rouge"}`}>{index + 26}</div></Link >  </div>
                                                     ))
                                                     }
 

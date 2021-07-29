@@ -35,15 +35,17 @@ export default function MainRouter() {
                     <Signin />
                     <Footer />
                 </Route>
-                <Route exact path={"/ahmed"} component={Index} />
+              
                 <Route exact path={"/khadija"} component={Home} />
+
                 <Route exact path={"/khadija2"} component={Employee} />
                 <Route exact path={"/tests"} component={Courses} />
                 <Route exact path={"/test/:id"} component={Course} />
 
 
 
-                <Route exact path={"/"} component={Home} />
+
+               { user?  <Route exact path={"/"} component={Index} />:<Route exact path={"/"} component={Home} />}
                 
                 
                 <Route exact path={"/forgot-password"}>
@@ -59,6 +61,7 @@ export default function MainRouter() {
 
                 {user ?
                     <div>
+                        <Route exact path={"/home"} component={Index} />
                         <Route exact path={"/avis"}>
                             <NavBarClient />
                             <Avis />
@@ -67,10 +70,11 @@ export default function MainRouter() {
                         <Route exact path={"/test/:id"} component={Course} />
                         <Route exact path={"/tests"} component={Courses} />
                         <Route exact path={"/cours"} component={Cours} />
-                        <Route exact path={"/cours/:id"} component={Cour} /></div> : ""}
+                        <Route exact path={"/cours/:id"} component={Cour} />
+                        <Route exact path={"/test/reponse/:id"} component={Correction} /></div> : ""}
 
-                {reponse && user ? <Route exact path={"/test/reponse/:id"} component={Correction} /> : ""}
-                <Route exact component={Error404} />
+
+                {/* <Route exact component={Error404} /> */}
 
             </Switch>
         </div>
