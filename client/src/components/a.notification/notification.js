@@ -1,11 +1,12 @@
-import React from 'react'
+import { useState } from 'react'
 
-function notification() {
-    return (
-        <div>
-            
-        </div>
-    )
-}
 
-export default notification
+function Notification() {
+   
+  return (
+   <div>
+       
+   </div>
+  )}
+
+export default Notification

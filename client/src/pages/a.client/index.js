@@ -4,10 +4,11 @@ import Notification from '../../components/a.notification/notification'
 
 export default function Index() {
     return (
-        <div style={{backgroundColor:"#b3acac"}}>
+        <div >
             <Navbar/>
             <Notification />
         
         </div>
     )
 }
+// style={{backgroundColor:"#b3acac"}}

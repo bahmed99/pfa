@@ -8,6 +8,7 @@ export default function Course() {
             backgroundImage: 'url('+bg+')',
             backgroundSize: "cover",
             color: "#f5f5f5" ,
+            
             backgroundAttachment:"fixed" ,
             backgroundPosition: "center" ,
             backgroundRepeat:"repeat"

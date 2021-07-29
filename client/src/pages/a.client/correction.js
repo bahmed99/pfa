@@ -7,7 +7,6 @@ export default function Correction() {
         <div style={{
             backgroundImage: 'url('+bg+')',
             backgroundSize: "cover",
-            height: "112vh",
             color: "#f5f5f5" ,
             backgroundAttachment:"fixed" ,
             backgroundPosition: "center" ,

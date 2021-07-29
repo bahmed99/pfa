@@ -91,6 +91,7 @@ console.log("rep",reponse[id])
 
                 </div>
             </div>
+            <br /> <br /> 
         </div>
     )
 }
