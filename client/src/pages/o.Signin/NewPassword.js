@@ -61,14 +61,17 @@ export default function NewPassword() {
             
                 <div className="card auth-card112 input-field #fafafa grey lighten-5">
                     <img alt="" src={image} className="logo-Mod"/>
-                    <i className="material-icons firstOne1 prefix" style={{color:"#3d3e42"}}>lock_outline</i>
-                    <input 
-                    type="password" 
-                    placeholder=" Nouveau mot de passe"
-                    value={password}
-                    onChange={(e)=>setPassword(e.target.value)} />
+                    <div>
+                        <label><i class="fa fa-lock" style={{color:"#718a8a" , fontSize:"25px" , marginLeft:"40px"}}></i></label>
+                        <input 
+                        type="password" 
+                        placeholder=" Nouveau mot de passe"
+                        className="input-Mod4"
+                        value={password}
+                        onChange={(e)=>setPassword(e.target.value)} />
+                    </div>
                     <br />
-                    <button onClick={()=>PostData()} className="btn waves-effect waves-light #26a69a teal lighten-1 " type="submit" name="action" style={{opacity:"100% !important"}}>Submit
+                    <button onClick={()=>PostData()} className="waves-effect" type="submit" name="action" style={{opacity:"100% !important"}}>Submit
                     </button>
                     <br />
 

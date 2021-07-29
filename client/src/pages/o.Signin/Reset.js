@@ -30,7 +30,7 @@ export default function Reset() {
             {
                 setSuccess(true)
                 setTimeout(() => setSuccess(false), 2500)
-                setInterval(function(){ History.push('/register') }, 2000);
+                setInterval(function(){ History.push('/sign-in') }, 2000);
             }
         }).catch(err=>{
             console.log(err)
@@ -53,16 +53,19 @@ export default function Reset() {
             <br />
             <div className="mycard">
             
-                <div className="card auth-card112 input-field #fafafa grey lighten-5">
+                <div className="card auth-card112 input-field ">
                     <img alt="" src={image} className="logo-Mod"/>
-                    <i className="material-icons firstOne1 prefix" style={{color:"#3d3e42"}} >person_outline</i>
-                    <input 
-                    type="text" 
-                    placeholder="email"
-                    value={email}
-                    onChange={(e)=>setEmail(e.target.value)} />
+                    <div>
+                        <i class="fa fa-user" style={{color:"#718a8a" , fontSize:"22px",marginLeft:"40px" }}></i>
+                        <input 
+                        type="text"
+                        className="input-Mod3"
+                        placeholder="email"
+                        value={email}
+                        onChange={(e)=>setEmail(e.target.value)} />
+                    </div>
                     <br />
-                    <button onClick={()=>PostData()} className="btn waves-effect waves-light #26a69a teal lighten-1 " type="submit" name="action" style={{opacity:"100% !important"}}>submit
+                    <button onClick={()=>PostData()} className="waves-effect12 " type="submit" name="action" style={{opacity:"100% !important"}}>submit
                     </button>
                     <br />
                 </div>
