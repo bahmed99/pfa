@@ -40,12 +40,10 @@ export default function MainRouter() {
                 <Route  exact path={"/tests"} component={Courses} />
                 <Route  exact path={"/test/:id"} component={Course} />
 
-                <Route exact path={"/forgot-password"}>
-
                 <Route exact path={"/"} component={Home} />
                 
                 
-                <Route exact path={"/register1"}>
+                <Route exact path={"/forgot-password"}>
 
                     <Reset />
                     <Footer />

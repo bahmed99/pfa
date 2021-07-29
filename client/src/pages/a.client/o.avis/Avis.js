@@ -248,10 +248,10 @@ export default function Avis() {
           }}>
                <br />
             <Alert show={error} variant={'danger'} style={{maxWidth:"450px",margin:"auto auto"}}>
-                    { "Remplir tous les champs"}
+                    { "Veuillez remplir tous les champs"}
             </Alert>
             <Alert show={success} variant={'success'} style={{maxWidth:"450px",margin:"auto auto"}}>
-                    { "Message Envoyer"}
+                    { "Message Envoyé"}
             </Alert>
             <br />
            
