@@ -1,5 +1,6 @@
 import React from 'react'
-import { Container, Col, Row, Button, Form } from 'react-bootstrap'
+import { Container, Col, Row, Form } from 'react-bootstrap'
+import { Button, } from "reactstrap";
 import './home.style.css'
 
 export default function Contact() {
@@ -14,10 +15,12 @@ export default function Contact() {
                                 <Row>
                                     <Col md="6">
                                         
-                                        <i className="nc-icon nc-single-02" />
-                                        <Form.Control type="text" as="textarea"  placeholder="Nom et prénom" />
+                                       
+                                        <Form.Control type="text" as="textarea"  placeholder="Nom et prénom"
+                                        style={{ height: '35px' }} />
+                                        <br/>
                                     </Col>
-                            
+                                   
                                     
                                 </Row>
                              
@@ -25,15 +28,20 @@ export default function Contact() {
                                     as="textarea"
                                     type="text"
                                     placeholder="Votre message"
-                                    style={{ height: '100px' }}
+                                    
                                 />
-                            <br/>
+                            
                                 <Row>
-                                    <Col className="ml-auto mr-auto" md="4">
-                                        <Button  color="danger" size="lg">
+                                   
+                                    <Col md="6" >
+                                        <Button  variant="outline-info" size="lg">
                                           Envoyer
                                         </Button>
+                                   
                                     </Col>
+                                    <br/>
+                                    <br/>
+                                    <br/>
                                 </Row>
                             </Form>
                         </Col>

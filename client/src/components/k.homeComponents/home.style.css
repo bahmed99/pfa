@@ -22,7 +22,7 @@
 .dark {
     background-image: linear-gradient(#3d3e42, #718a8a);
     text-align: center;
-    margin-top: 4%;
+    margin-top: 5%;
     margin-bottom: 20px;
     
     
@@ -38,12 +38,17 @@ background-color: transparent;
 .h2-white{
     color: white ;
     background-color: transparent;
-    margin-top: 4%;
+    margin-top: 2%;
+    margin-bottom: 2%;
     }
-    .h5-white{
+.h5-white{
         color: white ;
         background-color: transparent;
         }
+.white-text{
+    color: white ;
+        background-color: transparent;
+}
 h6.dark{
     color:white;
     text-align: left;
@@ -54,8 +59,12 @@ h5.dark{
     background-color: transparent;
     }
 
-.card-avatar {
-        max-width: 200px;
-        max-height: 200px;
+.cours {
+        max-width: 300px;
+        max-height: 400px;
         margin:auto;
+       }
+.apropos {
+        max-width: 1000px;
+        max-height: 1000px;
        }

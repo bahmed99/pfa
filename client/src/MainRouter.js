@@ -10,7 +10,7 @@ import Index from "./pages/a.client";
 import Home from "./pages/k.home/home";
 import Courses from "./pages/a.client/courses";
 import Course from "./pages/a.client/course";
-
+import Employee from "./pages/k.employee/employee"
 import Reset from "./pages/o.Signin/Reset";
 import NewPassword from "./pages/o.Signin/NewPassword";
 
@@ -37,7 +37,7 @@ export default function MainRouter() {
                 </Route>
                 <Route exact path={"/ahmed"} component={Index} />
                 <Route exact path={"/khadija"} component={Home} />
-
+                <Route exact path={"/khadija2"} component={Employee} />
                 <Route exact path={"/tests"} component={Courses} />
                 <Route exact path={"/test/:id"} component={Course} />
 
