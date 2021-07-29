@@ -29,6 +29,10 @@ app.use(morgan('tiny'))
  app.use("/courses", require("./routes/course/course.js"))
 
 
+
+
+
+
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }).then((result) =>
     console.log("connected to database"),
     app.listen(port, () => {

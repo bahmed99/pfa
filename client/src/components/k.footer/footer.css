@@ -16,3 +16,14 @@
     display:flex;
     margin-top: 30px;
 }
+.footer-text{
+    color: white ;
+    background-color: transparent;
+    margin-top: 5%;
+    text-align: left;
+    }
+    .h6-white{
+        color: white ;
+        background-color: transparent;
+        text-align: left;
+        }

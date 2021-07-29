@@ -1,0 +1,102 @@
+.root {
+    font-size: 16px;
+    font-family: 'Proxima-nova';
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #1f212e;
+    --bg-secondary: #2ea3dd;
+    --bg-tertiary: #e0ded2;
+    --bg-danger: #c70039;
+    --bg-warning: #DA723C;
+    --bg-success: #1d5864;
+    --bg-grey: #F8F8F8;
+    --google-color: #4285F4;
+    --transition-speed: 600ms;
+  }
+.Navabar-container-open{
+    background-color: white; 
+    display: flex;
+    height: 80px; 
+    width: 80vw;  
+    color:var(--bg-secondary);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: fixed;
+    z-index: 2;   
+}
+.Navabar-container-close{
+  background-color: white; 
+  display: flex;
+  height: 80px; 
+  width: 100vw;  
+  color:var(--bg-secondary);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: fixed; 
+  z-index: 2;  
+}
+.navbar-right{
+    padding-right: 24px;
+
+}
+.navbar-left{
+    padding-left: 24px;
+    font-size: 1.5rem;
+}
+.navbar-middle{
+    flex: 5;
+    font-size: 1.5rem;
+}
+.img-dropdown{
+    cursor: pointer;
+}
+.profile-img-dropdown{
+    border-radius: 50%;
+    height: 2.7rem;
+    cursor: pointer;
+  }
+  .profile-img-dropdown:active{
+    border: 0.5px solid var(--bg-secondary);
+  }
+  .dropdown-container{
+    border-radius: 5px !important;
+  }
+  .dropdown-item-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .dropdown-icon{
+    flex: 0;
+    margin-left: auto;
+    color: var(--bg-secondary);
+  }
+  .dropdown-itm{
+    flex: 1;
+    padding-left: 10px;
+  }
+  .open-button{
+    cursor: pointer;
+  }
+  @media only screen and (max-width: 1220px) {
+    .Navabar-container-open{
+      width: 75vw;     
+    }
+  }
+  @media only screen and (max-width: 1220px) {
+    .Navabar-container-open{
+      width: 75vw;     
+    }
+  }
+  @media only screen and (max-width: 1000px) {
+    .Navabar-container-open{
+      width: 70vw;     
+    }
+  }
+  @media only screen and (max-width: 750px) {
+    .Navabar-container-open{
+      width: 65vw;     
+    }
+  }
