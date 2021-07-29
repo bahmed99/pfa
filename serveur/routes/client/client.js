@@ -8,7 +8,7 @@ router.post('/avis',requireLoginClient ,(req,res)=>{
     const {vote,message} = req.body
     if (vote === 0 || !message )
     {
-        return res.status(422).json({error : "remolir tous les champs"})
+        return res.status(422).json({error : "remplir tous les champs"})
     }
     const avis = new Avis({
         postedBy : req.client._id ,

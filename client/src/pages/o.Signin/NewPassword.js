@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import { useHistory , useParams} from 'react-router-dom'
 
 import './Signin.style.css'
@@ -8,6 +8,10 @@ import Alert from 'react-bootstrap/Alert'
 
 
 export default function NewPassword() {
+    useEffect(() => {
+
+        localStorage.clear()
+    }, [])
     const History = useHistory()
     const [password,setPassword] = useState('')
     const [error,setError] = useState(false)

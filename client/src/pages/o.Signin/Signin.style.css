@@ -97,6 +97,10 @@ input[type="text"], input[type="password"], textarea, select {
     border: 3px solid #369579; 
     
 }
+.loading1
+{
+    margin: auto auto ;
+}
 .waves-effect
 {
     width: 150px;
