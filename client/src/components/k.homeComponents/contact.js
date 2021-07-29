@@ -10,23 +10,20 @@ export default function Contact() {
                     <Row>
                         <Col >
                             <h2 className="h2-white" >Contactez-nous</h2>
-                            <Form className="contact-form">
+                            <Form method="POST" action="send" className="contact-form">
                                 <Row>
                                     <Col md="6">
                                         
                                         <i className="nc-icon nc-single-02" />
-                                        <Form.Control as="textarea" placeholder="Nom et prénom" />
+                                        <Form.Control type="text" as="textarea"  placeholder="Nom et prénom" />
                                     </Col>
-                                    <Col md="6">
-                                    
-                                        <i className="nc-icon nc-single-02" />
-                                        <Form.Control as="textarea" placeholder="Votre adresse email" />
-                                    </Col>
+                            
                                     
                                 </Row>
                              
                                     <Form.Control
                                     as="textarea"
+                                    type="text"
                                     placeholder="Votre message"
                                     style={{ height: '100px' }}
                                 />
