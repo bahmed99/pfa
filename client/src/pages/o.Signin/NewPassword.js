@@ -36,7 +36,7 @@ export default function NewPassword() {
             {
                 setSuccess(true)
                 setTimeout(() => setSuccess(false), 2500)
-                setInterval(function(){ History.push('/oussama') }, 2000);
+                setInterval(function(){ History.push('/sign-in') }, 2000);
             }
         }).catch(err=>{
             console.log(err)
