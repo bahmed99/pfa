@@ -44,10 +44,10 @@ export default function Reset() {
             color: "#f5f5f5"
           }}>
             <br /> 
-            <Alert show={error} variant={'danger'} style={{width:"700px",margin:"auto auto"}}>
+            <Alert show={error} variant={'danger'} style={{width:"450px",margin:"auto auto"}}>
                     { "Aucun utilisateur avec ce mail"}
             </Alert>
-            <Alert show={success} variant={'success'} style={{width:"700px",margin:"auto auto"}}>
+            <Alert show={success} variant={'success'} style={{width:"450px",margin:"auto auto"}}>
                     { "visiter votre mail"}
             </Alert>
             <br />
@@ -55,8 +55,8 @@ export default function Reset() {
             
                 <div className="card auth-card112 input-field ">
                     <img alt="" src={image} className="logo-Mod"/>
-                    <div>
-                        <i class="fa fa-user" style={{color:"#718a8a" , fontSize:"22px",marginLeft:"40px" }}></i>
+                    <div style={{justifyContent:"center"}}>
+                        <i class="fa fa-user" style={{color:"#718a8a" , fontSize:"22px",marginLeft:"-20px" }}></i>
                         <input 
                         type="text"
                         className="input-Mod3"

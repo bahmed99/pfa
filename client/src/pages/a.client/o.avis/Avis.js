@@ -1,6 +1,6 @@
 import React , {useState} from 'react'
 import Alert from 'react-bootstrap/Alert'
-import image1 from '../../o.Signin/o.images/ArriereAvis.gif'
+import image1 from '../../o.Signin/o.images/backgroundavis.PNG'
 import photo from "../../o.Signin/o.images/feedback.gif"
 import './Avis.style.css'
 
@@ -245,6 +245,8 @@ export default function Avis() {
             backgroundSize: "cover",
             height: "100vh",
             color: "#f5f5f5" ,
+            backgroundAttachment:"fixed" ,
+            backgroundPosition: "center" ,
           }}>
                <br />
             <Alert show={error} variant={'danger'} style={{maxWidth:"450px",margin:"auto auto"}}>
