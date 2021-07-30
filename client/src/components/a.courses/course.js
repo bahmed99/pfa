@@ -207,7 +207,7 @@ export default function Course() {
          <Alert show={error} variant={'danger'}>
                 { "Veuillez choisir une réponse"}
             </Alert>
-            <div className="card">
+            <div className="cardQ card" >
                <div className="cardImage">
                   <img src={`/uploads/tests/${pic}`} alt="" />
                </div>

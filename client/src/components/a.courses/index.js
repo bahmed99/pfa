@@ -43,9 +43,9 @@ export default function Index() {
 
                 {data.map((element, index) => (
                     <Link to={`/test/${element._id}`} target="_blank" key={index}><div className="card1">
-                        <div className="card_image"> <img src={require("../../assets/images/serie.jpg").default} alt="" />
+                        <div className="card_image"> <img src={require("../../assets/images/bgTest.jpg").default} alt="" />
                         </div>
-                        <div className="card_title title-white">
+                        <div className="card_title1 title-white">
                             <p>Serie {index + 1}</p>
                         </div>
                     </div></Link>))}
