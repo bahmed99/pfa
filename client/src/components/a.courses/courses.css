@@ -7,7 +7,9 @@
     cursor: pointer;
     transition: 0.4s;
   }
-  
+  .cardQ{
+    border-radius: 10px!important;
+  }
   .card1 .card_image {
     width: inherit;
     height: inherit;
@@ -21,15 +23,16 @@
     object-fit: cover;
   }
   
-  .card1 .card_title {
+  .card1 .card_title1 {
     text-align: center;
     border-radius: 0px 0px 40px 40px;
     font-family: sans-serif;
     font-weight: bold;
     font-size: 25px;
-    margin-top: -106px;
+    margin-top: -102px;
     margin-left: 13px;
     height: 30px;
+    text-decoration: none;
   }
   
   .card1:hover {
@@ -378,5 +381,5 @@ float: right;
 .card2{
   margin-right: auto;
   margin-left: auto;
-
+  border-radius: 10px!important;
 }
