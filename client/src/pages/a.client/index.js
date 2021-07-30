@@ -1,12 +1,13 @@
 
+import Em from '../../components/a.emplois/Bar.js'
 import Navbar from '../../components/a.navbarClient'
 
 
-export default function Index() {
+export default function HomeClient() {
     return (
         <div >
             <Navbar/>
-          
+            <Em />
         
         </div>
     )
