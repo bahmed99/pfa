@@ -31,6 +31,7 @@ import Emplois from "./pages/a.client/emplois";
 export default function MainRouter() {
     const history = useHistory()
     const user = JSON.parse(localStorage.getItem("user"))
+    const detect = JSON.parse(localStorage.getItem("detect"))
     let reponse = JSON.parse(localStorage.getItem("reponse"));
     useEffect(()=>{
         const user = JSON.parse(localStorage.getItem("user"))
@@ -42,6 +43,10 @@ export default function MainRouter() {
             {
                 history.push('/')
             }
+        }
+        else if (user && detect === 2)
+        {
+            //history.push('/')
         }
         else
         {
@@ -69,7 +74,7 @@ export default function MainRouter() {
 
 
 
-               { user?  <Route exact path={"/"} component={HomeClient} />:<Route exact path={"/"} component={Home} />}
+               { (user && detect === 1)?  <Route exact path={"/"} component={HomeClient} />:(user && detect ===2)? <Route exact path={"/"} component={Employee} /> :<Route exact path={"/"} component={Home} />}
                 
                 
                 <Route exact path={"/forgot-password"}>
@@ -83,7 +88,7 @@ export default function MainRouter() {
                 </Route>
 
 
-                {user ?
+                {(user && detect=== 1) ?
                     <div>
                         <Route exact path={"/emplois"} component={Emplois} />
                         <Route exact path={"/home"} component={HomeClient} />
@@ -101,6 +106,10 @@ export default function MainRouter() {
 
 
                 {reponse && user ? <Route exact path={"/test/reponse/:id"} component={Correction} /> : ""}
+
+                {(user && detect=== 2) ?
+                    <div>
+                        <Route exact path={"/home"} component={Employee} /> </div> : ""}
 
                 {/* <Route exact component={Error404} /> */}
 

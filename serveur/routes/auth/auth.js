@@ -39,8 +39,8 @@ router.post('/login',(req,res)=>{
                     {
                         const detect = 2
                         const token = jwt.sign({_id:newSavedUser._id} , JWT_SECRET)
-                        const {_id,name,email,cin,pic,timetable,employee} = newSavedUser
-                        res.json({detect,token,user:{_id,name,email,cin,pic,timetable,employee}})
+                        const {_id,name,email,cin,pic,timetable,client} = newSavedUser
+                        res.json({detect,token,user:{_id,name,email,cin,pic,timetable,client}})
                     }
                     else
                     {
@@ -135,6 +135,63 @@ router.post('/client/signup',(req,res)=>{
     })
 })
 
+router.post('/employee/signup',(req,res)=>{
+    const {name,email,cin} = req.body
+    if(!name || !email || !cin)
+    {
+        return res.status(422).json({error:"Essayer de remplir tous les champs"})
+    }
+    Employee.findOne({email:email})
+    .then(savedUser=>{
+        if(savedUser)
+        {
+            return res.status(422).json({error:"Il existe un autre utilisateur avec ce email"})
+        }
+        crypto.randomBytes(16,(err,buffer)=>{
+            if(err)
+            {
+                console.log(err)
+            }
+            const password = buffer.toString("hex")
+            bcrypt.hash(password,15)
+            .then(hashedpassword=>{
+                const employee = new Employee({
+                    name : name ,
+                    email : email ,
+                    password :hashedpassword ,
+                    cin :cin
+                })
+                employee.save()
+                .then(user=>{
+                    let mailoptions ={
+                        from : "iDriveGears@gmail.com" ,
+                        to:user.email,
+                        subject:"signup success" ,
+                        html:`
+                        <h2>Bienvenue Monsieur ${name}</h2>
+                        <h5> Votre mot de passe est : ${password} </h5>
+                        `
+                    }
+                    transporter.sendMail(mailoptions, function (error, info) {
+                        if (error) {
+                          console.log(error);
+                        } else {
+                          console.log('Email sent: ' + info.response);
+        
+                        }
+                    });
+                    res.json({message:"le compte est bien créé"})
+                })
+
+            }).catch(err=>{
+                console.log(err)
+            })
+        })
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
 router.post('/mdpOublier',(req,res)=>{
     crypto.randomBytes(32,(err,buffer)=>{
         if(err)
@@ -157,8 +214,8 @@ router.post('/mdpOublier',(req,res)=>{
                         employeeUser.expireToken = Date.now()+ 3600000
                         employeeUser.save().then(result=>{
                             let mailoptions ={
-                                from : "sema.kor88@gmail.com" ,
-                                to:user.email,
+                                from : "iDriveGears@gmail.com" ,
+                                to:employeeUser.email,
                                 subject:"signup success" ,
                                 html:`
                                 <p>you requested for password reset</p>
@@ -185,7 +242,7 @@ router.post('/mdpOublier',(req,res)=>{
                 user.expireToken = Date.now()+ 3600000
                 user.save().then(result=>{
                     let mailoptions ={
-                        from : "sema.kor88@gmail.com" ,
+                        from : "iDriveGears@gmail.com" ,
                         to:user.email,
                         subject:"signup success" ,
                         html:`

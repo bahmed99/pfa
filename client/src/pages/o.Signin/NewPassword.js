@@ -54,19 +54,19 @@ export default function NewPassword() {
             color: "#f5f5f5"
           }}>
             <br />
-            <Alert show={error} variant={'danger'} style={{width:"700px",margin:"auto auto"}}>
+            <Alert show={error} variant={'danger'} style={{width:"450px",margin:"auto auto"}}>
                     { "Réessayer session expirée"}
             </Alert>
-            <Alert show={success} variant={'success'} style={{width:"700px",margin:"auto auto"}}>
+            <Alert show={success} variant={'success'} style={{width:"450px",margin:"auto auto"}}>
                     {"La mise a jour de votre mot de passe est bien faite"}
             </Alert>
              <br />
             <div className="mycard">
             
-                <div className="card auth-card112 input-field #fafafa grey lighten-5">
+                <div className="card auth-card1 input-field #fafafa grey lighten-5">
                     <img alt="" src={image} className="logo-Mod"/>
                     <div>
-                        <label><i class="fa fa-lock" style={{color:"#718a8a" , fontSize:"25px" , marginLeft:"40px"}}></i></label>
+                        <label><i class="fa fa-lock" style={{color:"#718a8a" , fontSize:"25px" , marginLeft:"-50px"}}></i></label>
                         <input 
                         type="password" 
                         placeholder=" Nouveau mot de passe*"
