@@ -4,7 +4,7 @@ export default function Emplois() {
     return (
         <div>
             <Navbar/>
-            <Notification />
+            
         </div>
     )
 }
