@@ -3,7 +3,7 @@ import './courses.css'
 import { Link } from 'react-router-dom'
 
 export default function Score({ score, data }) {
-   console.log();
+
     return (
         <div className="score">
             <section >
