@@ -1,10 +1,10 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'font-awesome/css/font-awesome.min.css'
-import 'react-big-calendar/lib/sass/styles.scss'
-import './styles.scss'
-import './prism.scss'
-import 'react-big-calendar/lib/sass/styles.scss'
+// import 'react-big-calendar/lib/sass/styles.scss'
+// import './styles.scss'
+// import './prism.scss'
+// import 'react-big-calendar/lib/sass/styles.scss'
 import Basic from './emplois'
 
 

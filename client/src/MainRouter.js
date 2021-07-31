@@ -25,7 +25,7 @@ import NavBarClient from "./components/a.navbarClient/index"
 
 import Cours from "./pages/a.client/cours";
 import Cour from "./pages/a.client/cour";
-import Emplois from "./pages/a.client/emplois";
+// import Emplois from "./pages/a.client/emplois";
 
 
 export default function MainRouter() {
@@ -90,7 +90,7 @@ export default function MainRouter() {
 
                 {(user && detect=== 1) ?
                     <div>
-                        <Route exact path={"/emplois"} component={Emplois} />
+                        {/* <Route exact path={"/emplois"} component={Emplois} /> */}
                         <Route exact path={"/home"} component={HomeClient} />
                         <Route exact path={"/avis"}>
                             <NavBarClient />
