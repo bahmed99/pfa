@@ -26,6 +26,9 @@ const employeeSchema = new mongoose.Schema({
         client: {
             type: ObjectId,
             ref: "Client"
+        },
+        nomClient:{
+            type:String
         }
     }],
     client: [{

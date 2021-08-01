@@ -28,7 +28,8 @@ export default function AjoutSeanceModal(props) {
                 "title": title,
                 "eventContent": props.clients[client].name,
                 "color": color,
-                "client":props.clients[client]._id
+                "client":props.clients[client]._id,
+                "nomClient":props.clients[client].name
             }
             console.log(seance)
             props.setModal(false)
@@ -69,14 +70,7 @@ export default function AjoutSeanceModal(props) {
                                     onChange={(e) => { setTitle(e.target.value) }}
                                 />
                             </FormGroup>
-{/* 
-                            <FormGroup>
-                                <Label>Description</Label>
-                                <Input
-                                    onChange={(e) => { setDescription(e.target.value) }}
-                                />
 
-                            </FormGroup> */}
                             <FormGroup>
                                 <Label>Choisir le client</Label>
                                 <Input type='select' onChange={HandleChange} >

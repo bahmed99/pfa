@@ -20,8 +20,10 @@ app.use(morgan('tiny'))
 
 app.use("/client", require("./routes/client/client"))
 // app.use("/client", require("./routes/client/"))
-// app.use("/client", require("./routes/client/"))
- app.use("/employe", require("./routes/employee/employee"))
+
+app.use("/admin", require("./routes/admin/admin"))
+
+app.use("/employe", require("./routes/employee/employee"))
 
 app.use("/auth", require("./routes/auth/auth"))
 

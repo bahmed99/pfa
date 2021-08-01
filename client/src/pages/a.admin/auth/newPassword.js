@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Alert from 'react-bootstrap/Alert'
 import ReactLoading from 'react-loading';
-import { Link, useHistory, useParams } from 'react-router-dom'
+import {  useHistory, useParams } from 'react-router-dom'
 
 
 export default function NewPassword() {
