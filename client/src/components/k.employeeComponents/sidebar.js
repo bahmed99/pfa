@@ -11,7 +11,7 @@ import {
 } from 'cdbreact';
 import { NavLink } from 'react-router-dom';
 export default function Sidebar(props) {
-
+    const detect = JSON.parse(localStorage.getItem("detect"))
     return (
       
         <div  style={{ display: 'flex', height: '100%', overflow: 'scroll initial' }}>
@@ -31,6 +31,9 @@ export default function Sidebar(props) {
                         <NavLink exact to="/utilisateurs" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="user">Utilisateurs</CDBSidebarMenuItem>
                         </NavLink>
+                        {detect===3?<NavLink exact to="/employees" activeClassName="activeClicked">
+                            <CDBSidebarMenuItem icon="user">Emlpoyés</CDBSidebarMenuItem>
+                        </NavLink>:""}
                         <NavLink exact to="/cars" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="car">Voitures</CDBSidebarMenuItem>
                         </NavLink>

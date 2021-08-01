@@ -4,7 +4,7 @@ import "./signin.css"
 import Alert from 'react-bootstrap/Alert'
 import ReactLoading from 'react-loading';
 import { Link, useHistory } from 'react-router-dom'
-import image1 from '../../assets/images/admin.gif'
+import image1 from '../../../assets/images/admin.gif'
 
 export default function Signin() {
     const History = useHistory()
@@ -40,6 +40,7 @@ export default function Signin() {
                     console.log(data.token)
                     localStorage.setItem("jwt", data.token)
                     localStorage.setItem("user", JSON.stringify(data.user))
+                    localStorage.setItem("detect", JSON.stringify(3))
                     setSuccess(true)
                     setTimeout(() => setSuccess(false), 2500)
 

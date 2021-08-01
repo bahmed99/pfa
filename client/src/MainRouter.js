@@ -28,14 +28,16 @@ import Cour from "./pages/a.client/cour";
 
 import Utilisateur from "./pages/o.employee/utilisateur";
 import Profile from "./components/o.utilisateur/Profile";
-// import Emplois from "./pages/a.client/emplois";
+
 
 
 import Emplois from "./pages/a.employe/Emplois.js";
 import EmploisClient from "./pages/a.client/emplois.js";
-import SigninAdmin from "./pages/a.admin/signin"
-import ForgotPassword from "./pages/a.admin/forgotPassword";
-import NewPasswordAdmin from "./pages/a.admin/newPassword";
+import SigninAdmin from "./pages/a.admin/auth/signin"
+import ForgotPassword from "./pages/a.admin/auth/forgotPassword";
+import NewPasswordAdmin from "./pages/a.admin/auth/newPassword";
+import HomeAdmin from "./pages/a.admin/home/Home";
+import EmploisAdmin from "./pages/a.admin/emplois/Emplois";
 
 
 export default function MainRouter() {
@@ -80,7 +82,7 @@ export default function MainRouter() {
                 <Route exact path={"/tests"} component={Courses} />
                 <Route exact path={"/test/:id"} component={Course} />
 
-               { (user && detect === 1)?  <Route exact path={"/"} component={HomeClient} />:(user && detect ===2)? <Route exact path={"/"} component={Employee} /> :<Route exact path={"/"} component={Home} />}
+               { (user && detect === 1)?  <Route exact path={"/"} component={HomeClient} />:(user && detect ===2)? <Route exact path={"/"} component={Employee} /> :(user && detect ===3)?<Route exact path={"/"} component={HomeAdmin} />:<Route exact path={"/"} component={Home} />}
                 
                 
                 <Route exact path={"/forgot-password"}>
@@ -127,6 +129,15 @@ export default function MainRouter() {
                         <Route exact path={"/client-profile"} component={Profile} />
                         <Route exact path={"/emplois"} component={Emplois} />
                     </div> : ""}
+
+                    {(user && detect=== 3) ?
+                    <div>
+
+                    <Route exact path={"/home"} component={HomeAdmin} /> 
+                    <Route exact path={"/emplois"} component={EmploisAdmin} /> 
+                    
+                    </div> : ""}
+
 
               
 
