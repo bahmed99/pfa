@@ -123,13 +123,12 @@ export default function MainRouter() {
 
                 {(user && detect=== 2) ?
                     <div>
-
+                        <Route exact path={"/emplois"} component={Emplois} />
                         <Route exact path={"/home"} component={Employee} /> 
                         <Route exact path={"/utilisateurs"} component={Utilisateur} />
                         <Route exact path={"/client-profile"} component={Profile} />
                         <Route exact path={"/emplois"} component={Emplois} />
                     </div> : ""}
-
                     {(user && detect=== 3) ?
                     <div>
 
@@ -137,7 +136,6 @@ export default function MainRouter() {
                     <Route exact path={"/emplois"} component={EmploisAdmin} /> 
                     
                     </div> : ""}
-
             </Switch>
         </div>
     )
