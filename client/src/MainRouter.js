@@ -121,20 +121,11 @@ export default function MainRouter() {
 
                 {(user && detect=== 2) ?
                     <div>
-
+                        <Route exact path={"/emplois"} component={Emplois} />
                         <Route exact path={"/home"} component={Employee} /> 
                         <Route exact path={"/utilisateurs"} component={Utilisateur} />
                         <Route exact path={"/client-profile"} component={Profile} />
                     </div> : ""}
-
-              
-
-                        <Route exact path={"/home"} component={Employee} />
-                        <Route exact path={"/emplois"} component={Emplois} />
-                        
-                         </div> : ""}
-                        
-
 
             </Switch>
         </div>
