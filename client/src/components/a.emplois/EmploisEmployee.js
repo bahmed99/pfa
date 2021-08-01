@@ -172,6 +172,7 @@ export default function Emplois({id}) {
                 eventClick={eventClick}
                 eventOverlap={false}
                 slotEventOverlap={false}
+                
          
             />
             <AjoutSeanceModal isOpen={ajoutSeanceModalOpen}

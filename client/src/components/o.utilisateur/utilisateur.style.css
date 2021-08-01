@@ -10,7 +10,8 @@
     box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
 }
 .bouton-Mod11
-{
+{   
+    border: none;
     margin-left: auto;
     margin-right: 30px ;
     margin-top: 7px ;

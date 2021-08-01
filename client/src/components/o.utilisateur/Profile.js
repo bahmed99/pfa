@@ -24,7 +24,7 @@ export default function Profile() {
                             <br />
                             <div style={{display:"flex"}}>
                                 <div style={{float:"left !important", marginRight:"auto" , marginTop:"auto" , marginBottom:"auto" ,marginLeft:"20px" }} >
-                                    <img src={photo} alt ="" style={{}}  className="photo-Mod3"/>
+                                    <img src={photo} alt =""   className="photo-Mod3"/>
                                     <h4 style={{marginLeft:"10px" , color:"black"}}>Oussama Kordoghli</h4>
                                 </div>
                                 <div style={{float:"left" , marginRight:"auto" , marginTop:"auto" , marginBottom:"auto"}}>
@@ -37,7 +37,7 @@ export default function Profile() {
                                         <h5 className="para-Mod1">Cin :</h5>
                                         <h5 className="para-Mod1">09892160</h5>
                                     </div>
-                                    <hr style={{color:'black' , width:"120%" , border:"1px !important"}} />
+                                    <hr style={{color:'black' , width:"120%" , border:"1px"}} />
                                     <div style={{display:"flex", justifyContent:"space-between" , width:"80%"}}>
                                         <h5 className="para-Mod1">Date d'inscription :</h5>
                                         <h5 className="para-Mod1">06/07/2021</h5>

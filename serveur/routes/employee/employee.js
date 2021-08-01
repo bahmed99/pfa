@@ -2,17 +2,17 @@ const express = require('express')
 const router = express.Router()
 const Employee = require("../../models/user/employe")
 const Client = require("../../models/user/client") 
-
-const event = [
-    {
-        title: 'séance code', start: '2021-07-30T09:00:00', end: '2021-07-30T10:00:00', color: 'red',
-        eventContent: 'This is a cool event'
-    }]
+const requireLoginClient = require("../../middleware/requireLoginClient")
+// const event = [
+//     {
+//         title: 'séance code', start: '2021-07-30T09:00:00', end: '2021-07-30T10:00:00', color: 'red',
+//         eventContent: 'This is a cool event'
+//     }]
 
 // router.put("/",(req,res)=>{
-//     Employee.findByIdAndUpdate("61035a8874a4a7235c78e7d6"
+//     Employee.findByIdAndUpdate("610345ba74a4a7235c78e7be"
 //         ,{
-//          client:["6102215414c03e41c8d1aa90"]
+//          client:["6100317900d35d1ed0abbf83","610062eb4e98bb3a6095a74b"]
 //     }).then(resp=>{
 //         res.send(resp)
 //     })

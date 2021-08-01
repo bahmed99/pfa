@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
+
 import interactionPlugin from "@fullcalendar/interaction"
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
@@ -11,7 +11,7 @@ import AjoutSeanceModal from "./ModelClient"
 import './style.css'
 
 export default function Emplois({id}) {
-    const [title, setTitle] = useState("")
+    
 
     const [data, setData] = useState([])
   
@@ -24,7 +24,7 @@ export default function Emplois({id}) {
     async function fetchSeances() {
         setData([])
         const seancesData = await getSeances(id);
-        console.log(seancesData.data)
+        
         seancesData.data.forEach(s => {
             let eventInfo = { title: s.title, start: s.start, end: s.end, eventContent: s.eventContent, color:s.color }
             setData(prevData => ([...prevData, eventInfo]))
@@ -51,6 +51,7 @@ export default function Emplois({id}) {
         fetchSeances()
        
     }, [])
+
     function eventClick(eventClick) {
       
         Alert.fire({
