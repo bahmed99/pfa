@@ -94,6 +94,7 @@ export default function AjoutSeanceModal(props) {
                             <FormGroup>
                                 <Label>Couleur</Label>
                                 <Input
+                                
                                     type="color"
                                     value={color}
                                     onChange={(e) => { setColor(e.target.value) }}

@@ -96,7 +96,7 @@ export default function MainRouter() {
 
                 {(user && detect=== 1) ?
                     <div>
-                        {/* <Route exact path={"/emplois"} component={Emplois} /> */}
+                      
                         <Route exact path={"/home"} component={HomeClient} />
                         <Route exact path={"/avis"}>
                             <NavBarClient />
@@ -125,14 +125,14 @@ export default function MainRouter() {
                         <Route exact path={"/home"} component={Employee} /> 
                         <Route exact path={"/utilisateurs"} component={Utilisateur} />
                         <Route exact path={"/client-profile"} component={Profile} />
+                        <Route exact path={"/emplois"} component={Emplois} />
                     </div> : ""}
 
               
 
-                        <Route exact path={"/home"} component={Employee} />
-                        <Route exact path={"/emplois"} component={Emplois} />
                         
-                         </div> : ""}
+                        
+                        
                         
 
 

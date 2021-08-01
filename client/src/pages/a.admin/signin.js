@@ -82,20 +82,20 @@ export default function Signin() {
                             </div>
                             <h3 className="text-center mb-4">Compte Admin</h3>
                            
-                                <div className="form-group">
-                                    <input type="text" className="form-control rounded-left" placeholder="Email*" onChange={(e)=>{setEmail(e.target.value)}} />
+                                <div className="form-group1">
+                                    <input type="text" className="FormAdmin form-control rounded-left" placeholder="Email*" onChange={(e)=>{setEmail(e.target.value)}} />
                                 </div>
-                                <div className="form-group d-flex">
-                                    <input type="password" className="form-control " placeholder="Mot de passe*" onChange={(e)=>{setPassword(e.target.value)}} />
+                                <div className="form-group1 d-flex">
+                                    <input type="password" className=" FormAdmin form-control " placeholder="Mot de passe*" onChange={(e)=>{setPassword(e.target.value)}} />
                                 </div>
-                                <div className="form-group">
+                                <div className="form-group1">
 
 
                                     <Link to="/admin/forgot-password">Mot de passe oublié ?</Link>
 
                                 </div>
-                                <div className="form-group">
-                                    <button type="submit" onClick={PostData} className="btn  rounded submit p-3 px-5" disabled={loading}>{loading ? <ReactLoading height={'20px'} width={'24px'} className="loading1" type="spin" /> : "Se connecter"}</button>
+                                <div className="form-group1">
+                                    <button type="submit" onClick={PostData} className="btn5  rounded submit p-3 px-5" disabled={loading}>{loading ? <ReactLoading height={'20px'} width={'24px'} className="loading1" type="spin" /> : "Se connecter"}</button>
                                 </div>
                             
                         </div>

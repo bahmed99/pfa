@@ -55,12 +55,12 @@ export default function ForgotPassword() {
                             </div>
                             <h3 className="text-center mb-4">Compte Admin</h3>
 
-                            <div className="form-group">
-                                <input type="text" className="form-control rounded-left" placeholder="Email*" onChange={(e) => { setEmail(e.target.value) }} />
+                            <div className="form-group1">
+                                <input type="text" className="FormAdmin form-control rounded-left" placeholder="Email*" onChange={(e) => { setEmail(e.target.value) }} />
                             </div>
 
-                            <div className="form-group">
-                                <button type="submit" onClick={PostData} className="btn  rounded submit p-3 px-5" disabled={loading}>{loading ? <ReactLoading height={'20px'} width={'24px'} className="loading1" type="spin" /> : "Envoyer"}</button>
+                            <div className="form-group1">
+                                <button type="submit" onClick={PostData} className="btn5  rounded submit p-3 px-5" disabled={loading}>{loading ? <ReactLoading height={'20px'} width={'24px'} className="loading1" type="spin" /> : "Envoyer"}</button>
                             </div>
 
                         </div>
