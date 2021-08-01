@@ -30,7 +30,7 @@ export default function Sidebar(props) {
 
                 <CDBSidebarContent className="sidebar-content">
                     <CDBSidebarMenu>
-                        <NavLink exact to="/users" activeClassName="activeClicked">
+                        <NavLink exact to="/utilisateurs" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="user">Utilisateurs</CDBSidebarMenuItem>
                         </NavLink>
                         <NavLink exact to="/cars" activeClassName="activeClicked">

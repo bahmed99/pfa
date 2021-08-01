@@ -25,6 +25,8 @@ import NavBarClient from "./components/a.navbarClient/index"
 
 import Cours from "./pages/a.client/cours";
 import Cour from "./pages/a.client/cour";
+import Utilisateur from "./pages/o.employee/utilisateur";
+import Profile from "./components/o.utilisateur/Profile";
 // import Emplois from "./pages/a.client/emplois";
 
 
@@ -109,7 +111,10 @@ export default function MainRouter() {
 
                 {(user && detect=== 2) ?
                     <div>
-                        <Route exact path={"/home"} component={Employee} /> </div> : ""}
+                        <Route exact path={"/home"} component={Employee} /> 
+                        <Route exact path={"/utilisateurs"} component={Utilisateur} />
+                        <Route exact path={"/client-profile"} component={Profile} />
+                    </div> : ""}
 
                 {/* <Route exact component={Error404} /> */}
 
