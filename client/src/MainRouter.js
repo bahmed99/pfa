@@ -82,7 +82,7 @@ export default function MainRouter() {
                 <Route exact path={"/tests"} component={Courses} />
                 <Route exact path={"/test/:id"} component={Course} />
 
-               { (user && detect === 1)?  <Route exact path={"/"} component={HomeClient} />:(user && detect ===2)? <Route exact path={"/"} component={Employee} /> :(user && detect ===3)?<Route exact path={"/"} component={HomeAdmin} />:<Route exact path={"/"} component={Home} />}
+               { (user && detect === 1)?  <Route exact path={"/"} component={HomeClient} />:(user && detect ===2)? <Route exact path={"/"} component={Employee} /> :(user && detect ===3) ? <Route exact path={"/"} component={HomeAdmin} />:<Route exact path={"/"} component={Home} />}
                 
                 
                 <Route exact path={"/forgot-password"}>
@@ -137,15 +137,6 @@ export default function MainRouter() {
                     <Route exact path={"/emplois"} component={EmploisAdmin} /> 
                     
                     </div> : ""}
-
-
-              
-
-                        
-                        
-                        
-                        
-
 
             </Switch>
         </div>
