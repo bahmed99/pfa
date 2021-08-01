@@ -53,8 +53,8 @@ export default function AjoutSeanceModal(props) {
 
             toggle={() => { props.setModal(!props.isOpen) }}
         >
-            <div className="modal-body p-0">
-                <Card className=" shadow border-0">
+            <div className="modal-body p-0 row align-self-center">
+                <Card className=" shadow border-0 ">
                     <CardHeader className="bg-transparent pb-1">
                         <h3>Ajouter une séance</h3>
                     </CardHeader>

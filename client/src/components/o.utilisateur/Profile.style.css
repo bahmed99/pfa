@@ -20,7 +20,7 @@
     color: black;
 }
 .fa-fa-Mod1
-{
+{border: none;
     margin-top: -10px !important ;
     margin-right: 10px;
     margin-top: 7px ;
@@ -33,7 +33,7 @@
     transition-duration: 0.4s
 }
 .fa-fa-Mod2
-{
+{border: none;
     margin-top: -10px !important ;
     margin-right: 10px;
     margin-top: 7px ;

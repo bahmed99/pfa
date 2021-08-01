@@ -40,13 +40,13 @@ export default function AjoutSeanceModal(props) {
   
     return (
         <Modal
-            className="modal-dialog-centered"
+            className=" modal-dialog-centered "
             size="sm"
             isOpen={props.isOpen}
-
+            style={{marginRight:"auto",marginLeft:"auto"}}
             toggle={() => { props.setModal(!props.isOpen) }}
         >
-            <div className="modal-body p-0">
+            <div className="modal-body p-0 row align-self-center">
                 <Card className=" shadow border-0">
                     <CardHeader className="bg-transparent pb-1">
                         <h3>Ajouter une séance</h3>
@@ -60,6 +60,7 @@ export default function AjoutSeanceModal(props) {
 
                                 <Input
                                     onChange={(e) => { setTitle(e.target.value) }}
+                               
                                 />
                             </FormGroup>
                             

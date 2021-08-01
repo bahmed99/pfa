@@ -209,6 +209,10 @@
   font-size: 40px;
 }
 
+.card1:hover{
+  text-decoration: none!important;
+}
+
 .timerCercle{
   
   margin: auto auto;

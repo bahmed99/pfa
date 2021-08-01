@@ -46,6 +46,8 @@ color: white;
   opacity: 80%;
 }
 
-a:link{
+a:link:hover{
  text-decoration: none ;
+ outline:none;
 }
+
