@@ -25,11 +25,18 @@ import NavBarClient from "./components/a.navbarClient/index"
 
 import Cours from "./pages/a.client/cours";
 import Cour from "./pages/a.client/cour";
+
+import Utilisateur from "./pages/o.employee/utilisateur";
+import Profile from "./components/o.utilisateur/Profile";
+// import Emplois from "./pages/a.client/emplois";
+
+
 import Emplois from "./pages/a.employe/Emplois.js";
 import EmploisClient from "./pages/a.client/emplois.js";
 import SigninAdmin from "./pages/a.admin/signin"
 import ForgotPassword from "./pages/a.admin/forgotPassword";
 import NewPasswordAdmin from "./pages/a.admin/newPassword";
+
 
 export default function MainRouter() {
     const history = useHistory()
@@ -114,11 +121,20 @@ export default function MainRouter() {
 
                 {(user && detect=== 2) ?
                     <div>
+
+                        <Route exact path={"/home"} component={Employee} /> 
+                        <Route exact path={"/utilisateurs"} component={Utilisateur} />
+                        <Route exact path={"/client-profile"} component={Profile} />
+                    </div> : ""}
+
+              
+
                         <Route exact path={"/home"} component={Employee} />
                         <Route exact path={"/emplois"} component={Emplois} />
                         
                          </div> : ""}
                         
+
 
             </Switch>
         </div>

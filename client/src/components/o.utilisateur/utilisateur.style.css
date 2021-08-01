@@ -1,0 +1,48 @@
+.auth-card-Mod
+{
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1100px;
+    height: 600px;
+    border-radius: 12px;
+    background-color: #DCDCDC;
+    box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+}
+.bouton-Mod11
+{
+    margin-left: auto;
+    margin-right: 30px ;
+    margin-top: 7px ;
+    float: right !important;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #369579; 
+    color: white;
+    transition-duration: 0.4s
+    
+}
+.h5-Mod1
+{
+    color: black ;
+    font-size: 17px;
+}
+th 
+{
+    color: black;
+    font-size: 25px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    border-bottom: 1px solid rgb(2, 2, 2);
+}
+td
+{
+    color: black;
+    font-size: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    border-bottom: 1px solid rgb(2, 2, 2);
+}
