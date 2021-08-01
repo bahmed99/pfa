@@ -18,4 +18,22 @@ router.post('/avis',requireLoginClient ,(req,res)=>{
     avis.save()
     res.json({message : "Message envoyé"})    
 })
+
+
+
+router.get("/emplois/:id",(req,res)=>{
+    Client.findById(req.params.id).then(result=>{
+        res.status(200).send(JSON.stringify(result.timetable))
+    }).catch(err=>{
+        res.status(400).send(err)
+    })
+})
+
+
+
+
+
+
+
+
 module.exports = router

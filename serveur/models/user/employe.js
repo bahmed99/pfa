@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const { ObjectId } = mongoose.Schema.Types
 const employeeSchema = new mongoose.Schema({
-    name:{
+    name: {
         type: String,
         required: true
     },
@@ -18,10 +18,15 @@ const employeeSchema = new mongoose.Schema({
         required: true
     },
     timetable: [{
-        type:{type:String}, //exams , conduite, code... 
-        date: { type: Date },
-        duration: { type: Number, default: 1 },
-        valid: { type: Boolean, default: false }
+        start: { type: Date },
+        end: { type: Date },
+        title: { type: String },
+        color: { type: String },
+        eventContent: { type: String },
+        client: {
+            type: ObjectId,
+            ref: "Client"
+        }
     }],
     client: [{
         type: ObjectId,
@@ -29,17 +34,17 @@ const employeeSchema = new mongoose.Schema({
     }],
     resetToken: String,
     expireToken: Date,
-    pic:{
+    pic: {
         type: String,
         default: "https://res.cloudinary.com/cnq/image/upload/v1586197723/noimage_d4ipmd.png"
     },
-    car:{
+    car: {
         type: ObjectId,
         ref: "Car"
-    } 
-},{timestamps : true})
+    }
+}, { timestamps: true })
 
 
-Employee=mongoose.model("Employee", employeeSchema)
+Employee = mongoose.model("Employee", employeeSchema)
 module.exports = Employee
 

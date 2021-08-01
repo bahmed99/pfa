@@ -21,36 +21,15 @@ app.use(morgan('tiny'))
 app.use("/client", require("./routes/client/client"))
 // app.use("/client", require("./routes/client/"))
 // app.use("/client", require("./routes/client/"))
-// app.use("/client", require("./routes/client/"))
+ app.use("/employe", require("./routes/employee/employee"))
 
 app.use("/auth", require("./routes/auth/auth"))
 
 
 app.use("/courses", require("./routes/course/course.js"))
 
-const event = [
-    {
-        title: 'séance code', start: '2021-07-30T09:00:00', end: '2021-07-30T10:00:00', color: 'red',
-        eventContent: 'This is a cool event'
-    }]
-app.post("/test", (req, res) => {
-    const data = req.body
-    event.push(data)
-    console.log(event)
-   
-})
-app.get("/test", (req, res) => {
-    res.send(event)
-})
-app.delete("/test/:id", (req, res) => {
-    const id = req.params
-    console.log(id)
-    event.shift()
-     res.send("ok")
-})
 
 
-console.log(event)
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }).then((result) =>
     console.log("connected to database"),

@@ -7,35 +7,42 @@ import listPlugin from '@fullcalendar/list';
 import frLocale from '@fullcalendar/core/locales/fr';
 import Alert from "sweetalert2";
 import axios from "axios"
-import AjoutSeanceModal from "./Model"
+import AjoutSeanceModal from "./ModelEmploye"
 import moment from 'moment'
-export default function Bar() {
+
+export default function Emplois({id}) {
     const [title, setTitle] = useState("")
 
     const [data, setData] = useState([])
+    const [clients, setClients] = useState([])
+
     const [ajoutSeanceModalOpen, setAjoutSeanceModalOpen] = useState(false)
     const [selectInfoData, setSelectInfoData] = useState(null);
 
-
+   
 
     async function fetchSeances() {
         setData([])
-        const seancesData = await getSeances();
+        const seancesData = await getSeances(id);
         console.log(seancesData.data)
         seancesData.data.forEach(s => {
-            let eventInfo = { title: s.title, start: s.start, end: s.end, eventContent: s.eventContent }
+            let eventInfo = { title: s.title, start: s.start, end: s.end, eventContent: s.eventContent, color:s.color }
             setData(prevData => ([...prevData, eventInfo]))
         }
         )
 
     }
 
+    async function fetchClients() {
+        setClients([])
+        const clientsData = await getClients(id);
+        setClients(clientsData.data)
+        
+    }
+
     function Select(selectInfo) {
 
         let calendarApi = selectInfo.view.calendar;
-
-        //let title = prompt("Please enter a new title for your event");
-
 
         const startM = moment(new Date(selectInfo.start)).format("YYYY-MM-DDTHH:mm");
         const endM = moment(new Date(selectInfo.end)).format("YYYY-MM-DDTHH:mm");
@@ -46,14 +53,7 @@ export default function Bar() {
 
             setSelectInfoData(selectInfo)
             setAjoutSeanceModalOpen(true)
-            //    calendarApi.addEvent(
-            //         {
-            //             title,
-            //             start: selectInfo.startStr,
-            //             end: selectInfo.endStr,
-            //             allDay: selectInfo.allDay,
-            //         },true,
-            //     );
+
 
         }
         calendarApi.unselect();
@@ -62,46 +62,67 @@ export default function Bar() {
 
     useEffect(() => {
         fetchSeances()
+        fetchClients()
     }, [])
 
-
+ 
 
     function isAnOverlapEvent(eventStartDay, eventEndDay) {
 
         for (let i = 0; i < data.length; i++) {
             const eventA = data[i];
-            if (eventStartDay > eventA.start && eventStartDay < eventA.end) {
+    
+           
+            if (moment(eventStartDay).isAfter(eventA.start) && moment(eventStartDay).isBefore(eventA.end)) {
                 return true;
             }
-            if (eventEndDay > eventA.start && eventEndDay < eventA.end) {
-
+           
+            if (moment(eventEndDay).isAfter(eventA.start) && moment(eventEndDay).isBefore(eventA.end)) {
                 return true;
             }
-            if (eventStartDay <= eventA.start && eventEndDay >= eventA.end) {
+           
+            if (moment(eventStartDay).isSameOrBefore(eventA.start) && moment(eventEndDay).isSameOrAfter(eventA.end)) {
                 return true;
             }
         }
         return false;
     }
-
     function eventClick(eventClick) {
+      
+
         Alert.fire({
-            title: eventClick.event.title,
+            title: "Informations",
             html:
                 `<div class="table-responsive">
           <table class="table">
           <tbody>
+
           <tr >
-          <td>Title</td>
+          <td>Titre</td>
           <td><strong>` +
                 eventClick.event.title +
                 `</strong></td>
           </tr>
           <tr >
-          <td>Start Time</td>
+          <td>Début</td>
           <td><strong>
           ` +
-                eventClick.event.start +
+                eventClick.event.startStr +
+                `</strong></td>
+                </tr>
+                <tr >
+                <td>Fin</td>
+                <td><strong>
+                `+ eventClick.event.endStr+  
+                `</strong></td>
+                </tr>
+                <tr >
+                <td>Client</td>
+                <td><strong>
+                `+
+                eventClick.event._def.extendedProps.eventContent
+                +
+                
                 `
           </strong></td>
           </tr>
@@ -109,27 +130,17 @@ export default function Bar() {
           </table>
           </div>`,
 
-            showCancelButton: true,
             confirmButtonColor: "#d33",
-            cancelButtonColor: "#3085d6",
-            confirmButtonText: "Remove Event",
-            cancelButtonText: "Close"
-        }).then(result => {
-            if (result.value) {
+         
+            confirmButtonText: "Fermer",
+            
+        })
+        
 
-                setTitle(eventClick.event.title)
-                console.log(title)
-                eventClick.event.remove()
-                // setTimeout(() =>                 axios.delete(`http://localhost:3001/test/${title}`,{data:"title"}).then(res=>{console.log(res)}).catch((err)=>console.log("erreur"))
-                // , 2000) 
-
-                //   axios.get("http://localhost:3001/test").then(res=>{setData(res.data)})
-                Alert.fire("Deleted!", "Your Event has been deleted.", "success");
-            }
-        });
     };
     return (
-        <div style={{ width: "60%", "marginLeft": "auto", "marginRight": "auto" }}>
+        <div style={{width:"100%" ,marginRight:"auto",marginLeft:"auto",marginTop:"100px"}}>
+            
             <FullCalendar
                 plugins={[timeGridPlugin, interactionPlugin, listPlugin]}
                 events={data}
@@ -143,7 +154,6 @@ export default function Bar() {
                     center: "title",
                     right: "timeGridWeek,timeGridDay,listWeek"
                 }}
-
                 slotMinTime='08:00'
                 slotMaxTime='20:00'
                 // expandRows={true}
@@ -151,25 +161,26 @@ export default function Bar() {
                 navLinks={true}
                 // editable= {true}
                 selectable={true}
-                eventLimit={true} // allow "more" link when too many events
+                eventLimit={true} 
                 eventLimitText={"More"}
                 dayMaxEvents={true}
                 locale='fr'
                 locales={[frLocale]}
-                eventColor='#378006'
                 allDaySlot={false}
                 slotDuration='00:10:00'
                 select={Select}
                 eventClick={eventClick}
                 eventOverlap={false}
                 slotEventOverlap={false}
-            // datesSet={(date)=>Add(date)}
+         
             />
             <AjoutSeanceModal isOpen={ajoutSeanceModalOpen}
                 setModal={setAjoutSeanceModalOpen}
                 selectInfoData={selectInfoData}
                 fetchSeances={data}
                 setData={setData}
+                id={id}
+                clients={clients}
             />
         </div>
     )
@@ -189,11 +200,36 @@ function renderEventContent(eventInfo) {
 }
 
 
-export async function getSeances() {
-    const resp = await axios.get("http://localhost:3001/test")
+ 
+
+function Remove (data,title){
+    let i=0
+    
+    for( i ;i<data.length;i++){
+        if (data[i].title===title){
+            break ; 
+        }
+    }
+    console.log("data",data)
+    data.splice(i,1)
+    let array=data
+    console.log("i",i)
+    console.log("array",array)
+    return (array)
+}
+
+
+async function getSeances(id) {
+    const resp = await axios.get(`http://localhost:3001/employe/emplois/${id}`)
         .catch(error => {
             return error.response;
         })
     return resp
 }
-
+async function getClients(id) {
+    const resp = await axios.get(`http://localhost:3001/employe/clients/${id}`)
+        .catch(error => {
+            return error.response;
+        })
+    return resp
+}

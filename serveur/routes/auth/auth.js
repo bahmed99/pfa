@@ -3,6 +3,7 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const Client = require("../../models/user/client") 
 const Employee = require("../../models/user/employe")
+const Admin = require("../../models/user/admin")
 const bcrypt = require('bcrypt')
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
@@ -112,7 +113,7 @@ router.post('/client/signup',(req,res)=>{
                         subject:"signup success" ,
                         html:`
                         <h2>Bienvenue Monsieur ${name}</h2>
-                        <h5> Voytr mot de passe est : ${password} </h5>
+                        <h5> Votre mot de passe est : ${password} </h5>
                         `
                     }
                     transporter.sendMail(mailoptions, function (error, info) {
@@ -315,7 +316,177 @@ router.post('/newPassword',(req,res)=>{
     })
 })
 
+router.post("/admin/login",(req,res)=>{
+    
+    const {email,password} = req.body
+    if(!email || !password)
+    {
+        return res.status(422).json({error:"Essayer de remplir tous les champs"})
+    }
+    Admin.findOne({email:email})
+    .then(savedUser=>{
+        if(!savedUser)
+        {
+       
+        return res.status(422).json({error:"vérifier votre email ou votre mot de passe"})
+        }
+        else
+        {
+            bcrypt.compare(password,savedUser.password)
+            .then(domatch=>{
+                if(domatch)
+                {
+                    
+                    const token = jwt.sign({_id:savedUser._id} , JWT_SECRET)
+                    const {_id,name,email,pic} = savedUser
+                    res.json({token,user:{_id,name,email,pic}})
+                }
+                else
+                {
+                    return res.status(422).json({error:"vérifier votre email ou votre mot de passe"})
+                }
+            }).catch(err=>{
+                console.log(err)
+            })
+        }
+    }).catch(err=>{
+        console.log(err)
+    })
+})
 
+
+router.post("/admin/signup",(req,res)=>{
+    console.log(req.body)
+    const {name,email,password} = req.body
+    if(!name || !email || !password)
+    {
+        return res.status(422).json({error:"Essayer de remplir tous les champs"})
+    }
+    Admin.findOne({email:email})
+    .then(savedUser=>{
+        if(savedUser)
+        {
+            return res.status(422).json({error:"Il existe un autre utilisateur avec ce email"})
+        }
+       
+           
+            
+            bcrypt.hash(password,15)
+            .then(hashedpassword=>{
+                const admin = new Admin({
+                    name : name ,
+                    email : email ,
+                    password :hashedpassword 
+                    
+                })
+                admin.save()
+                .then(user=>{
+                    let mailoptions ={
+                        from : "iDriveGears@gmail.com" ,
+                        to:user.email,
+                        subject:"signup success" ,
+                        html:`
+                        <h2>Bienvenue Monsieur ${name}</h2>
+                        <h5> Vote êtes bien inscrit </h5>
+                        `
+                    }
+                    transporter.sendMail(mailoptions, function (error, info) {
+                        if (error) {
+                          console.log(error);
+                        } else {
+                          console.log('Email sent: ' + info.response);
+        
+                        }
+                    });
+                    res.json({message:"le compte est bien créé"})
+                })
+
+            }).catch(err=>{
+                console.log(err)
+            })
+        
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
+
+
+router.post('/admin/newPassword',(req,res)=>{
+    const newPassword = req.body.password
+    const sentToken = req.body.token
+    Admin.findOne({resetToken:sentToken,expireToken:{$gt:Date.now()}})
+    .then(user=>{
+        if(!user)
+        {
+           
+                    return res.status(422).json({error:"Réessayer session expirée"})
+     }
+        else
+        {
+            bcrypt.hash(newPassword,15).then(hashedpassword=>{
+                user.password= hashedpassword
+                user.resetToken = undefined
+                user.expireToken = undefined
+                user.save().then(saveduser=>{
+                    res.json({message:"La mise a jour de votre mot de passe est bien faite"})
+                })
+            }).catch(err=>{
+            console.log(err)
+            })
+        }
+    }).catch(err=>{
+        console.log(err)
+    })
+})
+
+
+router.post('/admin/mdpOublier',(req,res)=>{
+    crypto.randomBytes(32,(err,buffer)=>{
+        if(err)
+        {
+            console.log(err)
+        }
+        const token = buffer.toString("hex")
+        Admin.findOne({email:req.body.email})
+        .then(user=>{
+            if (!user)
+            {
+               
+                        return res.status(422).json({error:"Aucun utilisateur avec ce mail"})
+             }
+                   
+            else
+            {
+                user.resetToken =token
+                user.expireToken = Date.now()+ 3600000
+                user.save().then(result=>{
+                    let mailoptions ={
+                        from : "iDriveGears@gmail.com" ,
+                        to:user.email,
+                        subject:"signup success" ,
+                        html:`
+                        <p>you requested for password reset</p>
+                        <h5> click on this <a href="http://localhost:3000/admin/reset-password/${token}"> Link </a> to reset your password</h5>
+                        `
+                    }
+                    transporter.sendMail(mailoptions, function (error, info) {
+                        if (error) {
+                        console.log(error);
+                        } 
+                        else 
+                        {
+                        console.log('Email sent: ' + info.response);
+        
+                        }
+                    });
+                    res.json({message : "check your mail"})
+
+                })
+            }
+        })
+    })
+})
 
 
 

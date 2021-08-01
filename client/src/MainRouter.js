@@ -25,9 +25,17 @@ import NavBarClient from "./components/a.navbarClient/index"
 
 import Cours from "./pages/a.client/cours";
 import Cour from "./pages/a.client/cour";
+
 import Utilisateur from "./pages/o.employee/utilisateur";
 import Profile from "./components/o.utilisateur/Profile";
 // import Emplois from "./pages/a.client/emplois";
+
+
+import Emplois from "./pages/a.employe/Emplois.js";
+import EmploisClient from "./pages/a.client/emplois.js";
+import SigninAdmin from "./pages/a.admin/signin"
+import ForgotPassword from "./pages/a.admin/forgotPassword";
+import NewPasswordAdmin from "./pages/a.admin/newPassword";
 
 
 export default function MainRouter() {
@@ -52,7 +60,7 @@ export default function MainRouter() {
         }
         else
         {
-          if(!history.location.pathname.startsWith('/reset') && !history.location.pathname.startsWith('/forgot-password') && !history.location.pathname.startsWith('/sign-in'))
+          if(!history.location.pathname.startsWith('/reset') && !history.location.pathname.startsWith('/forgot-password') && !history.location.pathname.startsWith('/sign-in')&& !history.location.pathname.startsWith('/admin'))
           {
             history.push("/")
           }
@@ -71,10 +79,6 @@ export default function MainRouter() {
                 <Route exact path={"/khadija2"} component={Employee} />
                 <Route exact path={"/tests"} component={Courses} />
                 <Route exact path={"/test/:id"} component={Course} />
-
-
-
-
 
                { (user && detect === 1)?  <Route exact path={"/"} component={HomeClient} />:(user && detect ===2)? <Route exact path={"/"} component={Employee} /> :<Route exact path={"/"} component={Home} />}
                 
@@ -103,20 +107,34 @@ export default function MainRouter() {
                         <Route exact path={"/tests"} component={Courses} />
                         <Route exact path={"/cours"} component={Cours} />
                         <Route exact path={"/cours/:id"} component={Cour} />
-                        <Route exact path={"/test/reponse/:id"} component={Correction} /></div> : ""}
+                        <Route exact path={"/test/reponse/:id"} component={Correction} />
+                        <Route exact path={"/emplois"} component={EmploisClient} />
+                        
+                        
+                        </div> : ""}
 
-
+                        <Route exact path={"/admin"} component={SigninAdmin} />
+                        <Route exact path={"/admin/forgot-password"} component={ForgotPassword} />
+                        <Route exact path={"/admin/reset-password/:token"} component={NewPasswordAdmin} />
 
                 {reponse && user ? <Route exact path={"/test/reponse/:id"} component={Correction} /> : ""}
 
                 {(user && detect=== 2) ?
                     <div>
+
                         <Route exact path={"/home"} component={Employee} /> 
                         <Route exact path={"/utilisateurs"} component={Utilisateur} />
                         <Route exact path={"/client-profile"} component={Profile} />
                     </div> : ""}
 
-                {/* <Route exact component={Error404} /> */}
+              
+
+                        <Route exact path={"/home"} component={Employee} />
+                        <Route exact path={"/emplois"} component={Emplois} />
+                        
+                         </div> : ""}
+                        
+
 
             </Switch>
         </div>
