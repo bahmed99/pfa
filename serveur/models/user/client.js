@@ -18,9 +18,11 @@ const clientSchema = new mongoose.Schema({
         required: true
     },
     timetable: [{
-        date: { type: Date },
-        duration: { type: Number, default: 1 },
-        valid: { type: Boolean, default: false },
+        start: { type: Date },
+        end: { type: Date },
+        title: { type: String },
+        color: { type: String },
+        eventContent: { type: String },
     }],
     employee: {
         type: ObjectId,

@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import {
     Button,
     Card,
@@ -7,34 +7,37 @@ import {
     FormGroup,
     Form,
     Input,
-    InputGroupAddon,
-    InputGroupText,
-    InputGroup,
     Modal,
-    Row,
-    Col, Label
+    Label
 } from "reactstrap";
 
 import axios from 'axios'
 
+
 export default function AjoutSeanceModal(props) {
     const [title, setTitle] = useState("")
-    const [description, setDescription] = useState("")
-  
+    const user= JSON.parse(localStorage.getItem("user"))
 
-    const onClickAjouterSeance=async ()=>{
-        const seance ={ 
-            "start" :props.selectInfoData.startStr,
-            "end":props.selectInfoData.endStr,
-            "title":title ,
-            "eventContent":description
-           }
+    const onClickAjouterSeance = async () => {
+        if ( title !== "") {
+            const seance = {
+                "start": props.selectInfoData.startStr,
+                "end": props.selectInfoData.endStr,
+                "title": title,
+                "eventContent": user.name,
+                "color": "#FF7F00",
+                "employee":user.employee
+            }
            
-           props.setModal(false)
-         axios.post("http://localhost:3001/test",seance)
-         props.setData(prevData=>([...prevData,seance]))
-       
-      }
+            props.setModal(false)
+            axios.put(`http://localhost:3001/client/emplois/${props.id}`, seance)
+            props.setData(prevData => ([...prevData, seance]))
+            setTitle('')
+           
+        }
+    }
+   
+  
     return (
         <Modal
             className="modal-dialog-centered"
@@ -44,30 +47,22 @@ export default function AjoutSeanceModal(props) {
             toggle={() => { props.setModal(!props.isOpen) }}
         >
             <div className="modal-body p-0">
-                <Card className="bg-secondary shadow border-0">
-                    <CardHeader className="bg-transparent pb-5">
-                        <h3>Ajouter une seance</h3>
+                <Card className=" shadow border-0">
+                    <CardHeader className="bg-transparent pb-1">
+                        <h3>Ajouter une séance</h3>
                     </CardHeader>
-                    <CardBody className="px-lg-5 py-lg-5">
+                    <CardBody className="px-lg-5 py-lg-10">
 
                         <Form role="form">
 
                             <FormGroup>
                                 <Label>Titre</Label>
 
-                                <Input 
+                                <Input
                                     onChange={(e) => { setTitle(e.target.value) }}
                                 />
                             </FormGroup>
-
-                            <FormGroup>
-                                <Label>Description</Label>
-                                <Input 
-                                    onChange={(e) => { setDescription(e.target.value) }}
-                                />
-
-                            </FormGroup>
-
+                            
                             <div className="text-center">
                                 <Button
                                     className="my-4"

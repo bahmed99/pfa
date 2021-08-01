@@ -13,17 +13,15 @@ import { NavLink } from 'react-router-dom';
 export default function Sidebar(props) {
 
     return (
+      
+        <div  style={{ display: 'flex', height: '100%', overflow: 'scroll initial' }}>
 
-        <div
-            style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}
-        >
             <CDBSidebar textColor="#fff" backgroundColor="#3d3e42">
                 <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
                     <a
                         href="/"
                         className="text-decoration-none"
-                        style={{ color: 'inherit' }}
-                    >
+                        style={{ color: 'inherit' }}>
                         iDrive Gears
                     </a>
                 </CDBSidebarHeader>
@@ -36,8 +34,8 @@ export default function Sidebar(props) {
                         <NavLink exact to="/cars" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="car">Voitures</CDBSidebarMenuItem>
                         </NavLink>
-                        <NavLink exact to="/timetable" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="table">Emploi</CDBSidebarMenuItem>
+                        <NavLink exact to="/emplois" activeClassName="activeClicked">
+                            <CDBSidebarMenuItem icon="table">Emplois</CDBSidebarMenuItem>
                         </NavLink>
                         <NavLink exact to="/courses" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="book">Cours</CDBSidebarMenuItem>
@@ -63,5 +61,6 @@ export default function Sidebar(props) {
                 </CDBSidebarFooter>
             </CDBSidebar>
         </div>
+    
     )
 }

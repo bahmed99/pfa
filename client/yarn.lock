@@ -1398,12 +1398,50 @@
     "@fullcalendar/common" "~5.9.0"
     tslib "^2.1.0"
 
+"@fullcalendar/premium-common@~5.9.0":
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/premium-common/-/premium-common-5.9.0.tgz#6493a7dd08eab9bf7f6572c0e1c120b7cc1aa3f5"
+  integrity sha512-Ri5rnCgcJxYi4lQy/qOc78i3KkD0cPJgEqJLSn9JA6ijvSVVTIQCQjIRA9vou5UekTIQyf0jt4d++xi1HxIhig==
+  dependencies:
+    "@fullcalendar/common" "~5.9.0"
+    tslib "^2.1.0"
+
 "@fullcalendar/react@^5.9.0":
   version "5.9.0"
   resolved "https://registry.yarnpkg.com/@fullcalendar/react/-/react-5.9.0.tgz#2948d28185517ddab65ad4c06dbab56e11f24ea7"
   integrity sha512-Di4V5RI0MSVEa4L9yues9f6VfAmuzZAr3EAaGzlA27GhDv+ofWoYoohPcAanRrExiCf2W4R2ZyecJh+/TRPshg==
   dependencies:
     "@fullcalendar/common" "~5.9.0"
+    tslib "^2.1.0"
+
+"@fullcalendar/resource-common@~5.9.0":
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/resource-common/-/resource-common-5.9.0.tgz#5d5886296f9355a2f5de1b90f63b2636b6b068b7"
+  integrity sha512-r23WQjv2iF1Py/TLokS8haPRQbX0HZLWlpk7tFf9B4y8Y9uuP6kMBYK1I7KbfqmRHfDO6tAB2ku4ugI94G8SiA==
+  dependencies:
+    "@fullcalendar/common" "~5.9.0"
+    "@fullcalendar/premium-common" "~5.9.0"
+    tslib "^2.1.0"
+
+"@fullcalendar/resource-timeline@^5.9.0":
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/resource-timeline/-/resource-timeline-5.9.0.tgz#2bb8fc6366eb002999bb0f030306db376ce0e531"
+  integrity sha512-mN71PgBDoK/R+/WvOdT/DYfD+rWaFcYttLAVtE0G/p2QiiC/eSgWHTm6iycfhv7y4qaQQhP6Pe6beKdhmxFtOg==
+  dependencies:
+    "@fullcalendar/common" "~5.9.0"
+    "@fullcalendar/premium-common" "~5.9.0"
+    "@fullcalendar/resource-common" "~5.9.0"
+    "@fullcalendar/scrollgrid" "~5.9.0"
+    "@fullcalendar/timeline" "~5.9.0"
+    tslib "^2.1.0"
+
+"@fullcalendar/scrollgrid@~5.9.0":
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/scrollgrid/-/scrollgrid-5.9.0.tgz#10d943759e5c64bf99a64eb4fddd0c1f8bb16361"
+  integrity sha512-AHRhvcZAaFtt7oLABKMvq79+7zvBnkJvHNPSQ22uMRG2R6JANfSvjZOCD4qYfC5Hl/WxcrhV6i6DA6npZAZT8w==
+  dependencies:
+    "@fullcalendar/common" "~5.9.0"
+    "@fullcalendar/premium-common" "~5.9.0"
     tslib "^2.1.0"
 
 "@fullcalendar/timegrid@^5.9.0":
@@ -1413,6 +1451,16 @@
   dependencies:
     "@fullcalendar/common" "~5.9.0"
     "@fullcalendar/daygrid" "~5.9.0"
+    tslib "^2.1.0"
+
+"@fullcalendar/timeline@~5.9.0":
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/timeline/-/timeline-5.9.0.tgz#8392fd8b149addcf7a2e379fc631f08476a95dba"
+  integrity sha512-/B6eKMf2psKSRQlKnNZumuq5b+etfUSY1s3SQ8vOFz9DYzXkOnIw9y2BjxsVZDK2DslecKyLblsE70lrVfhWUQ==
+  dependencies:
+    "@fullcalendar/common" "~5.9.0"
+    "@fullcalendar/premium-common" "~5.9.0"
+    "@fullcalendar/scrollgrid" "~5.9.0"
     tslib "^2.1.0"
 
 "@hapi/address@2.x.x":
