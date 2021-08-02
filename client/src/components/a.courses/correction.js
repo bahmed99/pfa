@@ -58,9 +58,6 @@ export default function Correction() {
     }
       
     }
-console.log("final",final)
-console.log("data",datas[id])
-console.log("rep",reponse[id])
 
     return (
         <div className="course1 container" >

@@ -6,7 +6,12 @@ import { Link } from "react-router-dom";
 export default function Index() {
     const [data, setData] = useState([])
     useEffect(() => {
-        axios.get("http://localhost:3001/courses")
+        axios.get("http://localhost:3001/courses", {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }
+        })
             .then(res => {
 
                 setData(res.data)
@@ -26,13 +31,13 @@ export default function Index() {
                         <div>
                             <div className="breadcrumbs">
                                 <div>
-                            <h1>Entraînez-vous au code de la route</h1>
-                            <p>Étape obligatoire pour décrocher un jour l'examen du permis de conduire, <span className="strong-medium">le code de la route</span> fait peur à beaucoup
-                                de candidats, alors que pour le réussir il suffit juste de bien y être préparé. C'est pour vous y aider que
-                                iDrive Gears met à votre disposition <span className="strong-medium">des tests de code en ligne</span>, comprenant 30 questions <span className="strong-medium">conformes à
-                                    celles de l'examen.</span>
-                            </p>
-                            </div>
+                                    <h1>Entraînez-vous au code de la route</h1>
+                                    <p>Étape obligatoire pour décrocher un jour l'examen du permis de conduire, <span className="strong-medium">le code de la route</span> fait peur à beaucoup
+                                        de candidats, alors que pour le réussir il suffit juste de bien y être préparé. C'est pour vous y aider que
+                                        iDrive Gears met à votre disposition <span className="strong-medium">des tests de code en ligne</span>, comprenant 30 questions <span className="strong-medium">conformes à
+                                            celles de l'examen.</span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
@@ -51,7 +56,7 @@ export default function Index() {
                     </div></Link>))}
 
             </div>
-          
+
         </div>
     )
 }

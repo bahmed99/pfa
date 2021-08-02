@@ -21,18 +21,13 @@ router.post('/avis',requireLoginClient ,(req,res)=>{
 
 
 
-router.get("/emplois/:id",(req,res)=>{
+router.get("/emplois/:id",requireLoginClient,(req,res)=>{
     Client.findById(req.params.id).then(result=>{
         res.status(200).send(JSON.stringify(result.timetable))
     }).catch(err=>{
         res.status(400).send(err)
     })
 })
-
-
-
-
-
 
 
 

@@ -5,7 +5,7 @@ const requireLoginAdmin = require("../../middleware/requireLoginAdmin")
 
 
 
-router.get("/emplois", (req, res) => {
+router.get("/emplois",requireLoginAdmin, (req, res) => {
     var usersProjection = {
         email: false,
         password: false,

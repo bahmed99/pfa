@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Employee = require("../../models/user/employe")
 const Client = require("../../models/user/client") 
-const requireLoginClient = require("../../middleware/requireLoginClient")
+const requireLoginEmployee = require("../../middleware/requireLoginEmployee")
 // const event = [
 //     {
 //         title: 'séance code', start: '2021-07-30T09:00:00', end: '2021-07-30T10:00:00', color: 'red',
@@ -19,7 +19,7 @@ const requireLoginClient = require("../../middleware/requireLoginClient")
 // })
 
 
-router.get("/emplois/:id",(req,res)=>{
+router.get("/emplois/:id",requireLoginEmployee,(req,res)=>{
     Employee.findById(req.params.id).then(result=>{
         res.status(200).send(result.timetable)
     }).catch(err=>{
@@ -27,7 +27,7 @@ router.get("/emplois/:id",(req,res)=>{
     })
 })
 
-router.put("/emplois/:id",(req,res)=>{
+router.put("/emplois/:id",requireLoginEmployee,(req,res)=>{
     Employee.findByIdAndUpdate(req.params.id,{
         $push:{timetable:req.body}
     },{
@@ -60,7 +60,7 @@ router.put("/emplois/:id",(req,res)=>{
     })
 })
 
-router.get("/clients/:id",(req,res)=>{
+router.get("/clients/:id",requireLoginEmployee,(req,res)=>{
     Employee.findById(req.params.id).then(result=>{
         Client.find({
             

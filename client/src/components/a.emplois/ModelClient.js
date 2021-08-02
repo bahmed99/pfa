@@ -30,7 +30,12 @@ export default function AjoutSeanceModal(props) {
             }
            
             props.setModal(false)
-            axios.put(`http://localhost:3001/client/emplois/${props.id}`, seance)
+            axios.put(`http://localhost:3001/client/emplois/${props.id}`, seance, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("jwt")
+                }
+            })
             props.setData(prevData => ([...prevData, seance]))
             setTitle('')
            

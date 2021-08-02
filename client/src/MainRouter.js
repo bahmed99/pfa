@@ -127,7 +127,7 @@ export default function MainRouter() {
                         <Route exact path={"/home"} component={Employee} /> 
                         <Route exact path={"/utilisateurs"} component={Utilisateur} />
                         <Route exact path={"/client-profile"} component={Profile} />
-                        <Route exact path={"/emplois"} component={Emplois} />
+                        
                     </div> : ""}
                     {(user && detect=== 3) ?
                     <div>

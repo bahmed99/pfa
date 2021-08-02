@@ -10,7 +10,7 @@ import axios from "axios"
 import AjoutSeanceModal from "./ModelEmploye"
 import moment from 'moment'
 
-export default function Emplois({id}) {
+export default function Emplois({ id }) {
     const [title, setTitle] = useState("")
 
     const [data, setData] = useState([])
@@ -19,14 +19,14 @@ export default function Emplois({id}) {
     const [ajoutSeanceModalOpen, setAjoutSeanceModalOpen] = useState(false)
     const [selectInfoData, setSelectInfoData] = useState(null);
 
-   
+
 
     async function fetchSeances() {
         setData([])
         const seancesData = await getSeances(id);
         console.log(seancesData.data)
         seancesData.data.forEach(s => {
-            let eventInfo = { title: s.title, start: s.start, end: s.end, eventContent: s.eventContent, color:s.color }
+            let eventInfo = { title: s.title, start: s.start, end: s.end, eventContent: s.eventContent, color: s.color }
             setData(prevData => ([...prevData, eventInfo]))
         }
         )
@@ -37,7 +37,7 @@ export default function Emplois({id}) {
         setClients([])
         const clientsData = await getClients(id);
         setClients(clientsData.data)
-        
+
     }
 
     function Select(selectInfo) {
@@ -65,22 +65,22 @@ export default function Emplois({id}) {
         fetchClients()
     }, [])
 
- 
+
 
     function isAnOverlapEvent(eventStartDay, eventEndDay) {
 
         for (let i = 0; i < data.length; i++) {
             const eventA = data[i];
-    
-           
+
+
             if (moment(eventStartDay).isAfter(eventA.start) && moment(eventStartDay).isBefore(eventA.end)) {
                 return true;
             }
-           
+
             if (moment(eventEndDay).isAfter(eventA.start) && moment(eventEndDay).isBefore(eventA.end)) {
                 return true;
             }
-           
+
             if (moment(eventStartDay).isSameOrBefore(eventA.start) && moment(eventEndDay).isSameOrAfter(eventA.end)) {
                 return true;
             }
@@ -88,7 +88,7 @@ export default function Emplois({id}) {
         return false;
     }
     function eventClick(eventClick) {
-      
+
 
         Alert.fire({
             title: "Informations",
@@ -113,7 +113,7 @@ export default function Emplois({id}) {
                 <tr >
                 <td>Fin</td>
                 <td><strong>
-                `+ eventClick.event.endStr+  
+                `+ eventClick.event.endStr +
                 `</strong></td>
                 </tr>
                 <tr >
@@ -122,7 +122,7 @@ export default function Emplois({id}) {
                 `+
                 eventClick.event._def.extendedProps.eventContent
                 +
-                
+
                 `
           </strong></td>
           </tr>
@@ -131,16 +131,16 @@ export default function Emplois({id}) {
           </div>`,
 
             confirmButtonColor: "#d33",
-         
+
             confirmButtonText: "Fermer",
-            
+
         })
-        
+
 
     };
     return (
-        <div style={{width:"100%" ,marginRight:"auto",marginLeft:"auto",marginTop:"100px"}}>
-            
+        <div style={{ width: "100%", marginRight: "auto", marginLeft: "auto", marginTop: "100px" }}>
+
             <FullCalendar
                 plugins={[timeGridPlugin, interactionPlugin, listPlugin]}
                 events={data}
@@ -161,7 +161,7 @@ export default function Emplois({id}) {
                 navLinks={true}
                 // editable= {true}
                 selectable={true}
-                eventLimit={true} 
+                eventLimit={true}
                 eventLimitText={"More"}
                 dayMaxEvents={true}
                 locale='fr'
@@ -172,8 +172,8 @@ export default function Emplois({id}) {
                 eventClick={eventClick}
                 eventOverlap={false}
                 slotEventOverlap={false}
-                
-         
+
+
             />
             <AjoutSeanceModal isOpen={ajoutSeanceModalOpen}
                 setModal={setAjoutSeanceModalOpen}
@@ -201,34 +201,44 @@ function renderEventContent(eventInfo) {
 }
 
 
- 
 
-function Remove (data,title){
-    let i=0
-    
-    for( i ;i<data.length;i++){
-        if (data[i].title===title){
-            break ; 
+
+function Remove(data, title) {
+    let i = 0
+
+    for (i; i < data.length; i++) {
+        if (data[i].title === title) {
+            break;
         }
     }
-    console.log("data",data)
-    data.splice(i,1)
-    let array=data
-    console.log("i",i)
-    console.log("array",array)
+    console.log("data", data)
+    data.splice(i, 1)
+    let array = data
+    console.log("i", i)
+    console.log("array", array)
     return (array)
 }
 
 
 async function getSeances(id) {
-    const resp = await axios.get(`http://localhost:3001/employe/emplois/${id}`)
+    const resp = await axios.get(`http://localhost:3001/employe/emplois/${id}`, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("jwt")
+        }
+    })
         .catch(error => {
             return error.response;
         })
     return resp
 }
 async function getClients(id) {
-    const resp = await axios.get(`http://localhost:3001/employe/clients/${id}`)
+    const resp = await axios.get(`http://localhost:3001/employe/clients/${id}`, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("jwt")
+        }
+    })
         .catch(error => {
             return error.response;
         })

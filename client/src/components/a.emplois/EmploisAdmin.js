@@ -19,7 +19,12 @@ export default function EmploisAdmin() {
     
 
     useEffect(() => {
-        axios.get("http://localhost:3001/admin/emplois").then((res) => {
+        axios.get("http://localhost:3001/admin/emplois", {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }
+        }).then((res) => {
             setEvents(res.data.events)
             setResources(res.data.resources)
         })

@@ -159,7 +159,12 @@ function renderEventContent(eventInfo) {
 
 
 async function getSeances(id) {
-    const resp = await axios.get(`http://localhost:3001/client/emplois/${id}`)
+    const resp = await axios.get(`http://localhost:3001/client/emplois/${id}`, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("jwt")
+        }
+    })
         .catch(error => {
             return error.response;
         })
