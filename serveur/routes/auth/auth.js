@@ -9,6 +9,24 @@ const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
 const {JWT_SECRET} = require('../../Keys')
+const requireLoginEmployee = require('../../middleWare/requireLoginEmployee')
+
+const multer = require('multer');
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '../client/public/uploads');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+});
+
+const upload = multer({
+    storage: storage,
+})
+
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -79,7 +97,7 @@ router.post('/login',(req,res)=>{
     })
 })
 
-router.post('/client/signup',(req,res)=>{
+router.post('/client/signup',requireLoginEmployee,upload.single('image'),(req,res)=>{
     const {name,email,cin} = req.body
     if(!name || !email || !cin)
     {
@@ -103,7 +121,9 @@ router.post('/client/signup',(req,res)=>{
                     name : name ,
                     email : email ,
                     password :hashedpassword ,
-                    cin :cin
+                    cin :cin ,
+                    pic : req.file.originalname  ,
+                    employee : req.employee._id                  
                 })
                 client.save()
                 .then(user=>{
@@ -124,7 +144,16 @@ router.post('/client/signup',(req,res)=>{
         
                         }
                     });
-                    res.json({message:"le compte est bien créé"})
+                    Employee.findByIdAndUpdate(req.employee._id,{
+                    $push:{client:user._id}
+                    },{
+                        new:true
+                    }).then(result=>{
+                        res.json({message:"le compte est bien créé"})
+                    }).catch(err=>{
+                        console.log(err)
+                    })
+                    
                 })
 
             }).catch(err=>{
