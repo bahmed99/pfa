@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Employee = require("../../models/user/employe")
-const Client = require("../../models/user/client") 
+const Client = require("../../models/user/client")
 const requireLoginEmployee = require("../../middleware/requireLoginEmployee")
 // const event = [
 //     {
@@ -19,61 +19,87 @@ const requireLoginEmployee = require("../../middleware/requireLoginEmployee")
 // })
 
 
-router.get("/emplois/:id",requireLoginEmployee,(req,res)=>{
-    Employee.findById(req.params.id).then(result=>{
+router.get("/emplois/:id", requireLoginEmployee, (req, res) => {
+    Employee.findById(req.params.id).then(result => {
         res.status(200).send(result.timetable)
-    }).catch(err=>{
+    }).catch(err => {
         res.status(400).send(err)
     })
 })
 
-router.put("/emplois/:id",requireLoginEmployee,(req,res)=>{
-    Employee.findByIdAndUpdate(req.params.id,{
-        $push:{timetable:req.body}
-    },{
-        new:true
-    }).then(result=>{
-        Client.findByIdAndUpdate(req.body.client,{
-            $push:{
-            timetable:{
-                start: req.body.start,
-                end: req.body.end ,
-                title: req.body.title ,
-                color: req.body.color ,
-                eventContent: req.body.eventContent 
-            }}
-        },{
-            new:true
-        }).then(resultat=>{
+router.put("/emplois/:id", requireLoginEmployee, (req, res) => {
+    Employee.findByIdAndUpdate(req.params.id, {
+        $push: { timetable: req.body }
+    }, {
+        new: true
+    }).then(result => {
+        Client.findByIdAndUpdate(req.body.client, {
+            $push: {
+                timetable: {
+                    start: req.body.start,
+                    end: req.body.end,
+                    title: req.body.title,
+                    color: req.body.color,
+                    eventContent: req.body.eventContent
+                }
+            }
+        }, {
+            new: true
+        }).then(resultat => {
             console.log(resultat)
             res.status(200).send(resultat)
-    
-            
-        }).catch(errs=>{
+
+
+        }).catch(errs => {
             res.status(400).send(errs)
         })
 
-       
-        
-    }).catch(err=>{
+
+
+    }).catch(err => {
         res.status(400).send(err)
     })
 })
 
-router.get("/clients/:id",requireLoginEmployee,(req,res)=>{
-    Employee.findById(req.params.id).then(result=>{
+router.get("/clients/:id", requireLoginEmployee, (req, res) => {
+    Employee.findById(req.params.id).then(result => {
         Client.find({
-            
-            '_id':{ $in: result.client}
-        }).then(resultat=>{
+
+            '_id': { $in: result.client }
+        }).then(resultat => {
             res.status(200).send(JSON.stringify(resultat))
-            }).catch(erreur=>{
-                res.status(400).send(erreur)
+        }).catch(erreur => {
+            res.status(400).send(erreur)
         })
-    }).catch(err=>{
+    }).catch(err => {
         res.status(400).send(err)
     })
 })
+
+
+router.put("/emplois-delete/:id", requireLoginEmployee,(req, res) => {
+    const data = req.body
+    console.log(data)
+    Employee.findByIdAndUpdate(req.employee._id, {
+        $pull: { timetable: data }
+    }, {
+        new: true
+    }).then(resultat => {
+        Client.findByIdAndUpdate(req.params.id, {
+            $pull: { timetable: data
+             }
+        }, {
+            new: true
+        }).then(result => {
+            res.send(result)
+        }).catch(err => {
+            res.send(err)
+        })
+
+    })
+
+})
+
 
 
 

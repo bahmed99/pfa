@@ -10,7 +10,10 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import frLocale from '@fullcalendar/core/locales/fr';
 
-
+function zeroPad(value) {
+    return value < 10 ? `0${value}` : value;
+ }
+ 
 
 export default function EmploisAdmin() {
 
@@ -154,7 +157,7 @@ function EventContent(eventInfo) {
 
     return (
         <>
-            <b>{`${eventInfo.event.start.getHours()}:${eventInfo.event.start.getMinutes()} - ${eventInfo.event.end.getHours()}:${eventInfo.event.end.getMinutes()}`}</b>
+            <b>{`${zeroPad(eventInfo.event.start.getHours())}:${zeroPad(eventInfo.event.start.getMinutes())} - ${zeroPad(eventInfo.event.end.getHours())}:${zeroPad(eventInfo.event.end.getMinutes())}`}</b>
             <br />
             <i>{eventInfo.event.title}</i>
             <br />

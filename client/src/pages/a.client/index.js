@@ -7,6 +7,7 @@ export default function HomeClient() {
     return (
         <div >
             <Navbar/>
+            
         </div>
     )
 }
