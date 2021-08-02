@@ -13,7 +13,7 @@ export default function Emplois() {
             <div className="col-md-8">
                
                 <EmploisEmployee  id={id}/>
-            </div>
+            </div> 
         </div>
     )
 }
