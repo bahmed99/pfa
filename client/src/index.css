@@ -45,9 +45,14 @@ color: white;
   color: white;
   opacity: 80%;
 }
-
+input,textarea
+{
+  color:black !important;
+}
 a:link:hover{
  text-decoration: none ;
  outline:none;
 }
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

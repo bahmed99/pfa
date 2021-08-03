@@ -76,6 +76,32 @@ router.get("/clients/:id", requireLoginEmployee, (req, res) => {
     })
 })
 
+router.get("/employee-clients",requireLoginEmployee,(req,res)=>{
+    const data = []
+    Employee.findOne({_id:req.employee._id})
+    .populate("client","_id name cin email pic")
+    .then(result=>{
+        for (let i=0 ; i < result.client.length ; i++)
+        {
+            data.push({id:result.client[i]._id ,name:result.client[i].name , email:result.client[i].email , cin:result.client[i].cin , imgUrl :result.client[i].pic})
+        }
+        res.json(data)
+    }).catch(err=>{
+        console.log(err)
+    })
+    
+})
+router.get("/employee-client/:id",requireLoginEmployee,(req,res)=>{
+    Client.findOne({_id:req.params.id})
+    .then(result=>{
+        res.json(result)
+    }).catch(err=>{
+        console.log(err)
+    })  
+})
+
+
+
 
 router.put("/emplois-delete/:id", requireLoginEmployee,(req, res) => {
     const data = req.body
