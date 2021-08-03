@@ -3,6 +3,25 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const Avis = require("../../models/avis/avis") 
 const requireLoginClient = require('../../middleWare/requireLoginClient')
+const fs = require('fs');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads/profile/clients');
+  },
+  filename: function (req, file, cb) {
+    cb(null,  file.originalname);
+    
+  }
+});
+
+const upload = multer({
+  storage: storage,
+})
+
+
+
 
 router.post('/avis',requireLoginClient ,(req,res)=>{
     const {vote,message} = req.body
@@ -28,6 +47,47 @@ router.get("/emplois/:id",requireLoginClient,(req,res)=>{
         res.status(400).send(err)
     })
 })
+
+router.get("/client",requireLoginClient,(req,res)=>{
+    Client.findById(req.client._id).select("-password").then(result=>{
+        res.status(200).send(JSON.stringify(result))
+    }).catch(err=>{
+        res.status(400).send(err)
+    })
+})
+
+router.put("/client",requireLoginClient,(req,res)=>{
+    const data=req.body
+    Client.findById(req.client._id).then(result=>{
+        result.name=data.name
+        result.cin=data.cin
+        result.email=data.email
+        result.save().then(resultat=>{
+            
+            res.send(resultat)
+        })
+    }).catch(err=>{
+        res.status(400).send(err)
+    })
+})
+
+router.post("/updateClientPicture",requireLoginClient,upload.single("pic"),(req,res)=>{
+    const pic=req.client.pic
+    Client.findById(req.client._id).then(result=>{
+        result.pic=req.file.originalname 
+        result.save().then(resultat=>{
+            fs.unlink(`./uploads/profile/clients/${pic}`,function(err){
+                if(err) return console.log(err);
+                console.log('file deleted successfully');
+           });  
+            res.send(resultat)
+        })
+    }).catch(err=>{
+        res.status(400).send(err)
+    })
+})
+
+
 
 
 
