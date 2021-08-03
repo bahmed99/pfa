@@ -97,7 +97,7 @@ export default function Signin() {
                                 <input 
                                 type="password" 
                                 className="input-Mod1"
-                                placeholder="Mot De Passe*"
+                                placeholder="Mot de Passe*"
                                 value={password}
                                 onChange={(e)=>setPassword(e.target.value)} />
                             </div>

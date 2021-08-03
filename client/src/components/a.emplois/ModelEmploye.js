@@ -61,7 +61,7 @@ export default function AjoutSeanceModal(props) {
         >
             <div className="modal-body p-0 row align-self-center">
                 <Card className=" shadow border-0 ">
-                    <CardHeader className="bg-transparent pb-1">
+                    <CardHeader className="bg-transparent pb-1 row align-self-center">
                         <h3>Ajouter une séance</h3>
                     </CardHeader>
                     <CardBody className="px-lg-5 py-lg-10">

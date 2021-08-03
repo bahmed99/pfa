@@ -100,20 +100,16 @@ router.get("/employee-client/:id",requireLoginEmployee,(req,res)=>{
     })  
 })
 
-
-
-
 router.put("/emplois-delete/:id", requireLoginEmployee,(req, res) => {
     const data = req.body
-    console.log(data)
+
     Employee.findByIdAndUpdate(req.employee._id, {
         $pull: { timetable: data }
     }, {
         new: true
     }).then(resultat => {
         Client.findByIdAndUpdate(req.params.id, {
-            $pull: { timetable: data
-             }
+            $pull: { timetable: data}
         }, {
             new: true
         }).then(result => {

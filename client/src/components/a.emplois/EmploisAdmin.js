@@ -34,7 +34,7 @@ export default function EmploisAdmin() {
     }, [])
 
     function eventClick(eventClick) {
-      
+      console.log(eventClick)
         Alert.fire({
             title: "Informations",
             html:
@@ -137,19 +137,26 @@ function ResourceContent(resource) {
     
     let icon = document.createElement('img');
     let url = resource.resource._resource.extendedProps.url;
-   
+    console.log(resource.el)
     icon.src = `./uploads/profile/employes/${url}`;
-    icon.height = "60"
+    icon.height = "50"
     icon.width = "50"
     icon.style.borderRadius="50%"
-    icon.style.marginRight="10px"
+ 
     
-
+  
 
     resource.el.querySelector('.fc-datagrid-cell-main')
         .insertBefore(icon, resource.el.querySelector('.fc-datagrid-cell-main').firstChild);
 
+    
 
+     
+        // resource.el.querySelector('.fc-datagrid-cell-main').style.display="flex"
+
+      
+
+     
 
 }
 

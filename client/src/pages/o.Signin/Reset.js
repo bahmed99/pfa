@@ -4,13 +4,17 @@ import './Signin.style.css'
 import image from './o.images/0.png'
 import image1 from './o.images/01234.gif'
 import Alert from 'react-bootstrap/Alert'
+import ReactLoading from 'react-loading';
+
 
 export default function Reset() {
     const History = useHistory()
+    const [loading,setLoading]=useState(false)
     const [email,setEmail] = useState('')
     const [error,setError] = useState(false)
     const [success,setSuccess] = useState(false)
     const PostData = () =>{
+        setLoading(true)
         fetch("http://localhost:3001/auth/mdpOublier",{
             method:"post",
             headers:{
@@ -22,12 +26,13 @@ export default function Reset() {
         }).then(res=>res.json())
         .then(data=>{
             if(data.error)
-            {
+            { setLoading(false)
                 setError(true)
                 setTimeout(() => setError(false), 2500)
             }
             else
             {
+                setLoading(false)
                 setSuccess(true)
                 setTimeout(() => setSuccess(false), 2500)
                 setInterval(function(){ History.push('/sign-in') }, 2000);
@@ -65,7 +70,7 @@ export default function Reset() {
                         onChange={(e)=>setEmail(e.target.value)} />
                     </div>
                     <br />
-                    <button onClick={()=>PostData()} className="waves-effect12 " type="submit" name="action" style={{opacity:"100% !important"}}>Envoyer
+                    <button onClick={()=>PostData()} className="waves-effect12 " type="submit" name="action"  style={{opacity:"100% !important",backgroundColor:loading? "#66CDAA" :''}} disabled={loading}>{loading? <ReactLoading height={'20px'} width={'24px'} className="loading1" type="spin"/>:"Envoyer"}
                     </button>
                     <br />
                 </div>

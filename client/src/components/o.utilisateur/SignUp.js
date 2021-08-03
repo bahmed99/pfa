@@ -28,7 +28,7 @@ const SignUp = (props) => {
         
         toggle={() => {props.setModal(!props.isOpen)}}
         >
-              <div className="modal-body p-0">
+              <div className="modal-body p-0 row align-self-center">
                 <Card className="shadow border-0">
                   <CardHeader className="bg-transparent pb-1">
                     <h3 style={{marginLeft:"180px", color:"#718a8a"}}>Ajouter un client</h3>

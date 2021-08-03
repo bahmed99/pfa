@@ -116,13 +116,12 @@ function Index() {
   const data = React.useMemo(() => getData(), [])
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-900">
+    <div className="min-h-screen">
       <div className="firstdiv" style={{
             backgroundImage: 'url('+image1+')',
             backgroundSize: "cover",
             height: "100vh",
-            color: "#f5f5f5" ,
-            backgroundPosition: "center !important" ,
+            backgroundPosition: "center!important" ,
           }}>
             <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
               <div className="mt-6">

@@ -210,7 +210,7 @@ function Table({ columns, data }) {
                   {page.map((row, i) => {  // new
                     prepareRow(row)
                     return (
-                      <tr {...row.getRowProps()}  style={{cursor:"pointer"}} >
+                      <tr {...row.getRowProps()} style={{cursor:"pointer"}}  >
                         {row.cells.map(cell => {
                           return (
                             <td onClick={(Cell)=>Change(cell.row.original.id)} 

@@ -1,32 +1,26 @@
 import { useState } from 'react'
 import { ArrowLeft } from '@material-ui/icons'
 import React from 'react'
-import {useHistory} from 'react-router-dom'
+
 import image1 from './../../pages/o.Signin/o.images/0004.gif'
 import photo from './../../pages/o.Signin/o.images/user.png'
 import './utilisateur.style.css'
 import SignUp from './SignUp'
 import Index from './table/index'
 
+
 export default function Utilisateur() {
     const [selectedGroupe,setSelectedGroupe]=useState(null)
     const [ajoutSeanceModalOpen,setAjoutSeanceModalOpen]=useState(false)
     const [selectInfoData,setSelectInfoData]=useState(null);
 
-    const History = useHistory()
-    function Change()
-    {
-        History.push('/client-profile')
-    }
+   
+    
     return (
 
-        <div className="firstdiv" style={{
-            backgroundSize: "cover",
-            height: "100vh",
-            color: "#f5f5f5" ,
-            backgroundPosition: "center !important" ,
-          }}>
+        <div >
             <Index />
+           
             {/* <div className="second-div" >
                 <div className="mycard1" >
                 
@@ -48,7 +42,7 @@ export default function Utilisateur() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr onClick={()=>Change()} style={{cursor:"pointer"}}>
+                                <tr  style={{cursor:"pointer"}}>
                                     <td ><img src={photo} alt=""  style={{width:"25px",height:"25px" }}/></td>
                                     <td>Oussama</td>
                                     <td>Oussama.kordoghli@ensi-uma.tn</td>

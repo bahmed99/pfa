@@ -8,7 +8,7 @@
     transition: 0.4s;
   }
   .cardQ{
-    border-radius: 10px!important;
+    border-radius: 20px!important;
   }
   .card1 .card_image {
     width: inherit;
@@ -173,6 +173,7 @@
   }
 
   .btnQ {
+     color: black;
     border-radius: 5px;
     padding: 10px;
     background-color: white;

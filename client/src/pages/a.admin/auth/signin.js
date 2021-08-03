@@ -67,10 +67,10 @@ export default function Signin() {
             backgroundPosition: "center" ,
          
           }} className="ftco-section">
-            <Alert show={error} variant={'danger'} style={{ width: "700px", margin: "auto auto" }}>
+            <Alert show={error} variant={'danger'} style={{ width: "450px", margin: "auto auto" }}>
                 {"Aucun utilisateur existant avec ce mail"}
             </Alert>
-            <Alert show={success} variant={'success'} style={{ width: "700px", margin: "auto auto" }}>
+            <Alert show={success} variant={'success'} style={{ width: "450px", margin: "auto auto" }}>
                 {"Connection reussite"}
             </Alert>
             <div className="container">
@@ -81,7 +81,7 @@ export default function Signin() {
                             <div className="icon d-flex align-items-center justify-content-center">
                                 <span className="fa fa-user-o"></span>
                             </div>
-                            <h3 className="text-center mb-4">Compte Admin</h3>
+                            <h3 className="colorText text-center mb-4">Compte Admin</h3>
                            
                                 <div className="form-group1">
                                     <input type="text" className="FormAdmin form-control rounded-left" placeholder="Email*" onChange={(e)=>{setEmail(e.target.value)}} />

@@ -48,3 +48,6 @@
     color: white;
     transition-duration: 0.4s
 }
+th td tbody {
+    color: black;
+}

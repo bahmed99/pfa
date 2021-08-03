@@ -53,9 +53,9 @@ export default function ForgotPassword() {
                             <div className="icon d-flex align-items-center justify-content-center">
                                 <span className="fa fa-user-o"></span>
                             </div>
-                            <h3 className="text-center mb-4">Compte Admin</h3>
+                            
 
-                            <div className="form-group1">
+                            <div className="form-group1" style={{marginTop:'30px'}}>
                                 <input type="text" className="FormAdmin form-control rounded-left" placeholder="Email*" onChange={(e) => { setEmail(e.target.value) }} />
                             </div>
 

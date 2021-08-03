@@ -203,21 +203,6 @@ function renderEventContent(eventInfo) {
 
 
 
-function Remove(data, title) {
-    let i = 0
-
-    for (i; i < data.length; i++) {
-        if (data[i].title === title) {
-            break;
-        }
-    }
-    console.log("data", data)
-    data.splice(i, 1)
-    let array = data
-    console.log("i", i)
-    console.log("array", array)
-    return (array)
-}
 
 
 async function getSeances(id) {
