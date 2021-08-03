@@ -6,6 +6,7 @@ import image1 from './../../pages/o.Signin/o.images/0004.gif'
 import photo from './../../pages/o.Signin/o.images/user.png'
 import './utilisateur.style.css'
 import SignUp from './SignUp'
+import Index from './table/index'
 
 export default function Utilisateur() {
     const [selectedGroupe,setSelectedGroupe]=useState(null)
@@ -18,15 +19,15 @@ export default function Utilisateur() {
         History.push('/client-profile')
     }
     return (
+
         <div className="firstdiv" style={{
-            backgroundImage: 'url('+image1+')',
             backgroundSize: "cover",
             height: "100vh",
             color: "#f5f5f5" ,
             backgroundPosition: "center !important" ,
           }}>
-            <br />
-            <div className="second-div" >
+            <Index />
+            {/* <div className="second-div" >
                 <div className="mycard1" >
                 
                     <div className="card auth-card-Mod ">
@@ -72,7 +73,7 @@ export default function Utilisateur() {
             </div>
             <br /> <br /> <br />
             <SignUp isOpen={ajoutSeanceModalOpen} 
-                    setModal={setAjoutSeanceModalOpen}  />
+                    setModal={setAjoutSeanceModalOpen}  /> */}
                           
         </div>
     )
