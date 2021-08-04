@@ -13,40 +13,53 @@ import {
 
 import axios from 'axios'
 
-
-export default function AjoutSeanceModal(props) {
+export default function ModalClientAjouter(props) {
     const [title, setTitle] = useState("")
-    const user= JSON.parse(localStorage.getItem("user"))
+
+    const [color, setColor] = useState("#369579")
+
+   
 
     const onClickAjouterSeance = async () => {
-        if ( title !== "") {
+        if (color !== "" && title !== "" !== "") {
             const seance = {
                 "start": props.selectInfoData.startStr,
                 "end": props.selectInfoData.endStr,
                 "title": title,
-                "eventContent": user.name,
-                "color": "#FF7F00",
-                "employee":user.employee
+                "eventContent": props.dataUtilisateur.name,
+                "color": color,
+                "client":props.dataUtilisateur._id,
+                "nomClient":props.dataUtilisateur.name
             }
-           
+            console.log(seance)
+            props.setModal(false)
+            axios.put(`http://localhost:3001/employe/emplois`, seance, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("jwt")
+                }
+            })
+            props.setData(prevData => ([...prevData, seance]))
             setTitle('')
-           
+            setColor('#369579')
+        
         }
         setTitle('')
+        setColor('#369579')
     }
-   
+
   
     return (
         <Modal
-            className=" modal-dialog-centered "
+            className="modal-dialog-centered"
             size="sm"
             isOpen={props.isOpen}
-            style={{marginRight:"auto",marginLeft:"auto"}}
+
             toggle={() => { props.setModal(!props.isOpen) }}
         >
             <div className="modal-body p-0 row align-self-center">
-                <Card className=" shadow border-0">
-                    <CardHeader className="bg-transparent pb-1">
+                <Card className=" shadow border-0 ">
+                    <CardHeader className="bg-transparent pb-1 row align-self-center">
                         <h3>Ajouter une séance</h3>
                     </CardHeader>
                     <CardBody className="px-lg-5 py-lg-10">
@@ -58,10 +71,20 @@ export default function AjoutSeanceModal(props) {
 
                                 <Input
                                     onChange={(e) => { setTitle(e.target.value) }}
-                               
                                 />
                             </FormGroup>
-                            
+
+                            <FormGroup>
+                                <Label>Couleur</Label>
+                                <Input
+                                
+                                    type="color"
+                                    value={color}
+                                    onChange={(e) => { setColor(e.target.value) }}
+                                />
+
+                            </FormGroup>
+
                             <div className="text-center">
                                 <Button
                                     className="my-4"

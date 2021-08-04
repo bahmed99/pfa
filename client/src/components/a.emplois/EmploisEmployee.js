@@ -10,7 +10,7 @@ import axios from "axios"
 import AjoutSeanceModal from "./ModelEmploye"
 import moment from 'moment'
 
-export default function Emplois({ id }) {
+export default function Emplois() {
     const [title, setTitle] = useState("")
 
     const [data, setData] = useState([])
@@ -23,7 +23,7 @@ export default function Emplois({ id }) {
 
     async function fetchSeances() {
         setData([])
-        const seancesData = await getSeances(id);
+        const seancesData = await getSeances();
         console.log(seancesData.data)
         seancesData.data.forEach(s => {
             let eventInfo = { title: s.title, start: s.start, end: s.end, eventContent: s.eventContent, color: s.color }
@@ -35,7 +35,7 @@ export default function Emplois({ id }) {
 
     async function fetchClients() {
         setClients([])
-        const clientsData = await getClients(id);
+        const clientsData = await getClients();
         setClients(clientsData.data)
 
     }
@@ -180,7 +180,7 @@ export default function Emplois({ id }) {
                 selectInfoData={selectInfoData}
                 fetchSeances={data}
                 setData={setData}
-                id={id}
+               
                 clients={clients}
             />
         </div>
@@ -205,8 +205,8 @@ function renderEventContent(eventInfo) {
 
 
 
-async function getSeances(id) {
-    const resp = await axios.get(`http://localhost:3001/employe/emplois/${id}`, {
+async function getSeances() {
+    const resp = await axios.get(`http://localhost:3001/employe/emplois`, {
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + localStorage.getItem("jwt")
@@ -217,8 +217,8 @@ async function getSeances(id) {
         })
     return resp
 }
-async function getClients(id) {
-    const resp = await axios.get(`http://localhost:3001/employe/clients/${id}`, {
+async function getClients() {
+    const resp = await axios.get(`http://localhost:3001/employe/clients`, {
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + localStorage.getItem("jwt")

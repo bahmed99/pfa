@@ -98,7 +98,7 @@ export default function Profile() {
             </div>
 
             <div style={{ marginTop: "150px" }}>
-                <EmploisClientUtilisateur id={id} supprimerSeanceModalOpen={supprimerSeanceModalOpen} setSupprimerSeanceModalOpen={setSupprimerSeanceModalOpen} />
+                <EmploisClientUtilisateur dataUtilisateur={data} id={id} supprimerSeanceModalOpen={supprimerSeanceModalOpen} setSupprimerSeanceModalOpen={setSupprimerSeanceModalOpen} />
             </div>          <UpdateProfile isOpen={ajoutSeanceModalOpen}
                 setModal={setAjoutSeanceModalOpen} />
         </div>

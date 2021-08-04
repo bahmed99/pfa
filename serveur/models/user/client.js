@@ -33,7 +33,14 @@ const clientSchema = new mongoose.Schema({
     pic: {
         type: String,
         default: "https://res.cloudinary.com/cnq/image/upload/v1586197723/noimage_d4ipmd.png"
-    }
+    },
+    notifications:[{
+        title:{type:String},
+        nom:{type:String},
+        pic:{type:String}
+
+        
+    }]
 },{timestamps : true})
 
 Client =mongoose.model("Client", clientSchema)
