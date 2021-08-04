@@ -250,6 +250,7 @@
       float: left;
       width: 100%;
       height: 200px;
+      
     }
   
     .profile-img img {
@@ -374,3 +375,4 @@
   border-bottom: 1px solid #eee;
   padding-bottom: 20px;
 }
+

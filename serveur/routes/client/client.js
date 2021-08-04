@@ -8,7 +8,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './uploads/profile/clients');
+        cb(null, '../client/public/uploads/profile/clients');
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);
@@ -53,6 +53,7 @@ router.put("/client", requireLoginClient, (req, res) => {
         result.name = data.name
         result.cin = data.cin
         result.email = data.email
+        result.tel=data.tel
         result.save().then(resultat => {
 
             res.send(resultat)
@@ -62,12 +63,12 @@ router.put("/client", requireLoginClient, (req, res) => {
     })
 })
 
-router.post("/updateClientPicture", requireLoginClient, upload.single("pic"), (req, res) => {
+router.put("/updateClientPicture", requireLoginClient, upload.single("pic"), (req, res) => {
     const pic = req.client.pic
     Client.findById(req.client._id).then(result => {
         result.pic = req.file.originalname
         result.save().then(resultat => {
-            fs.unlink(`./uploads/profile/clients/${pic}`, function (err) {
+            fs.unlink(`../client/public/uploads/profile/clients/${pic}`, function (err) {
                 if (err) return console.log(err);
                 console.log('file deleted successfully');
             });
