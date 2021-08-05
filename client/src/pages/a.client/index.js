@@ -6,7 +6,7 @@ import ProfileClient from '../../components/a.profileClient/index'
 
 export default function HomeClient() {
     return (
-        <div >
+        <div style={{backgroundColor:"#dededf"}}>
             <Navbar/>
             <ProfileClient />
         </div>

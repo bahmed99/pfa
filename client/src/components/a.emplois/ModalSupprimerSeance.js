@@ -39,6 +39,7 @@ export default function ModalSupprimerSeance(props) {
 
            
         }
+        setClient("")
     }
 
 

@@ -7,13 +7,19 @@ import listPlugin from '@fullcalendar/list';
 import frLocale from '@fullcalendar/core/locales/fr';
 import Alert from "sweetalert2";
 import axios from "axios"
-
+import moment from 'moment'
 import './style.css'
 import ModalSupprimerSeance from '../a.emplois/ModalSupprimerSeance'
-export default function Emplois({ id, supprimerSeanceModalOpen, setSupprimerSeanceModalOpen }) {
+import ModalClientAjouter from '../a.emplois/ModalClientAjouter'
 
 
+export default function Emplois({ id, supprimerSeanceModalOpen, setSupprimerSeanceModalOpen , dataUtilisateur}) {
+
+    const [selectInfoData, setSelectInfoData] = useState(null);
     const [data, setData] = useState([])
+    const [ajoutSeanceModalOpen, setAjoutSeanceModalOpen] = useState(false)
+    const [data2, setData2] = useState([])
+
 
     async function fetchSeances() {
         setData([])
@@ -26,12 +32,25 @@ export default function Emplois({ id, supprimerSeanceModalOpen, setSupprimerSean
         )
 
     }
+    async function fetchSeancesEmployés() {
+        setData2([])
+        const seancesData = await getSeancesEmployee();
+
+        seancesData.data.forEach(s => {
+            let eventInfo = { title: s.title, start: s.start, end: s.end, eventContent: s.eventContent, color: s.color }
+            setData2(prevData => ([...prevData, eventInfo]))
+        }
+        )
+
+    }
 
 
     useEffect(() => {
         fetchSeances()
-
+        fetchSeancesEmployés() 
     }, [])
+
+
 
     function eventClick(eventClick) {
 
@@ -72,11 +91,47 @@ export default function Emplois({ id, supprimerSeanceModalOpen, setSupprimerSean
             confirmButtonText: "Fermer",
 
         })
+    };
 
+    function Select(selectInfo) {
 
+        let calendarApi = selectInfo.view.calendar;
+
+        const startM = moment(new Date(selectInfo.start)).format("YYYY-MM-DDTHH:mm");
+        const endM = moment(new Date(selectInfo.end)).format("YYYY-MM-DDTHH:mm");
+
+        const isOverlapE = isAnOverlapEvent(startM, endM);
+
+        if (!isOverlapE) {
+
+             setSelectInfoData(selectInfo)
+             setAjoutSeanceModalOpen(true)
+
+        }
+        calendarApi.unselect();
 
     };
 
+    function isAnOverlapEvent(eventStartDay, eventEndDay) {
+
+        for (let i = 0; i < data2.length; i++) {
+            const eventA = data2[i];
+
+
+            if (moment(eventStartDay).isAfter(eventA.start) && moment(eventStartDay).isBefore(eventA.end)) {
+                return true;
+            }
+
+            if (moment(eventEndDay).isAfter(eventA.start) && moment(eventEndDay).isBefore(eventA.end)) {
+                return true;
+            }
+
+            if (moment(eventStartDay).isSameOrBefore(eventA.start) && moment(eventEndDay).isSameOrAfter(eventA.end)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     return (
         <div style={{ width: "70%", marginRight: "auto", marginLeft: "auto", marginTop: '70px' }}>
@@ -112,13 +167,23 @@ export default function Emplois({ id, supprimerSeanceModalOpen, setSupprimerSean
                     eventClick={eventClick}
                     eventOverlap={false}
                     slotEventOverlap={false}
-
+                    selectable={true}
+                    select={Select}
 
                 />
                 <ModalSupprimerSeance isOpen={supprimerSeanceModalOpen} setModal={setSupprimerSeanceModalOpen}
                     fetchSeances={data}
                     setData={setData}
                     id={id} />
+
+                 <ModalClientAjouter 
+                 dataUtilisateur={dataUtilisateur}
+                 setModal={setAjoutSeanceModalOpen}
+                 selectInfoData={selectInfoData}
+                 fetchSeances={data}
+                 setData={setData}
+                 isOpen={ajoutSeanceModalOpen}
+                 />   
             </div>
         </div>
     )
@@ -137,7 +202,22 @@ function renderEventContent(eventInfo) {
 
 
 async function getSeances(id) {
-    const resp = await axios.get(`http://localhost:3001/client/emplois/${id}`, {
+    const resp = await axios.get(`http://localhost:3001/employe/emplois/${id}`, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("jwt")
+        }
+    })
+        .catch(error => {
+            return error.response;
+        })
+    return resp
+}
+
+
+
+async function getSeancesEmployee() {
+    const resp = await axios.get("http://localhost:3001/employe/emplois", {
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + localStorage.getItem("jwt")

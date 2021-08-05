@@ -20,16 +20,12 @@ const { Aggregate } = require('mongoose')
 // })
 
 
-router.get("/emplois/:id", requireLoginEmployee, (req, res) => {
-    Employee.findById(req.params.id).then(result => {
-        res.status(200).send(result.timetable)
-    }).catch(err => {
-        res.status(400).send(err)
-    })
+router.get("/emplois", requireLoginEmployee, (req, res) => {
+   res.status(200).send(req.employee.timetable)
 })
 
-router.put("/emplois/:id", requireLoginEmployee, (req, res) => {
-    Employee.findByIdAndUpdate(req.params.id, {
+router.put("/emplois", requireLoginEmployee, (req, res) => {
+    Employee.findByIdAndUpdate(req.employee._id, {
         $push: { timetable: req.body }
     }, {
         new: true
@@ -47,8 +43,21 @@ router.put("/emplois/:id", requireLoginEmployee, (req, res) => {
         }, {
             new: true
         }).then(resultat => {
-            console.log(resultat)
-            res.status(200).send(resultat)
+            Client.findByIdAndUpdate(req.body.client, {
+                $push: {
+                    notifications: {
+                        title: `${req.body.title} a été ajouté`,
+                        nom:req.employee.name,
+                        pic:req.employee.pic
+                      
+                    }
+                }
+            }, {
+                new: true
+            }).then(not=>{
+                res.status(200).send(not)
+            })
+
 
 
         }).catch(errs => {
@@ -62,20 +71,19 @@ router.put("/emplois/:id", requireLoginEmployee, (req, res) => {
     })
 })
 
-router.get("/clients/:id", requireLoginEmployee, (req, res) => {
-    Employee.findById(req.params.id).then(result => {
-        Client.find({
 
-            '_id': { $in: result.client }
+router.get("/clients", requireLoginEmployee, (req, res) => {
+  
+        Client.find({
+            '_id': { $in: req.employee.client }
         }).then(resultat => {
             res.status(200).send(JSON.stringify(resultat))
         }).catch(erreur => {
             res.status(400).send(erreur)
         })
-    }).catch(err => {
-        res.status(400).send(err)
-    })
+   
 })
+
 
 router.get("/employee-clients",requireLoginEmployee,(req,res)=>{
     const data = []
@@ -92,6 +100,9 @@ router.get("/employee-clients",requireLoginEmployee,(req,res)=>{
     })
     
 })
+
+
+
 router.get("/employee-client/:id",requireLoginEmployee,(req,res)=>{
     Client.findOne({_id:req.params.id})
     .then(result=>{
@@ -100,6 +111,19 @@ router.get("/employee-client/:id",requireLoginEmployee,(req,res)=>{
         console.log(err)
     })  
 })
+
+
+router.get("/emplois/:id",requireLoginEmployee,(req,res)=>{
+    Client.findById(req.params.id).then(result=>{
+        res.status(200).send(JSON.stringify(result.timetable))
+    }).catch(err=>{
+        res.status(400).send(err)
+    })
+})
+
+
+
+
 
 router.put("/emplois-delete/:id", requireLoginEmployee,(req, res) => {
     const data = req.body

@@ -15,44 +15,41 @@ import axios from 'axios'
 
 
 export default function AjoutSeanceModal(props) {
-    const [nom, setNom] = useState(props.fetchData.name)
-    const [email, setEmail] = useState(props.fetchData.email)
-    const [tel, setTel] = useState(props.fetchData.tel)
-    const [cin, setCin] = useState(props.fetchData.cin)
+    const [nom, setNom] = useState("")
+    
     const [update, setUpdate] = useState(false)
-    const [pic, setPic] = useState(props.fetchData.pic)
+    const [pic, setPic] = useState("")
 
 
 
     const onClickAjouterSeance = async () => {
 
-        if (nom !== "" && email !== "" && cin !== ""&& update) {
-            const profile = {
-                "name": nom,
-                "cin": cin,
-                "email": email,
-                "tel":tel
-            }
+        if (nom!==""&& update) {
            
        
-            props.setData(profile)
-
+            
+            const fd= new FormData()
+            fd.append("pic",pic)
 
             props.setModal(false)
-            axios.put(`http://localhost:3001/client/client`, profile, {
+            axios.put(`http://localhost:3001/client/updateClientPicture`, fd, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": "Bearer " + localStorage.getItem("jwt")
                 }
+            }).then(res=>{
+                props.setData(nom)
             })
-            props.setData(profile)
+          
             setUpdate(false)
 
 
         }
+        setNom("")
+        setPic("")
     }
 
-
+console.log(nom)
     return (
         <Modal
             className=" modal-dialog-centered "
@@ -65,7 +62,7 @@ export default function AjoutSeanceModal(props) {
                 <Card className=" shadow border-0">
                     <CardHeader className="bg-transparent pb-1">
                         <div style={{display:"flex"}}>
-                            <h3 >Modifier votre profile</h3>
+                            <h3 >Modifier votre photo</h3>
                             <i onClick={()=>{setUpdate(!update)}} style={{fontSize:"20px",marginLeft:"290px",cursor:"pointer"}}className="fas fa-edit"></i>
                         </div>
 
@@ -75,47 +72,17 @@ export default function AjoutSeanceModal(props) {
                         <Form role="form">
 
                             <FormGroup>
-                                <Label>Nom:</Label>
+                                
 
                                 <Input
+                                    type="file"
                                     disabled={!update}
-                                    value={nom}
-                                    onChange={(e) => { setNom(e.target.value) }}
+                                   
+                                    onChange={(e) => { setPic(e.target.files[0]); setNom(e.target.value.replace('C:\\fakepath\\',''))}}
 
                                 />
                             </FormGroup>
-                            <FormGroup>
-                                <Label>Email:</Label>
-
-                                <Input
-                                    disabled={!update}
-                                    value={email}
-
-                                    onChange={(e) => { setEmail(e.target.value) }}
-
-                                />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label>Cin:</Label>
-
-                                <Input
-                                    disabled={!update}
-                                    value={cin}
-                                    onChange={(e) => { setCin(e.target.value) }}
-
-                                />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label>Tel:</Label>
-
-                                <Input
-                                    disabled={!update}
-                                    value={tel}
-                                    onChange={(e) => { setTel(e.target.value) }}
-
-                                />
-                            </FormGroup>
-
+                           
                             <div className="text-center">
                                 <Button
                                     className="my-4"

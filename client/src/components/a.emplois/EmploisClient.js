@@ -10,7 +10,7 @@ import axios from "axios"
 import AjoutSeanceModal from "./ModelClient"
 import './style.css'
 
-export default function Emplois({ id }) {
+export default function Emplois() {
 
 
     const [data, setData] = useState([])
@@ -23,7 +23,7 @@ export default function Emplois({ id }) {
 
     async function fetchSeances() {
         setData([])
-        const seancesData = await getSeances(id);
+        const seancesData = await getSeances();
 
         seancesData.data.forEach(s => {
             let eventInfo = { title: s.title, start: s.start, end: s.end, eventContent: s.eventContent, color: s.color }
@@ -141,7 +141,7 @@ export default function Emplois({ id }) {
                     selectInfoData={selectInfoData}
                     fetchSeances={data}
                     setData={setData}
-                    id={id}
+                    
                 />
             </div>
         </div>
@@ -160,8 +160,8 @@ function renderEventContent(eventInfo) {
 }
 
 
-async function getSeances(id) {
-    const resp = await axios.get(`http://localhost:3001/client/emplois/${id}`, {
+async function getSeances() {
+    const resp = await axios.get(`http://localhost:3001/client/emplois`, {
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + localStorage.getItem("jwt")

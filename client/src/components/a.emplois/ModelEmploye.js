@@ -33,7 +33,7 @@ export default function AjoutSeanceModal(props) {
             }
             console.log(seance)
             props.setModal(false)
-            axios.put(`http://localhost:3001/employe/emplois/${props.id}`, seance, {
+            axios.put(`http://localhost:3001/employe/emplois`, seance, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": "Bearer " + localStorage.getItem("jwt")
@@ -45,6 +45,10 @@ export default function AjoutSeanceModal(props) {
             setColor('#369579')
             setClient('')
         }
+        setTitle('')
+            setDescription('')
+            setColor('#369579')
+            setClient('')
     }
     function HandleChange(e) {
         setClient(e.target.value)

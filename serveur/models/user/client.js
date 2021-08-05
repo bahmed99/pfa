@@ -45,7 +45,14 @@ const clientSchema = new mongoose.Schema({
     age: {
         type: String,
         required: true
-    }
+    },
+    notifications:[{
+        title:{type:String},
+        nom:{type:String},
+        pic:{type:String}
+
+        
+    }]
 },{timestamps : true})
 
 Client =mongoose.model("Client", clientSchema)

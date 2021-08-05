@@ -25,11 +25,25 @@ const SignUp = (props) => {
               <div className="modal-body p-0 row align-self-center">
                 <Card className="shadow border-0">
                   <CardHeader className="bg-transparent pb-1">
-                    <h3 style={{marginLeft:"180px", color:"#718a8a"}}>Ajouter un client</h3>
+                    <h3 style={{marginLeft:"180px", color:"#718a8a"}}>Ajouter un utilisateur</h3>
                   </CardHeader>
                   <CardBody className="px-lg-5 py-lg-5">
                     
                     <Form role="form">
+                    <FormGroup>
+                        <Label>role</Label> 
+                        <Input type="select" >
+                          <option default value = ""></option>
+                          <option value="Admin" key="Admin">Admin</option>
+                          <option value="Employée" key="Employée">Employée</option>
+
+                        </Input>
+                        {/* <select name="pets" id="pet-select" style={{width:"530px",height:"38px" , backgroundColor:"white" , border:"2px solid #DCDCDC"}}>
+                            <option value=""></option>
+                            <option value="dog">Admin</option>
+                            <option value="cat">Employee</option>
+                        </select> */}
+                      </FormGroup>
                             <FormGroup>
                                 <Label>Nom</Label>
                                     <Input 
