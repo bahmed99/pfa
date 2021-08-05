@@ -18,7 +18,8 @@ import TableHead from '@material-ui/core/TableHead';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import Ajouter from "./Ajouter"
-
+import Modifier from "./Modifier"
+import ButtonEmploi from "./ButtonEmploi"
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -33,10 +34,11 @@ const StyledTableCell = withStyles((theme) => ({
 }))(TableCell);
 const useStyles = makeStyles((theme) => ({
     root: {
-        padding: '2px 4px',
+        padding: '1px 4px',
         display: 'flex',
         alignItems: 'center',
         width: 300,
+        length:90,
         marginBottom: '10px',
     },
     table: {
@@ -142,13 +144,11 @@ function CarsList() {
                                     <StyledTableCell style={{ textAlign: 'left', color: '#292F36' }}>{n.techniqueVisitDate}</StyledTableCell>
                                     <StyledTableCell ><ButtonGroup size="small" aria-label="small outlined button group">
 
-                                        <IconButton aria-label="edit">
-                                            <EditIcon />
-                                        </IconButton>
+                                        <Modifier/>
                                         <IconButton aria-label="delete">
                                             <DeleteIcon />
                                         </IconButton>
-
+                                        <ButtonEmploi/>
                                     </ButtonGroup>
 
                                     </StyledTableCell>

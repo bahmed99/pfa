@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import Formulaire from './Formulaire'
-import AddIcon from '@material-ui/icons/Add';
-import Button from '@material-ui/core/Button';
+import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,16 +17,14 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         padding: 10,
-        width:100,
-        height:35,
-        marginLeft:5,
-        fontSize:12,
+        width:77,
+        height:30,
+        fontSize:9,
         border: '1px solid',
         backgroundColor: 'white',
         borderColor: '#3d3e42',
         fontFamily: [
-            '"Segoe UI Symbol"',
-            
+            'Arial'
         ].join(','),
         '&:hover': {
             backgroundColor: '#369579',
@@ -42,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
         padding: 10,
     },
 }));
-function Ajouter() {
+function Modifier() {
     const [show, setShow] = useState(false);
     const classes = useStyles();
     const handleClose = () => setShow(false);
@@ -51,13 +49,9 @@ function Ajouter() {
 
         <div>
 
-                        <Button onClick={handleShow}
-                                variant="contained"
-                                size="small"
-                                className={classes.button}
-                                startIcon={<AddIcon />}>
-                                Ajouter
-                                </Button>
+                        <IconButton onClick={handleShow} aria-label="edit">
+                                            <EditIcon />
+                                        </IconButton>
 
             <Modal className='loginbox-container' size="lg" show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -70,5 +64,5 @@ function Ajouter() {
     )
 }
 
-export default Ajouter
+export default Modifier
 

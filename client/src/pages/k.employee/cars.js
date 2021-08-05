@@ -9,8 +9,8 @@ import React from 'react'
 export default function Employee() {
  
   return (
-     <div className="row">
         
+        <div className="row">
             <div className="col-md-3">
             <Navbar/>
                 <Sidebar />
@@ -23,9 +23,7 @@ export default function Employee() {
                <br/>
                <br/>
                <br/>
-               <br/>
-
-                <Cars/>
+                <Cars  />
             </div> 
         </div>
     )
