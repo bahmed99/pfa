@@ -20,13 +20,13 @@
     display: flex;
   
 }
-.image {
+/* .image {
   width:300px !important;
   height:300px !important;
 
 
   
-}
+} */
 .right{
     width :50% !important;
     height:100% !important;
@@ -146,11 +146,7 @@ button.social-signin {
 
 
 
-.image {
-    margin-top: 50%;
-text-align: center;
-    width:350px;
- }
+
  .DDT{
      margin-top: 13px;
  }
