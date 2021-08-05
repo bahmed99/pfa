@@ -48,6 +48,7 @@ export default function Profile() {
                     <div className="card auth-card-Mod-style1" >
                         <br />
                         <div style={{ display: "flex" }} >
+
                             <div style={{ float: "left !important", marginRight: "auto", marginTop: "auto", marginBottom: "auto", marginLeft: "80px" }} >
                                 <img src={`/uploads/profile/clients/${data.pic}`} alt="" className="photo-Mod3" />
                                 <h4 style={{ marginTop: "10px", color: "black" }}>{data.name}</h4>
@@ -97,7 +98,7 @@ export default function Profile() {
             </div>
 
             <div style={{ marginTop: "150px" }}>
-                <EmploisClientUtilisateur id={id} supprimerSeanceModalOpen={supprimerSeanceModalOpen} setSupprimerSeanceModalOpen={setSupprimerSeanceModalOpen} />
+                <EmploisClientUtilisateur dataUtilisateur={data} id={id} supprimerSeanceModalOpen={supprimerSeanceModalOpen} setSupprimerSeanceModalOpen={setSupprimerSeanceModalOpen} />
             </div>          <UpdateProfile isOpen={ajoutSeanceModalOpen}
                 setModal={setAjoutSeanceModalOpen} />
         </div>

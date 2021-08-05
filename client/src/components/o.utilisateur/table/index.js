@@ -81,9 +81,9 @@ function Index() {
     console.log(result)
     setData1(result)
   })
-  console.log(data1)
+ 
 },[])
-  console.log(data1)
+
   const columns = React.useMemo(() => [
     {
       Header: "Name",
