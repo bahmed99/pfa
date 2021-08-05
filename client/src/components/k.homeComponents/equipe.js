@@ -4,8 +4,14 @@ import './home.style.css'
 
 export default function Equipe() {
     return (
-        <div className=" text-center">
+        <div className="bg2">
+            <div className="textCenter">
             <Container>
+            <h1 >Notre équipe</h1>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
                 <Carousel variant="dark">
                     <Carousel.Item>
                         <img
@@ -44,6 +50,17 @@ export default function Equipe() {
                     </Carousel.Item>
                 </Carousel>
             </Container>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <hr style={{
+                marginLeft: "200px",
+                height: 1,
+                width: 900
+            }} />
+            </div>
+       
         </div>
     )
 }

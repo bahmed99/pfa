@@ -1,10 +1,12 @@
 import React from 'react'
 import Navbar from '../../components/a.navbarHome'
-import Apropos from '../../components/k.homeComponents/apropos'
+//import Apropos from '../../components/k.homeComponents/apropos'
+import About from '../../components/k.homeComponents/about'
 import Services from '../../components/k.homeComponents/services'
 import Equipe from '../../components/k.homeComponents/equipe'
 import Contact from '../../components/k.homeComponents/contact'
 import Footer from '../../components/k.footer/footer'
+import './home.css'
 import { useState, useEffect, Fragment } from 'react'
 
 
@@ -63,12 +65,12 @@ export default function Home() {
 
     })
     return (
-        <div>
+        <div className="home">
             <Fragment>
             <Navbar y={y} screen={screen} scale={scale} />
             </Fragment>
             <div id="apropos">
-                <Apropos />
+                <About />
             </div>
             <div id="services">
                 <Services />

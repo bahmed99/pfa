@@ -2,23 +2,34 @@
 {
     text-align: center;
     align-content: center;
-    max-width: 700px;
-    max-height: 700px;
+    max-width: 400px;
+    max-height: 400px;
     margin: 0 auto;
     border-radius: 10px ;
-    opacity: 100%;
+    opacity: 60%;
     margin-left: 27%;
+    box-shadow: black;
   
   }
 
 .textCenter
 {
     text-align: center;
-    margin-top: 4%;
     background-color: transparent;
+    padding-bottom: 15% ;
+    
     
    
 }
+.bg{
+    background-image: url(./k.homeimages/0123.jpg);
+    background-position: center;
+    background-size: cover;
+}
+.bg2{
+    background-color: #b4b4b4;
+}
+
 .dark {
     background-image: linear-gradient(#3d3e42, #718a8a);
     text-align: center;
@@ -31,40 +42,32 @@
 .gradient{
     background-image: linear-gradient(#369579, #00e7e7);
 }
-h2.dark{
-color: #718a8a ;
-background-color: transparent;
-}
-.h2-white{
-    color: white ;
-    background-color: transparent;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    }
-.h5-white{
-        color: white ;
-        background-color: transparent;
-        }
-.white-text{
-    color: white ;
-        background-color: transparent;
-}
-h6.dark{
-    color:white;
-    text-align: left;
-    background-color: transparent;
-}
-h5.dark{
-    color:white;
-    background-color: transparent;
-    }
+
 
 .cours {
-        max-width: 300px;
-        max-height: 400px;
+        max-width: 500px;
+        max-height: 700px;
         margin:auto;
        }
-.apropos {
-        max-width: 1000px;
-        max-height: 1000px;
-       }
+
+.title{
+    padding-top: 5%;
+    margin-bottom: -100px;
+}
+.about 
+{
+    background: url(./k.homeimages/ArriereAvis.gif) no-repeat right ;
+    background-size: 55% ;
+    background-color: transparent;
+    overflow: hidden ;
+    padding: 100px ;
+    margin-top: 150px;
+}
+.inner
+{
+    width: 55% ;
+    float: left ;
+    background-color: #718a8a;
+    padding: 90px ;
+    margin-top: 150px;
+}
