@@ -28,6 +28,7 @@ import Cour from "./pages/a.client/cour";
 
 import Utilisateur from "./pages/o.employee/utilisateur";
 import Profile from "./components/o.utilisateur/Profile";
+import Profile1 from "./components/o.admin/Profile";
 
 
 
@@ -38,6 +39,7 @@ import ForgotPassword from "./pages/a.admin/auth/forgotPassword";
 import NewPasswordAdmin from "./pages/a.admin/auth/newPassword";
 import HomeAdmin from "./pages/a.admin/home/Home";
 import EmploisAdmin from "./pages/a.admin/emplois/Emplois";
+import Utilisateurs from "./pages/o.admin/utilisateurs";
 
 
 export default function MainRouter() {
@@ -64,7 +66,7 @@ export default function MainRouter() {
         {
           if(!history.location.pathname.startsWith('/reset') && !history.location.pathname.startsWith('/forgot-password') && !history.location.pathname.startsWith('/sign-in')&& !history.location.pathname.startsWith('/admin'))
           {
-            history.push("/")
+            //history.push("/")
           }
         }
       },[])
@@ -134,7 +136,8 @@ export default function MainRouter() {
 
                     <Route exact path={"/home"} component={HomeAdmin} /> 
                     <Route exact path={"/emplois"} component={EmploisAdmin} /> 
-                    
+                    <Route exact path={"/ressource-humaine"} component={Utilisateurs} />  
+                    <Route exact path={"/utilisateur-profile/:id"} component={Profile1} />                 
                     </div> : ""}
             </Switch>
         </div>

@@ -11,63 +11,9 @@ import {
   Modal,
   Label
 } from "reactstrap";
-import Alert from 'react-bootstrap/Alert'
 import axios from "axios"
 
-
-
 const SignUp = (props) => {
-  const [tel,setTel]= useState("")
-  const [name,setName]=useState("")
-  const [email,setEmail]=useState("")
-  const [cin,setCin]=useState("")
-  const [age,setAge]=useState("")
-  const [image,setImage]=useState("")
-
-  const [imagename,setImagename] = useState("")
-  const onClickAjouterSeance=async ()=>{
-    if(name && email && cin && image )
-    {
-      let dataform = new FormData()
-      dataform.append('name', name)
-      dataform.append('email', email)
-      dataform.append('cin', cin)
-      dataform.append('image',image)
-      dataform.append("tel",tel)
-      dataform.append("age",age)
-
-      const data = {id:"5" ,name:name, email:email, cin:cin , imgUrl : imagename }
-      axios.post("http://localhost:3001/auth/client/signup",dataform,{
-              headers:{
-                  "Content-Type":"application/json" ,
-                  "Authorization": "Bearer " + localStorage.getItem("jwt")
-              }
-          })
-          .then(result=>{
-              if(result.data.error)
-              {
-              }
-              else
-              {
-                props.setData1(prevData => ([...prevData, data]))
-                props.setModal(false)
-              }
-          }).catch(err=>{
-              console.log(err)
-        })
-      }
-      setName('')
-      setEmail('')
-      setCin('')
-      setImage('')
-      setImagename('')
-      setTel('')
-      setAge('')
-
-  }
-  console.log(imagename)
-
-
         return(
         <Modal
         className="modal-dialog-centered"
@@ -89,8 +35,7 @@ const SignUp = (props) => {
                                     <Input 
                                     type = "text"
                                     placeholder = "Nom"
-                                    value={name}
-                                    onChange={(e)=>setName(e.target.value)} />
+                                     />
                                 
                             </FormGroup>
 
@@ -99,8 +44,7 @@ const SignUp = (props) => {
                                 <Input 
                                 type = "text"
                                 placeholder = "Email"
-                                value={email}
-                                onChange={(e)=>setEmail(e.target.value)} />
+                                 />
                                 
                             </FormGroup>
                             <FormGroup>
@@ -108,8 +52,7 @@ const SignUp = (props) => {
                                 <Input 
                                 type = "text"
                                 placeholder = "cin"
-                                value={cin}
-                                onChange={(e)=>setCin(e.target.value)} />
+                                />
                                 
                             </FormGroup>
                             <FormGroup>
@@ -117,8 +60,7 @@ const SignUp = (props) => {
                                 <Input 
                                 type = "text"
                                 placeholder = "age"
-                                value={age}
-                                onChange={(e)=>setAge(e.target.value)} />
+                                 />
                                 
                             </FormGroup>
                             <FormGroup>
@@ -126,8 +68,7 @@ const SignUp = (props) => {
                                 <Input 
                                 type = "text"
                                 placeholder = "Tel"
-                                value={tel}
-                                onChange={(e)=>setTel(e.target.value)} />
+                                 />
                                 
                             </FormGroup>
                             <FormGroup>
@@ -136,16 +77,14 @@ const SignUp = (props) => {
                                 className="form-control" 
                                 type="file" 
                                 id="formFileMultiple"
-                                onChange={(e)=>{setImage(e.target.files[0]) ; setImagename(e.target.value.replace('C:\\fakepath\\',''))}} />
+                                />
                                 
                             </FormGroup>
                       <div className="text-center">
                         <Button
                           className="my-4"
                           color="primary"
-                          type="button"
-                          style={{backgroundColor:"#369579"}}
-                          onClick={(e)=>onClickAjouterSeance()}
+                          type="button"  
                         >
                           Ajouter
                         </Button>

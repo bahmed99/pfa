@@ -17,6 +17,10 @@ const clientSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    tel: {
+        type: String,
+        required: true
+    },
     timetable: [{
         start: { type: Date },
         end: { type: Date },
@@ -33,6 +37,14 @@ const clientSchema = new mongoose.Schema({
     pic: {
         type: String,
         default: "https://res.cloudinary.com/cnq/image/upload/v1586197723/noimage_d4ipmd.png"
+    } ,
+    status: {
+        type: String,
+        default: "Payé"
+    } ,
+    age: {
+        type: String,
+        required: true
     }
 },{timestamps : true})
 

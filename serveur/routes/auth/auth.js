@@ -10,13 +10,14 @@ const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
 const {JWT_SECRET} = require('../../Keys')
 const requireLoginEmployee = require('../../middleWare/requireLoginEmployee')
+const requireLoginAdmin = require('../../middleWare/requireLoginAdmin')
 
 const multer = require('multer');
 
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, '../client/public/uploads');
+        cb(null, '../client/public/uploads/profile/clients');
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname)
@@ -98,8 +99,8 @@ router.post('/login',(req,res)=>{
 })
 
 router.post('/client/signup',requireLoginEmployee,upload.single('image'),(req,res)=>{
-    const {name,email,cin} = req.body
-    if(!name || !email || !cin)
+    const {name,email,cin,tel , age} = req.body
+    if(!name || !email || !cin || !tel || !age)
     {
         return res.status(422).json({error:"Essayer de remplir tous les champs"})
     }
@@ -122,6 +123,8 @@ router.post('/client/signup',requireLoginEmployee,upload.single('image'),(req,re
                     email : email ,
                     password :hashedpassword ,
                     cin :cin ,
+                    tel : tel ,
+                    age : age ,
                     pic : req.file.originalname  ,
                     employee : req.employee._id                  
                 })
@@ -164,10 +167,9 @@ router.post('/client/signup',requireLoginEmployee,upload.single('image'),(req,re
         console.log(err)
     })
 })
-
-router.post('/employee/signup',(req,res)=>{
-    const {name,email,cin} = req.body
-    if(!name || !email || !cin)
+router.post('/employee/signup',requireLoginAdmin,upload.single('image'),(req,res)=>{
+    const {name,email,cin,age,tel} = req.body
+    if(!name || !email || !cin || !age || !tel )
     {
         return res.status(422).json({error:"Essayer de remplir tous les champs"})
     }
@@ -188,6 +190,9 @@ router.post('/employee/signup',(req,res)=>{
                 const employee = new Employee({
                     name : name ,
                     email : email ,
+                    age : age ,
+                    tel : tel ,
+                    pic : req.file.originalname  ,
                     password :hashedpassword ,
                     cin :cin
                 })
@@ -198,7 +203,7 @@ router.post('/employee/signup',(req,res)=>{
                         to:user.email,
                         subject:"signup success" ,
                         html:`
-                        <h2>Bienvenue Monsieur ${name}</h2>
+                        <h2>Bienvenue Chèr(e) ${name}</h2>
                         <h5> Votre mot de passe est : ${password} </h5>
                         `
                     }
@@ -384,10 +389,10 @@ router.post("/admin/login",(req,res)=>{
 })
 
 
-router.post("/admin/signup",(req,res)=>{
+router.post("/admin/signup",requireLoginAdmin,upload.single('image'),(req,res)=>{
     console.log(req.body)
-    const {name,email,password} = req.body
-    if(!name || !email || !password)
+    const {name,email,password, age , tel} = req.body
+    if(!name || !email || !password || !age || tel)
     {
         return res.status(422).json({error:"Essayer de remplir tous les champs"})
     }
@@ -405,7 +410,10 @@ router.post("/admin/signup",(req,res)=>{
                 const admin = new Admin({
                     name : name ,
                     email : email ,
-                    password :hashedpassword 
+                    age : age ,
+                    tel : tel ,
+                    password :hashedpassword ,
+                    pic : req.file.originalname  ,
                     
                 })
                 admin.save()

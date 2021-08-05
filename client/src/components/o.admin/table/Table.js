@@ -86,8 +86,9 @@ export function StatusPill({ value }) {
       className={
         classNames(
           "px-3 py-1 uppercase leading-wide font-bold text-xs rounded-full shadow-sm",
-          status.startsWith("payé") ? "bg-green-100 text-green-800" : null,
-          status.startsWith("non payé") ? "bg-red-100 text-red-800" : null,
+          status.startsWith("client") ? "bg-green-100 text-green-800" : null,
+          status.startsWith("employée") ? "bg-yellow-100 text-yellow-800" : null,
+          status.startsWith("admin") ? "bg-red-100 text-red-800" : null,
         )
       }
     >
@@ -152,7 +153,7 @@ function Table({ columns, data , setData1 }) {
 
   function Change(e)
     {
-        History.push(`/client-profile/${e}`)
+        History.push(`/utilisateur-profile/${e}`)
     }
 
   // Render the UI for your table
@@ -176,7 +177,7 @@ function Table({ columns, data , setData1 }) {
           )}
         </div>
         <div>
-          <button onClick={()=>setAjoutSeanceModalOpen(true)} className="bouton-Mod-style1"><i class="fa fa-plus" aria-hidden="true"></i></button>
+          <button onClick={()=>setAjoutSeanceModalOpen(true)} className="bouton-Mod-style11"><i class="fa fa-plus" aria-hidden="true"></i></button>
         </div>
       </div>
         
