@@ -4,7 +4,7 @@
     margin-right: auto;
     width: 1100px;
     border-radius: 12px;
-    background-color: #DCDCDC;
+    background-color: transparent;
     box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
 }
 .photo-Mod3
@@ -20,6 +20,7 @@
 }
 .para-Mod1
 {
+    font-size: 18px;
     color: black;
 }
 .fa-fa-Mod1
@@ -31,7 +32,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #369579; 
+    background-color: #3d3e42; 
     color: white;
     transition-duration: 0.4s
 }
@@ -44,7 +45,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #369579; 
+    background-color: #3d3e42; 
     color: white;
     transition-duration: 0.4s
 }

@@ -13,6 +13,7 @@ const port = process.env.PORT || 3001;
 const mongoURI = "mongodb+srv://pfa:pfa@cluster0.bntsm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
 app.use(express.json())
+//app.use(express.urlencoded({limit: '50mb'}));
 
 app.use(cors())
 

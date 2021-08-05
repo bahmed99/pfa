@@ -10,13 +10,14 @@ const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
 const { JWT_SECRET } = require('../../Keys')
 const requireLoginEmployee = require('../../middleWare/requireLoginEmployee')
+const requireLoginAdmin = require('../../middleWare/requireLoginAdmin')
 
 const multer = require('multer');
 
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, '../client/public/uploads');
+        cb(null, '../client/public/uploads/profile/clients');
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname)
@@ -90,16 +91,40 @@ router.post('/login', (req, res) => {
         })
 })
 
-router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req, res) => {
-    const { name, email, cin } = req.body
-    if (!name || !email || !cin) {
-        return res.status(422).json({ error: "Essayer de remplir tous les champs" })
+
+router.post('/client/signup',requireLoginEmployee,upload.single('image'),(req,res)=>{
+    const {name,email,cin,tel , age} = req.body
+    if(!name || !email || !cin || !tel || !age)
+    {
+        return res.status(422).json({error:"Essayer de remplir tous les champs"})
     }
     Client.findOne({ email: email })
         .then(savedUser => {
             if (savedUser) {
                 return res.status(422).json({ error: "Il existe un autre utilisateur avec ce email" })
             }
+
+            const password = buffer.toString("hex")
+            bcrypt.hash(password,15)
+            .then(hashedpassword=>{
+                const client = new Client({
+                    name : name ,
+                    email : email ,
+                    password :hashedpassword ,
+                    cin :cin ,
+                    tel : tel ,
+                    age : age ,
+                    pic : req.file.originalname  ,
+                    employee : req.employee._id                  
+                })
+                client.save()
+                .then(user=>{
+                    let mailoptions ={
+                        from : "iDriveGears@gmail.com" ,
+                        to:user.email,
+                        subject:"signup success" ,
+                        html:`
+
             crypto.randomBytes(16, (err, buffer) => {
                 if (err) {
                     console.log(err)
@@ -122,6 +147,7 @@ router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req
                                     to: user.email,
                                     subject: "signup success",
                                     html: `
+
                         <h2>Bienvenue Monsieur ${name}</h2>
                         <h5> Votre mot de passe est : ${password} </h5>
                         `
@@ -155,37 +181,39 @@ router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req
         })
 })
 
-router.post('/employee/signup', (req, res) => {
-    const { name, email, cin } = req.body
-    if (!name || !email || !cin) {
-        return res.status(422).json({ error: "Essayer de remplir tous les champs" })
+router.post('/employee/signup',requireLoginAdmin,upload.single('image'),(req,res)=>{
+    const {name,email,cin,age,tel} = req.body
+    if(!name || !email || !cin || !age || !tel )
+    {
+        return res.status(422).json({error:"Essayer de remplir tous les champs"})
+
     }
     Employee.findOne({ email: email })
         .then(savedUser => {
             if (savedUser) {
                 return res.status(422).json({ error: "Il existe un autre utilisateur avec ce email" })
             }
-            crypto.randomBytes(16, (err, buffer) => {
-                if (err) {
-                    console.log(err)
-                }
-                const password = buffer.toString("hex")
-                bcrypt.hash(password, 15)
-                    .then(hashedpassword => {
-                        const employee = new Employee({
-                            name: name,
-                            email: email,
-                            password: hashedpassword,
-                            cin: cin
-                        })
-                        employee.save()
-                            .then(user => {
-                                let mailoptions = {
-                                    from: "iDriveGears@gmail.com",
-                                    to: user.email,
-                                    subject: "signup success",
-                                    html: `
-                        <h2>Bienvenue Monsieur ${name}</h2>
+
+            const password = buffer.toString("hex")
+            bcrypt.hash(password,15)
+            .then(hashedpassword=>{
+                const employee = new Employee({
+                    name : name ,
+                    email : email ,
+                    age : age ,
+                    tel : tel ,
+                    pic : req.file.originalname  ,
+                    password :hashedpassword ,
+                    cin :cin
+                })
+                employee.save()
+                .then(user=>{
+                    let mailoptions ={
+                        from : "iDriveGears@gmail.com" ,
+                        to:user.email,
+                        subject:"signup success" ,
+                        html:`
+                        <h2>Bienvenue Chèr(e) ${name}</h2>
                         <h5> Votre mot de passe est : ${password} </h5>
                         `
                                 }
@@ -357,35 +385,41 @@ router.post("/admin/login", (req, res) => {
 })
 
 
-router.post("/admin/signup", (req, res) => {
+
+router.post("/admin/signup",requireLoginAdmin,upload.single('image'),(req,res)=>{
     console.log(req.body)
-    const { name, email, password } = req.body
-    if (!name || !email || !password) {
-        return res.status(422).json({ error: "Essayer de remplir tous les champs" })
+    const {name,email,password, age , tel} = req.body
+    if(!name || !email || !password || !age || tel)
+    {
+        return res.status(422).json({error:"Essayer de remplir tous les champs"})
     }
-    Admin.findOne({ email: email })
-        .then(savedUser => {
-            if (savedUser) {
-                return res.status(422).json({ error: "Il existe un autre utilisateur avec ce email" })
-            }
-
-
-
-            bcrypt.hash(password, 15)
-                .then(hashedpassword => {
-                    const admin = new Admin({
-                        name: name,
-                        email: email,
-                        password: hashedpassword
-
-                    })
-                    admin.save()
-                        .then(user => {
-                            let mailoptions = {
-                                from: "iDriveGears@gmail.com",
-                                to: user.email,
-                                subject: "signup success",
-                                html: `
+    Admin.findOne({email:email})
+    .then(savedUser=>{
+        if(savedUser)
+        {
+            return res.status(422).json({error:"Il existe un autre utilisateur avec ce email"})
+        }
+       
+           
+            
+            bcrypt.hash(password,15)
+            .then(hashedpassword=>{
+                const admin = new Admin({
+                    name : name ,
+                    email : email ,
+                    age : age ,
+                    tel : tel ,
+                    password :hashedpassword ,
+                    pic : req.file.originalname  ,
+                    
+                })
+                admin.save()
+                .then(user=>{
+                    let mailoptions ={
+                        from : "iDriveGears@gmail.com" ,
+                        to:user.email,
+                        subject:"signup success" ,
+                        html:`
                         <h2>Bienvenue Monsieur ${name}</h2>
                         <h5> Vote êtes bien inscrit </h5>
                         `
