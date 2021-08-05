@@ -67,7 +67,7 @@ export default function Profile() {
                                 </div>
                                 <hr style={{ color: 'black', width: "120%", border: "1px" }} />
                                 <div style={{ display: "flex", justifyContent: "space-between", width: "80%" }}>
-                                    <h5 className="para-Mod1">Telephone :</h5>
+                                    <h5 className="para-Mod1">Téléphone :</h5>
                                     <h5 className="para-Mod1">{data.tel}</h5>
                                 </div>
                             </div>

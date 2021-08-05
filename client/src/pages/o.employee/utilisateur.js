@@ -8,6 +8,7 @@ export default function utilisateur() {
     return (
         <div className="row">
             <div className="col-md-2" >
+                <Navbar />
                 <SideBar />
             </div>
             <div className="col-md-10" >
