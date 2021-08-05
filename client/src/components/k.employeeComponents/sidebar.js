@@ -14,7 +14,7 @@ export default function Sidebar(props) {
     const detect = JSON.parse(localStorage.getItem("detect"))
     return (
 
-        <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
+        <div style={{ display: 'flex', height: '135vh', overflow: 'scroll initial' }}>
 
             <CDBSidebar textColor="#fff" backgroundColor="#3d3e42">
                 <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
@@ -43,9 +43,12 @@ export default function Sidebar(props) {
                         <NavLink exact to="/courses" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="book">Cours</CDBSidebarMenuItem>
                         </NavLink>
-                        <NavLink exact to="/analytics" activeClassName="activeClicked">
-                            <CDBSidebarMenuItem icon="chart-line">
-                                Analytics
+                        <NavLink exact to="/exercices" activeClassName="activeClicked">
+                            <CDBSidebarMenuItem icon="pencil">Exercices</CDBSidebarMenuItem>
+                        </NavLink>
+                        <NavLink exact to="/natifications" activeClassName="activeClicked">
+                            <CDBSidebarMenuItem icon="bell">
+                                Notifications
                             </CDBSidebarMenuItem>
                         </NavLink>
 
