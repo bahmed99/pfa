@@ -75,7 +75,7 @@ export default function Formulaire() {
     };
     return (
         <div className="login-box">
-            <h1>Veuillez remplir tous les champs</h1>
+            <h1 className="titleH1">Veuillez remplir tous les champs</h1>
             <div className="loginbox-container">
                 <Col>
                     <div className="left">
