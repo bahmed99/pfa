@@ -84,23 +84,21 @@ export default function Signin() {
                         <img alt="" src={image} className="logo-Mod"/>
 
                             <div style={{display:"flex"}}>
-                                <i class="fa fa-user" style={{color:"#718a8a" , fontSize:"22px",marginLeft:"40px" , marginTop:"20px"}}></i>
+                                <i class="fa fa-user" style={{color:"#718a8a" , fontSize:"22px"}}></i>
                                 <input 
                                 type="text" 
                                 className="input-input-Mod2"
                                 placeholder="Email*"
-                                style={{marginLeft:"20px" ,width:"300px"}}
                                 value={email}
                                 onChange={(e)=>setEmail(e.target.value)} />
                             </div>
                             <div style={{display:"flex"}}>
-                                <i class="fa fa-lock" style={{color:"#718a8a" , fontSize:"25px",marginLeft:"40px" , marginTop:"20px"}}></i>
+                                <i class="fa fa-lock" style={{color:"#718a8a" , fontSize:"25px"}}></i>
                                 <input 
                                 type="password" 
                                 className="input-input-Mod1"
                                 placeholder="Mot de passe*"
                                 value={password}
-                                style={{marginLeft:"20px" ,width:"300px"}}
                                 onChange={(e)=>setPassword(e.target.value)} />
                             </div>
                             <button onClick={()=>PostData()} className="waves-effect505" type="submit" name="action" style={{opacity:"100% !important",backgroundColor:loading? "#66CDAA" :''}} disabled={loading}>{loading? <ReactLoading height={'20px'} width={'24px'} className="loading1" type="spin"/>:"Se connecter"}
