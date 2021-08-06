@@ -124,6 +124,7 @@ function Index() {
             backgroundImage: 'url('+image1+')',
             backgroundSize: "cover",
             height: "100vh",
+            marginTop:"70px" ,
             backgroundPosition: "center!important" ,
           }}>
             

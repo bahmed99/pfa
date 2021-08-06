@@ -83,28 +83,26 @@ export default function Signin() {
                     <div className="card auth-card ">
                         <img alt="" src={image} className="logo-Mod"/>
 
-                            <div>
-                                <i class="fa fa-user" style={{color:"#718a8a" , fontSize:"22px",marginRight:"20px" ,}}></i>
+                            <div style={{display:"flex"}}>
+                                <i class="fa fa-user" style={{color:"#718a8a" , fontSize:"22px"}}></i>
                                 <input 
                                 type="text" 
-                                className="input-Mod2"
+                                className="input-input-Mod2"
                                 placeholder="Email*"
                                 value={email}
                                 onChange={(e)=>setEmail(e.target.value)} />
                             </div>
-                            <div>
-                                <i class="fa fa-lock" style={{color:"#718a8a" , fontSize:"25px",marginRight:"20px"}}></i>
+                            <div style={{display:"flex"}}>
+                                <i class="fa fa-lock" style={{color:"#718a8a" , fontSize:"25px"}}></i>
                                 <input 
                                 type="password" 
-                                className="input-Mod1"
+                                className="input-input-Mod1"
                                 placeholder="Mot de passe*"
                                 value={password}
                                 onChange={(e)=>setPassword(e.target.value)} />
                             </div>
-                            <button onClick={()=>PostData()} className="waves-effect" type="submit" name="action" style={{opacity:"100% !important",backgroundColor:loading? "#66CDAA" :''}} disabled={loading}>{loading? <ReactLoading height={'20px'} width={'24px'} className="loading1" type="spin"/>:"Se connecter"}
+                            <button onClick={()=>PostData()} className="waves-effect505" type="submit" name="action" style={{opacity:"100% !important",backgroundColor:loading? "#66CDAA" :''}} disabled={loading}>{loading? <ReactLoading height={'20px'} width={'24px'} className="loading1" type="spin"/>:"Se connecter"}
                             </button>
-                            <br />
-                            <br />
                             <h6 style={{marginBottom:"50px"}}><Link to='/forgot-password'> Mot de passe oublié ?</Link></h6>
 
                     </div>
