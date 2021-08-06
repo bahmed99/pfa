@@ -1,10 +1,34 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import { Dropdown, Col, Row } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import "./navbar.css"
+import axios from "axios"
 import { faUser, faCog, faKey } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 export default function Navbar(props) {
+
+
+
+
+    const [name, setName] = useState("")
+    const [pic, setPic] = useState("")
+    const [role, setRole] = useState("")
+    useEffect(() => {
+        axios.get("http://localhost:3001/navbar", {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }
+
+        }).then(res => {
+            setPic(res.data.user.pic)
+            setRole(res.data.role)
+            setName(res.data.user.name)
+        })
+
+    }, [])
+    console.log(pic)
     const history = useHistory()
     function Disconnect() {
         localStorage.clear()
@@ -22,12 +46,11 @@ export default function Navbar(props) {
                 </div>
                 <div className="navbar-right">
                     <Row>
-                        <Col><h5 className="whitetext">Username</h5></Col>
+                        <Col><h6 className="whitetext">{name}</h6></Col>
                         <Col>
                             <Dropdown>
                                 <Dropdown.Toggle as="span" bsPrefix="img-dropdown">
-                                    <img alt="" className="profile-img-dropdown" src={require("../../assets/images/user.png").default} />
-                                </Dropdown.Toggle>
+                                    {role === "admin" ? <img alt="" className="profile-img-dropdown" src={`./uploads/profile/admin/${pic}`} /> : <img alt="" className="profile-img-dropdown" src={`./uploads/profile/employes/${pic}`} />}                                </Dropdown.Toggle>
                                 <div>
                                     <Dropdown.Menu className="z-depth-1-half dropdown-container" style={{ marginTop: "25px" }}>
                                         <Dropdown.Item href="#/action-1"><div className="dropdown-item-container"><FontAwesomeIcon className="dropdown-icon" icon={faUser} /><p className="dropdown-itm">Profil</p></div></Dropdown.Item>

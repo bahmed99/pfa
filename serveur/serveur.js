@@ -20,7 +20,7 @@ app.use(cors())
 app.use(morgan('tiny'))
 
 app.use("/client", require("./routes/client/client"))
-// app.use("/client", require("./routes/client/"))
+app.use("/navbar", require("./routes/navbar/index"))
 
 app.use("/admin", require("./routes/admin/admin"))
 
