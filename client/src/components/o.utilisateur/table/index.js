@@ -126,6 +126,7 @@ function Index() {
             backgroundSize: "cover",
             height: "100vh",
             backgroundPosition: "center!important" ,
+            marginTop: "60px" ,
           }}>
             
             

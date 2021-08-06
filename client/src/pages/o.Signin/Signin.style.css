@@ -13,7 +13,7 @@
     opacity: 100%;
     height: 560px;
 }
-.input-Mod1
+.input-input-Mod1
 {
     margin-left: auto;
     margin-right: auto;
@@ -22,7 +22,7 @@
     border-bottom: 2px solid #369579;
     margin-top: 20px ;
 }
-.input-Mod2
+.input-input-Mod2
 {
     margin-left: auto;
     margin-right: auto;
@@ -114,10 +114,10 @@ input[type="text"], input[type="password"], textarea, select {
 {
     margin: auto auto ;
 }
-.waves-effect
+.waves-effect505
 {
-    width: 150px;
-    height: 50px;
+    width: 150px !important;
+    height: 50px !important;
     border-radius: 10px;
 
     margin: 30px auto ;
@@ -169,7 +169,7 @@ input[type="text"], input[type="password"], textarea, select {
         
 
     }
-    .waves-effect
+    .waves-effect505
     {
         margin : auto auto ;
         width: 150px;

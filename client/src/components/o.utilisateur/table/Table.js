@@ -176,7 +176,7 @@ function Table({ columns, data , setData1 }) {
           )}
         </div>
         <div>
-          <button onClick={()=>setAjoutSeanceModalOpen(true)} className="bouton-Mod-style1"><i class="fa fa-plus" aria-hidden="true"></i></button>
+          <button onClick={()=>setAjoutSeanceModalOpen(true)} className="bouton-Mod-style15"><i class="fa fa-plus" aria-hidden="true"></i></button>
         </div>
       </div>
         
