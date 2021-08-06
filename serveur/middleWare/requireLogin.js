@@ -19,18 +19,19 @@ module.exports = (req,res,next) =>{
             return res.status(401).json({error:"you must be logged in"})
         }
         const {_id} = payload 
-        Admin.findById(_id).then(userdata=>{
+        Employee.findById(_id).then(userdata=>{
          if(userdata){
             req.user = userdata
             req.role="admin"
-            next()
+         
          }
          else {
             Employee.findById(_id).then(data=>{
-                req.user = userdata
+                req.user = data
                 req.role="employe"
-            next()
+           
             })
+            next()
          }
          
         })

@@ -32,7 +32,7 @@ export default function Profile() {
 
     }, [])
 
-    console.log(data)
+
     return (
         <div className="firstdiv" style={{
             backgroundImage: 'url(' + image1 + ')',

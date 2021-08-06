@@ -7,15 +7,12 @@ import { faUser, faCog, faKey } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Navbar(props) {
-
-
-
-
     const [name, setName] = useState("")
     const [pic, setPic] = useState("")
     const [role, setRole] = useState("")
+    const id = JSON.parse(localStorage.getItem("user"))._id
     useEffect(() => {
-        axios.get("http://localhost:3001/navbar", {
+        axios.get(`http://localhost:3001/navbar/${id}`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + localStorage.getItem("jwt")
@@ -25,10 +22,12 @@ export default function Navbar(props) {
             setPic(res.data.user.pic)
             setRole(res.data.role)
             setName(res.data.user.name)
+            
         })
 
     }, [])
-    console.log(pic)
+
+
     const history = useHistory()
     function Disconnect() {
         localStorage.clear()
@@ -50,7 +49,8 @@ export default function Navbar(props) {
                         <Col>
                             <Dropdown>
                                 <Dropdown.Toggle as="span" bsPrefix="img-dropdown">
-                                    {role === "admin" ? <img alt="" className="profile-img-dropdown" src={`./uploads/profile/admin/${pic}`} /> : <img alt="" className="profile-img-dropdown" src={`./uploads/profile/employes/${pic}`} />}                                </Dropdown.Toggle>
+                                     {role === "admin" ? <img alt="" className="profile-img-dropdown" src={`./uploads/profile/admin/${pic}`} /> : <img alt="" className="profile-img-dropdown" src={`./uploads/profile/employes/${pic}`} />}                                
+                                    </Dropdown.Toggle> 
                                 <div>
                                     <Dropdown.Menu className="z-depth-1-half dropdown-container" style={{ marginTop: "25px" }}>
                                         <Dropdown.Item href="#/action-1"><div className="dropdown-item-container"><FontAwesomeIcon className="dropdown-icon" icon={faUser} /><p className="dropdown-itm">Profil</p></div></Dropdown.Item>
