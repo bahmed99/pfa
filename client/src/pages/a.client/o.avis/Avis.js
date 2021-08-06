@@ -260,7 +260,7 @@ export default function Avis() {
             <div className="mycard">
                 
                 <div className="card auth-card55 input-field #fafafa grey lighten-5">
-                    <img alt="" src={photo} className="photo-Model" />
+                    <img alt="" src={photo} className="photo-Model"/>
                     <br />
                     <p className="parag-Mod">Choisir un émoji pour exprimer votre taux de satisfaction : </p>
                     <div class="container-Mod">

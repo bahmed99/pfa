@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Table, { AvatarCell, SelectColumnFilter, StatusPill } from './Table'  // new
 import image1 from './../../../pages/o.Signin/o.images/0004.gif'
-import SignUp from '../SignUp'
-import './index.style.css'
+// import SignUp from '../SignUp'
+// import './index.style.css'
 
 
 const getData = () => {
@@ -75,7 +75,7 @@ function Index() {
   const [ajoutSeanceModalOpen,setAjoutSeanceModalOpen]=useState(false)
   const [data1,setData1]= useState([])
   useEffect(()=>{
-  fetch("http://localhost:3001/employe/employee-clients",{
+  fetch("http://localhost:3001/admin/Admin/ressources",{
     headers:{
       "Content-Type":"application/json" ,
       "Authorization":"Bearer "+localStorage.getItem("jwt")
@@ -101,19 +101,18 @@ function Index() {
       accessor: 'tel',
     },
     {
-      Header: "Status",
-      accessor: 'status',
-      Cell: StatusPill,
-      Filter: SelectColumnFilter,
+      Header: "Age",
+      accessor: 'age',
     },
     {
       Header: "Cin",
       accessor: 'cin',
     },
     {
-      Header: "Age",
-      accessor: 'age',
-      // Filter: SelectColumnFilter,  // new
+      Header: "Role",
+      accessor: 'role',
+      Filter: SelectColumnFilter,  // new
+      Cell: StatusPill,
       filter: 'includes',
     },
   ], [])

@@ -23,6 +23,15 @@
 }
 
 
+
+
+ .image {
+  width:300px !important;
+   height:300px !important;}
+
+
+  
+
 .right{
     width :50% !important;
     height:100% !important;
@@ -70,4 +79,12 @@ h1 {
 
 
 
- 
+ .DDT{
+     margin-top: 13px;
+ }
+ @media (max-width: 996px) {
+    .right {
+      display: none;
+    }
+  }
+

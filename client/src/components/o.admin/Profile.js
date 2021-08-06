@@ -1,26 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import photo from './../../pages/o.Signin/o.images/user.png'
-import './Profile.style.css'
+import '../o.utilisateur/Profile.style.css'
 import image1 from './../../pages/o.Signin/o.images/0004.gif'
-import UpdateProfile from './UpdateProfile'
+//import UpdateProfile from './UpdateProfile'
 import { useParams , useHistory } from 'react-router-dom'
 import { date } from 'date-arithmetic'
 import EmploisClientUtilisateur from '../a.emplois/EmploisClientUtilisateur'
-import ModalSupprimerSeance from '../a.emplois/ModalSupprimerSeance'
 export default function Profile() {
+   
     const History = useHistory()
     const [date, setDate] = useState("")
     const [data, setData] = useState([])
     const { id } = useParams()
-    const [selectedGroupe, setSelectedGroupe] = useState(null)
     const [ajoutSeanceModalOpen, setAjoutSeanceModalOpen] = useState(false)
     const [supprimerSeanceModalOpen, setSupprimerSeanceModalOpen] = useState(false)
-    const [selectInfoData, setSelectInfoData] = useState(null);
-
-
 
     useEffect(() => {
-        fetch(`http://localhost:3001/employe/employee-client/${id}`, {
+        fetch(`http://localhost:3001/admin/admin-utilisateur/${id}`, {
             method: "get",
             headers: {
                 "Content-Type": "application/json",
@@ -33,29 +29,6 @@ export default function Profile() {
             })
 
     }, [])
-
-        const deleteClient = (id)=>{
-            fetch(`http://localhost:3001/employe/deleteClient/${id}`,{
-                method:"delete",
-                headers:{
-                    "Authorization":"Bearer "+localStorage.getItem("jwt")
-                } 
-            }).then(res=>res.json())
-            .then(result=>{
-                console.log(result)
-                
-            })
-            setTimeout(() => History.push('/utilisateurs'), 1000)
-            // fetch("http://localhost:3001/employe/employee-clients",{
-            // headers:{
-            //     "Content-Type":"application/json" ,
-            //     "Authorization":"Bearer "+localStorage.getItem("jwt")
-            // }
-            // }).then(res=>res.json())
-            // .then(result1=>{
-            //     setData(result1)
-            // })
-        }
 
 
     return (
@@ -94,7 +67,7 @@ export default function Profile() {
                                 </div>
                                 <hr style={{ color: 'black', width: "120%", border: "1px" }} />
                                 <div style={{ display: "flex", justifyContent: "space-between", width: "80%" }}>
-                                    <h5 className="para-Mod1">Telephone :</h5>
+                                    <h5 className="para-Mod1">Téléphone :</h5>
                                     <h5 className="para-Mod1">{data.tel}</h5>
                                 </div>
                             </div>
@@ -104,7 +77,7 @@ export default function Profile() {
                                 </button>
                             </div>
                             <div>
-                                <button className="fa-fa-Mod1" onClick={()=>deleteClient(id)}>
+                                <button className="fa-fa-Mod1">
                                     <i class="fa fa-trash" aria-hidden="true" style={{ color: "white" }} ></i>
                                 </button>
                             </div>
@@ -121,10 +94,8 @@ export default function Profile() {
 
             </div>
 
-            <div style={{ marginTop: "150px" }}>
-                <EmploisClientUtilisateur dataUtilisateur={data} id={id} supprimerSeanceModalOpen={supprimerSeanceModalOpen} setSupprimerSeanceModalOpen={setSupprimerSeanceModalOpen} />
-            </div>          <UpdateProfile isOpen={ajoutSeanceModalOpen}
-                setModal={setAjoutSeanceModalOpen} />
+                {/* <UpdateProfile isOpen={ajoutSeanceModalOpen}
+                setModal={setAjoutSeanceModalOpen} /> */}
         </div>
     )
 }

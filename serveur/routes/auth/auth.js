@@ -10,13 +10,14 @@ const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
 const { JWT_SECRET } = require('../../Keys')
 const requireLoginEmployee = require('../../middleWare/requireLoginEmployee')
+const requireLoginAdmin = require('../../middleWare/requireLoginAdmin')
 
 const multer = require('multer');
 
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, '../client/public/uploads');
+        cb(null, '../client/public/uploads/profile/clients');
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname)
@@ -51,20 +52,20 @@ router.post('/login', (req, res) => {
                             return res.status(422).json({ error: "vérifier votre email ou votre mot de passe" })
                         }
                         bcrypt.compare(password, newSavedUser.password)
-                         .then(domatch => {
-                            if (domatch) {
-                                const detect = 2
-                                const token = jwt.sign({ _id: newSavedUser._id }, JWT_SECRET)
-                                const { _id, name, email, cin, pic, timetable, client } = newSavedUser
-                                res.json({ detect, token, user: { _id, name, email, cin, pic, timetable, client } })
-                            }
-                            else {
-                                return res.status(422).json({ error: "vérifier votre email ou votre mot de passe" })
-                            }
+                            .then(domatch => {
+                                if (domatch) {
+                                    const detect = 2
+                                    const token = jwt.sign({ _id: newSavedUser._id }, JWT_SECRET)
+                                    const { _id, name, email, cin, pic, timetable, client } = newSavedUser
+                                    res.json({ detect, token, user: { _id, name, email, cin, pic, timetable, client } })
+                                }
+                                else {
+                                    return res.status(422).json({ error: "vérifier votre email ou votre mot de passe" })
+                                }
 
-                        }).catch(err => {
-                            console.log(err)
-                        })
+                            }).catch(err => {
+                                console.log(err)
+                            })
                     }).catch(err => {
                         console.log(err)
                     })
@@ -90,9 +91,10 @@ router.post('/login', (req, res) => {
         })
 })
 
+
 router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req, res) => {
-    const { name, email, cin } = req.body
-    if (!name || !email || !cin) {
+    const { name, email, cin, tel, age } = req.body
+    if (!name || !email || !cin || !tel || !age) {
         return res.status(422).json({ error: "Essayer de remplir tous les champs" })
     }
     Client.findOne({ email: email })
@@ -100,109 +102,116 @@ router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req
             if (savedUser) {
                 return res.status(422).json({ error: "Il existe un autre utilisateur avec ce email" })
             }
-            crypto.randomBytes(16, (err, buffer) => {
+            crypto.randomBytes(32, (err, buffer) => {
                 if (err) {
                     console.log(err)
                 }
-                const password = buffer.toString("hex")
-                bcrypt.hash(password, 15)
-                    .then(hashedpassword => {
-                        const client = new Client({
-                            name: name,
-                            email: email,
-                            password: hashedpassword,
-                            cin: cin,
-                            pic: req.file.originalname,
-                            employee: req.employee._id
-                        })
-                        client.save()
-                            .then(user => {
-                                let mailoptions = {
-                                    from: "iDriveGears@gmail.com",
-                                    to: user.email,
-                                    subject: "signup success",
-                                    html: `
+            const password = buffer.toString("hex")
+            bcrypt.hash(password, 15)
+                .then(hashedpassword => {
+                    const client = new Client({
+                        name: name,
+                        email: email,
+                        password: hashedpassword,
+                        cin: cin,
+                        tel: tel,
+                        age: age,
+                        pic: req.file.originalname,
+                        employee: req.employee._id
+                    })
+                    client.save()
+                        .then(user => {
+                            let mailoptions = {
+                                from: "iDriveGears@gmail.com",
+                                to: user.email,
+                                subject: "signup success",
+                                html: `
                         <h2>Bienvenue Monsieur ${name}</h2>
                         <h5> Votre mot de passe est : ${password} </h5>
                         `
+                            }
+                            transporter.sendMail(mailoptions, function (error, info) {
+                                if (error) {
+                                    console.log(error);
+                                } else {
+                                    console.log('Email sent: ' + info.response);
+
                                 }
-                                transporter.sendMail(mailoptions, function (error, info) {
-                                    if (error) {
-                                        console.log(error);
-                                    } else {
-                                        console.log('Email sent: ' + info.response);
-
-                                    }
-                                });
-                                Employee.findByIdAndUpdate(req.employee._id, {
-                                    $push: { client: user._id }
-                                }, {
-                                    new: true
-                                }).then(result => {
-                                    res.json({ message: "le compte est bien créé" })
-                                }).catch(err => {
-                                    console.log(err)
-                                })
-
+                            });
+                            Employee.findByIdAndUpdate(req.employee._id, {
+                                $push: { client: user._id }
+                            }, {
+                                new: true
+                            }).then(result => {
+                                res.json({ message: "le compte est bien créé" })
+                            }).catch(err => {
+                                console.log(err)
                             })
 
-                    }).catch(err => {
-                        console.log(err)
-                    })
-            })
-        }).catch(err => {
-            console.log(err)
-        })
-})
+                        })
 
-router.post('/employee/signup', (req, res) => {
-    const { name, email, cin } = req.body
-    if (!name || !email || !cin) {
+                }).catch(err => {
+                    console.log(err)
+                })})
+        
+}).catch(err => {
+    console.log(err)
+})})
+
+
+router.post('/employee/signup', requireLoginAdmin, upload.single('image'), (req, res) => {
+    const { name, email, cin, age, tel } = req.body
+    if (!name || !email || !cin || !age || !tel) {
         return res.status(422).json({ error: "Essayer de remplir tous les champs" })
+
     }
     Employee.findOne({ email: email })
         .then(savedUser => {
             if (savedUser) {
                 return res.status(422).json({ error: "Il existe un autre utilisateur avec ce email" })
             }
-            crypto.randomBytes(16, (err, buffer) => {
+            
+            crypto.randomBytes(32, (err, buffer) => {
                 if (err) {
                     console.log(err)
-                }
-                const password = buffer.toString("hex")
-                bcrypt.hash(password, 15)
-                    .then(hashedpassword => {
-                        const employee = new Employee({
-                            name: name,
-                            email: email,
-                            password: hashedpassword,
-                            cin: cin
-                        })
-                        employee.save()
-                            .then(user => {
-                                let mailoptions = {
-                                    from: "iDriveGears@gmail.com",
-                                    to: user.email,
-                                    subject: "signup success",
-                                    html: `
-                        <h2>Bienvenue Monsieur ${name}</h2>
+                }  
+            const password = buffer.toString("hex")
+            bcrypt.hash(password, 15)
+                .then(hashedpassword => {
+                    const employee = new Employee({
+                        name: name,
+                        email: email,
+                        age: age,
+                        tel: tel,
+                        pic: req.file.originalname,
+                        password: hashedpassword,
+                        cin: cin
+                    })
+                    employee.save()
+                        .then(user => {
+                            let mailoptions = {
+                                from: "iDriveGears@gmail.com",
+                                to: user.email,
+                                subject: "signup success",
+                                html: `
+                        <h2>Bienvenue Chèr(e) ${name}</h2>
                         <h5> Votre mot de passe est : ${password} </h5>
                         `
+                            }
+                            transporter.sendMail(mailoptions, function (error, info) {
+                                if (error) {
+                                    console.log(error);
+                                } else {
+                                    console.log('Email sent: ' + info.response);
+
                                 }
-                                transporter.sendMail(mailoptions, function (error, info) {
-                                    if (error) {
-                                        console.log(error);
-                                    } else {
-                                        console.log('Email sent: ' + info.response);
+                            });
+                            res.json({ message: "le compte est bien créé" })
+                        })
 
-                                    }
-                                });
-                                res.json({ message: "le compte est bien créé" })
-                            })
-
-                    }).catch(err => {
-                        console.log(err)
-                    })
+                }).catch(err => {
+                    console.log(err)
+                })
             })
         }).catch(err => {
             console.log(err)
@@ -357,10 +366,11 @@ router.post("/admin/login", (req, res) => {
 })
 
 
-router.post("/admin/signup", (req, res) => {
+
+router.post("/admin/signup", requireLoginAdmin, upload.single('image'), (req, res) => {
     console.log(req.body)
-    const { name, email, password } = req.body
-    if (!name || !email || !password) {
+    const { name, email, password, age, tel } = req.body
+    if (!name || !email || !password || !age || tel) {
         return res.status(422).json({ error: "Essayer de remplir tous les champs" })
     }
     Admin.findOne({ email: email })
@@ -376,7 +386,10 @@ router.post("/admin/signup", (req, res) => {
                     const admin = new Admin({
                         name: name,
                         email: email,
-                        password: hashedpassword
+                        age: age,
+                        tel: tel,
+                        password: hashedpassword,
+                        pic: req.file.originalname,
 
                     })
                     admin.save()

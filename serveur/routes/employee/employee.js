@@ -3,6 +3,7 @@ const router = express.Router()
 const Employee = require("../../models/user/employe")
 const Client = require("../../models/user/client")
 const requireLoginEmployee = require("../../middleware/requireLoginEmployee")
+const { Aggregate } = require('mongoose')
 // const event = [
 //     {
 //         title: 'séance code', start: '2021-07-30T09:00:00', end: '2021-07-30T10:00:00', color: 'red',
@@ -87,11 +88,11 @@ router.get("/clients", requireLoginEmployee, (req, res) => {
 router.get("/employee-clients",requireLoginEmployee,(req,res)=>{
     const data = []
     Employee.findOne({_id:req.employee._id})
-    .populate("client","_id name cin email pic")
+    .populate("client","_id name cin email pic tel age status")
     .then(result=>{
         for (let i=0 ; i < result.client.length ; i++)
         {
-            data.push({id:result.client[i]._id ,name:result.client[i].name , email:result.client[i].email , cin:result.client[i].cin , imgUrl :result.client[i].pic})
+            data.push({id:result.client[i]._id ,name:result.client[i].name , email:result.client[i].email , cin:result.client[i].cin , imgUrl :result.client[i].pic , tel:result.client[i].tel , status:result.client[i].status ,age:result.client[i].age})
         }
         res.json(data)
     }).catch(err=>{
@@ -142,6 +143,52 @@ router.put("/emplois-delete/:id", requireLoginEmployee,(req, res) => {
             res.send(err)
         })
 
+    })
+
+})
+
+router.delete('/deleteClient/:id',requireLoginEmployee,(req,res)=>{
+    Client.findOne({_id:req.params.id})
+    .exec((err,client)=>{
+        if ( err || !client )
+        {
+            return res.status(422).json({error:err})
+        }
+        client.remove()
+        .then(result=>{
+            console.log(result)
+            Employee.findByIdAndUpdate(req.employee._id,{
+            $pull:{client:req.params.id}
+            },{
+                new:true
+            })
+        }).catch(err=>{
+            console.log(err)
+        })
+    })
+})
+
+router.put('/updateClient/:id',requireLoginEmployee,(req,res)=>{
+    const { name , email , cin , pic , tel , age} = req.body
+    if (!name || !email || !cin || !pic || !tel || !age)
+    {
+        return res.status(422).json({error : "please add all fields"})
+    }
+    Client.findOne({_id:req.params.id})
+    .then(result=>{
+        result.name = name
+        result.email = email
+        result.cin =cin
+        result.pic = pic
+        result.tel = tel
+        result.age = Aggregate
+        Client.save()
+        .then(result1=>{
+             res.json({message:"saved successfully"})
+        })  
+        
+    }).catch(err=>{
+        console.log(err)
     })
 
 })
