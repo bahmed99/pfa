@@ -4,8 +4,10 @@ import '../o.utilisateur/Profile.style.css'
 import image1 from './../../pages/o.Signin/o.images/0004.gif'
 //import UpdateProfile from './UpdateProfile'
 import { useParams , useHistory } from 'react-router-dom'
-import { date } from 'date-arithmetic'
-import EmploisClientUtilisateur from '../a.emplois/EmploisClientUtilisateur'
+
+import EmploisAdminUtilisateur from '../a.emplois/EmploisAdminUtilisateur'
+
+
 export default function Profile() {
    
     const History = useHistory()
@@ -30,7 +32,7 @@ export default function Profile() {
 
     }, [])
 
-
+    console.log(data)
     return (
         <div className="firstdiv" style={{
             backgroundImage: 'url(' + image1 + ')',
@@ -93,6 +95,9 @@ export default function Profile() {
                 </div>
 
             </div>
+            <div style={{ marginTop: "150px" }}>
+                <EmploisAdminUtilisateur data={data.timetable} />
+            </div> 
 
                 {/* <UpdateProfile isOpen={ajoutSeanceModalOpen}
                 setModal={setAjoutSeanceModalOpen} /> */}

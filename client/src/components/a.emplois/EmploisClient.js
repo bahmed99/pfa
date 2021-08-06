@@ -101,7 +101,7 @@ export default function Emplois() {
                 </div>
 
             </div>
-            <div id='calendrier' style={{ marginTop: '70px' }}>
+            <div id='calendrier' style={{ marginTop: '60px' }}>
                 <FullCalendar
                     plugins={[timeGridPlugin, interactionPlugin, listPlugin]}
                     events={data}

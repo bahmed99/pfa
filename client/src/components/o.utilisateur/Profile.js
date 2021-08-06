@@ -3,7 +3,7 @@ import photo from './../../pages/o.Signin/o.images/user.png'
 import './Profile.style.css'
 import image1 from './../../pages/o.Signin/o.images/0004.gif'
 import UpdateProfile from './UpdateProfile'
-import { useParams , useHistory } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { date } from 'date-arithmetic'
 import EmploisClientUtilisateur from '../a.emplois/EmploisClientUtilisateur'
 import ModalSupprimerSeance from '../a.emplois/ModalSupprimerSeance'
@@ -34,28 +34,28 @@ export default function Profile() {
 
     }, [])
 
-        const deleteClient = (id)=>{
-            fetch(`http://localhost:3001/employe/deleteClient/${id}`,{
-                method:"delete",
-                headers:{
-                    "Authorization":"Bearer "+localStorage.getItem("jwt")
-                } 
-            }).then(res=>res.json())
-            .then(result=>{
+    const deleteClient = (id) => {
+        fetch(`http://localhost:3001/employe/deleteClient/${id}`, {
+            method: "delete",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }
+        }).then(res => res.json())
+            .then(result => {
                 console.log(result)
-                
+
             })
-            setTimeout(() => History.push('/utilisateurs'), 1000)
-            // fetch("http://localhost:3001/employe/employee-clients",{
-            // headers:{
-            //     "Content-Type":"application/json" ,
-            //     "Authorization":"Bearer "+localStorage.getItem("jwt")
-            // }
-            // }).then(res=>res.json())
-            // .then(result1=>{
-            //     setData(result1)
-            // })
-        }
+        setTimeout(() => History.push('/utilisateurs'), 1000)
+        // fetch("http://localhost:3001/employe/employee-clients",{
+        // headers:{
+        //     "Content-Type":"application/json" ,
+        //     "Authorization":"Bearer "+localStorage.getItem("jwt")
+        // }
+        // }).then(res=>res.json())
+        // .then(result1=>{
+        //     setData(result1)
+        // })
+    }
 
 
     return (
@@ -104,7 +104,7 @@ export default function Profile() {
                                 </button>
                             </div>
                             <div>
-                                <button className="fa-fa-Mod1" onClick={()=>deleteClient(id)}>
+                                <button className="fa-fa-Mod1" onClick={() => deleteClient(id)}>
                                     <i class="fa fa-trash" aria-hidden="true" style={{ color: "white" }} ></i>
                                 </button>
                             </div>

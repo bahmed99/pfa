@@ -61,8 +61,9 @@ export default function MainRouter() {
         else if (user && detect === 2) {
             //history.push('/')
         }
+        else if (user && detect===3)
 
-
+{}
 
         else {
             if (!history.location.pathname.startsWith('/reset') && !history.location.pathname.startsWith('/forgot-password') && !history.location.pathname.startsWith('/sign-in') && !history.location.pathname.startsWith('/admin')) {
