@@ -110,5 +110,29 @@ router.get ("/admin-utilisateur/:id", requireLoginAdmin, (req,res)=>{
     })
 })
 
+router.put('/updateAdmin',requireLoginAdmin,(req,res)=>{
+    const { name , email , cin ,  tel , age} = req.body
+    if (!name || !email || !cin ||  !tel || !age)
+    {
+        return res.status(422).json({error : "please add all fields"})
+    }
+    Admin.findOne({_id:req.admin._id})
+    .then(result=>{
+        result.name = name
+        result.email = email
+        result.cin =cin
+        result.tel = tel
+        result.age = age
+        result.save()
+        .then(result1=>{
+             res.json({message:"saved successfully"})
+        })  
+        
+    }).catch(err=>{
+        console.log(err)
+    })
+
+})
+
 
 module.exports = router

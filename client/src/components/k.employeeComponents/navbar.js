@@ -5,11 +5,15 @@ import "./navbar.css"
 import axios from "axios"
 import { faUser, faCog, faKey } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ModalModifierProfile from './ModalModifierProfile'
+import { setDayOfYear } from 'date-fns'
 
 export default function Navbar(props) {
     const [name, setName] = useState("")
     const [pic, setPic] = useState("")
     const [role, setRole] = useState("")
+    const [data, setData] = useState()
+    const [afficherModel, setAfficherModel] = useState(false)
     const id = JSON.parse(localStorage.getItem("user"))._id
     useEffect(() => {
         axios.get(`http://localhost:3001/navbar/${id}`, {
@@ -22,13 +26,16 @@ export default function Navbar(props) {
             setPic(res.data.user.pic)
             setRole(res.data.role)
             setName(res.data.user.name)
+            setData(res.data.user)
             
         })
 
     }, [])
 
-
     const history = useHistory()
+    if(!data){
+        return ""
+    }
     function Disconnect() {
         localStorage.clear()
         history.push("/")
@@ -53,8 +60,8 @@ export default function Navbar(props) {
                                     </Dropdown.Toggle> 
                                 <div>
                                     <Dropdown.Menu className="z-depth-1-half dropdown-container" style={{ marginTop: "25px" }}>
-                                        <Dropdown.Item href="#/action-1"><div className="dropdown-item-container"><FontAwesomeIcon className="dropdown-icon" icon={faUser} /><p className="dropdown-itm">Profil</p></div></Dropdown.Item>
-                                        <Dropdown.Item href="#/action-2"><div className="dropdown-item-container"><FontAwesomeIcon className="dropdown-icon" icon={faCog} /><p className="dropdown-itm">Réglage</p></div></Dropdown.Item>
+                                        <Dropdown.Item ><div className="dropdown-item-container"><FontAwesomeIcon className="dropdown-icon" icon={faUser} /><p className="dropdown-itm">Profil</p></div></Dropdown.Item>
+                                        <Dropdown.Item ><div className="dropdown-item-container" onClick={()=>setAfficherModel(true)}><FontAwesomeIcon className="dropdown-icon" icon={faCog} /><p className="dropdown-itm">Réglage</p></div></Dropdown.Item>
                                         <Dropdown.Divider />
                                         <Dropdown.Item onClick={Disconnect}><div className="dropdown-item-container"><FontAwesomeIcon className="dropdown-icon" icon={faKey} /><p className="dropdown-itm">Déconnexion</p></div></Dropdown.Item>
                                     </Dropdown.Menu>
@@ -64,6 +71,7 @@ export default function Navbar(props) {
                     </Row>
                 </div>
             </div>
+            <ModalModifierProfile  fetchData={data} setName={setName}  setModal={setAfficherModel}  isOpen={afficherModel}  role={role}/>
         </>
     )
 }
