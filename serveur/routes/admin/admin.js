@@ -3,6 +3,8 @@ const router = express.Router()
 const Employee = require("../../models/user/employe")
 const Client = require("../../models/user/client")
 const Admin = require("../../models/user/admin")
+
+
 const requireLoginAdmin = require("../../middleware/requireLoginAdmin")
 
 
@@ -94,18 +96,18 @@ router.get ("/admin-utilisateur/:id", requireLoginAdmin, (req,res)=>{
                 {
                     Admin.findOne({_id:req.params.id})
                     .exec((err,admin)=>{
-                        res.json(admin)
+                        res.json({user:admin, role : "Admin"})
                     })
                 }
                 else
                 {
-                    res.json(employee)
+                    res.json({user:employee, role : "Employée"})
                 }
             })
         }
         else
         {
-            res.json(client)
+            res.json({user:client, role : "Client"})
         }
     })
 })

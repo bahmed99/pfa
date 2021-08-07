@@ -31,7 +31,7 @@ const adminSchema = new mongoose.Schema({
     } ,
     resetToken: String,
     expireToken: Date,
-   
+
 }, { timestamps: true })
 
 
