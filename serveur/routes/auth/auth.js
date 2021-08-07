@@ -371,8 +371,8 @@ router.post("/admin/login", (req, res) => {
 
 router.post("/admin/signup", requireLoginAdmin, upload.single('image'), (req, res) => {
 
-    const { name, email, age, tel } = req.body
-    if (!name || !email || !age || !tel) {
+    const { name, email, age, tel ,cin} = req.body
+    if (!name || !email || !age || !tel||!cin) {
         console.log("1")
         return res.status(422).json({ error: "Essayer de remplir tous les champs" })
     }
@@ -396,6 +396,7 @@ router.post("/admin/signup", requireLoginAdmin, upload.single('image'), (req, re
                             email: email,
                             age: age,
                             tel: tel,
+                            cin:cin,
                             password: hashedpassword,
                             pic: req.file.originalname
 
