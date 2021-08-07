@@ -398,7 +398,7 @@ router.post("/admin/login", (req, res) => {
 
 
 
-router.post("/admin/signup", requireLoginAdmin, upload.single('image'), (req, res) => {
+router.post("/admin/signup", requireLoginAdmin, upload2.single('image'), (req, res) => {
 
     const { name, email, age, tel ,cin} = req.body
     if (!name || !email || !age || !tel||!cin) {

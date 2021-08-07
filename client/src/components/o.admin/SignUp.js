@@ -29,49 +29,6 @@ const SignUp = (props) => {
       dataform.append('name', name)
       dataform.append('email', email)
       dataform.append('cin', cin)
-<<<<<<< HEAD
-      dataform.append('image',image)
-      dataform.append("tel",tel)
-      dataform.append("age",age)
-
-      const data = {name:name, email:email, cin:cin , imgUrl : imagename }
-    if (role === "Employée")
-    {
-      axios.post("http://localhost:3001/auth/employee/signup",dataform,{
-              headers:{
-                  "Content-Type":"application/json" ,
-                  "Authorization": "Bearer " + localStorage.getItem("jwt")
-              }
-          })
-          .then(result=>{
-              if(result.data.error)
-              {
-              }
-              else
-              {
-                props.setData1(prevData => ([...prevData, data]))
-                props.setModal(false)
-              }
-          }).catch(err=>{
-              console.log(err)
-        })
-      
-      setName('')
-      setEmail('')
-      setCin('')
-      setImage('')
-      setImagename('')
-      setTel('')
-      setAge('')
-    }
-    else if (role === "Admin")
-    {
-      axios.post("http://localhost:3001/auth/admin/signup",dataform,{
-              headers:{
-                  "Content-Type":"application/json" ,
-                  "Authorization": "Bearer " + localStorage.getItem("jwt")
-              }
-=======
       dataform.append('image', image)
       dataform.append("tel", tel)
       dataform.append("age", age)
@@ -93,7 +50,6 @@ const SignUp = (props) => {
             }
           }).catch(err => {
             console.log(err)
->>>>>>> b02b3dc0d0a19753c07a4498b3e34764a73e17e2
           })
 
         setName('')
