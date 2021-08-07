@@ -12,6 +12,7 @@ export default function Profile() {
    
     const History = useHistory()
     const [date, setDate] = useState("")
+    const [role, setRole] = useState("")
     const [data, setData] = useState([])
     const { id } = useParams()
     const [ajoutSeanceModalOpen, setAjoutSeanceModalOpen] = useState(false)
@@ -26,11 +27,17 @@ export default function Profile() {
             },
         }).then(res => res.json())
             .then(result => {
-                setData(result)
-                setDate(`${result.createdAt[8]}${result.createdAt[9]}/${result.createdAt[5]}${result.createdAt[6]}/${result.createdAt[0]}${result.createdAt[1]}${result.createdAt[2]}${result.createdAt[3]}`)
+                setData(result.user)
+                setRole(result.role)
+                setDate(`${result.user.createdAt[8]}${result.user.createdAt[9]}/${result.user.createdAt[5]}${result.user.createdAt[6]}/${result.user.createdAt[0]}${result.user.createdAt[1]}${result.user.createdAt[2]}${result.user.createdAt[3]}`)
             })
 
     }, [])
+    console.log(data)
+    if (!data)
+    {
+        return ""
+    }
 
 
     return (
@@ -49,7 +56,9 @@ export default function Profile() {
                         <div style={{ display: "flex" }} >
 
                             <div style={{ float: "left !important", marginRight: "auto", marginTop: "auto", marginBottom: "auto", marginLeft: "80px" }} >
-                                <img src={`/uploads/profile/clients/${data.pic}`} alt="" className="photo-Mod3" />
+                                { (role === "Client") ? <img src={`/uploads/profile/clients/${data.pic}`} alt="" className="photo-Mod3" />
+                                :(role === "Employée") ? <img src={`/uploads/profile/employes/${data.pic}`} alt="" className="photo-Mod3" />
+                                : <img src={`/uploads/profile/admin/${data.pic}`} alt="" className="photo-Mod3" /> }
                                 <h4 style={{ marginTop: "10px", color: "black" }}>{data.name}</h4>
                             </div>
                             <div style={{ float: "left", marginRight: "auto", marginTop: "auto", marginBottom: "auto" }}>

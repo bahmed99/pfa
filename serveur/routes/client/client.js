@@ -22,7 +22,6 @@ const upload = multer({
 
 
 
-
 router.post('/avis', requireLoginClient, (req, res) => {
     const { vote, message } = req.body
     if (vote === 0 || !message) {

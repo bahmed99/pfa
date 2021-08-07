@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const requireLogin = require("../../middleware/requireLogin")
 const Admin = require("../../models/user/admin") 
 const Employee = require("../../models/user/employe")
 
