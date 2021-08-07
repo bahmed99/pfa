@@ -134,57 +134,59 @@ router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req
                 if (err) {
                     console.log(err)
                 }
-            const password = buffer.toString("hex")
-            bcrypt.hash(password, 15)
-                .then(hashedpassword => {
-                    const client = new Client({
-                        name: name,
-                        email: email,
-                        password: hashedpassword,
-                        cin: cin,
-                        tel: tel,
-                        age: age,
-                        pic: req.file.originalname,
-                        employee: req.employee._id
-                    })
-                    client.save()
-                        .then(user => {
-                            let mailoptions = {
-                                from: "iDriveGears@gmail.com",
-                                to: user.email,
-                                subject: "signup success",
-                                html: `
+                const password = buffer.toString("hex")
+                bcrypt.hash(password, 15)
+                    .then(hashedpassword => {
+                        const client = new Client({
+                            name: name,
+                            email: email,
+                            password: hashedpassword,
+                            cin: cin,
+                            tel: tel,
+                            age: age,
+                            pic: req.file.originalname,
+                            employee: req.employee._id
+                        })
+                        client.save()
+                            .then(user => {
+                                let mailoptions = {
+                                    from: "iDriveGears@gmail.com",
+                                    to: user.email,
+                                    subject: "signup success",
+                                    html: `
                         <h2>Bienvenue Monsieur ${name}</h2>
                         <h5> Votre mot de passe est : ${password} </h5>
                         `
-                            }
-                            transporter.sendMail(mailoptions, function (error, info) {
-                                if (error) {
-                                    console.log(error);
-                                } else {
-                                    console.log('Email sent: ' + info.response);
-
                                 }
-                            });
-                            Employee.findByIdAndUpdate(req.employee._id, {
-                                $push: { client: user._id }
-                            }, {
-                                new: true
-                            }).then(result => {
-                                res.json({ message: "le compte est bien créé" })
-                            }).catch(err => {
-                                console.log(err)
+                                transporter.sendMail(mailoptions, function (error, info) {
+                                    if (error) {
+                                        console.log(error);
+                                    } else {
+                                        console.log('Email sent: ' + info.response);
+
+                                    }
+                                });
+                                Employee.findByIdAndUpdate(req.employee._id, {
+                                    $push: { client: user._id }
+                                }, {
+                                    new: true
+                                }).then(result => {
+                                    res.json({ message: "le compte est bien créé" })
+                                }).catch(err => {
+                                    console.log(err)
+                                })
+
                             })
 
-                        })
+                    }).catch(err => {
+                        console.log(err)
+                    })
+            })
 
-                }).catch(err => {
-                    console.log(err)
-                })})
-        
-}).catch(err => {
-    console.log(err)
-})})
+        }).catch(err => {
+            console.log(err)
+        })
+})
 
 
 router.post('/employee/signup', requireLoginAdmin, upload1.single('image'), (req, res) => {
@@ -198,48 +200,48 @@ router.post('/employee/signup', requireLoginAdmin, upload1.single('image'), (req
             if (savedUser) {
                 return res.status(422).json({ error: "Il existe un autre utilisateur avec ce email" })
             }
-            
+
             crypto.randomBytes(32, (err, buffer) => {
                 if (err) {
                     console.log(err)
-                }  
-            const password = buffer.toString("hex")
-            bcrypt.hash(password, 15)
-                .then(hashedpassword => {
-                    const employee = new Employee({
-                        name: name,
-                        email: email,
-                        age: age,
-                        tel: tel,
-                        pic: req.file.originalname,
-                        password: hashedpassword,
-                        cin: cin
-                    })
-                    employee.save()
-                        .then(user => {
-                            let mailoptions = {
-                                from: "iDriveGears@gmail.com",
-                                to: user.email,
-                                subject: "signup success",
-                                html: `
+                }
+                const password = buffer.toString("hex")
+                bcrypt.hash(password, 15)
+                    .then(hashedpassword => {
+                        const employee = new Employee({
+                            name: name,
+                            email: email,
+                            age: age,
+                            tel: tel,
+                            pic: req.file.originalname,
+                            password: hashedpassword,
+                            cin: cin
+                        })
+                        employee.save()
+                            .then(user => {
+                                let mailoptions = {
+                                    from: "iDriveGears@gmail.com",
+                                    to: user.email,
+                                    subject: "signup success",
+                                    html: `
                         <h2>Bienvenue Chèr(e) ${name}</h2>
                         <h5> Votre mot de passe est : ${password} </h5>
                         `
-                            }
-                            transporter.sendMail(mailoptions, function (error, info) {
-                                if (error) {
-                                    console.log(error);
-                                } else {
-                                    console.log('Email sent: ' + info.response);
-
                                 }
-                            });
-                            res.json({ message: "le compte est bien créé" })
-                        })
+                                transporter.sendMail(mailoptions, function (error, info) {
+                                    if (error) {
+                                        console.log(error);
+                                    } else {
+                                        console.log('Email sent: ' + info.response);
 
-                }).catch(err => {
-                    console.log(err)
-                })
+                                    }
+                                });
+                                res.json({ message: "le compte est bien créé" })
+                            })
+
+                    }).catch(err => {
+                        console.log(err)
+                    })
             })
         }).catch(err => {
             console.log(err)
@@ -387,7 +389,7 @@ router.post("/admin/login", (req, res) => {
                     }).catch(err => {
                         console.log(err)
                     })
-            }
+          }
         }).catch(err => {
             console.log(err)
         })
@@ -395,134 +397,141 @@ router.post("/admin/login", (req, res) => {
 
 
 
-router.post("/admin/signup", requireLoginAdmin, upload2.single('image'), (req, res) => {
-    console.log(req.body)
-    const { name, email, password, age, tel } = req.body
-    if (!name || !email || !password || !age || !tel) {
+
+router.post("/admin/signup", requireLoginAdmin, upload.single('image'), (req, res) => {
+
+    const { name, email, age, tel ,cin} = req.body
+    if (!name || !email || !age || !tel||!cin) {
+        console.log("1")
         return res.status(422).json({ error: "Essayer de remplir tous les champs" })
     }
     Admin.findOne({ email: email })
         .then(savedUser => {
             if (savedUser) {
+
                 return res.status(422).json({ error: "Il existe un autre utilisateur avec ce email" })
             }
 
 
+            crypto.randomBytes(32, (err, buffer) => {
+                if (err) {
+                    console.log(err)
+                }
+                const password = buffer.toString("hex")
+                bcrypt.hash(password, 15)
+                    .then(hashedpassword => {
+                        const admin = new Admin({
+                            name: name,
+                            email: email,
+                            age: age,
+                            tel: tel,
+                            cin:cin,
+                            password: hashedpassword,
+                            pic: req.file.originalname
 
-            bcrypt.hash(password, 15)
-                .then(hashedpassword => {
-                    const admin = new Admin({
-                        name: name,
-                        email: email,
-                        age: age,
-                        tel: tel,
-                        password: hashedpassword,
-                        pic: req.file.originalname,
+                        })
+                        admin.save()
+                            .then(user => {
+                                let mailoptions = {
+                                    from: "iDriveGears@gmail.com",
+                                    to: user.email,
+                                    subject: "signup success",
+                                    html: `
+                        <h2>Bienvenue Monsieur ${name}</h2>
+                        <h5> Votre mot de passe est : ${password} </h5>  `
+                                }
+                                transporter.sendMail(mailoptions, function (error, info) {
+                                    if (error) {
+                                        console.log(error);
+                                    } else {
+                                        console.log('Email sent: ' + info.response);
 
+                                    }
+                                });
+                                res.json({ message: "le compte est bien créé" })
+                            })
+
+                    }).catch(err => {
+                        console.log(err)
+                    }) })
+
+            }).catch(err => {
+                console.log(err)
+            })
+        })
+
+
+
+    router.post('/admin/newPassword', (req, res) => {
+        const newPassword = req.body.password
+        const sentToken = req.body.token
+        Admin.findOne({ resetToken: sentToken, expireToken: { $gt: Date.now() } })
+            .then(user => {
+                if (!user) {
+
+                    return res.status(422).json({ error: "Réessayer session expirée" })
+                }
+                else {
+                    bcrypt.hash(newPassword, 15).then(hashedpassword => {
+                        user.password = hashedpassword
+                        user.resetToken = undefined
+                        user.expireToken = undefined
+                        user.save().then(saveduser => {
+                            res.json({ message: "La mise a jour de votre mot de passe est bien faite" })
+                        })
+                    }).catch(err => {
+                        console.log(err)
                     })
-                    admin.save()
-                        .then(user => {
+                }
+            }).catch(err => {
+                console.log(err)
+            })
+    })
+
+
+    router.post('/admin/mdpOublier', (req, res) => {
+        crypto.randomBytes(32, (err, buffer) => {
+            if (err) {
+                console.log(err)
+            }
+            const token = buffer.toString("hex")
+            Admin.findOne({ email: req.body.email })
+                .then(user => {
+                    if (!user) {
+
+                        return res.status(422).json({ error: "Aucun utilisateur avec ce mail" })
+                    }
+
+                    else {
+                        user.resetToken = token
+                        user.expireToken = Date.now() + 3600000
+                        user.save().then(result => {
                             let mailoptions = {
                                 from: "iDriveGears@gmail.com",
                                 to: user.email,
                                 subject: "signup success",
                                 html: `
-                        <h2>Bienvenue Monsieur ${name}</h2>
-                        <h5> Vote êtes bien inscrit </h5>
+                        <p>you requested for password reset</p>
+                        <h5> click on this <a href="http://localhost:3000/admin/reset-password/${token}"> Link </a> to reset your password</h5>
                         `
                             }
                             transporter.sendMail(mailoptions, function (error, info) {
                                 if (error) {
                                     console.log(error);
-                                } else {
+                                }
+                                else {
                                     console.log('Email sent: ' + info.response);
 
                                 }
                             });
-                            res.json({ message: "le compte est bien créé" })
+                            res.json({ message: "check your mail" })
+
                         })
-
-                }).catch(err => {
-                    console.log(err)
+                    }
                 })
-
-        }).catch(err => {
-            console.log(err)
         })
-})
-
-
-
-router.post('/admin/newPassword', (req, res) => {
-    const newPassword = req.body.password
-    const sentToken = req.body.token
-    Admin.findOne({ resetToken: sentToken, expireToken: { $gt: Date.now() } })
-        .then(user => {
-            if (!user) {
-
-                return res.status(422).json({ error: "Réessayer session expirée" })
-            }
-            else {
-                bcrypt.hash(newPassword, 15).then(hashedpassword => {
-                    user.password = hashedpassword
-                    user.resetToken = undefined
-                    user.expireToken = undefined
-                    user.save().then(saveduser => {
-                        res.json({ message: "La mise a jour de votre mot de passe est bien faite" })
-                    })
-                }).catch(err => {
-                    console.log(err)
-                })
-            }
-        }).catch(err => {
-            console.log(err)
-        })
-})
-
-
-router.post('/admin/mdpOublier', (req, res) => {
-    crypto.randomBytes(32, (err, buffer) => {
-        if (err) {
-            console.log(err)
-        }
-        const token = buffer.toString("hex")
-        Admin.findOne({ email: req.body.email })
-            .then(user => {
-                if (!user) {
-
-                    return res.status(422).json({ error: "Aucun utilisateur avec ce mail" })
-                }
-
-                else {
-                    user.resetToken = token
-                    user.expireToken = Date.now() + 3600000
-                    user.save().then(result => {
-                        let mailoptions = {
-                            from: "iDriveGears@gmail.com",
-                            to: user.email,
-                            subject: "signup success",
-                            html: `
-                        <p>you requested for password reset</p>
-                        <h5> click on this <a href="http://localhost:3000/admin/reset-password/${token}"> Link </a> to reset your password</h5>
-                        `
-                        }
-                        transporter.sendMail(mailoptions, function (error, info) {
-                            if (error) {
-                                console.log(error);
-                            }
-                            else {
-                                console.log('Email sent: ' + info.response);
-
-                            }
-                        });
-                        res.json({ message: "check your mail" })
-
-                    })
-                }
-            })
     })
-})
 
 
 
-module.exports = router
+    module.exports = router
