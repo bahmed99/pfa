@@ -216,12 +216,12 @@ export default function Course() {
                </div>
                
                <div className="action">
-                  {r1.r !== "" ? <div><button style ={{backgroundColor:bg1}} className="btnQ" onClick={() => { setChoice(r1); setBg1("green");setBg2("");setBg3("") }} value={r1.r}><span className="cadreQ">A</span> {r1.r}</button><br /><br /></div>
+                  {r1.r !== "" ? <div><button style ={{backgroundColor:bg1}} className="btnQ" onClick={() => { setChoice(r1); setBg1("orange");setBg2("");setBg3("") }} value={r1.r}><span className="cadreQ">A</span> {r1.r}</button><br /><br /></div>
                      : ""}
-                  {r2.r !== "" ? <div> <button className="btnQ" style ={{backgroundColor:bg2}} onClick={() => { setChoice(r2); setBg1("");setBg2("green");setBg3("") }} value={r2.r}><span className="cadreQ">{r1.r===""?"A":"B"}</span> {r2.r}</button><br /><br /></div>
+                  {r2.r !== "" ? <div> <button className="btnQ" style ={{backgroundColor:bg2}} onClick={() => { setChoice(r2); setBg1("");setBg2("orange");setBg3("") }} value={r2.r}><span className="cadreQ">{r1.r===""?"A":"B"}</span> {r2.r}</button><br /><br /></div>
                      : ""}
                   {r3.r !== "" ?
-                     <button className="btnQ" style ={{backgroundColor:bg3}} onClick={() => { setChoice(r3) ; setBg1("");setBg2("");setBg3("green")}} value={r3.r}><span className="cadreQ">{r2.r===""?"B":r1.r===""?"B":"C"}</span> {r3.r}</button> : ""}
+                     <button className="btnQ" style ={{backgroundColor:bg3}} onClick={() => { setChoice(r3) ; setBg1("");setBg2("");setBg3("orange")}} value={r3.r}><span className="cadreQ">{r2.r===""?"B":r1.r===""?"B":"C"}</span> {r3.r}</button> : ""}
 
                   {r3.r !== "" ? <div><br /><br /></div> : ""}
                </div>

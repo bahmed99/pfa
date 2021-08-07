@@ -99,6 +99,7 @@ export function StatusPill({ value }) {
 };
 
 export function AvatarCell({ value, column, row }) {
+  console.log(row.original.role)
   return (
     <div className="flex items-center">
       <div className="flex-shrink-0 h-10 w-10">
