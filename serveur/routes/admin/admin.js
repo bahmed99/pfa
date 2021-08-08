@@ -137,4 +137,34 @@ router.put('/updateAdmin',requireLoginAdmin,(req,res)=>{
 })
 
 
+router.delete('/deleteEmployee/:id',(req,res)=>{
+    Employee.findOne({_id:req.params.id})
+    .then(employee=>{
+            Client.find({employee:employee.id})
+            .then(result1=>{
+                console.log(result1)
+                for (let i=0 ; i< result1.length ; i++ )
+                {
+                    result1[i].employee = null 
+                    result1[i].timetable = []
+                    result1[i].save()
+
+                }
+                fs.unlink(`../client/public/uploads/profile/employes/${empolyee.pic}`, function (err) {
+                    if (err) return console.log(err);
+                    console.log('file deleted successfully');
+                });
+                employee.remove()
+                .then(r=>{
+                    res.send("ok")
+                })
+                
+            })
+        }).catch(err=>{
+            console.log(err)
+        })
+
+})
+
+
 module.exports = router
