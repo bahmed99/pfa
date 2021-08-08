@@ -182,7 +182,7 @@ router.put('/updateClient/:id',requireLoginEmployee,(req,res)=>{
         result.pic = pic
         result.tel = tel
         result.age = age
-        Client.save()
+        result.save()
         .then(result1=>{
              res.json({message:"saved successfully"})
         })  
