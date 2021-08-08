@@ -1,12 +1,12 @@
 import Sidebar from '../../components/k.employeeComponents/sidebar'
 import Navbar from '../../components/k.employeeComponents/navbar'
-import CarsListEmployee from "../../components/k.cars/carsListEmployee"
+import CarsListAdmin from "../../components/k.cars/carsListAdmin"
 import "./cars.css"
 import React from 'react'
 
 
 
-export default function Cars() {
+export default function Car() {
  
   return (
         
@@ -20,7 +20,7 @@ export default function Cars() {
                <br/>
                <br/>
                <br/>
-                <CarsListEmployee  />
+                <CarsListAdmin  />
             </div> 
         </div>
     )

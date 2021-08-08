@@ -35,6 +35,7 @@ import Profile1 from "./components/o.admin/Profile";
 
 import Emplois from "./pages/a.employe/Emplois.js";
 import Cars from "./pages/k.employee/cars.js";
+import Car from "./pages/k.admin/cars.js";
 import EmploisClient from "./pages/a.client/emplois.js";
 import SigninAdmin from "./pages/a.admin/auth/signin"
 import ForgotPassword from "./pages/a.admin/auth/forgotPassword";
@@ -143,6 +144,7 @@ export default function MainRouter() {
                         <Route exact path={"/utilisateur-profile/:id"} component={Profile1} />
                         <Route exact path={"/home"} component={HomeAdmin} />
                         <Route exact path={"/emplois"} component={EmploisAdmin} />
+                        <Route exact path={"/cars"} component={Car} />
 
 
                     </div> : ""}

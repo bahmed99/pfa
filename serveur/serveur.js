@@ -7,32 +7,16 @@ const morgan = require('morgan')
 const cors = require('cors')
 
 const mongoose = require("mongoose")
-
+const admin = require("./routes/client/client")
+const client = require("./routes/client/client")
+const navbar = require("./routes/navbar/index")
+const auth = require("./routes/auth/auth")
+const courses = require("./routes/course/course.js")
+const employee = require("./routes/employee/employee")
+const car = require("./routes/car/car")
 const port = process.env.PORT || 3001;
 
 const mongoURI = "mongodb+srv://pfa:pfa@cluster0.bntsm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-
-app.use(express.json())
-//app.use(express.urlencoded({limit: '50mb'}));
-
-app.use(cors())
-
-app.use(morgan('tiny'))
-
-app.use("/client", require("./routes/client/client"))
-app.use("/navbar", require("./routes/navbar/index"))
-
-app.use("/admin", require("./routes/admin/admin"))
-
-app.use("/employe", require("./routes/employee/employee"))
-
-app.use("/auth", require("./routes/auth/auth"))
-
-
-app.use("/courses", require("./routes/course/course.js"))
-
-
-
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }).then((result) =>
     console.log("connected to database"),
@@ -44,5 +28,28 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }).
 ).catch(err => {
     console.log("error")
 })
+
+
+app.use(express.json())
+//app.use(express.urlencoded({limit: '50mb'}));
+
+app.use(cors())
+
+app.use(morgan('tiny'))
+
+app.use("/client", client)
+app.use("/navbar", navbar)
+
+app.use("/admin", admin)
+
+app.use("/employe", employee)
+app.use("/car",car)
+app.use("/auth", auth)
+
+
+app.use("/courses", courses)
+
+
+
 
 
