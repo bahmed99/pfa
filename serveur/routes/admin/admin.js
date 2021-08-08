@@ -3,6 +3,8 @@ const router = express.Router()
 const Employee = require("../../models/user/employe")
 const Client = require("../../models/user/client")
 const Admin = require("../../models/user/admin")
+
+
 const requireLoginAdmin = require("../../middleware/requireLoginAdmin")
 
 
@@ -94,20 +96,74 @@ router.get ("/admin-utilisateur/:id", requireLoginAdmin, (req,res)=>{
                 {
                     Admin.findOne({_id:req.params.id})
                     .exec((err,admin)=>{
-                        res.json(admin)
+                        res.json({user:admin, role : "Admin"})
                     })
                 }
                 else
                 {
-                    res.json(employee)
+                    res.json({user:employee, role : "Employée"})
                 }
             })
         }
         else
         {
-            res.json(client)
+            res.json({user:client, role : "Client"})
         }
     })
+})
+
+router.put('/updateAdmin',requireLoginAdmin,(req,res)=>{
+    const { name , email , cin ,  tel , age} = req.body
+    if (!name || !email || !cin ||  !tel || !age)
+    {
+        return res.status(422).json({error : "please add all fields"})
+    }
+    Admin.findOne({_id:req.admin._id})
+    .then(result=>{
+        result.name = name
+        result.email = email
+        result.cin =cin
+        result.tel = tel
+        result.age = age
+        result.save()
+        .then(result1=>{
+             res.json({message:"saved successfully"})
+        })  
+        
+    }).catch(err=>{
+        console.log(err)
+    })
+
+})
+
+
+router.delete('/deleteEmployee/:id',(req,res)=>{
+    Employee.findOne({_id:req.params.id})
+    .then(employee=>{
+            Client.find({employee:employee.id})
+            .then(result1=>{
+                console.log(result1)
+                for (let i=0 ; i< result1.length ; i++ )
+                {
+                    result1[i].employee = null 
+                    result1[i].timetable = []
+                    result1[i].save()
+
+                }
+                fs.unlink(`../client/public/uploads/profile/employes/${empolyee.pic}`, function (err) {
+                    if (err) return console.log(err);
+                    console.log('file deleted successfully');
+                });
+                employee.remove()
+                .then(r=>{
+                    res.send("ok")
+                })
+                
+            })
+        }).catch(err=>{
+            console.log(err)
+        })
+
 })
 
 

@@ -28,6 +28,34 @@ const upload = multer({
     storage: storage,
 })
 
+const storage1 = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '../client/public/uploads/profile/employes');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+
+    }
+});
+
+const upload1 = multer({
+    storage: storage1,
+})
+
+const storage2 = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '../client/public/uploads/profile/admin');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+
+    }
+});
+
+const upload2= multer({
+    storage: storage2,
+})
+
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -161,7 +189,7 @@ router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req
 })
 
 
-router.post('/employee/signup', requireLoginAdmin, upload.single('image'), (req, res) => {
+router.post('/employee/signup', requireLoginAdmin, upload1.single('image'), (req, res) => {
     const { name, email, cin, age, tel } = req.body
     if (!name || !email || !cin || !age || !tel) {
         return res.status(422).json({ error: "Essayer de remplir tous les champs" })
@@ -369,10 +397,11 @@ router.post("/admin/login", (req, res) => {
 
 
 
-router.post("/admin/signup", requireLoginAdmin, upload.single('image'), (req, res) => {
 
-    const { name, email, age, tel } = req.body
-    if (!name || !email || !age || !tel) {
+router.post("/admin/signup", requireLoginAdmin, upload2.single('image'), (req, res) => {
+
+    const { name, email, age, tel ,cin} = req.body
+    if (!name || !email || !age || !tel||!cin) {
         console.log("1")
         return res.status(422).json({ error: "Essayer de remplir tous les champs" })
     }
@@ -396,6 +425,7 @@ router.post("/admin/signup", requireLoginAdmin, upload.single('image'), (req, re
                             email: email,
                             age: age,
                             tel: tel,
+                            cin:cin,
                             password: hashedpassword,
                             pic: req.file.originalname
 

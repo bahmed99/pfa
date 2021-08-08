@@ -181,8 +181,8 @@ router.put('/updateClient/:id',requireLoginEmployee,(req,res)=>{
         result.cin =cin
         result.pic = pic
         result.tel = tel
-        result.age = Aggregate
-        Client.save()
+        result.age = age
+        result.save()
         .then(result1=>{
              res.json({message:"saved successfully"})
         })  
@@ -192,6 +192,31 @@ router.put('/updateClient/:id',requireLoginEmployee,(req,res)=>{
     })
 
 })
+
+router.put('/updateEmploye',requireLoginEmployee,(req,res)=>{
+    const { name , email , cin ,  tel , age} = req.body
+    if (!name || !email || !cin  || !tel || !age)
+    {
+        return res.status(422).json({error : "please add all fields"})
+    }
+    Employee.findOne({_id:req.employee._id})
+    .then(result=>{
+        result.name = name
+        result.email = email
+        result.cin =cin
+        result.tel = tel
+        result.age = age
+        result.save()
+        .then(result1=>{
+             res.json({message:"saved successfully"})
+        })  
+        
+    }).catch(err=>{
+        console.log(err)
+    })
+
+})
+
 
 
 

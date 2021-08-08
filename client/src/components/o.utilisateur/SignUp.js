@@ -88,7 +88,7 @@ const SignUp = (props) => {
                                 <Label>Nom</Label>
                                     <Input 
                                     type = "text"
-                                    placeholder = "Nom"
+                                    placeholder = "Nom*"
                                     value={name}
                                     onChange={(e)=>setName(e.target.value)} />
                                 
@@ -98,7 +98,7 @@ const SignUp = (props) => {
                                 <Label>Email</Label>
                                 <Input 
                                 type = "text"
-                                placeholder = "Email"
+                                placeholder = "Email*"
                                 value={email}
                                 onChange={(e)=>setEmail(e.target.value)} />
                                 
@@ -107,7 +107,7 @@ const SignUp = (props) => {
                                 <Label>Cin</Label>
                                 <Input 
                                 type = "text"
-                                placeholder = "cin"
+                                placeholder = "Cin*"
                                 value={cin}
                                 onChange={(e)=>setCin(e.target.value)} />
                                 
@@ -116,7 +116,7 @@ const SignUp = (props) => {
                                 <Label>Age</Label>
                                 <Input 
                                 type = "text"
-                                placeholder = "age"
+                                placeholder = "Age*"
                                 value={age}
                                 onChange={(e)=>setAge(e.target.value)} />
                                 
@@ -125,7 +125,7 @@ const SignUp = (props) => {
                                 <Label>Télephone</Label>
                                 <Input 
                                 type = "text"
-                                placeholder = "Tel"
+                                placeholder = "Tel*"
                                 value={tel}
                                 onChange={(e)=>setTel(e.target.value)} />
                                 
