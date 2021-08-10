@@ -128,7 +128,7 @@ router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req
     Client.findOne({ email: email })
         .then(savedUser => {
             if (savedUser) {
-                return res.status(422).json({ error: "Il existe un autre utilisateur avec ce email" })
+                return res.status(422).json({ error: "Il existe un autre utilisateur avec cet email" })
             }
             crypto.randomBytes(32, (err, buffer) => {
                 if (err) {

@@ -1,6 +1,9 @@
 const mongoose = require('mongoose')
 const { ObjectId } = mongoose.Schema.Types
 const carSchema = new mongoose.Schema({
+    status:{ 
+        type: String, 
+        enum:['0','1'], default :'0' }, 
     pic:{
         type: String,
         default: "https://res.cloudinary.com/cnq/image/upload/v1586197723/noimage_d4ipmd.png"
@@ -22,9 +25,14 @@ const carSchema = new mongoose.Schema({
         required: true
     },
     timetable: [{
-        date: { type: Date, required: true },
-        duration: { type: Number, default: 1 }
+        start: { type: Date},
+        end: { type: Date },
+        title: { type: String },
+        color: { type: String },
+        eventContent: { type: String }
+        
     }],
+    
     assuranceDate:{
         type:Date,
         required:true
@@ -38,19 +46,23 @@ const carSchema = new mongoose.Schema({
         required:true
     },
     assurance:{
-        type: Boolean
+        type: String,
+        default:"deb"
         
     },
     vignette:{
-        type: Boolean
+        type: String,
+        default:"deb"
         
     },
     technicVisit:{
-        type: Boolean
+        type: String,
+        default:"deb"
         
     },
     entretien :{
-        type: Boolean
+        type: String,
+        default:"deb",
     }
 
 },{timestamps : true})

@@ -1,8 +1,5 @@
 import React from 'react'
-import Icon from '@material-ui/core/Icon';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import AddIcon from '@material-ui/icons/Add';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import { carsData } from './carsData';
@@ -96,7 +93,7 @@ const BootstrapButton = withStyles({
     },
 })(Button);
 
-function CarsList() {
+function CarsListAdmin() {
     const classes = useStyles();
     return (
         <div>
@@ -165,4 +162,4 @@ function CarsList() {
     )
 }
 
-export default CarsList
+export default CarsListAdmin

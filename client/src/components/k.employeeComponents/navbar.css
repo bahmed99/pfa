@@ -28,7 +28,7 @@ margin-top: 15px;
     justify-content: center;
     text-align: center;
     position: fixed;
-    z-index: 2;   
+    z-index: 9999;   
 }
 .Navabar-container-close{
   background-color: #3d3e42; 
@@ -40,7 +40,7 @@ margin-top: 15px;
   justify-content: center;
   text-align: center;
   position: fixed; 
-  z-index: 2;  
+  z-index: 100;  
 }
 .navbar-right{
     padding-right: 40px;
