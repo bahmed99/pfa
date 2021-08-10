@@ -97,7 +97,7 @@ export default function Profile() {
                                     <i class="fa fa-calendar" aria-hidden="true" style={{ color: "white" }} ></i>
                                 </button>
                             </div> */}
-                            {role==="Employée"?<div>
+                            {(role==="Employée" && id!==JSON.parse(localStorage.getItem("user"))._id)?<div>
                                 <button className="fa-fa-Mod1" onClick={() => deleteClient(id)}>
                                     <i class="fa fa-trash" aria-hidden="true" style={{ color: "white" }} ></i>
                                 </button>
