@@ -55,6 +55,7 @@ exports.getCars = (req, res) => {
             const response = [];
             cars.forEach((car) => {
                 response.push({
+                    _id:car._id ,
                     serie:car.serie,
                     service:car.service,
                     mileage:car.mileage,

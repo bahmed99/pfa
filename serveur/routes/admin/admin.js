@@ -3,6 +3,7 @@ const router = express.Router()
 const Employee = require("../../models/user/employe")
 const Client = require("../../models/user/client")
 const Admin = require("../../models/user/admin")
+const fs = require('fs')
 
 
 const requireLoginAdmin = require("../../middleware/requireLoginAdmin")
@@ -137,12 +138,14 @@ router.put('/updateAdmin',requireLoginAdmin,(req,res)=>{
 })
 
 
-router.delete('/deleteEmployee/:id',(req,res)=>{
+router.delete('/deleteEmployee/:id',requireLoginAdmin,(req,res)=>{
     Employee.findOne({_id:req.params.id})
+    .populate("client","_id cin")
+    .populate("employee","_id pic")
     .then(employee=>{
+            console.log(employee)
             Client.find({employee:employee.id})
             .then(result1=>{
-                console.log(result1)
                 for (let i=0 ; i< result1.length ; i++ )
                 {
                     result1[i].employee = null 
@@ -150,13 +153,13 @@ router.delete('/deleteEmployee/:id',(req,res)=>{
                     result1[i].save()
 
                 }
-                fs.unlink(`../client/public/uploads/profile/employes/${empolyee.pic}`, function (err) {
+                fs.unlink(`../client/public/uploads/profile/employes/${employee.pic}`, function (err) {
                     if (err) return console.log(err);
                     console.log('file deleted successfully');
                 });
+                res.json(employee.client)
                 employee.remove()
-                .then(r=>{
-                    res.send("ok")
+                .then(r=>{ 
                 })
                 
             })
@@ -166,5 +169,53 @@ router.delete('/deleteEmployee/:id',(req,res)=>{
 
 })
 
+router.get('/AffectationEmployee',requireLoginAdmin,(req,res)=>{
+    Employee.find()
+    .then(result=>{
+        res.json(result)
+    })
+})
+router.get('/AffectationClient',requireLoginAdmin,(req,res)=>{
+    Client.find({employee:null})
+    .then(result=>{
+        res.json(result)
+    })
+})
+
+router.put('/choixclient-employee',requireLoginAdmin,(req,res)=>{
+    const {data1,data2} = req.body
+    if (data1 === "" || data2 ==="")
+    {
+        return res.status(422).json({error : "please add all fields"})
+    }
+    Client.findOne({cin:data1})
+    .then(result=>{
+        Employee.findOne({cin:data2})
+        .then(result1=>{
+            result.employee = result1._id
+            result.save()
+            .then(r=>{
+                Employee.findByIdAndUpdate(result1._id, {
+                    $push: { client: result._id }
+                }, {
+                    new: true
+                }).then(r1=>{
+                    res.json({message:"ok"})
+                })
+            })
+        })
+    })
+
+})
+router.put('/essai',(req,res)=>{
+    Client.findOne({_id:"610b04f544b0dc31dc45ce4a"})
+    .then(result=>{
+        result.employee=null 
+        result.save()
+        .then(t=>{
+            res.json({message:"ok"})
+        })
+    })
+})
 
 module.exports = router
