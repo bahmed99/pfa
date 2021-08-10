@@ -6,12 +6,13 @@ import image1 from './../../pages/o.Signin/o.images/0004.gif'
 import { useParams , useHistory } from 'react-router-dom'
 
 import EmploisAdminUtilisateur from '../a.emplois/EmploisAdminUtilisateur'
-
+import AffectationClient from './AffectationClient'
 
 export default function Profile() {
    
     const History = useHistory()
     const [date, setDate] = useState("")
+    const [infoclient,setInfoclient]=useState([])
     const [role, setRole] = useState("")
     const [data, setData] = useState([])
     const { id } = useParams()
@@ -26,17 +27,26 @@ export default function Profile() {
                 "Authorization": "Bearer " + localStorage.getItem("jwt")
             },
         }).then(res => res.json())
-            .then(result => {
-                setData(result.user)
-                setRole(result.role)
-                setDate(`${result.user.createdAt[8]}${result.user.createdAt[9]}/${result.user.createdAt[5]}${result.user.createdAt[6]}/${result.user.createdAt[0]}${result.user.createdAt[1]}${result.user.createdAt[2]}${result.user.createdAt[3]}`)
-            })
+        .then(result => {
+            setData(result.user)
+            setRole(result.role)
+            setDate(`${result.user.createdAt[8]}${result.user.createdAt[9]}/${result.user.createdAt[5]}${result.user.createdAt[6]}/${result.user.createdAt[0]}${result.user.createdAt[1]}${result.user.createdAt[2]}${result.user.createdAt[3]}`)
+        })
 
     }, [])
-    console.log(data)
-    if (!data)
-    {
-        return ""
+    const deleteClient = () => {
+        fetch(`http://localhost:3001/admin/deleteEmployee/${id}`, {
+            method: "delete",
+            headers: {
+                "Content-Type":"application/json" ,
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }
+        }).then(res => res.json())
+            .then(result => {
+                setInfoclient(result)
+                
+           })
+           setAjoutSeanceModalOpen(true)
     }
 
 
@@ -88,7 +98,7 @@ export default function Profile() {
                                 </button>
                             </div>
                             <div>
-                                <button className="fa-fa-Mod1">
+                                <button className="fa-fa-Mod1" onClick={() => deleteClient(id)}>
                                     <i class="fa fa-trash" aria-hidden="true" style={{ color: "white" }} ></i>
                                 </button>
                             </div>
@@ -108,8 +118,11 @@ export default function Profile() {
                 <EmploisAdminUtilisateur data={data.timetable} />
             </div> 
 
-                {/* <UpdateProfile isOpen={ajoutSeanceModalOpen}
-                setModal={setAjoutSeanceModalOpen} /> */}
+                { <AffectationClient isOpen={ajoutSeanceModalOpen}
+                setModal={setAjoutSeanceModalOpen}
+                infoclient={infoclient}
+                setInfoclient={setInfoclient}
+                id = {id} /> }
         </div>
     )
 }

@@ -12,6 +12,8 @@ const { JWT_SECRET } = require('../../Keys')
 const requireLoginEmployee = require('../../middleWare/requireLoginEmployee')
 const requireLoginAdmin = require('../../middleWare/requireLoginAdmin')
 
+const {ObjectId} = require('mongodb');
+
 const multer = require('multer');
 
 
@@ -190,8 +192,8 @@ router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req
 
 
 router.post('/employee/signup', requireLoginAdmin, upload1.single('image'), (req, res) => {
-    const { name, email, cin, age, tel } = req.body
-    if (!name || !email || !cin || !age || !tel) {
+    const { name, email, cin, age, tel , car } = req.body
+    if (!name || !email || !cin || !age || !tel || !car) {
         return res.status(422).json({ error: "Essayer de remplir tous les champs" })
 
     }
@@ -215,7 +217,8 @@ router.post('/employee/signup', requireLoginAdmin, upload1.single('image'), (req
                             tel: tel,
                             pic: req.file.originalname,
                             password: hashedpassword,
-                            cin: cin
+                            cin: cin ,
+                            car : car
                         })
                         employee.save()
                             .then(user => {

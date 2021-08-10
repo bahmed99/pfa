@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // reactstrap components
 import {
   Button,
@@ -14,6 +14,9 @@ import {
 import axios from "axios"
 
 const SignUp = (props) => {
+
+  const [cars, setCars] = useState("")
+  const [car, setCar] = useState("")
   const [tel, setTel] = useState("")
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -23,6 +26,18 @@ const SignUp = (props) => {
   const [role, setRole] = useState("")
 
   const [imagename, setImagename] = useState("")
+  useEffect(() => {
+    axios.get("http://localhost:3001/car/all",{
+      headers:{
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
+      }
+    }).then(result=>{
+        setCars(result.data)
+    })
+
+    
+  }, [])
+  console.log(cars)
   const onClickAjouterSeance = () => {
     if (name && email && cin && image && role) {
       let dataform = new FormData()
@@ -32,8 +47,9 @@ const SignUp = (props) => {
       dataform.append('image', image)
       dataform.append("tel", tel)
       dataform.append("age", age)
+      dataform.append("car", cars[car]._id)
 
-      const data = { name: name, email: email, cin: cin, imgUrl: imagename }
+      const data = { name: name, email: email, cin: cin, imgUrl: imagename , car : car}
       if (role === "Employée") {
         axios.post("http://localhost:3001/auth/employee/signup", dataform, {
           headers: {
@@ -59,6 +75,8 @@ const SignUp = (props) => {
         setImagename('')
         setTel('')
         setAge('')
+        setCar('')
+
       }
       else {
         axios.post("http://localhost:3001/auth/admin/signup", dataform, {
@@ -98,6 +116,7 @@ const SignUp = (props) => {
     setTel('')
     setAge('')
     setRole("")
+    setCars("")
 
   }
   return (
@@ -176,6 +195,21 @@ const SignUp = (props) => {
                   onChange={(e) => setTel(e.target.value)} />
 
               </FormGroup>
+              {(role==="Employée")?<FormGroup>
+                  <Label> Choisir Une voiture </Label>
+                  <Input type='select' onChange={(e) => setCar(e.target.value)}  >
+                      <option default value="">
+                      </option>
+                      {cars.map((element,index)=>(
+                          <option value={index}  key={index}>
+                          {element.serie}
+                          </option>
+                          
+                  ))}
+                  
+                  </Input>
+
+              </FormGroup>:""}
               <FormGroup>
                 <Label>Image</Label>
                 <Input
