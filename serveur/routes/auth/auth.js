@@ -461,8 +461,7 @@ router.post("/admin/signup", requireLoginAdmin, upload2.single('image'), (req, r
         })
 
 
-
-    router.post('/admin/newPassword', (req, res) => {
+router.post('/admin/newPassword', (req, res) => {
         const newPassword = req.body.password
         const sentToken = req.body.token
         Admin.findOne({ resetToken: sentToken, expireToken: { $gt: Date.now() } })
@@ -489,7 +488,7 @@ router.post("/admin/signup", requireLoginAdmin, upload2.single('image'), (req, r
     })
 
 
-    router.post('/admin/mdpOublier', (req, res) => {
+router.post('/admin/mdpOublier', (req, res) => {
         crypto.randomBytes(32, (err, buffer) => {
             if (err) {
                 console.log(err)
