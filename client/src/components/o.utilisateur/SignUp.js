@@ -36,7 +36,7 @@ const SignUp = (props) => {
       dataform.append("tel",tel)
       dataform.append("age",age)
 
-      const data = {id:"5" ,name:name, email:email, cin:cin , imgUrl : imagename }
+      const data = {name:name, email:email, cin:cin , imgUrl : imagename ,status:'Payé',age:age ,tel:tel }
       axios.post("http://localhost:3001/auth/client/signup",dataform,{
               headers:{
                   "Content-Type":"application/json" ,

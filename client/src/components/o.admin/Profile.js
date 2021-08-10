@@ -92,16 +92,16 @@ export default function Profile() {
                                     <h5 className="para-Mod1">{data.tel}</h5>
                                 </div>
                             </div>
-                            <div>
+                            {/* <div>
                                 <button className="fa-fa-Mod2" onClick={() => setSupprimerSeanceModalOpen(true)}>
                                     <i class="fa fa-calendar" aria-hidden="true" style={{ color: "white" }} ></i>
                                 </button>
-                            </div>
-                            <div>
+                            </div> */}
+                            {role==="Employée"?<div>
                                 <button className="fa-fa-Mod1" onClick={() => deleteClient(id)}>
                                     <i class="fa fa-trash" aria-hidden="true" style={{ color: "white" }} ></i>
                                 </button>
-                            </div>
+                            </div>:""}
 
                         </div>
                         <br />

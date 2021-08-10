@@ -3,21 +3,8 @@ const router = express.Router()
 const Employee = require("../../models/user/employe")
 const Client = require("../../models/user/client")
 const requireLoginEmployee = require("../../middleware/requireLoginEmployee")
-const { Aggregate } = require('mongoose')
-// const event = [
-//     {
-//         title: 'séance code', start: '2021-07-30T09:00:00', end: '2021-07-30T10:00:00', color: 'red',
-//         eventContent: 'This is a cool event'
-//     }]
+const fs = require('fs')
 
-// router.put("/",(req,res)=>{
-//     Employee.findByIdAndUpdate("610345ba74a4a7235c78e7be"
-//         ,{
-//          client:["6100317900d35d1ed0abbf83","610062eb4e98bb3a6095a74b"]
-//     }).then(resp=>{
-//         res.send(resp)
-//     })
-// })
 
 
 router.get("/emplois", requireLoginEmployee, (req, res) => {
@@ -122,9 +109,6 @@ router.get("/emplois/:id",requireLoginEmployee,(req,res)=>{
 })
 
 
-
-
-
 router.put("/emplois-delete/:id", requireLoginEmployee,(req, res) => {
     const data = req.body
 
@@ -154,6 +138,10 @@ router.delete('/deleteClient/:id',requireLoginEmployee,(req,res)=>{
         {
             return res.status(422).json({error:err})
         }
+        fs.unlink(`../client/public/uploads/profile/clients/${client.pic}`, function (err) {
+            if (err) return console.log(err);
+            console.log('file deleted successfully');
+        });
         client.remove()
         .then(result=>{
             console.log(result)
