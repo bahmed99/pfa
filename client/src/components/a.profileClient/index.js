@@ -25,7 +25,7 @@ export default function Index() {
             }
         }).then(res => {
             setData(res.data)
-            setNotifications(res.data.notifications)
+            setNotifications(res.data.notifications.reverse())
             setIndex(res.data.notifications.length)
             setPic(res.data.pic)
             setLoading(false)

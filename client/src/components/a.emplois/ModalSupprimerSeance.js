@@ -23,7 +23,8 @@ export default function ModalSupprimerSeance(props) {
         if (client!=="") {
             const seance = {
                 "start": props.fetchSeances[client].start,
-                "end": props.fetchSeances[client].end,    
+                "end": props.fetchSeances[client].end, 
+                "title":props.fetchSeances[client].title   
             }
             props.setModal(false)
             axios.put(`http://localhost:3001/employe/emplois-delete/${props.id}`, seance, {

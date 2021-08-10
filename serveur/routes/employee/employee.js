@@ -131,6 +131,8 @@ router.get("/emplois/:id", requireLoginEmployee, (req, res) => {
 router.put("/emplois-delete/:id", requireLoginEmployee, (req, res) => {
     const data = req.body
 
+    console.log(data)
+
     Employee.findByIdAndUpdate(req.employee._id, {
         $pull: { timetable: data }
     }, {
@@ -140,15 +142,35 @@ router.put("/emplois-delete/:id", requireLoginEmployee, (req, res) => {
             $pull: { timetable: data }
         }, {
             new: true
-        }).then(result => {
+        }
+
+
+        ).then(result => {
             Car.findByIdAndUpdate(resultat.car, {
                 $pull: { timetable: data }
             }, {
                 new: true
             }).then(results => {
+                Client.findByIdAndUpdate(req.params.id, {
+                    $push: {
+                        notifications: {
+                            title: `${req.body.title} a été supprimé`,
+                            nom: req.employee.name,
+                            pic: req.employee.pic
+
+                        }
+                    }
+                }, {
+                    new: true
+                }
+                ).then(r => {
+                    res.send(r)
+                }).catch(e => {
+                    res.send(e)
+                })
 
 
-                res.send(results)
+
             }).catch(errs => {
                 res.send(errs)
             })
