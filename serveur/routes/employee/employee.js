@@ -259,6 +259,28 @@ router.put('/updateEmploye', requireLoginEmployee, (req, res) => {
 
 })
 
+router.put('/updateStatus/:id',(req,res)=>{
+    Client.findOne({_id:req.params.id})
+    .then(result=>{
+        if(result.status === "Payé")
+        {
+            result.status = "Non payé"
+        }
+        else
+        {
+            result.status = "Payé"
+        }
+        result.save()
+        .then(r=>{
+            res.json(r.status)
+        })
+        
+    }).catch(err=>{
+        console.log(err)
+    })
+
+})
+
 
 
 
