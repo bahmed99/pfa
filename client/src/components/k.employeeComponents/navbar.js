@@ -41,6 +41,12 @@ export default function Navbar(props) {
         history.push("/")
         window.location.reload();
     }
+
+    function GoProfile(){
+        // eslint-disable-next-line no-template-curly-in-string
+        history.push(`/utilisateur-profile/${id}`)
+
+    }
     return (
         <>
             <div className={props.closeTester ? "Navabar-container-open z-depth-1" : "Navabar-container-close z-depth-1"} >
@@ -60,7 +66,7 @@ export default function Navbar(props) {
                                     </Dropdown.Toggle> 
                                 <div>
                                     <Dropdown.Menu className="z-depth-1-half dropdown-container" style={{ marginTop: "25px" }}>
-                                        <Dropdown.Item ><div className="dropdown-item-container"><FontAwesomeIcon className="dropdown-icon" icon={faUser} /><p className="dropdown-itm">Profil</p></div></Dropdown.Item>
+                                        <Dropdown.Item ><div className="dropdown-item-container" onClick={GoProfile}><FontAwesomeIcon className="dropdown-icon" icon={faUser} /><p className="dropdown-itm">Profile</p></div></Dropdown.Item>
                                         <Dropdown.Item ><div className="dropdown-item-container" onClick={()=>setAfficherModel(true)}><FontAwesomeIcon className="dropdown-icon" icon={faCog} /><p className="dropdown-itm">Réglage</p></div></Dropdown.Item>
                                         <Dropdown.Divider />
                                         <Dropdown.Item onClick={Disconnect}><div className="dropdown-item-container"><FontAwesomeIcon className="dropdown-icon" icon={faKey} /><p className="dropdown-itm">Déconnexion</p></div></Dropdown.Item>

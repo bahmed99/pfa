@@ -62,9 +62,7 @@ export default function MainRouter() {
         else if (user && detect === 2) {
             //history.push('/')
         }
-        else if (user && detect===3)
-
-{}
+        else if (user && detect === 3) { }
 
         else {
             if (!history.location.pathname.startsWith('/reset') && !history.location.pathname.startsWith('/forgot-password') && !history.location.pathname.startsWith('/sign-in') && !history.location.pathname.startsWith('/admin')) {
@@ -72,7 +70,7 @@ export default function MainRouter() {
             }
 
         }
-        }, [])
+    }, [])
     return (
         <div>
             <Switch>
@@ -133,20 +131,16 @@ export default function MainRouter() {
                         <Route exact path={"/home"} component={Employee} />
                         <Route exact path={"/utilisateurs"} component={Utilisateur} />
                         <Route exact path={"/client-profile/:id"} component={Profile} />
-
+                        <Route exact path={"/utilisateur-profile/:id"} component={Profile1} />
                     </div> : ""}
                 {(user && detect === 3) ?
                     <div>
-
-
                         <Route exact path={"/home"} component={HomeAdmin} />
                         <Route exact path={"/ressources-humaine"} component={Utilisateurs} />
                         <Route exact path={"/utilisateur-profile/:id"} component={Profile1} />
                         <Route exact path={"/home"} component={HomeAdmin} />
                         <Route exact path={"/emplois"} component={EmploisAdmin} />
                         <Route exact path={"/cars"} component={Car} />
-
-
                     </div> : ""}
             </Switch>
         </div>
