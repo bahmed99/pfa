@@ -103,13 +103,15 @@ router.post('/login', (req, res) => {
             else {
                 bcrypt.compare(password, savedUser.password)
                     .then(domatch => {
-                        if (domatch) {
+                        if (domatch) 
+                        {
                             const detect = 1
                             const token = jwt.sign({ _id: savedUser._id }, JWT_SECRET)
-                            const { _id, name, email, cin, pic, timetable, employee } = savedUser
-                            res.json({ detect, token, user: { _id, name, email, cin, pic, timetable, employee } })
+                            const { _id, name, email, cin, pic, timetable, employee , status } = savedUser
+                            res.json({ detect, token, user: { _id, name, email, cin, pic, timetable, employee, status} })
                         }
-                        else {
+                        else 
+                        {
                             return res.status(422).json({ error: "vérifier votre email ou votre mot de passe" })
                         }
                     }).catch(err => {

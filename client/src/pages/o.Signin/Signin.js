@@ -13,6 +13,7 @@ export default function Signin() {
     const [loading,setLoading]=useState(false)
     const [error,setError] = useState(false)
     const [success,setSuccess] = useState(false)
+    const [payee,setPayee] = useState(false)
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
     const PostData = () =>{
@@ -28,7 +29,7 @@ export default function Signin() {
             })
         }).then(res=>res.json())
         .then(data=>{
-            console.log(data)
+
             if(data.error )
             {
                 setLoading(false)
@@ -38,21 +39,39 @@ export default function Signin() {
                     setTimeout(() => setError(false), 2500)
                 }
             }
+            // else if (data.user.status === "Payé")
             else
             {
-                setLoading(false)
-                console.log(data.token)
-                localStorage.setItem("jwt",data.token)
-                localStorage.setItem("user",JSON.stringify(data.user))
-                localStorage.setItem("detect",data.detect)
-                setSuccess(true)
-                setTimeout(() => setSuccess(false), 2500)
+                if (data.detect === 2)
+                {
+                    setLoading(false)
+                    console.log(data.token)
+                    localStorage.setItem("jwt",data.token)
+                    localStorage.setItem("user",JSON.stringify(data.user))
+                    localStorage.setItem("detect",data.detect)
+                    setSuccess(true)
+                    setTimeout(() => setSuccess(false), 2500)
 
-                setTimeout(() => History.push('/home'), 500)
+                    setTimeout(() => History.push('/home'), 500)
+                }
+                else if (data.detect === 1 && data.user.status === "Payé")
+                {
+                    setLoading(false)
+                    console.log(data.token)
+                    localStorage.setItem("jwt",data.token)
+                    localStorage.setItem("user",JSON.stringify(data.user))
+                    localStorage.setItem("detect",data.detect)
+                    setSuccess(true)
+                    setTimeout(() => setSuccess(false), 2500)
 
-                
-               
+                    setTimeout(() => History.push('/home'), 500)
 
+                }
+                else
+                {
+                    setPayee(true)
+                    setTimeout(() => setPayee(false), 2500)
+                }
                 setTimeout(() =>window.location.reload(), 500)
                
             }
@@ -75,6 +94,9 @@ export default function Signin() {
             </Alert>
             <Alert show={success} variant={'success'} style={{width:"700px",margin:"auto auto"}}>
                     { "Connection reussite"}
+            </Alert>
+            <Alert show={payee} variant={'danger'} style={{width:"700px",margin:"auto auto"}}>
+                    { "Il faut Payer pour se connecter"}
             </Alert>
             <div className="second-div">
                     <img alt="" src={image2} className="photo-Mod"/>

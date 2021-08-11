@@ -52,3 +52,36 @@
 th td tbody {
     color: black;
 }
+.button-Mod-Style
+{
+    float : right ;
+    margin-left: 950px;
+    background-color: rgb(34,139,34, 0.75);
+    width: 100px;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+
+}
+.button-Mod-Style:hover 
+{
+    background-color: white;
+    color: black;
+    border: 2px solid rgb(34,139,34, 0.75);
+}
+
+
+.button-Mod-Style1
+{
+    float : right ;
+    margin-left: 950px;
+    background-color: rgb(255,0,0, 0.75);
+    width: 100px;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+}
+.button-Mod-Style1:hover 
+{
+    background-color: white;
+    color: black;
+    border: 2px solid rgb(255,0,0,0.75);
+}
