@@ -72,12 +72,29 @@ export default function AjoutSeanceModal(props) {
 
                         <Form role="form">
 
-                            <FormGroup>
+                            {/* <FormGroup>
                                 <Label>Titre</Label>
 
                                 <Input
                                     onChange={(e) => { setTitle(e.target.value) }}
                                 />
+                            </FormGroup> */}
+                             <FormGroup>
+                                <Label>Titre</Label>
+
+                                <Input type="select"
+                                    onChange={(e) => { setTitle(e.target.value) }}
+                                >
+                                    <option default value=""></option>
+                                    <option value="Séance code">Séance code</option>
+                                    <option value="Séance conduite">Séance conduite</option>
+                                    <option value="Examen code">Examen code</option>
+                                    <option value="Examen Conduite">Examen Conduite</option>
+
+
+                                </Input>
+
+
                             </FormGroup>
 
                             <FormGroup>

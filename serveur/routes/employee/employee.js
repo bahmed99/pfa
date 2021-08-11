@@ -12,6 +12,7 @@ router.get("/emplois", requireLoginEmployee, (req, res) => {
     res.status(200).send(req.employee.timetable)
 })
 
+
 router.put("/emplois", requireLoginEmployee, (req, res) => {
     Employee.findByIdAndUpdate(req.employee._id, {
         $push: { timetable: req.body }

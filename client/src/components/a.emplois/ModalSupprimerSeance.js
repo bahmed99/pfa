@@ -54,7 +54,7 @@ export default function ModalSupprimerSeance(props) {
     function ConvertionHeure(str){
     
         // eslint-disable-next-line no-useless-concat
-        return (str.substring(11, 13) +"h"+ ':' + str.substring(14, 16) )
+        return (parseInt(str.substring(11, 13))+1 +"h"+ ':' + str.substring(14, 16) )
      }
   
     return (
