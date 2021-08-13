@@ -23,7 +23,8 @@ export default function ModalSupprimerSeance(props) {
         if (client!=="") {
             const seance = {
                 "start": props.fetchSeances[client].start,
-                "end": props.fetchSeances[client].end,    
+                "end": props.fetchSeances[client].end, 
+                "title":props.fetchSeances[client].title   
             }
             props.setModal(false)
             axios.put(`http://localhost:3001/employe/emplois-delete/${props.id}`, seance, {
@@ -53,7 +54,7 @@ export default function ModalSupprimerSeance(props) {
     function ConvertionHeure(str){
     
         // eslint-disable-next-line no-useless-concat
-        return (str.substring(11, 13) +"h"+ ':' + str.substring(14, 16) )
+        return (parseInt(str.substring(11, 13))+1 +"h"+ ':' + str.substring(14, 16) )
      }
   
     return (

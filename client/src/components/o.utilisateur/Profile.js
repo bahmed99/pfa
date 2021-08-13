@@ -11,6 +11,7 @@ export default function Profile() {
     const History = useHistory()
     const [date, setDate] = useState("")
     const [data, setData] = useState([])
+    const [status,setStatus] = useState("")
     const { id } = useParams()
     const [selectedGroupe, setSelectedGroupe] = useState(null)
     const [ajoutSeanceModalOpen, setAjoutSeanceModalOpen] = useState(false)
@@ -43,7 +44,6 @@ export default function Profile() {
         }).then(res => res.json())
             .then(result => {
                 console.log(result)
-
             })
         setTimeout(() => History.push('/utilisateurs'), 1000)
         // fetch("http://localhost:3001/employe/employee-clients",{
@@ -55,6 +55,19 @@ export default function Profile() {
         // .then(result1=>{
         //     setData(result1)
         // })
+    }
+
+    const ChangeStatus = (id) =>{
+        fetch(`http://localhost:3001/employe/updateStatus/${id}`, {
+            method: "put",
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }
+        }).then(res=>res.json())
+        .then(result=>{
+            setStatus(result)
+            setTimeout(() =>window.location.reload(), 500)
+        })
     }
 
 
@@ -96,8 +109,11 @@ export default function Profile() {
                                 <div style={{ display: "flex", justifyContent: "space-between", width: "80%" }}>
                                     <h5 className="para-Mod1">Telephone :</h5>
                                     <h5 className="para-Mod1">{data.tel}</h5>
+                                    
                                 </div>
+                                
                             </div>
+                            
                             <div>
                                 <button className="fa-fa-Mod2" onClick={() => setSupprimerSeanceModalOpen(true)}>
                                     <i class="fa fa-calendar" aria-hidden="true" style={{ color: "white" }} ></i>
@@ -110,13 +126,13 @@ export default function Profile() {
                             </div>
 
                         </div>
+                
+                        {(data.status === "Payé")?<button className="button-Mod-Style" onClick={() => ChangeStatus(id)}>Payé</button>
+                        :(data.status === "Non payé")?<button className="button-Mod-Style1" onClick={() => ChangeStatus(id)}>Non Payée</button>
+                        :""}
                         <br />
-
-
-
-
                     </div>
-
+                   
                 </div>
 
             </div>

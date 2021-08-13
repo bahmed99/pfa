@@ -63,9 +63,7 @@ export default function MainRouter() {
         else if (user && detect === 2) {
             //history.push('/')
         }
-        else if (user && detect===3)
-
-{}
+        else if (user && detect === 3) { }
 
         else {
             if (!history.location.pathname.startsWith('/reset') && !history.location.pathname.startsWith('/forgot-password') && !history.location.pathname.startsWith('/sign-in') && !history.location.pathname.startsWith('/admin')) {
@@ -73,7 +71,7 @@ export default function MainRouter() {
             }
 
         }
-        }, [])
+    }, [])
     return (
         <div>
             <Switch>
@@ -105,7 +103,7 @@ export default function MainRouter() {
                 {(user && detect === 1) ?
                     <div>
 
-                        <Route exact path={"/home"} component={HomeClient} />
+                        <oRute exact path={"/home"} component={HomeClient} />
                         <Route exact path={"/avis"}>
                             <NavBarClient />
                             <Avis />
@@ -135,21 +133,22 @@ export default function MainRouter() {
                         <Route exact path={"/utilisateurs"} component={Utilisateur} />
                         <Route exact path={"/notifications"} component={Notifications} />
                         <Route exact path={"/client-profile/:id"} component={Profile} />
-
+                        <Route exact path={"/utilisateur-profile/:id"} component={Profile1} />
                     </div> : ""}
                 {(user && detect === 3) ?
                     <div>
-
-
                         <Route exact path={"/home"} component={HomeAdmin} />
                         <Route exact path={"/ressources-humaine"} component={Utilisateurs} />
                         <Route exact path={"/utilisateur-profile/:id"} component={Profile1} />
                         <Route exact path={"/home"} component={HomeAdmin} />
                         <Route exact path={"/emplois"} component={EmploisAdmin} />
                         <Route exact path={"/cars"} component={Car} />
+<<<<<<< HEAD
                         <Route exact path={"/notifications"} component={Notifications} />
 
 
+=======
+>>>>>>> 1d5437d6be5822f38da76003110e825b23977c82
                     </div> : ""}
             </Switch>
         </div>

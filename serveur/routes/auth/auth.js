@@ -12,6 +12,8 @@ const { JWT_SECRET } = require('../../Keys')
 const requireLoginEmployee = require('../../middleWare/requireLoginEmployee')
 const requireLoginAdmin = require('../../middleWare/requireLoginAdmin')
 
+const {ObjectId} = require('mongodb');
+
 const multer = require('multer');
 
 
@@ -101,13 +103,15 @@ router.post('/login', (req, res) => {
             else {
                 bcrypt.compare(password, savedUser.password)
                     .then(domatch => {
-                        if (domatch) {
+                        if (domatch) 
+                        {
                             const detect = 1
                             const token = jwt.sign({ _id: savedUser._id }, JWT_SECRET)
-                            const { _id, name, email, cin, pic, timetable, employee } = savedUser
-                            res.json({ detect, token, user: { _id, name, email, cin, pic, timetable, employee } })
+                            const { _id, name, email, cin, pic, timetable, employee , status } = savedUser
+                            res.json({ detect, token, user: { _id, name, email, cin, pic, timetable, employee, status} })
                         }
-                        else {
+                        else 
+                        {
                             return res.status(422).json({ error: "vérifier votre email ou votre mot de passe" })
                         }
                     }).catch(err => {
@@ -190,8 +194,8 @@ router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req
 
 
 router.post('/employee/signup', requireLoginAdmin, upload1.single('image'), (req, res) => {
-    const { name, email, cin, age, tel } = req.body
-    if (!name || !email || !cin || !age || !tel) {
+    const { name, email, cin, age, tel , car } = req.body
+    if (!name || !email || !cin || !age || !tel || !car) {
         return res.status(422).json({ error: "Essayer de remplir tous les champs" })
 
     }
@@ -215,7 +219,8 @@ router.post('/employee/signup', requireLoginAdmin, upload1.single('image'), (req
                             tel: tel,
                             pic: req.file.originalname,
                             password: hashedpassword,
-                            cin: cin
+                            cin: cin ,
+                            car : car
                         })
                         employee.save()
                             .then(user => {
@@ -461,8 +466,7 @@ router.post("/admin/signup", requireLoginAdmin, upload2.single('image'), (req, r
         })
 
 
-
-    router.post('/admin/newPassword', (req, res) => {
+router.post('/admin/newPassword', (req, res) => {
         const newPassword = req.body.password
         const sentToken = req.body.token
         Admin.findOne({ resetToken: sentToken, expireToken: { $gt: Date.now() } })
@@ -489,7 +493,7 @@ router.post("/admin/signup", requireLoginAdmin, upload2.single('image'), (req, r
     })
 
 
-    router.post('/admin/mdpOublier', (req, res) => {
+router.post('/admin/mdpOublier', (req, res) => {
         crypto.randomBytes(32, (err, buffer) => {
             if (err) {
                 console.log(err)

@@ -7,7 +7,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 
 const mongoose = require("mongoose")
-const admin = require("./routes/client/client")
+const admin = require("./routes/admin/admin")
 const client = require("./routes/client/client")
 const navbar = require("./routes/navbar/index")
 const auth = require("./routes/auth/auth")
