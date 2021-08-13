@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Employee = require("../../models/user/employe")
 const Client = require("../../models/user/client")
+const Car = require("../../models/car/car")
 const requireLoginEmployee = require("../../middleware/requireLoginEmployee")
 const { Aggregate } = require('mongoose')
 // const event = [
@@ -57,13 +58,35 @@ router.put("/emplois", requireLoginEmployee, (req, res) => {
             }).then(not=>{
                 res.status(200).send(not)
             })
-
-
-
         }).catch(errs => {
             res.status(400).send(errs)
-        })
+        });
 
+        Car.findById({_id: req.body.idCar}).then((car) => {
+            if(car.service===false){
+                Car.findByIdAndUpdate(req.body.idCar, {
+                    $push: {
+                        timetable: {
+                            start: req.body.start,
+                            end: req.body.end,
+                            title: req.body.title,
+                            color: req.body.color,
+                            eventContent: req.body.eventContent
+                        }
+                    }
+                }, {
+                    new: true
+                }).then(resultat => {
+                    
+                    res.status(200).send({message: "timetable car updated"});
+                }).catch(errs => {
+                    res.status(400).send(errs)
+                });
+            }
+        }).catch((err)=>{
+            res.status(400).send(err)
+        });
+        
 
 
     }).catch(err => {

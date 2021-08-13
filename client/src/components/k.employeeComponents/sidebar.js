@@ -46,7 +46,7 @@ export default function Sidebar(props) {
                         <NavLink exact to="/exercices" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="pencil">Exercices</CDBSidebarMenuItem>
                         </NavLink>
-                        <NavLink exact to="/natifications" activeClassName="activeClicked">
+                        <NavLink exact to="/notifications" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="bell">
                                 Notifications
                             </CDBSidebarMenuItem>

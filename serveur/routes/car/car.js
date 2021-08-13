@@ -6,10 +6,14 @@ const isEmployee = require("../../middleWare/requireLoginEmployee")
 
 const control = require("../../controllers/car.controllers")
 
-router.get("/all", isAdmin,isEmployee,control.getCars)
-router.post("/add",isAdmin,control.addCar)
-router.patch("/:id",control.updateCar)
-router.delete("/:id",isAdmin,control.deleteCar)
+router.get("/notif",control.notif);
+router.patch("/check",control.reglerAnomalie);
+router.patch("/addKm",control.addKm);
+router.get("/all",control.getCars);
+router.get("/:id",control.getCarById);
+router.post("/add",control.addCar);
+router.patch("/:id",control.updateCar);
+router.delete("/:id",isAdmin,control.deleteCar);
 
 module.exports=router
 
