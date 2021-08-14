@@ -18,6 +18,7 @@ export default function AjoutSeanceModal(props) {
     const [description, setDescription] = useState("")
     const [color, setColor] = useState("#369579")
     const [client, setClient] = useState("")
+    const [car,setCar]=useState("")
     const [nom, setNom] = useState("")
 
     const onClickAjouterSeance = async () => {
@@ -29,7 +30,10 @@ export default function AjoutSeanceModal(props) {
                 "eventContent": props.clients[client].name,
                 "color": color,
                 "client":props.clients[client]._id,
-                "nomClient":props.clients[client].name
+                "nomClient":props.clients[client].name,
+                
+                
+                
             }
             console.log(seance)
             props.setModal(false)

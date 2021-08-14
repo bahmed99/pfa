@@ -1,13 +1,11 @@
 import Sidebar from '../../components/k.employeeComponents/sidebar'
 import Navbar from '../../components/k.employeeComponents/navbar'
-import CarsListAdmin from "../../components/k.cars/carsListAdmin"
-import User from "../../components/k.car/utilisateurs"
-import "./cars.css"
+import Notification from '../../components/k.notification/Notification'
 import React from 'react'
 
 
 
-export default function Car() {
+export default function Notifications() {
  
   return (
         
@@ -17,8 +15,11 @@ export default function Car() {
                 <Sidebar />
             </div>
             <div className="col-md-8">
-              
-                <User />
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+                <Notification/>
             </div> 
         </div>
     )
