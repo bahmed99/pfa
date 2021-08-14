@@ -22,17 +22,18 @@ export default function Contact() {
         <div className="bg" >
             <div className="textCenter">
                 <Container>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <h1 className="titleEquipe">Contactez-nous</h1>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
                     <Row>
                         <Col >
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <h1 >Contactez-nous</h1>
-                            <br />
-                            <br />
-                            <br />
-                            <br />
+                            
                             <Form method="POST" action="send" className="contact-form">
                                 <Row>
                                     <Col md="6">

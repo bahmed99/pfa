@@ -255,7 +255,6 @@ router.delete('/deleteClient/:id', requireLoginEmployee, (req, res) => {
             });
             client.remove()
                 .then(result => {
-                    console.log(result)
                     Employee.findByIdAndUpdate(req.employee._id, {
                         $pull: { client: req.params.id }
                     }, {
