@@ -6,6 +6,39 @@ const Car = require("../../models/car/car")
 const requireLoginEmployee = require("../../middleware/requireLoginEmployee")
 const fs = require('fs')
 
+const multer = require('multer');
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '../client/public/uploads/cours');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+});
+
+const upload = multer({
+    storage: storage,
+})
+
+router.post('/AjouterCours',requireLoginEmployee,upload.single("file"),(req,res)=>{
+    const {nom} = req.body
+    var data = fs.readFileSync("../client/src/data/cours.json");
+    var myObject = JSON.parse(data);
+    let newData = {
+    nom : nom ,
+    file : req.file.originalname , 
+    id : myObject.length+1 
+    };
+    myObject.push(newData);
+    var newData2 = JSON.stringify(myObject);
+    fs.writeFile("../client/src/data/cours.json", newData2, (err) => {
+    if (err) throw err;
+    res.json("New data added");
+    });
+
+})
 
 
 router.get("/emplois", requireLoginEmployee, (req, res) => {

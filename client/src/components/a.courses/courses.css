@@ -62,14 +62,14 @@
   {
 
     line-height:20px;
-    
-    
-    
+  
   }
   
   .textContainerCourses{
     background: linear-gradient(0deg,#369579    0%,   #718a8a 70%);
-   border-radius: 12px;
+
+   border-top-left-radius: 40px;
+   border-bottom-right-radius: 100px;
     /* background-color: #dededf; */
     padding: 50px 250px;
     width: 90%;
