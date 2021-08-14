@@ -65,13 +65,35 @@ router.put("/emplois", requireLoginEmployee, (req, res) => {
 
 
             })
-
-
-
         }).catch(errs => {
             res.status(400).send(errs)
-        })
+        });
 
+        Car.findById({_id: req.body.idCar}).then((car) => {
+            if(car.service===false){
+                Car.findByIdAndUpdate(req.body.idCar, {
+                    $push: {
+                        timetable: {
+                            start: req.body.start,
+                            end: req.body.end,
+                            title: req.body.title,
+                            color: req.body.color,
+                            eventContent: req.body.eventContent
+                        }
+                    }
+                }, {
+                    new: true
+                }).then(resultat => {
+                    
+                    res.status(200).send({message: "timetable car updated"});
+                }).catch(errs => {
+                    res.status(400).send(errs)
+                });
+            }
+        }).catch((err)=>{
+            res.status(400).send(err)
+        });
+        
 
 
     }).catch(err => {

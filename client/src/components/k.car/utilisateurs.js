@@ -10,7 +10,12 @@ import Index from './table/index'
 
 
 export default function Utilisateurs() {
+    const [selectedGroupe,setSelectedGroupe]=useState(null)
+    const [ajoutSeanceModalOpen,setAjoutSeanceModalOpen]=useState(false)
+    const [selectInfoData,setSelectInfoData]=useState(null);
 
+   
+    
     return (
 
         <div >

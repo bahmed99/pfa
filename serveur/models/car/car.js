@@ -6,7 +6,7 @@ const carSchema = new mongoose.Schema({
         enum:['0','1'], default :'0' }, 
     pic:{
         type: String,
-        default: "https://res.cloudinary.com/cnq/image/upload/v1586197723/noimage_d4ipmd.png"
+        default: "https://www.linkpicture.com/q/kia.jpg"
     },
     model:{
         type: String,
@@ -35,7 +35,7 @@ const carSchema = new mongoose.Schema({
     
     assuranceDate:{
         type:Date,
-        required:true
+        
     },
     age:{
         type:Number,
@@ -43,26 +43,31 @@ const carSchema = new mongoose.Schema({
     },
     technicVisitDate:{
         type:Date,
-        required:true
+        
+    },
+    vignetteYear:{
+        type:Number,
+        default: parseInt(new Date().getFullYear())
     },
     assurance:{
-        type: String,
-        default:"deb"
+        type: Boolean,
+        default: true
         
     },
     vignette:{
-        type: String,
-        default:"deb"
+        type: Boolean,
+        default: true
         
     },
     technicVisit:{
-        type: String,
-        default:"deb"
+        type: Boolean,
+        default: true
         
     },
+    dernierVidange:{type:Number, default: 0},
     entretien :{
-        type: String,
-        default:"deb",
+        type: Boolean,
+        default:true,
     }
 
 },{timestamps : true})
