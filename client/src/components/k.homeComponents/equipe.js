@@ -7,7 +7,7 @@ export default function Equipe() {
         <div className="bg2">
             <div className="textCenter">
             <Container>
-            <h1 >Notre équipe</h1>
+            <h1  classname="titleEquipe">Notre équipe</h1>
             <br/>
             <br/>
             <br/>

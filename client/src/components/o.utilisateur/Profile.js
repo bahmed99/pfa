@@ -7,6 +7,9 @@ import { useParams, useHistory } from 'react-router-dom'
 import { date } from 'date-arithmetic'
 import EmploisClientUtilisateur from '../a.emplois/EmploisClientUtilisateur'
 import ModalSupprimerSeance from '../a.emplois/ModalSupprimerSeance'
+
+import Chat from './chat'
+
 export default function Profile() {
     const History = useHistory()
     const [date, setDate] = useState("")
@@ -141,6 +144,8 @@ export default function Profile() {
                 <EmploisClientUtilisateur dataUtilisateur={data} id={id} supprimerSeanceModalOpen={supprimerSeanceModalOpen} setSupprimerSeanceModalOpen={setSupprimerSeanceModalOpen} />
             </div>          <UpdateProfile isOpen={ajoutSeanceModalOpen}
                 setModal={setAjoutSeanceModalOpen} />
+
+            <Chat id={id} />
         </div>
     )
 }

@@ -143,7 +143,6 @@ router.delete('/deleteEmployee/:id',requireLoginAdmin,(req,res)=>{
     .populate("client","_id cin")
     .populate("employee","_id pic")
     .then(employee=>{
-            console.log(employee)
             Client.find({employee:employee.id})
             .then(result1=>{
                 for (let i=0 ; i< result1.length ; i++ )

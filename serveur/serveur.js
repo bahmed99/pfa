@@ -20,10 +20,10 @@ const mongoURI = "mongodb+srv://pfa:pfa@cluster0.bntsm.mongodb.net/myFirstDataba
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }).then((result) =>
     console.log("connected to database"),
-    app.listen(port, () => {
-        console.log(`runinig on port ${port}`)
-    }
-    )
+    // app.listen(port, () => {
+    //     console.log(`runinig on port ${port}`)
+    // }
+    // )
 
 ).catch(err => {
     console.log("error")
@@ -46,8 +46,55 @@ app.use("/employe", employee)
 app.use("/car",car)
 app.use("/auth", auth)
 
+app.use('/chat',require('./routes/message/message'))
 
 app.use("/courses", courses)
+
+/////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+const server = app.listen(port, () => {
+    console.log("Server listening on port 3001");
+  });
+const io = require('socket.io')(server);
+
+io.on("connect", (socket) => {
+    console.log("Connected: " + socket.userId);
+  
+    socket.on("disconnect", () => {
+      console.log("Disconnected: " + socket.userId);
+    });
+  
+    socket.on("joinRoom", ({ chatroomId }) => {
+      socket.join(chatroomId);
+      console.log("A user joined chatroom: " + chatroomId);
+    });
+  
+    socket.on("leaveRoom", ({ chatroomId }) => {
+      socket.leave(chatroomId);
+      console.log("A user left chatroom: " + chatroomId);
+    });
+  
+    socket.on("chatroomMessage", ({ chatroomId, message }) => {
+    //   if (message.trim().length > 0) {
+        //const user = await User.findOne({ _id: socket.userId });
+        // const newMessage = new Message({
+        //   chatroom: chatroomId,
+        //   user: socket.userId,
+        //   message,
+        // });
+        //message.author="them"
+        console.log("ce message",message)
+        io.to(chatroomId).emit("newMessage", {
+          message
+        //   name: user.name,
+        //   userId: socket.userId,
+        });
+        // await newMessage.save();
+    //   }
+    });
+  });
+
 
 
 

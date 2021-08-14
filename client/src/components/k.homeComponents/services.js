@@ -1,83 +1,46 @@
-import React from 'react'
-import { Image, Container, Col, Row } from 'react-bootstrap'
 
-export default function Equipe() {
-    return (
-        <div className="bg2 ">
-            <div className="textCenter">
-                <Container>
-                    <Row>
-
-                        <h1  >Quels sont nos services?</h1>
-                        <h5 >
-                            This is the paragraph where you can write more details about
-                            your product.
-                        </h5>
-
-                    </Row>
-                    <br />
-                    <br />
-                    <br />
-
-                    <Row>
-
-                        <Col>
-
-                            <Image className="cours" src={require("../../assets/images/bgCours.gif").default} />
-                            <br />
-                            <br />
-
-
-                            <p >  This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-
-
-                        </Col>
-                        <Col>
-                            <Image className="cours" src={require("../../assets/images/bgCours.gif").default} />
-
-                            <br />
-                            <br />
-
-                            <p >  This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-
-
-
-                        </Col>
-                        </Row>
-                        <br/>
-                        <br/>
-                
-                        <Row>
-                        <Col>
-                            <Image className="cours" src={require("../../assets/images/bgCours.gif").default} />
-
-                            <br />
-                            <br />
-                            
-                                <p >  This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                            
-
-                        </Col>
-                        </Row>
-
-
-                    
-
-                </Container>
+function Technologies() {
+  return (
+            <div className="BgContainer" style={{backgroundColor:"#b4b4b4" , marginTop:"-200px"}}>
                 <br />
+                <div className="row justify-content-center div-Style" >
+                    <div className="col-lg-7 col-md-12  ">
+                        <div className="section-title text-center">
+                            <h2 className="h2-Title" >Nos Services</h2>
+                            <p  className= "description-technologies">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="row container-technologies " >
+                    <div className="col-lg-4 col-md-6 col-sm-12 " >
+                        <div className="single-serviecs-block container-technologie" >
+                            <i className="fa fa-print"></i>
+                            <h3 className="title-technologie"><a href="services-details.html">Digital Printing</a></h3>
+                            <p className="description-title-style">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                        </div>
+                    </div>
+                    <div className="col-lg-4 col-md-6 col-sm-12 container-technologie1"  >
+                        <div className="single-serviecs-block">
+                            <i className="fa fa-lightbulb-o" aria-hidden="true"></i>
+                            <h3 className="title-technologie"><a href="services-details.html">Design Services</a></h3>
+                            <p className="description-title-style">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                        </div>
+                    </div>
+                    <div className="col-lg-4 col-md-6 col-sm-12  container-Technologie2" >
+                        <div className="single-serviecs-block">
+                            <i className="fa fa-envelope"></i>
+                            <h3 className="title-technologie"><a href="services-details.html">Mail Services</a></h3>
+                            <p  className="description-title-style">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                        </div>
+                    </div>
+                </div>
                 <br />
+                <hr  style={{width:"50%", margin:"auto auto"}}/>
                 <br />
-                <br />
-                <hr style={{
-                    marginLeft: "200px",
-                    height: 1,
-                    width: 1000
-                }} />
             </div>
 
-        </div>
-    )
+  );
 }
+
+export default Technologies;

@@ -18,11 +18,7 @@ export default function About() {
                 </div>
 
             </div>
-            <hr style={{
-                marginLeft: "200px",
-                height: 1,
-                width: 1000
-            }} />
+            <hr  style={{width:"50%", margin:"auto auto"}}/>
         </div>
 
     )
