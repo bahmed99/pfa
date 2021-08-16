@@ -51,21 +51,22 @@ const SignUp = (props) => {
               {
                 props.setData1(prevData => ([...prevData, data]))
                 props.setModal(false)
+                setName('')
+                setEmail('')
+                setCin('')
+                setImage('')
+                setImagename('')
+                setTel('')
+                setAge('')
               }
           }).catch(err=>{
               console.log(err)
         })
       }
-      setName('')
-      setEmail('')
-      setCin('')
-      setImage('')
-      setImagename('')
-      setTel('')
-      setAge('')
+   
 
   }
-  console.log(imagename)
+
 
 
         return(

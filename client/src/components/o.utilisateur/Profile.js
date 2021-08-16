@@ -145,7 +145,7 @@ export default function Profile() {
             </div>          <UpdateProfile isOpen={ajoutSeanceModalOpen}
                 setModal={setAjoutSeanceModalOpen} />
 
-            <Chat id={id} />
+            <Chat id={id} pic={data.pic} name={data.name} />
         </div>
     )
 }

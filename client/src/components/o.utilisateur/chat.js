@@ -3,7 +3,7 @@ import {Launcher} from 'react-chat-window'
 import io from "socket.io-client";
 let socket ; 
 
-function App({id}) {
+function App({id ,name ,pic}) {
 
    const [messageList, setMessageList] = useState([])
    const user = JSON.parse(localStorage.getItem("user"))
@@ -77,7 +77,7 @@ function App({id}) {
     return (<div>
       <Launcher
         agentProfile={{
-          teamName: 'react-chat-window',
+          teamName: name,
           imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
         }}
         onMessageWasSent={(e)=>_onMessageWasSent(e)}
