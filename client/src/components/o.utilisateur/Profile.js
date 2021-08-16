@@ -40,7 +40,7 @@ export default function Profile() {
                 setDate(`${result.result.createdAt[8]}${result.result.createdAt[9]}/${result.result.createdAt[5]}${result.result.createdAt[6]}/${result.result.createdAt[0]}${result.result.createdAt[1]}${result.result.createdAt[2]}${result.result.createdAt[3]}`)
             })
     }, [])
-    console.log("hi",chat1)
+
 
     const deleteClient = (id) => {
         fetch(`http://localhost:3001/employe/deleteClient/${id}`, {

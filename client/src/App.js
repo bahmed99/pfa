@@ -10,7 +10,7 @@ export default function App() {
     addClass();
   }, []);
   return (
-    <div className="D">
+    <div className="App">
       <MainRouter />
     </div>
   )

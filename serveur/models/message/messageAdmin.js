@@ -12,12 +12,12 @@ const messageSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "Employee"
     },
-    client:{
+    Admin:{
         type: ObjectId,
-        ref: "Client"
+        ref: "Admin"
     }
 
 })
 
-Message = mongoose.model("Message" , messageSchema)
+Message = mongoose.model("MessageAdmin" , messageSchema)
 module.exports = Message
