@@ -90,13 +90,9 @@ exports.getCarById = (req, res) => {
                     assuranceDate: dateFormat(car.assuranceDate, "dd/mm/yyyy"),
                     age: car.age,
                     technicVisitDate: dateFormat(car.technicVisitDate, "dd/mm/yyyy"),
-<<<<<<< HEAD
-=======
-
                     _id:car._id 
                     
 
->>>>>>> 654aaf215ebf84fe1bc33ac7f725cbf7671fbe5d
                 });
             });
             return res.status(200).send(response);
