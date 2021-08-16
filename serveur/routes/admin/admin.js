@@ -206,6 +206,7 @@ router.put('/choixclient-employee',requireLoginAdmin,(req,res)=>{
                 }, {
                     new: true
                 }).then(r1=>{
+                    MessageAdmin.findOneAndUpdate({})
                     res.json({message:"ok"})
                 })
             })
@@ -213,6 +214,8 @@ router.put('/choixclient-employee',requireLoginAdmin,(req,res)=>{
     })
 
 })
+
+
 router.put('/essai',(req,res)=>{
     Client.findOne({_id:"610b04f544b0dc31dc45ce4a"})
     .then(result=>{

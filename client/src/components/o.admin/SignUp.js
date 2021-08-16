@@ -47,10 +47,11 @@ const SignUp = (props) => {
       dataform.append('image', image)
       dataform.append("tel", tel)
       dataform.append("age", age)
-      dataform.append("car", cars[car]._id)
+      
 
       const data = { name: name, email: email, cin: cin, imgUrl: imagename , car : car}
       if (role === "Employée") {
+        dataform.append("car", cars[car]._id)
         axios.post("http://localhost:3001/auth/employee/signup", dataform, {
           headers: {
             "Content-Type": "application/json",

@@ -67,6 +67,7 @@ exports.getCars = (req, res) => {
                     assuranceDate: dateFormat(car.assuranceDate, "dd/mm/yyyy"),
                     age: car.age,
                     technicVisitDate: dateFormat(car.technicVisitDate, "dd/mm/yyyy"),
+                    _id:car._id
                 });
             })
             return res.status(200).send(response);
