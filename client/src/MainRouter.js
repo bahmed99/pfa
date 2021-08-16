@@ -142,7 +142,7 @@ export default function MainRouter() {
                         <Route exact path={"/home"} component={HomeAdmin} />
                         <Route exact path={"/ressources-humaine"} component={Utilisateurs} />
                         <Route exact path={"/utilisateur-profile/:id"} component={Profile1} />
-                        <Route exact path={"/home"} component={HomeAdmin} />
+                        
                         <Route exact path={"/emplois"} component={EmploisAdmin} />
                         <Route exact path={"/cars"} component={Car} />
 

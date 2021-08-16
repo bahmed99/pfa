@@ -113,11 +113,11 @@ function App({ id, name, pic, Chat }) {
     return ""
   }
 
-  return (<div>
+  return (<div style={{textAlign:"left"}}>
     <Launcher
       agentProfile={{
         teamName: name,
-        imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
+        imageUrl: 'http://localhost:3000/m.png'
       }}
       onMessageWasSent={(e) => _onMessageWasSent(e)}
       messageList={messageList}
