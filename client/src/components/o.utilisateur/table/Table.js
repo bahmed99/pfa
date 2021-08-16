@@ -159,7 +159,7 @@ function Table({ columns, data , setData1 }) {
   return (
     <>
       <div style={{display:"flex"}}>
-        <div className="sm:flex sm:gap-x-2">
+        <div className="sm:flex sm:gap-x-2" style={{marginTop:'80px'}}>
           <GlobalFilter
             preGlobalFilteredRows={preGlobalFilteredRows}
             globalFilter={state.globalFilter}
