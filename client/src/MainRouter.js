@@ -145,6 +145,9 @@ export default function MainRouter() {
                         
                         <Route exact path={"/emplois"} component={EmploisAdmin} />
                         <Route exact path={"/cars"} component={Car} />
+<<<<<<< HEAD
+                        <Route exact path={"/notifications"} component={Notifications} />
+=======
 
                         <Route exact path={"/courses"} component={AjouterCours} />
 
@@ -152,6 +155,7 @@ export default function MainRouter() {
 
 
 
+>>>>>>> 654aaf215ebf84fe1bc33ac7f725cbf7671fbe5d
                     </div> : ""}
             </Switch>
         </div>

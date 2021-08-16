@@ -104,7 +104,7 @@ router.put("/emplois", requireLoginEmployee, (req, res) => {
         });
 
         Car.findById({_id: req.body.idCar}).then((car) => {
-            if(car.service===false){
+            if(car.service===true){
                 Car.findByIdAndUpdate(req.body.idCar, {
                     $push: {
                         timetable: {
@@ -141,6 +141,17 @@ router.get("/clients", requireLoginEmployee, (req, res) => {
     Client.find({
         '_id': { $in: req.employee.client }
     }).then(resultat => {
+        res.status(200).send(JSON.stringify(resultat))
+    }).catch(erreur => {
+        res.status(400).send(erreur)
+    })
+
+})
+
+router.get("/car", requireLoginEmployee, (req, res) => {
+
+    Car.findById({'_id':  req.employee.car })
+    .then(resultat => {
         res.status(200).send(JSON.stringify(resultat))
     }).catch(erreur => {
         res.status(400).send(erreur)

@@ -7,14 +7,28 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
+import Modifier from "../Modifier.js"
 // core components
 import styles from "../tableStyle.js";
 
 const useStyles = makeStyles(styles);
-
+export function AvatarCell({ value, column, row }) {
+  return (
+    <div className="flex items-center">
+      <div className="flex-shrink-0 h-10 w-10">
+      <img className="h-10 w-10 rounded-full" src={row.original[column.imgAccessor] } />
+      </div>
+      <div className="ml-4">
+        <div className="text-sm font-medium text-gray-900">{value}</div>
+        <div className="text-sm text-gray-500">{value}</div>
+      </div>
+    </div>
+  )
+}
 export default function CustomTable(props) {
   const classes = useStyles();
   const { tableHead, tableData, tableHeaderColor } = props;
+  const idCar=tableData[0];
   return (
     <div className={classes.tableResponsive}>
       <Table className={classes.table}>
@@ -42,9 +56,11 @@ export default function CustomTable(props) {
                   return (
                     <TableCell className={classes.tableCell} key={key}>
                       {prop}
+                      
                     </TableCell>
                   );
                 })}
+                <Modifier idCar={idCar} data ={tableData}/>
               </TableRow>
             );
           })}

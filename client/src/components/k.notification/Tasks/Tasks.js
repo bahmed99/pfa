@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import PropTypes from "prop-types";
 import classnames from "classnames";
 // @material-ui/core components
@@ -20,6 +20,7 @@ import styles from "../components/tasksStyle.js";
 const useStyles = makeStyles(styles);
 
 export default function Tasks(props) {
+
   const classes = useStyles();
   const [checked, setChecked] = React.useState([...props.checkedIndexes]);
   const handleToggle = (value) => {
@@ -54,7 +55,7 @@ export default function Tasks(props) {
                 }}
               />
             </TableCell>
-            <TableCell className={tableCellClasses}>{tasks[value]}</TableCell>
+            <TableCell className={tableCellClasses}>{tasks}</TableCell>
             <TableCell className={classes.tableActions}>
               <Tooltip
                 id="tooltip-top"

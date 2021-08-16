@@ -15,7 +15,7 @@ export default function Emplois() {
 
     const [data, setData] = useState([])
     const [clients, setClients] = useState([])
-
+    const [car, setCar] = useState()
     const [ajoutSeanceModalOpen, setAjoutSeanceModalOpen] = useState(false)
     const [selectInfoData, setSelectInfoData] = useState(null);
 
@@ -38,6 +38,11 @@ export default function Emplois() {
         const clientsData = await getClients();
         setClients(clientsData.data)
 
+    }
+    async function fetchCar() {
+        setCar()
+        const employeeCar = await getCar();
+        setCar(employeeCar.data)
     }
 
     function Select(selectInfo) {
@@ -63,6 +68,7 @@ export default function Emplois() {
     useEffect(() => {
         fetchSeances()
         fetchClients()
+        fetchCar()
     }, [])
 
 
@@ -219,6 +225,18 @@ async function getSeances() {
 }
 async function getClients() {
     const resp = await axios.get(`http://localhost:3001/employe/clients`, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("jwt")
+        }
+    })
+        .catch(error => {
+            return error.response;
+        })
+    return resp
+}
+async function getCar(){
+    const resp = await axios.get(`http://localhost:3001/employe/car` , {
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + localStorage.getItem("jwt")
