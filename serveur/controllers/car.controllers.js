@@ -59,7 +59,6 @@ exports.getCars = (req, res) => {
             const response = [];
             cars.forEach((car) => {
                 response.push({
-<<<<<<< HEAD
                     pic: car.pic,
                     model: car.model,
                     serie: car.serie,
@@ -91,15 +90,6 @@ exports.getCarById = (req, res) => {
                     assuranceDate: dateFormat(car.assuranceDate, "dd/mm/yyyy"),
                     age: car.age,
                     technicVisitDate: dateFormat(car.technicVisitDate, "dd/mm/yyyy"),
-=======
-                    _id:car._id ,
-                    serie:car.serie,
-                    service:car.service,
-                    mileage:car.mileage,
-                    assuranceDate:car.assuranceDate,
-                    age:car.age,
-                    technicVisitDate:car.technicVisitDate,
->>>>>>> 1d5437d6be5822f38da76003110e825b23977c82
                 });
             });
             return res.status(200).send(response);
@@ -204,6 +194,7 @@ exports.notif = (req, res) => {
             cars.forEach((car) => {
                 if (car.assurance == false || car.technicVisit == false || car.vignette == false || car.entretien == false) {
                     result.push({
+                        _id:car._id,
                         pic: car.pic,
                         serie: car.serie,
                         assurance: car.assurance,

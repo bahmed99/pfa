@@ -1,6 +1,45 @@
-// ##############################
-// // // Tasks for TasksCard - see Dashboard view
-// #############################
+import React, { useEffect, useState } from 'react';
+
+function Data() {
+  const [data1, setData1] = useState([])
+  const data = [];
+  useEffect(() => {
+    fetch("http://localhost:3001/car/notif", {
+      headers: {
+        "Content-Type": "application/json",
+      }
+    }).then(res => res.json())
+      .then(result => {
+        console.log(result)
+        setData1(result)
+      })
+
+  }, []);
+  data1.map(obj => {
+    data.push(Object.values(obj))
+  });
+
+  const entr = [];
+  data1.forEach(element => {
+    if (element.entretien == false) {
+      entr.push(Object.values(element))
+    }
+  });
+  const assur = [];
+  data1.forEach(element => {
+    if (element.assurance == false) {
+      assur.push(Object.values(element))
+    }
+  });
+
+  const vign = [];
+  data1.forEach(element => {
+    if (element.vignette == false) {
+      vign.push(Object.values(element))
+    }
+  });
+}
+
 
 var bugs = [
   'Sign contract for "What are conference organizers afraid of?"',
@@ -18,9 +57,9 @@ var server = [
   'Sign contract for "What are conference organizers afraid of?"',
 ];
 
-module.exports = {
+/*module.exports = {
   // these 3 are used to create the tasks lists in TasksCard - Dashboard view
   bugs,
   website,
   server,
-};
+};*/
