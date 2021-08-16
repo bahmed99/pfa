@@ -146,6 +146,8 @@ export default function MainRouter() {
                         <Route exact path={"/emplois"} component={EmploisAdmin} />
                         <Route exact path={"/cars"} component={Car} />
 
+                        <Route exact path={"/courses"} component={AjouterCours} />
+
                         <Route exact path={"/notifications"} component={Notifications} />
 
 
