@@ -7,6 +7,8 @@ function App() {
 
    const [messageList, setMessageList] = useState([])
    const user = JSON.parse(localStorage.getItem("user"))
+
+
   useEffect(() => {
     socket =  io('http://localhost:3001', { transports : ['websocket'] });
     fetch('http://localhost:3001/chat/messageClient' ,{
@@ -28,7 +30,7 @@ function App() {
   function _onMessageWasSent(message) {
     message.sender = user._id
     socket.emit('chatroomMessage', {
-      chatroomId :"61184aa901c747355402aa4b",
+      chatroomId :user.Chat,
       message: message,
     });
     fetch('http://localhost:3001/chat/messageClient' ,{
@@ -58,7 +60,7 @@ function App() {
   React.useEffect(() => {
     if (socket) {
       socket.emit("joinRoom", {
-        chatroomId :"61184aa901c747355402aa4b" ,
+        chatroomId :user.Chat ,
       });
     }
 
@@ -66,7 +68,7 @@ function App() {
       //Component Unmount
       if (socket) {
         socket.emit("leaveRoom", {
-          chatroomId :"6116f0fcbf5bb14038d83885",
+          chatroomId :user.Chat,
         });
       }
     };

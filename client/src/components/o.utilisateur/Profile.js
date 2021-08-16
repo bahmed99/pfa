@@ -21,6 +21,8 @@ export default function Profile() {
     const [supprimerSeanceModalOpen, setSupprimerSeanceModalOpen] = useState(false)
     const [selectInfoData, setSelectInfoData] = useState(null);
 
+    const [chat1 , setChat1] = useState()
+
 
 
     useEffect(() => {
@@ -32,11 +34,13 @@ export default function Profile() {
             },
         }).then(res => res.json())
             .then(result => {
-                setData(result)
-                setDate(`${result.createdAt[8]}${result.createdAt[9]}/${result.createdAt[5]}${result.createdAt[6]}/${result.createdAt[0]}${result.createdAt[1]}${result.createdAt[2]}${result.createdAt[3]}`)
+                setData(result.result)
+                setChat1(result.result1._id)
+                //setChat(result.Chat)
+                setDate(`${result.result.createdAt[8]}${result.result.createdAt[9]}/${result.result.createdAt[5]}${result.result.createdAt[6]}/${result.result.createdAt[0]}${result.result.createdAt[1]}${result.result.createdAt[2]}${result.result.createdAt[3]}`)
             })
-
     }, [])
+    console.log("hi",chat1)
 
     const deleteClient = (id) => {
         fetch(`http://localhost:3001/employe/deleteClient/${id}`, {
@@ -145,7 +149,8 @@ export default function Profile() {
             </div>          <UpdateProfile isOpen={ajoutSeanceModalOpen}
                 setModal={setAjoutSeanceModalOpen} />
 
-            <Chat id={id} />
+            <Chat id={id}
+            Chat={chat1} />
         </div>
     )
 }

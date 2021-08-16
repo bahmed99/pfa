@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const Client = require("../../models/user/client")
 const Employee = require("../../models/user/employe")
 const Admin = require("../../models/user/admin")
+const Message = require("../../models/message/message")
 const bcrypt = require('bcrypt')
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
@@ -87,7 +88,7 @@ router.post('/login', (req, res) => {
                                     const detect = 2
                                     const token = jwt.sign({ _id: newSavedUser._id }, JWT_SECRET)
                                     const { _id, name, email, cin, pic, timetable, client } = newSavedUser
-                                    res.json({ detect, token, user: { _id, name, email, cin, pic, timetable, client } })
+                                    res.json({detect, token, user: { _id, name, email, cin, pic, timetable, client } })
                                 }
                                 else {
                                     return res.status(422).json({ error: "vérifier votre email ou votre mot de passe" })
@@ -108,7 +109,14 @@ router.post('/login', (req, res) => {
                             const detect = 1
                             const token = jwt.sign({ _id: savedUser._id }, JWT_SECRET)
                             const { _id, name, email, cin, pic, timetable, employee , status } = savedUser
-                            res.json({ detect, token, user: { _id, name, email, cin, pic, timetable, employee, status} })
+                            Message.findOne({client:savedUser._id})
+                            .then(r=>{
+                                const Chat = r._id 
+                                console.log("hi",Chat)
+                                res.json({detect, token, user: { _id, name, email, cin, pic, timetable, employee, status , Chat } })
+                            })
+                            
+                            
                         }
                         else 
                         {
@@ -147,6 +155,7 @@ router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req
                             password: hashedpassword,
                             cin: cin,
                             tel: tel,
+                            status : "Payé" ,
                             age: age,
                             pic: req.file.originalname,
                             employee: req.employee._id
@@ -175,7 +184,15 @@ router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req
                                 }, {
                                     new: true
                                 }).then(result => {
-                                    res.json({ message: "le compte est bien créé" })
+                                    const message = new Message({
+                                        client : user._id ,
+                                        employee : req.employee._id
+                                    })
+                                    message.save()
+                                    .then(r=>{
+                                        res.json({message: "le compte est bien créé" })
+                                    })
+
                                 }).catch(err => {
                                     console.log(err)
                                 })

@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Employee = require("../../models/user/employe")
 const Client = require("../../models/user/client")
+const Message = require("../../models/message/message")
 const Car = require("../../models/car/car")
 const requireLoginEmployee = require("../../middleware/requireLoginEmployee")
 const fs = require('fs')
@@ -168,7 +169,11 @@ router.get("/employee-clients", requireLoginEmployee, (req, res) => {
 router.get("/employee-client/:id", requireLoginEmployee, (req, res) => {
     Client.findOne({ _id: req.params.id })
         .then(result => {
-            res.json(result)
+            Message.findOne({client:req.params.id})
+            .then(result1=>{
+                res.json({result1,result})
+
+            })
         }).catch(err => {
             console.log(err)
         })
