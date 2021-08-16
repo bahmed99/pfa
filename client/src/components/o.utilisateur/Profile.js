@@ -50,7 +50,7 @@ export default function Profile() {
             }
         }).then(res => res.json())
             .then(result => {
-                console.log(result)
+            
             })
         setTimeout(() => History.push('/utilisateurs'), 1000)
         // fetch("http://localhost:3001/employe/employee-clients",{

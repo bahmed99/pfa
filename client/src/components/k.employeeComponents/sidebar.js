@@ -10,6 +10,9 @@ import {
     CDBSidebarMenuItem,
 } from 'cdbreact';
 import { NavLink } from 'react-router-dom';
+import Chat from "../chatEmploye/chat"
+
+
 export default function Sidebar(props) {
     const detect = JSON.parse(localStorage.getItem("detect"))
     return (
@@ -54,6 +57,7 @@ export default function Sidebar(props) {
 
 
                     </CDBSidebarMenu>
+                   { detect!==3?<Chat />:""}
                 </CDBSidebarContent>
 
                 <CDBSidebarFooter style={{ textAlign: 'center' }}>
@@ -66,6 +70,8 @@ export default function Sidebar(props) {
                     <Image className="apropos" src={require("../../assets/images/logoBlanc.png").default} />
                 </CDBSidebarFooter>
             </CDBSidebar>
+
+          
         </div>
 
     )

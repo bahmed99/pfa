@@ -32,7 +32,7 @@ export default function NewPassword() {
             })
         }).then(res => res.json())
             .then(data => {
-                console.log(data)
+      
                 if (data.error) {
                     setLoading(false)
                     setError(true)

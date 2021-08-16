@@ -5,6 +5,7 @@ const Client = require("../../models/user/client")
 const Employee = require("../../models/user/employe")
 const Admin = require("../../models/user/admin")
 const Message = require("../../models/message/message")
+const MessageAdmin = require("../../models/message/messageAdmin")
 const bcrypt = require('bcrypt')
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
@@ -13,7 +14,7 @@ const { JWT_SECRET } = require('../../Keys')
 const requireLoginEmployee = require('../../middleWare/requireLoginEmployee')
 const requireLoginAdmin = require('../../middleWare/requireLoginAdmin')
 
-const {ObjectId} = require('mongodb');
+const { ObjectId } = require('mongodb');
 
 const multer = require('multer');
 
@@ -55,7 +56,7 @@ const storage2 = multer.diskStorage({
     }
 });
 
-const upload2= multer({
+const upload2 = multer({
     storage: storage2,
 })
 
@@ -88,7 +89,11 @@ router.post('/login', (req, res) => {
                                     const detect = 2
                                     const token = jwt.sign({ _id: newSavedUser._id }, JWT_SECRET)
                                     const { _id, name, email, cin, pic, timetable, client } = newSavedUser
-                                    res.json({detect, token, user: { _id, name, email, cin, pic, timetable, client } })
+                                    MessageAdmin.findOne({employee:newSavedUser._id}).then(resf=>{
+                                        const Chat = resf._id
+                                        res.json({ detect, token, user: { _id, name, email, cin, pic, timetable, client,Chat } })
+                                    })
+                                    
                                 }
                                 else {
                                     return res.status(422).json({ error: "vérifier votre email ou votre mot de passe" })
@@ -104,22 +109,20 @@ router.post('/login', (req, res) => {
             else {
                 bcrypt.compare(password, savedUser.password)
                     .then(domatch => {
-                        if (domatch) 
-                        {
+                        if (domatch) {
                             const detect = 1
                             const token = jwt.sign({ _id: savedUser._id }, JWT_SECRET)
-                            const { _id, name, email, cin, pic, timetable, employee , status } = savedUser
-                            Message.findOne({client:savedUser._id})
-                            .then(r=>{
-                                const Chat = r._id 
-                                console.log("hi",Chat)
-                                res.json({detect, token, user: { _id, name, email, cin, pic, timetable, employee, status , Chat } })
-                            })
-                            
-                            
+                            const { _id, name, email, cin, pic, timetable, employee, status } = savedUser
+                            Message.findOne({ client: savedUser._id })
+                                .then(r => {
+                                   
+                                    const Chat = r._id
+                                    res.json({ detect, token, user: { _id, name, email, cin, pic, timetable, employee, status, Chat } })
+                                })
+
+
                         }
-                        else 
-                        {
+                        else {
                             return res.status(422).json({ error: "vérifier votre email ou votre mot de passe" })
                         }
                     }).catch(err => {
@@ -155,7 +158,7 @@ router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req
                             password: hashedpassword,
                             cin: cin,
                             tel: tel,
-                            status : "Payé" ,
+                            status: "Payé",
                             age: age,
                             pic: req.file.originalname,
                             employee: req.employee._id
@@ -185,13 +188,13 @@ router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req
                                     new: true
                                 }).then(result => {
                                     const message = new Message({
-                                        client : user._id ,
-                                        employee : req.employee._id
+                                        client: user._id,
+                                        employee: req.employee._id
                                     })
                                     message.save()
-                                    .then(r=>{
-                                        res.json({message: "le compte est bien créé" })
-                                    })
+                                        .then(r => {
+                                            res.json({ message: "le compte est bien créé" })
+                                        })
 
                                 }).catch(err => {
                                     console.log(err)
@@ -211,7 +214,7 @@ router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req
 
 
 router.post('/employee/signup', requireLoginAdmin, upload1.single('image'), (req, res) => {
-    const { name, email, cin, age, tel , car } = req.body
+    const { name, email, cin, age, tel, car } = req.body
     if (!name || !email || !cin || !age || !tel || !car) {
         return res.status(422).json({ error: "Essayer de remplir tous les champs" })
 
@@ -236,8 +239,8 @@ router.post('/employee/signup', requireLoginAdmin, upload1.single('image'), (req
                             tel: tel,
                             pic: req.file.originalname,
                             password: hashedpassword,
-                            cin: cin ,
-                            car : car
+                            cin: cin,
+                            car: car
                         })
                         employee.save()
                             .then(user => {
@@ -258,7 +261,13 @@ router.post('/employee/signup', requireLoginAdmin, upload1.single('image'), (req
 
                                     }
                                 });
-                                res.json({ message: "le compte est bien créé" })
+                                const message = new MessageAdmin({
+                                    employee: user._id
+                                })
+                                message.save()
+                                    .then(r => {
+                                        res.json({ message: "le compte est bien créé" })
+                                    })
                             })
 
                     }).catch(err => {
@@ -411,7 +420,7 @@ router.post("/admin/login", (req, res) => {
                     }).catch(err => {
                         console.log(err)
                     })
-          }
+            }
         }).catch(err => {
             console.log(err)
         })
@@ -422,8 +431,8 @@ router.post("/admin/login", (req, res) => {
 
 router.post("/admin/signup", requireLoginAdmin, upload2.single('image'), (req, res) => {
 
-    const { name, email, age, tel ,cin} = req.body
-    if (!name || !email || !age || !tel||!cin) {
+    const { name, email, age, tel, cin } = req.body
+    if (!name || !email || !age || !tel || !cin) {
         console.log("1")
         return res.status(422).json({ error: "Essayer de remplir tous les champs" })
     }
@@ -447,7 +456,7 @@ router.post("/admin/signup", requireLoginAdmin, upload2.single('image'), (req, r
                             email: email,
                             age: age,
                             tel: tel,
-                            cin:cin,
+                            cin: cin,
                             password: hashedpassword,
                             pic: req.file.originalname
 
@@ -475,84 +484,85 @@ router.post("/admin/signup", requireLoginAdmin, upload2.single('image'), (req, r
 
                     }).catch(err => {
                         console.log(err)
-                    }) })
-
-            }).catch(err => {
-                console.log(err)
+                    })
             })
+
+        }).catch(err => {
+            console.log(err)
         })
+})
 
 
 router.post('/admin/newPassword', (req, res) => {
-        const newPassword = req.body.password
-        const sentToken = req.body.token
-        Admin.findOne({ resetToken: sentToken, expireToken: { $gt: Date.now() } })
-            .then(user => {
-                if (!user) {
+    const newPassword = req.body.password
+    const sentToken = req.body.token
+    Admin.findOne({ resetToken: sentToken, expireToken: { $gt: Date.now() } })
+        .then(user => {
+            if (!user) {
 
-                    return res.status(422).json({ error: "Réessayer session expirée" })
-                }
-                else {
-                    bcrypt.hash(newPassword, 15).then(hashedpassword => {
-                        user.password = hashedpassword
-                        user.resetToken = undefined
-                        user.expireToken = undefined
-                        user.save().then(saveduser => {
-                            res.json({ message: "La mise a jour de votre mot de passe est bien faite" })
-                        })
-                    }).catch(err => {
-                        console.log(err)
+                return res.status(422).json({ error: "Réessayer session expirée" })
+            }
+            else {
+                bcrypt.hash(newPassword, 15).then(hashedpassword => {
+                    user.password = hashedpassword
+                    user.resetToken = undefined
+                    user.expireToken = undefined
+                    user.save().then(saveduser => {
+                        res.json({ message: "La mise a jour de votre mot de passe est bien faite" })
                     })
-                }
-            }).catch(err => {
-                console.log(err)
-            })
-    })
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+})
 
 
 router.post('/admin/mdpOublier', (req, res) => {
-        crypto.randomBytes(32, (err, buffer) => {
-            if (err) {
-                console.log(err)
-            }
-            const token = buffer.toString("hex")
-            Admin.findOne({ email: req.body.email })
-                .then(user => {
-                    if (!user) {
+    crypto.randomBytes(32, (err, buffer) => {
+        if (err) {
+            console.log(err)
+        }
+        const token = buffer.toString("hex")
+        Admin.findOne({ email: req.body.email })
+            .then(user => {
+                if (!user) {
 
-                        return res.status(422).json({ error: "Aucun utilisateur avec ce mail" })
-                    }
+                    return res.status(422).json({ error: "Aucun utilisateur avec ce mail" })
+                }
 
-                    else {
-                        user.resetToken = token
-                        user.expireToken = Date.now() + 3600000
-                        user.save().then(result => {
-                            let mailoptions = {
-                                from: "iDriveGears@gmail.com",
-                                to: user.email,
-                                subject: "signup success",
-                                html: `
+                else {
+                    user.resetToken = token
+                    user.expireToken = Date.now() + 3600000
+                    user.save().then(result => {
+                        let mailoptions = {
+                            from: "iDriveGears@gmail.com",
+                            to: user.email,
+                            subject: "signup success",
+                            html: `
                         <p>you requested for password reset</p>
                         <h5> click on this <a href="http://localhost:3000/admin/reset-password/${token}"> Link </a> to reset your password</h5>
                         `
+                        }
+                        transporter.sendMail(mailoptions, function (error, info) {
+                            if (error) {
+                                console.log(error);
                             }
-                            transporter.sendMail(mailoptions, function (error, info) {
-                                if (error) {
-                                    console.log(error);
-                                }
-                                else {
-                                    console.log('Email sent: ' + info.response);
+                            else {
+                                console.log('Email sent: ' + info.response);
 
-                                }
-                            });
-                            res.json({ message: "check your mail" })
+                            }
+                        });
+                        res.json({ message: "check your mail" })
 
-                        })
-                    }
-                })
-        })
+                    })
+                }
+            })
     })
+})
 
 
 
-    module.exports = router
+module.exports = router

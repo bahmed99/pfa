@@ -59,10 +59,11 @@ const server = app.listen(port, () => {
 const io = require('socket.io')(server);
 
 io.on("connect", (socket) => {
-    console.log("Connected: " + socket.userId);
+
+    console.log("Connected: " + socket.id);
   
     socket.on("disconnect", () => {
-      console.log("Disconnected: " + socket.userId);
+      console.log("Disconnected: " + socket.id);
     });
   
     socket.on("joinRoom", ({ chatroomId }) => {
@@ -84,7 +85,8 @@ io.on("connect", (socket) => {
         //   message,
         // });
         //message.author="them"
-        console.log("ce message",message)
+        if (message.type === "file") { message.data.url = `http://localhost:3000/uploads/messages/${message.data.fileName}` }
+          
         io.to(chatroomId).emit("newMessage", {
           message
         //   name: user.name,

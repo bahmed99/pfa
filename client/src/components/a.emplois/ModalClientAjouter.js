@@ -31,7 +31,7 @@ export default function ModalClientAjouter(props) {
                 "client":props.dataUtilisateur._id,
                 "nomClient":props.dataUtilisateur.name
             }
-            console.log(seance)
+          
             props.setModal(false)
             axios.put(`http://localhost:3001/employe/emplois`, seance, {
                 headers: {

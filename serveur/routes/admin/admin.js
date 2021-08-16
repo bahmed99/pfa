@@ -4,7 +4,7 @@ const Employee = require("../../models/user/employe")
 const Client = require("../../models/user/client")
 const Admin = require("../../models/user/admin")
 const fs = require('fs')
-
+const MessageAdmin = require("../../models/message/messageAdmin")
 
 const requireLoginAdmin = require("../../middleware/requireLoginAdmin")
 
@@ -102,7 +102,14 @@ router.get ("/admin-utilisateur/:id", requireLoginAdmin, (req,res)=>{
                 }
                 else
                 {
-                    res.json({user:employee, role : "Employée"})
+                    MessageAdmin.findOne({employee:req.params.id})
+                    .then(result1=>{
+                        
+                      
+                        res.json({user:employee, role : "Employée",chat:result1._id})
+        
+                    })
+                  
                 }
             })
         }

@@ -37,7 +37,7 @@ const SignUp = (props) => {
 
     
   }, [])
-  console.log(cars)
+
   const onClickAjouterSeance = () => {
     if (name && email && cin && image && role) {
       let dataform = new FormData()

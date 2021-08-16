@@ -23,7 +23,7 @@ export default function Avis() {
             })
         }).then(res=>res.json())
         .then(data=>{
-            console.log(data)
+       
             if(data.error)
             {
                 localStorage.setItem("jwt",data.token)

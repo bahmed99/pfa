@@ -45,7 +45,7 @@ export default function Signin() {
                 if (data.detect === 2)
                 {
                     setLoading(false)
-                    console.log(data.token)
+              
                     localStorage.setItem("jwt",data.token)
                     localStorage.setItem("user",JSON.stringify(data.user))
                     localStorage.setItem("detect",data.detect)
@@ -57,7 +57,7 @@ export default function Signin() {
                 else if (data.detect === 1 && data.user.status === "Payé")
                 {
                     setLoading(false)
-                    console.log(data.token)
+           
                     localStorage.setItem("jwt",data.token)
                     localStorage.setItem("user",JSON.stringify(data.user))
                     localStorage.setItem("detect",data.detect)

@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from 'axios';
 import React, { Component, useState, useEffect } from 'react'
 import { Launcher } from 'react-chat-window'
 import io from "socket.io-client";
@@ -11,7 +11,7 @@ function App({ id, name, pic, Chat }) {
   const user = JSON.parse(localStorage.getItem("user"))
   useEffect(() => {
     socket = io('http://localhost:3001', { transports: ['websocket'] });
-    fetch(`http://localhost:3001/chat/messageEmployee/${id}`, {
+    fetch(`http://localhost:3001/chat/messageAdmin/${id}`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -25,7 +25,6 @@ function App({ id, name, pic, Chat }) {
   }, [])
 
 
-  
 
   function _onMessageWasSent(message) {
     message.sender = user._id
@@ -33,7 +32,7 @@ function App({ id, name, pic, Chat }) {
       chatroomId: Chat,
       message: message,
     });
-    fetch(`http://localhost:3001/chat/messageEmployee/${id}`, {
+    fetch(`http://localhost:3001/chat/messageAdmin/${id}`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +47,7 @@ function App({ id, name, pic, Chat }) {
   useEffect(() => {
     socket.on("newMessage", (message) => {
 
-    
+
       if (message.message.sender.toString() !== user._id.toString()) {
         message.message.author = "them"
       }
@@ -74,7 +73,6 @@ function App({ id, name, pic, Chat }) {
     };
     //eslint-disable-next-line
   }, []);
-
   function onFilesSelected(file) {
     let formData = new FormData()
     
@@ -101,7 +99,7 @@ function App({ id, name, pic, Chat }) {
 
     formData.append('file', file[0])
     formData.append('message',JSON.stringify(message))
-    axios.put(`http://localhost:3001/chat/messageEmployee/${id}`, formData, {
+    axios.put(`http://localhost:3001/chat/messageAdmin/${id}`, formData, {
       headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + localStorage.getItem("jwt")
@@ -111,6 +109,9 @@ function App({ id, name, pic, Chat }) {
   }
 
 
+  if (!Chat) {
+    return ""
+  }
 
   return (<div>
     <Launcher

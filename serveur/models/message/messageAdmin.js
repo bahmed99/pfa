@@ -5,16 +5,12 @@ const messageSchema = new mongoose.Schema({
     messages:[{
         author : String ,
         type : {type:String} ,
-        data : {text :String} ,
+        data :{type:Object} ,
         sender : String 
     }] ,
     employee: {
         type: ObjectId,
         ref: "Employee"
-    },
-    Admin:{
-        type: ObjectId,
-        ref: "Admin"
     }
 
 })

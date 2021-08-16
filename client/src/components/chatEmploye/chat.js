@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     socket =  io('http://localhost:3001', { transports : ['websocket'] });
-    fetch('http://localhost:3001/chat/messageClient' ,{
+    fetch('http://localhost:3001/chat/messageEmployee' ,{
         method : "get" ,
         headers: {
             "Content-Type":"application/json" ,
@@ -26,15 +26,13 @@ function App() {
   }, [])
 
 
-  
-
   function _onMessageWasSent(message) {
     message.sender = user._id
     socket.emit('chatroomMessage', {
       chatroomId :user.Chat,
       message: message,
     });
-    fetch('http://localhost:3001/chat/messageClient' ,{
+    fetch('http://localhost:3001/chat/messageEmployee' ,{
       method : "put" ,
       headers:{
         "Content-Type":"application/json" ,
@@ -48,7 +46,7 @@ function App() {
   }
   useEffect(() => {
       socket.on("newMessage", (message) => {
-     
+ 
       if(message.message.sender.toString() !== user._id.toString())
       {
         message.message.author = "them"     
@@ -75,7 +73,6 @@ function App() {
     };
     //eslint-disable-next-line
   }, []);
-
   function onFilesSelected(file) {
     let formData = new FormData()
     
@@ -102,7 +99,7 @@ function App() {
 
     formData.append('file', file[0])
     formData.append('message',JSON.stringify(message))
-    axios.put('http://localhost:3001/chat/messageClient', formData, {
+    axios.put('http://localhost:3001/chat/messageEmployee', formData, {
       headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + localStorage.getItem("jwt")
@@ -110,6 +107,7 @@ function App() {
     }
     )
   }
+
 
     return (<div>
       <Launcher
