@@ -55,8 +55,12 @@ router.get('/messageEmployee/:id', requireLoginEmployee, (req, res) => {
         })
 })
 
-router.put('/messageClient', requireLoginClient, upload.single('file'),(req, res) => {
-    let message = JSON.parse(req.body.message)
+router.put('/messageClient', requireLoginClient, upload.single('file'), (req, res) => {
+    let message
+    if (req.body.type == "file") { message = JSON.parse(req.body.message) }
+    else {
+        message = req.body.message
+    }
     console.log(message)
     Message.findOneAndUpdate({ client: req.client._id }, {
         $push: { messages: message }
@@ -67,8 +71,12 @@ router.put('/messageClient', requireLoginClient, upload.single('file'),(req, res
     })
 })
 
-router.put('/messageEmployee/:id', requireLoginEmployee, upload.single('file'),(req, res) => {
-    let message = JSON.parse(req.body.message)
+router.put('/messageEmployee/:id', requireLoginEmployee, upload.single('file'), (req, res) => {
+    let message
+    if (req.body.type == "file") { message = JSON.parse(req.body.message) }
+    else {
+        message = req.body.message
+    }
     Message.findOneAndUpdate({ client: req.params.id }, {
         $push: { messages: message }
     }, {
@@ -102,8 +110,12 @@ router.get('/messageEmployee', requireLoginEmployee, (req, res) => {
         })
 })
 
-router.put('/messageEmployee', requireLoginEmployee,upload.single('file'), (req, res) => {
-    let message = JSON.parse(req.body.message)
+router.put('/messageEmployee', requireLoginEmployee, upload.single('file'), (req, res) => {
+    let message
+    if (req.body.type == "file") { message = JSON.parse(req.body.message) }
+    else {
+        message = req.body.message
+    }
     MessageAdmin.findOneAndUpdate({ employee: req.employee._id }, {
         $push: { messages: message }
     }, {
@@ -126,9 +138,13 @@ router.get('/messageAdmin/:id', requireLoginAdmin, (req, res) => {
 })
 
 router.put('/messageAdmin/:id', requireLoginAdmin, upload.single('file'), (req, res) => {
-    let message = JSON.parse(req.body.message)
+    let message
+    if (req.body.type == "file") { message = JSON.parse(req.body.message) }
+    else {
+        message = req.body.message
+    }
 
-     MessageAdmin.findOneAndUpdate({ employee: req.params.id }, {
+    MessageAdmin.findOneAndUpdate({ employee: req.params.id }, {
         $push: { messages: message }
     }, {
         new: true

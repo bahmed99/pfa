@@ -96,7 +96,7 @@ function App({ id, name, pic, Chat }) {
       chatroomId: Chat,
       message: message,
     });
-
+    formData.append("type",file)
     formData.append('file', file[0])
     formData.append('message',JSON.stringify(message))
     axios.put(`http://localhost:3001/chat/messageAdmin/${id}`, formData, {

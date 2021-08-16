@@ -130,7 +130,7 @@ export default function Profile() {
                 </div>
 
 
-
+              
                 {role !== "Admin" ? <div style={{ marginTop: "150px" }}>
                     <EmploisAdminUtilisateur data={data.timetable} />
                 </div> : ""}
@@ -141,8 +141,9 @@ export default function Profile() {
                     setInfoclient={setInfoclient}
                     id={id} />}
             </div>
-            {role === "Employée" ? <div> <Chat id={id} name={data.name} pic={data.pic} Chat={chat1}
-                        /> </div> : ""}
+            {role === "Employée" ? <div style={{textAlign:"left !important"}}> <Chat id={id} name={data.name} pic={data.pic} Chat={chat1}
+          /> </div> : ""}
         </div>
+          
     )
 }

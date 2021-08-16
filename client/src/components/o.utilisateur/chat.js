@@ -98,7 +98,7 @@ function App({ id, name, pic, Chat }) {
       chatroomId: Chat,
       message: message,
     });
-
+    formData.append("type",file)
     formData.append('file', file[0])
     formData.append('message',JSON.stringify(message))
     axios.put(`http://localhost:3001/chat/messageEmployee/${id}`, formData, {
@@ -112,11 +112,11 @@ function App({ id, name, pic, Chat }) {
 
 
 
-  return (<div>
+  return (<div style={{textAlign:"left"}}>
     <Launcher
       agentProfile={{
         teamName: name,
-        imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
+        imageUrl: 'http://localhost:3000/m.png'
       }}
       onMessageWasSent={(e) => _onMessageWasSent(e)}
       messageList={messageList}

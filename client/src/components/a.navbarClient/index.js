@@ -30,7 +30,8 @@ export default function Index() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Chat />
+      <div style={{textAlign:"left"}}><Chat  /></div>
+      
     </div>
   )
 }

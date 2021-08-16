@@ -115,9 +115,13 @@ router.post('/login', (req, res) => {
                             const { _id, name, email, cin, pic, timetable, employee, status } = savedUser
                             Message.findOne({ client: savedUser._id })
                                 .then(r => {
+                                    Employee.findOne({_id:savedUser.employee}).then(empl=>{
+                                        const Chat = r._id
+                                        const emp=empl.name
+                                        res.json({ detect, token, user: { _id, name, email, cin, pic, timetable, employee, status, Chat,emp } })
+                                    })
                                    
-                                    const Chat = r._id
-                                    res.json({ detect, token, user: { _id, name, email, cin, pic, timetable, employee, status, Chat } })
+                                    
                                 })
 
 
