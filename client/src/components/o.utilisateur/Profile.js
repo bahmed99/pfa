@@ -77,6 +77,10 @@ export default function Profile() {
         })
     }
 
+    if(!chat1){
+        return "Loading..."
+    }
+
 
     return (
         <div className="firstdiv" style={{
