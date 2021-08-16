@@ -44,6 +44,7 @@ import NewPasswordAdmin from "./pages/a.admin/auth/newPassword";
 import HomeAdmin from "./pages/a.admin/home/Home";
 import EmploisAdmin from "./pages/a.admin/emplois/Emplois";
 import Utilisateurs from "./pages/o.admin/utilisateurs";
+import AjouterCours from "./pages/a.employe/AjouterCours";
 
 
 export default function MainRouter() {
@@ -134,6 +135,7 @@ export default function MainRouter() {
                         <Route exact path={"/notifications"} component={Notifications} />
                         <Route exact path={"/client-profile/:id"} component={Profile} />
                         <Route exact path={"/utilisateur-profile/:id"} component={Profile1} />
+                        <Route exact path={"/courses"} component={AjouterCours} />
                     </div> : ""}
                 {(user && detect === 3) ?
                     <div>
@@ -143,7 +145,15 @@ export default function MainRouter() {
                         <Route exact path={"/home"} component={HomeAdmin} />
                         <Route exact path={"/emplois"} component={EmploisAdmin} />
                         <Route exact path={"/cars"} component={Car} />
+<<<<<<< HEAD
                         <Route exact path={"/notifications"} component={Notifications} />
+=======
+
+                        <Route exact path={"/notifications"} component={Notifications} />
+
+
+
+>>>>>>> 654aaf215ebf84fe1bc33ac7f725cbf7671fbe5d
                     </div> : ""}
             </Switch>
         </div>
