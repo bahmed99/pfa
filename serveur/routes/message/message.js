@@ -58,9 +58,10 @@ router.put('/messageEmployee/:id' ,requireLoginEmployee, (req,res)=>{
         })
 })
 router.post('/',(req,res)=>{
+    const {client , employee} = req.body
     const message = new Message({
-        client : "610b04f544b0dc31dc45ce4a" ,
-        employee : "6113b9ee0c049f1614c85513"
+        client : client ,
+        employee : employee
     })
     message.save()
     .then(r=>{
