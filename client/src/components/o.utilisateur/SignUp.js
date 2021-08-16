@@ -23,6 +23,8 @@ const SignUp = (props) => {
   const [cin,setCin]=useState("")
   const [age,setAge]=useState("")
   const [image,setImage]=useState("")
+  const [id1,setId1]=useState({})
+  const user = JSON.parse(localStorage.getItem("user"))
 
   const [imagename,setImagename] = useState("")
   const onClickAjouterSeance=async ()=>{
@@ -36,7 +38,8 @@ const SignUp = (props) => {
       dataform.append("tel",tel)
       dataform.append("age",age)
 
-      const data = {name:name, email:email, cin:cin , imgUrl : imagename ,status:'Payé',age:age ,tel:tel }
+
+      const data = {name:name, email:email, cin:cin , imgUrl : imagename ,status:'Payé',age:age ,tel:tel  }
       axios.post("http://localhost:3001/auth/client/signup",dataform,{
               headers:{
                   "Content-Type":"application/json" ,
@@ -44,13 +47,16 @@ const SignUp = (props) => {
               }
           })
           .then(result=>{
+              
               if(result.data.error)
               {
               }
               else
               {
+                
                 props.setData1(prevData => ([...prevData, data]))
                 props.setModal(false)
+
                 setName('')
                 setEmail('')
                 setCin('')
@@ -58,12 +64,18 @@ const SignUp = (props) => {
                 setImagename('')
                 setTel('')
                 setAge('')
+     
+
               }
           }).catch(err=>{
               console.log(err)
         })
+        
       }
-   
+
+    
+
+
 
   }
 
