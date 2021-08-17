@@ -90,7 +90,7 @@ function Index() {
 
   const columns = React.useMemo(() => [
     {
-      Header: "Name",
+      Header: "Nom",
       accessor: 'name',
       Cell: AvatarCell,
       imgAccessor: "imgUrl",
@@ -101,7 +101,7 @@ function Index() {
       accessor: 'tel',
     },
     {
-      Header: "Status",
+      Header: "Statut",
       accessor: 'status',
       Cell: StatusPill,
       Filter: SelectColumnFilter,
