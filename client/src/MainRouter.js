@@ -46,6 +46,9 @@ import EmploisAdmin from "./pages/a.admin/emplois/Emplois";
 import Utilisateurs from "./pages/o.admin/utilisateurs";
 import AjouterCours from "./pages/a.employe/AjouterCours";
 
+import Dashboard1 from "./pages/o.Dashboard/Dashboard1"
+import { Dashboard } from "@material-ui/icons";
+
 
 export default function MainRouter() {
     const history = useHistory()
@@ -139,7 +142,7 @@ export default function MainRouter() {
                     </div> : ""}
                 {(user && detect === 3) ?
                     <div>
-                        <Route exact path={"/home"} component={HomeAdmin} />
+                        <Route exact path={"/home"} component={Dashboard1} />
                         <Route exact path={"/ressources-humaine"} component={Utilisateurs} />
                         <Route exact path={"/utilisateur-profile/:id"} component={Profile1} />
                         

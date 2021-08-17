@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import MainRouter from "./MainRouter";
 import "./App.css"
+import Dashboard from "./components/Dashboard/Dashboard";
 const loader = document.querySelector(".loader");
 const showLoader = () => loader.classList.remove("loader");
 const addClass = () => loader.classList.add("loader-hide");
