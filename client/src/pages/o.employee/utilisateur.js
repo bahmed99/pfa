@@ -12,7 +12,6 @@ export default function utilisateur() {
             backgroundSize: "cover",
             height: "100vh",
             backgroundPosition: "center!important" ,
-            marginTop: "60px" ,
           }}>
             <div className="col-md-2" >
                 <Navbar />
@@ -23,5 +22,6 @@ export default function utilisateur() {
             </div>
 
         </div>
+
     )
 }

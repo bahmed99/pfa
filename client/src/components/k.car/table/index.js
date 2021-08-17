@@ -67,13 +67,7 @@ function Index() {
   
   return (
     <div className="min-h-screen">
-      <div className="firstdiv" style={{
-            backgroundImage: 'url('+image1+')',
-            backgroundSize: "cover",
-            height: "100vh",
-            marginTop:"70px" ,
-            backgroundPosition: "center!important" ,
-          }}>
+      <div className="firstdiv" >
             
             
             <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">

@@ -9,7 +9,7 @@ export default function AjouterCours() {
         <div className="row" style={{
             backgroundImage: 'url('+image1+')',
             backgroundSize: "cover",
-            height: "150vh",
+            height: "100vh",
             color: "#f5f5f5" ,
             backgroundAttachment:"fixed" ,
             backgroundPosition: "center" ,

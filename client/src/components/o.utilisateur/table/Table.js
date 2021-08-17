@@ -32,7 +32,7 @@ function GlobalFilter({
           setValue(e.target.value);
           onChange(e.target.value);
         }}
-        placeholder={`${count} records...`}
+        placeholder={`${count} Utilisateurs...`}
       />
     </label>
   )
@@ -67,7 +67,7 @@ export function SelectColumnFilter({
         }}
         style={{backgroundColor:"white"}}
       >
-        <option value="">All</option>
+        <option value="">Tous</option>
         {options.map((option, i) => (
           <option key={i} value={option}>
             {option}
