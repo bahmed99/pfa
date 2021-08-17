@@ -17,16 +17,16 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         padding: 10,
-        width:100,
-        height:35,
-        marginLeft:5,
-        fontSize:12,
+        width: 100,
+        height: 35,
+        marginLeft: 5,
+        fontSize: 12,
         border: '1px solid',
         backgroundColor: 'white',
         borderColor: '#3d3e42',
         fontFamily: [
             '"Segoe UI Symbol"',
-            
+
         ].join(','),
         '&:hover': {
             backgroundColor: '#369579',
@@ -51,13 +51,13 @@ function Ajouter() {
 
         <div>
 
-                        <Button onClick={handleShow}
-                                variant="contained"
-                                size="small"
-                                className={classes.button}
-                                startIcon={<AddIcon />}>
-                                Ajouter
-                                </Button>
+            <Button onClick={handleShow}
+                variant="contained"
+                size="small"
+                className={classes.button}
+                startIcon={<AddIcon />}>
+                Ajouter
+            </Button>
 
             <Modal className='loginbox-container' size="lg" show={show} onHide={handleClose}>
                 <Modal.Header closeButton>

@@ -48,6 +48,10 @@ app.use("/auth", auth)
 
 app.use('/chat',require('./routes/message/message'))
 
+app.use('/counter',require('./routes/counter/index'))
+
+app.use('/carousel',require('./routes/carousel/index'))
+
 app.use("/courses", courses)
 
 /////////////////////////////////////////////////////////////////////////////////

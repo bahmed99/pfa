@@ -39,7 +39,7 @@ export default function Profile() {
             })
 
     }, [])
- 
+
     const deleteClient = () => {
         fetch(`http://localhost:3001/admin/deleteEmployee/${id}`, {
             method: "delete",
@@ -120,7 +120,8 @@ export default function Profile() {
                             </div>
                             <br />
 
-
+                            {role === "Employée" ? <div style={{ textAlign: "left !important" }}> <Chat id={id} name={data.name} pic={data.pic} Chat={chat1}
+                            /> </div> : ""}
 
 
                         </div>
@@ -130,9 +131,11 @@ export default function Profile() {
                 </div>
 
 
-              
+
                 {role !== "Admin" ? <div style={{ marginTop: "150px" }}>
+
                     <EmploisAdminUtilisateur data={data.timetable} />
+
                 </div> : ""}
 
                 {<AffectationClient isOpen={ajoutSeanceModalOpen}
@@ -141,9 +144,8 @@ export default function Profile() {
                     setInfoclient={setInfoclient}
                     id={id} />}
             </div>
-            {role === "Employée" ? <div style={{textAlign:"left !important"}}> <Chat id={id} name={data.name} pic={data.pic} Chat={chat1}
-          /> </div> : ""}
+
         </div>
-          
+
     )
 }

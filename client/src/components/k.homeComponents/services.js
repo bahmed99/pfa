@@ -1,8 +1,8 @@
 
 function Technologies() {
   return (
-            <div className="BgContainer" style={{backgroundColor:"#b4b4b4" , marginTop:"-200px"}}>
-                <br />
+            <div className="BgContainer" style={{backgroundColor:"#b4b4b4" , marginTop:"-180px",paddingBottom:"120px"}}>
+               
                 <div className="row justify-content-center div-Style" >
                     <div className="col-lg-7 col-md-12  ">
                         <div className="section-title text-center">
@@ -35,9 +35,7 @@ function Technologies() {
                         </div>
                     </div>
                 </div>
-                <br />
-                <hr  style={{width:"50%", margin:"auto auto"}}/>
-                <br />
+                
             </div>
 
   );

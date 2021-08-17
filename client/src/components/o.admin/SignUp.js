@@ -27,17 +27,17 @@ const SignUp = (props) => {
 
   const [imagename, setImagename] = useState("")
   useEffect(() => {
-    axios.get("http://localhost:3001/car/all",{
-      headers:{
+    axios.get("http://localhost:3001/car/all", {
+      headers: {
         "Authorization": "Bearer " + localStorage.getItem("jwt")
       }
-    }).then(result=>{
-        setCars(result.data)
+    }).then(result => {
+      setCars(result.data)
     })
 
-    
+
   }, [])
- 
+
   const onClickAjouterSeance = () => {
     if (name && email && cin && image && role) {
       let dataform = new FormData()
@@ -47,9 +47,9 @@ const SignUp = (props) => {
       dataform.append('image', image)
       dataform.append("tel", tel)
       dataform.append("age", age)
-      
 
-      const data = { name: name, email: email, cin: cin, imgUrl: imagename , car : car}
+
+      const data = { name: name, email: email, cin: cin, imgUrl: imagename, car: car }
       if (role === "Employée") {
         dataform.append("car", cars[car].id)
         axios.post("http://localhost:3001/auth/employee/signup", dataform, {
@@ -64,19 +64,20 @@ const SignUp = (props) => {
             else {
               props.setData1(prevData => ([...prevData, data]))
               props.setModal(false)
+              setName('')
+              setEmail('')
+              setCin('')
+              setImage('')
+              setImagename('')
+              setTel('')
+              setAge('')
+              setCar('')
             }
           }).catch(err => {
             console.log(err)
           })
 
-        setName('')
-        setEmail('')
-        setCin('')
-        setImage('')
-        setImagename('')
-        setTel('')
-        setAge('')
-        setCar('')
+
 
       }
       else {
@@ -92,33 +93,23 @@ const SignUp = (props) => {
             else {
               props.setData1(prevData => ([...prevData, data]))
               props.setModal(false)
+              setName('')
+              setEmail('')
+              setCin('')
+              setImage('')
+              setImagename('')
+              setTel('')
+              setAge('')
+              setCar('')
             }
           }).catch(err => {
             console.log(err)
           })
 
-        setName('')
-        setEmail('')
-        setCin('')
-        setImage('')
-        setImagename('')
-        setTel('')
-        setAge('')
-        setRole("")
-
+        
       }
 
     }
-    setName('')
-    setEmail('')
-    setCin('')
-    setImage('')
-    setImagename('')
-    setTel('')
-    setAge('')
-    setRole("")
-    setCars("")
-
   }
   return (
     <Modal
@@ -137,7 +128,7 @@ const SignUp = (props) => {
 
             <Form role="form">
               <FormGroup>
-                <Label>rôle</Label>
+                <Label>Rôle</Label>
                 <Input type="select" value={role} onChange={(e) => setRole(e.target.value)} >
                   <option default value=""></option>
                   <option value="Admin" key="Admin">Admin</option>
@@ -196,21 +187,21 @@ const SignUp = (props) => {
                   onChange={(e) => setTel(e.target.value)} />
 
               </FormGroup>
-              {(role==="Employée")?<FormGroup>
-                  <Label> Choisir Une voiture </Label>
-                  <Input type='select' onChange={(e) => setCar(e.target.value)}  >
-                      <option default value="">
-                      </option>
-                      {cars.map((element,index)=>(
-                          <option value={index}  key={index}>
-                          {element.serie}
-                          </option>
-                          
-                  ))}
-                  
-                  </Input>
+              {(role === "Employée") ? <FormGroup>
+                <Label> Choisir Une voiture </Label>
+                <Input type='select' onChange={(e) => setCar(e.target.value)}  >
+                  <option default value="">
+                  </option>
+                  {cars.map((element, index) => (
+                    <option value={index} key={index}>
+                      {element.serie}
+                    </option>
 
-              </FormGroup>:""}
+                  ))}
+
+                </Input>
+
+              </FormGroup> : ""}
               <FormGroup>
                 <Label>Image</Label>
                 <Input

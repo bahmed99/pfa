@@ -3,17 +3,18 @@ import Navbar from '../../components/a.navbarHome'
 //import Apropos from '../../components/k.homeComponents/apropos'
 import About from '../../components/k.homeComponents/about'
 import Services from '../../components/k.homeComponents/services'
-import Equipe from '../../components/k.homeComponents/equipe'
+import Equipe from '../../components/k.homeComponents/team'
+import Funfact from '../../components/k.homeComponents/Counter'
 import Contact from '../../components/k.homeComponents/contact'
 import Footer from '../../components/k.footer/footer'
 import './home.css'
 import { useState, useEffect, Fragment } from 'react'
 
 
-   
-    
 
-       
+
+
+
 
 export default function Home() {
     let [screen, setScreen] = useState()
@@ -67,21 +68,23 @@ export default function Home() {
     return (
         <div className="home">
             <Fragment>
-            <Navbar y={y} screen={screen} scale={scale} />
+                <Navbar y={y} screen={screen} scale={scale} />
+
+                <div id="apropos">
+                    <About />
+                </div>
+                <div id="services">
+                    <Services />
+                </div>
+                <Funfact />
+                <div id="equipe">
+                    <Equipe />
+                </div>
+                <div id="contact">
+                    <Contact />
+                </div>
+                <Footer />
             </Fragment>
-            <div id="apropos">
-                <About />
-            </div>
-            <div id="services">
-                <Services />
-            </div>
-            <div id="equipe">
-                <Equipe />
-            </div>
-            <div id="contact">
-                <Contact />
-            </div>
-            <Footer />
         </div>
     )
 }
