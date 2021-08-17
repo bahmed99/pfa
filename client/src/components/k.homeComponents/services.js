@@ -15,21 +15,21 @@ function Technologies() {
                 <div className="row container-technologies " >
                     <div className="col-lg-4 col-md-6 col-sm-12 " >
                         <div className="single-serviecs-block container-technologie" >
-                            <i className="fa fa-print"></i>
+                            <i className="fa fa-book"></i>
                             <h3 className="title-technologie"><a href="services-details.html">Digital Printing</a></h3>
                             <p className="description-title-style">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
                         </div>
                     </div>
                     <div className="col-lg-4 col-md-6 col-sm-12 container-technologie1"  >
                         <div className="single-serviecs-block">
-                            <i className="fa fa-lightbulb-o" aria-hidden="true"></i>
+                            <i className="fa fa-car" aria-hidden="true"></i>
                             <h3 className="title-technologie"><a href="services-details.html">Design Services</a></h3>
                             <p className="description-title-style">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
                         </div>
                     </div>
                     <div className="col-lg-4 col-md-6 col-sm-12  container-Technologie2" >
                         <div className="single-serviecs-block">
-                            <i className="fa fa-envelope"></i>
+                            <i className="fa fa-pencil"></i>
                             <h3 className="title-technologie"><a href="services-details.html">Mail Services</a></h3>
                             <p  className="description-title-style">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
                         </div>

@@ -104,7 +104,7 @@ export default function MainRouter() {
                 {(user && detect === 1) ?
                     <div>
 
-                        <oRute exact path={"/home"} component={HomeClient} />
+                        <Route exact path={"/home"} component={HomeClient} />
                         <Route exact path={"/avis"}>
                             <NavBarClient />
                             <Avis />
