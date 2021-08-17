@@ -1,4 +1,5 @@
-import React from "react";
+import React , {useState , useEffect} from "react";
+import axios from "axios"
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
 // @material-ui/core
@@ -35,14 +36,104 @@ import {
   dailySalesChart,
   emailsSubscriptionChart,
   completedTasksChart,
-} from "variables/charts.js";
+  dashboardEmailStatisticsChart,
+  dashboardNASDAQChart,
+} from "./charts.js";
 
 import styles from "./dashboardStyle.js";
+
+import './style.css'
+
+//////////////////////////////////////////
+
+import {
+  
+
+    CardTitle,
+    Row,
+    Col,
+  } from "reactstrap";
+  
+  import { Line, Pie } from "react-chartjs-2";
+
+
+  //////////////////
 
 const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
-  const classes = useStyles();
+    const classes = useStyles();
+    const [client, setClient] = useState()
+    const [employee, setEmployee] = useState()
+    const [car, setCar] = useState()
+    const [info , setInfo] = useState()
+    const [info1 , setInfo1] = useState()
+    const [info2 , setInfo2] = useState()
+    const [moyenne , setMoyenne] = useState()
+    const [moyenne1 , setMoyenne1] = useState()
+    const [moyenne2 , setMoyenne2] = useState()
+    useEffect(() => {
+        axios.get('http://localhost:3001/admin/statistics',{
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+              }
+        }).then(res=>{
+            setCar(res.data.car)
+            setClient(res.data.client)
+            setEmployee(res.data.employee)
+            console.log(res.data)
+
+
+        }).catch(err=>{
+            console.log(err)
+        })
+
+        axios.get('http://localhost:3001/admin/nbrSeances',{
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+              }
+        }).then(res=>{
+            setInfo(res.data)
+            setMoyenne((res.data.series[0].reduce((a, b) => a + b, 0))/7)
+
+        }).catch(err=>{
+            console.log(err)
+        })
+
+
+        axios.get('http://localhost:3001/admin/nbreAvis',{
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+              }
+        }).then(res=>{
+            setInfo2(res.data)
+            setMoyenne2((res.data.series[0].reduce((a, b) => a + b, 0))/12)
+
+
+        }).catch(err=>{
+            console.log(err)
+        })
+
+        axios.get('http://localhost:3001/admin/nbreSub',{
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+              }
+        }).then(res=>{
+            setInfo1(res.data)
+            setMoyenne1((res.data.series[0].reduce((a, b) => a + b, 0))/12)
+
+
+        }).catch(err=>{
+            console.log(err)
+        })
+
+
+       
+    }, [])
   return (
     <div>
       <GridContainer>
@@ -50,11 +141,11 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
-                <Icon>content_copy</Icon>
+              <Icon className="fa fa-users" />
               </CardIcon>
-              <p className={classes.cardCategory}>Used Space</p>
+              <p className={classes.cardCategory}>Nombre de clients</p>
               <h3 className={classes.cardTitle}>
-                49/50 <small>GB</small>
+                {client}
               </h3>
             </CardHeader>
             <CardFooter stats>
@@ -73,10 +164,10 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="success" stats icon>
               <CardIcon color="success">
-                <Store />
+                <Icon className="fas fa-user-tie" />
               </CardIcon>
-              <p className={classes.cardCategory}>Revenue</p>
-              <h3 className={classes.cardTitle}>$34,245</h3>
+              <p className={classes.cardCategory}>Nombre d'employées</p>
+              <h3 className={classes.cardTitle}>{employee}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -90,10 +181,10 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="danger" stats icon>
               <CardIcon color="danger">
-                <Icon>info_outline</Icon>
+                <Icon className="fas fa-car" />
               </CardIcon>
-              <p className={classes.cardCategory}>Fixed Issues</p>
-              <h3 className={classes.cardTitle}>75</h3>
+              <p className={classes.cardCategory}>Nombre de Voitures</p>
+              <h3 className={classes.cardTitle}>{car}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -109,8 +200,8 @@ export default function Dashboard() {
               <CardIcon color="info">
                 <Accessibility />
               </CardIcon>
-              <p className={classes.cardCategory}>Followers</p>
-              <h3 className={classes.cardTitle}>+245</h3>
+              <p className={classes.cardCategory}>Total</p>
+              <h3 className={classes.cardTitle}>+{client+employee}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -127,19 +218,19 @@ export default function Dashboard() {
             <CardHeader color="success">
               <ChartistGraph
                 className="ct-chart"
-                data={dailySalesChart.data}
+                data={info}
                 type="Line"
                 options={dailySalesChart.options}
                 listener={dailySalesChart.animation}
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Daily Sales</h4>
+              <h4 className={classes.cardTitle}>Nombre de séances par jours</h4>
               <p className={classes.cardCategory}>
                 <span className={classes.successText}>
-                  <ArrowUpward className={classes.upArrowCardCategory} /> 55%
+                  <ArrowUpward className={classes.upArrowCardCategory} /> {moyenne}
                 </span>{" "}
-                increase in today sales.
+                en moyenne par jour.
               </p>
             </CardBody>
             <CardFooter chart>
@@ -154,7 +245,7 @@ export default function Dashboard() {
             <CardHeader color="warning">
               <ChartistGraph
                 className="ct-chart"
-                data={emailsSubscriptionChart.data}
+                data={info1}
                 type="Bar"
                 options={emailsSubscriptionChart.options}
                 responsiveOptions={emailsSubscriptionChart.responsiveOptions}
@@ -162,8 +253,8 @@ export default function Dashboard() {
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Email Subscriptions</h4>
-              <p className={classes.cardCategory}>Last Campaign Performance</p>
+              <h4 className={classes.cardTitle}>Nombre de client par mois</h4>
+              <p className={classes.cardCategory}>{moyenne1} client en moyenne par mois</p>
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
@@ -177,15 +268,15 @@ export default function Dashboard() {
             <CardHeader color="danger">
               <ChartistGraph
                 className="ct-chart"
-                data={completedTasksChart.data}
+                data={info2}
                 type="Line"
                 options={completedTasksChart.options}
                 listener={completedTasksChart.animation}
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Completed Tasks</h4>
-              <p className={classes.cardCategory}>Last Campaign Performance</p>
+              <h4 className={classes.cardTitle}>Avis positifs par mois</h4>
+              <p className={classes.cardCategory}>{moyenne2} Avis positifs en moyenne par mois</p>
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
@@ -195,71 +286,61 @@ export default function Dashboard() {
           </Card>
         </GridItem>
       </GridContainer>
-      <GridContainer>
-        <GridItem xs={12} sm={12} md={6}>
-          <CustomTabs
-            title="Tasks:"
-            headerColor="primary"
-            tabs={[
-              {
-                tabName: "Bugs",
-                tabIcon: BugReport,
-                tabContent: (
-                  <Tasks
-                    checkedIndexes={[0, 3]}
-                    tasksIndexes={[0, 1, 2, 3]}
-                    tasks={bugs}
-                  />
-                ),
-              },
-              {
-                tabName: "Website",
-                tabIcon: Code,
-                tabContent: (
-                  <Tasks
-                    checkedIndexes={[0]}
-                    tasksIndexes={[0, 1]}
-                    tasks={website}
-                  />
-                ),
-              },
-              {
-                tabName: "Server",
-                tabIcon: Cloud,
-                tabContent: (
-                  <Tasks
-                    checkedIndexes={[1]}
-                    tasksIndexes={[0, 1, 2]}
-                    tasks={server}
-                  />
-                ),
-              },
-            ]}
-          />
-        </GridItem>
-        <GridItem xs={12} sm={12} md={6}>
-          <Card>
-            <CardHeader color="warning">
-              <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
-              <p className={classes.cardCategoryWhite}>
-                New employees on 15th September, 2016
-              </p>
-            </CardHeader>
-            <CardBody>
-              <Table
-                tableHeaderColor="warning"
-                tableHead={["ID", "Name", "Salary", "Country"]}
-                tableData={[
-                  ["1", "Dakota Rice", "$36,738", "Niger"],
-                  ["2", "Minerva Hooper", "$23,789", "Curaçao"],
-                  ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
-                  ["4", "Philip Chaney", "$38,735", "Korea, South"],
-                ]}
-              />
-            </CardBody>
-          </Card>
-        </GridItem>
-      </GridContainer>
+        <Row>
+          <Col md="4">
+            <Card>
+              <CardHeader>
+                <CardTitle tag="h5">Email Statistics</CardTitle>
+                <p className="card-category">Last Campaign Performance</p>
+              </CardHeader>
+              <CardBody style={{ height: "266px" }}>
+                <Pie
+                  data={dashboardEmailStatisticsChart.data}
+                  options={dashboardEmailStatisticsChart.options}
+                />
+              </CardBody>
+              <CardFooter>
+                <div className="legend">
+                  <i className="fa fa-circle text-primary" /> Opened{" "}
+                  <i className="fa fa-circle text-warning" /> Read{" "}
+                  <i className="fa fa-circle text-danger" /> Deleted{" "}
+                  <i className="fa fa-circle text-gray" /> Unopened
+                </div>
+                <hr />
+                <div className="stats">
+                  <i className="fa fa-calendar" /> Number of emails sent
+                </div>
+              </CardFooter>
+            </Card>
+          </Col>
+          <Col md="8">
+            <Card className="card-chart">
+              <CardHeader>
+                <CardTitle tag="h5">NASDAQ: AAPL</CardTitle>
+                <p className="card-category">Line Chart with Points</p>
+              </CardHeader>
+              <CardBody>
+                <Line
+                  data={dashboardNASDAQChart.data}
+                  options={dashboardNASDAQChart.options}
+                  width={400}
+                  height={100}
+                />
+              </CardBody>
+              <CardFooter>
+                <div className="chart-legend">
+                  <i className="fa fa-circle text-info" /> Tesla Model S{" "}
+                  <i className="fa fa-circle text-warning" /> BMW 5 Series
+                </div>
+                <hr />
+                <div className="card-stats">
+                  <i className="fa fa-check" /> Data information certified
+                </div>
+              </CardFooter>
+            </Card>
+          </Col>
+        </Row>
+
     </div>
   );
 }

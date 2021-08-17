@@ -3,6 +3,7 @@ const router = express.Router()
 const Employee = require("../../models/user/employe")
 const Client = require("../../models/user/client")
 const Admin = require("../../models/user/admin")
+const Avis = require("../../models/avis/avis")
 const fs = require('fs')
 const MessageAdmin = require("../../models/message/messageAdmin")
 const Message = require("../../models/message/message")
@@ -230,5 +231,165 @@ router.put('/essai', (req, res) => {
                 })
         })
 })
+
+router.get('/statistics',requireLoginAdmin,(req,res)=>{
+    Client.countDocuments().then((countClient=>{
+        Employee.countDocuments().then((countEmployee=>{
+            Car.countDocuments().then((countCar=>{
+                res.send({client:countClient,employee:countEmployee,car:countCar})
+
+            })).catch(err1=>{
+                res.send(err1)
+
+            })
+        })).catch(err2=>{
+            res.send(err2)
+        })
+    })).catch(err3=>{  
+        res.send(err3)
+    })
+})
+
+function getweek()
+{
+    var curr = new Date; // get current date
+    var first = curr.getDate() - curr.getDay()+1; // First day is the day of the month - the day of the week
+    var last = first + 6; // last day is the first day + 6
+    
+    var firstday = new Date(curr.setDate(first));
+    var lastday = new Date(curr.setDate(last));
+    return [firstday , lastday]
+}
+
+
+ 
+
+router.get('/nbrSeances',requireLoginAdmin,(req,res)=>{
+    Client.find()
+    .then(result=>{
+        const [fd,ff] =  getweek()
+        const tab1=["L", "M", "M", "J", "V", "S", "D"]
+        let tab = [0,0,0,0,0,0,0]
+        for(let i=0 ; i< result.length ; i++)
+        {
+            for(let j=0 ; j< result[i].timetable.length ; j++)
+            {
+                if(result[i].timetable[j].start.getFullYear() === new Date().getFullYear() && result[i].timetable[j].start.getMonth() === new Date().getMonth() && result[i].timetable[j].start.getDate()>= fd.getDate() && result[i].timetable[j].start.getDate()<= ff.getDate())
+                {
+                    if(result[i].timetable[j].start.getDay()===0)
+                    {
+                        tab[6]+=1
+                    }
+                    else if(result[i].timetable[j].start.getDay()===1)
+                    {
+                        tab[0]+=1
+                    }
+                    else if(result[i].timetable[j].start.getDay()===2)
+                    {
+                        tab[1]+=1
+                    }
+                    else if(result[i].timetable[j].start.getDay()===3)
+                    {
+                        tab[2]+=1
+                    }
+                    else if(result[i].timetable[j].start.getDay()===4)
+                    {
+                        tab[3]+=1
+                    }
+                    else if(result[i].timetable[j].start.getDay()===5)
+                    {
+                        tab[4]+=1
+                    }
+                    else if(result[i].timetable[j].start.getDay()===6)
+                    {
+                        tab[5]+=1
+                    }
+
+
+                }
+            }
+        }
+        res.json({labels:tab1,series:[tab]})
+    })
+})
+
+router.get('/nbreSub' ,requireLoginAdmin, (req,res)=>{
+    
+    let tab1 = [
+        "Jan",
+        "Fev",
+        "Mar",
+        "Avr",
+        "Mai",
+        "Juin",
+        "Juil",
+        "Aout",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dec",
+      ]
+    
+    Client.find()
+    .then(result=>{
+        let tab = [0,0,0,0,0,0,0,0,0,0,0,0]
+        for(let i=0 ; i< result.length ; i++)
+        {
+            for (let j =0 ; j<12 ; j++)
+            {
+                if(result[i].createdAt.getMonth() === j)
+                {
+                    tab[j]= tab[j] + 1 
+
+                }
+            }
+        }
+        res.json({labels:tab1,series:[tab]})
+    })
+    
+
+})
+
+router.get('/nbreAvis', (req,res)=>{
+    
+    let tab1 = [
+        "Jan",
+        "Fev",
+        "Mar",
+        "Avr",
+        "Mai",
+        "Juin",
+        "Juil",
+        "Aout",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dec",
+      ]
+    
+    Avis.find()
+    .then(result=>{
+        let tab = [0,0,0,0,0,0,0,0,0,0,0,0]
+        for(let i=0 ; i< result.length ; i++)
+        {
+            if(result[i].vote >= 3)
+            {
+                for (let j =0 ; j<12 ; j++)
+                {
+                    if(result[i].createdAt.getMonth() === j)
+                    {
+                        tab[j]= tab[j] + 1 
+
+                    }
+                }
+            }
+        }
+        res.json({labels:tab1,series:[tab]})
+    })
+    
+
+})
+
+
 
 module.exports = router
