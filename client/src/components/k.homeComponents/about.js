@@ -5,9 +5,9 @@ import './home.style.css'
 export default function About() {
     return (
         <div className="bg2 textCenter" > <h1 className="title">Qui Sommes-nous? </h1>
-            <div className="about">
+            <div className="about" style={{marginRight:"100px"}}>
                 <div className="inner">
-                    <p>
+                    <p >
                         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
                         doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
                         inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.

@@ -4,7 +4,7 @@ import './home.style.css'
 
 export default function Apropos() {
   return (
-    <div className="textCenter">
+    <div className="bg2 textCenter">
       <Container>
         <Row>
 
