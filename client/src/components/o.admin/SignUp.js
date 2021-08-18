@@ -49,7 +49,7 @@ const SignUp = (props) => {
       dataform.append("age", age)
 
 
-      const data = { name: name, email: email, cin: cin, imgUrl: imagename, car: car }
+      const data = { name: name, email: email, cin: cin, imgUrl: imagename }
       if (role === "Employée") {
         dataform.append("car", cars[car].id)
         axios.post("http://localhost:3001/auth/employee/signup", dataform, {

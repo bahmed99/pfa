@@ -11,7 +11,8 @@ export default function Avis() {
     const [message,setMessage]=useState('')
     const [vote,setVote]=useState(0)
     const PostData = () =>{
-        fetch("http://localhost:3001/client/avis",{
+        if(vote&&message)
+        {fetch("http://localhost:3001/client/avis",{
             method:"post",
             headers:{
                 "Content-Type":"application/json" ,
@@ -49,7 +50,7 @@ export default function Avis() {
             }
         }).catch(err=>{
             console.log(err)
-        })
+        })}
     }
 
     const [opacity1,setOpacity1]= useState('40%')

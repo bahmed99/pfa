@@ -1,54 +1,56 @@
 import React from 'react'
-import { Container, Row, Col} from 'react-bootstrap';
+import { Link} from 'react-router-dom';
 import './footer.css'
-import { Button, } from "reactstrap";
+
 function Footer() {
     return (
-        <div className="footer">
-            <Container>
-                <Row>
-                    <Col xs={12} md={8}>
-                        <h5 className="footer-text">Consultez nos réseaux sociaux</h5>
-                        <h6 className="h6-white">Vous y trouverez beaucoup de détails et des offres exclusives.</h6>
-                    </Col>
-                    <Col xs={6} md={4} className="justify-content-end">
-                    <Row>
-                       
-                        
-                            <ul>
-                                <Button variant="info"
+        <footer className="footer-distributed">
 
-                                    
-                                >
-                                    <i className="fa fa-facebook" />
-                                </Button>
-                                <Button
-                                   
-                                >
-                                    <i className="fa fa-instagram" />
-                                </Button>
-                                <Button
-                                    className="btn"
+			<div className="footer-left">
+      
+            <iframe src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=tunis%2Cariana+(Pr%C3%A9s%20de%20%C3%A9cole%20naser)&amp;ie=UTF8&amp;t=&amp;z=10&amp;iwloc=B&amp;output=embed" width="80%" height="250" frameborder="0" style={{border:"#3d3e42 5px solid",borderRadius:"20px"}} allowfullscreen></iframe>
+            
+				
+			</div>
 
+			<div className="footer-center">
 
+				<div>
+					<i className="fa fa-map-marker"></i>
+					<p><span>Tunis 445</span> Ariana, Naser 1</p>
+				</div>
 
-                                >
-                                    <i className="fa fa-linkedin" />
-                                </Button>
+				<div>
+					<i className="fa fa-phone"></i>
+					<p>+216 53530891</p>
+				</div>
 
-                            </ul>
-                        </Row>
-                    </Col>
-                </Row>
+				<div>
+					<i className="fa fa-envelope"></i>
+					<p><Link href="iDriveGears@gmail.com">iDriveGears@gmail.com</Link></p>
+				</div>
 
-                <div class="footer-copyright">
-                    <div class="container">
-                        © 2021 Copyright iDrive Gears
-                    </div>
-                </div>
-            </Container>
+			</div>
 
-        </div>
+			<div className="footer-right">
+
+				<p className="footer-company-about">
+					<span>Apropos Idrive Gears</span>
+					Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+				</p>
+
+				<div className="footer-icons">
+
+					<Link><i className="fa fa-facebook"></i></Link>
+					<Link ><i className="fa fa-twitter"></i></Link>
+					<Link ><i className="fa fa-linkedin"></i></Link>
+					<Link ><i className="fa fa-github"></i></Link>
+
+				</div>
+
+			</div>
+
+		</footer>
     )
 }
 

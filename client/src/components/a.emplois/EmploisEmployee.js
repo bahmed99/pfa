@@ -147,8 +147,8 @@ export default function Emplois() {
     return (
         <div style={{ width: "100%", marginRight: "auto", marginLeft: "auto", marginTop: "100px" }}>
 
-            <FullCalendar
-                plugins={[timeGridPlugin, interactionPlugin, listPlugin]}
+            <FullCalendar 
+               plugins={[timeGridPlugin, interactionPlugin, listPlugin]}
                 events={data}
                 selectMirror={true}
                 themeSystem="bootstrap"
@@ -179,9 +179,9 @@ export default function Emplois() {
                 eventOverlap={false}
                 slotEventOverlap={false}
 
-
             />
-            <AjoutSeanceModal isOpen={ajoutSeanceModalOpen}
+            <AjoutSeanceModal 
+                isOpen={ajoutSeanceModalOpen}
                 setModal={setAjoutSeanceModalOpen}
                 selectInfoData={selectInfoData}
                 fetchSeances={data}
