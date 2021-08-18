@@ -9,7 +9,7 @@ import Contact from '../../components/k.homeComponents/contact'
 import Footer from '../../components/k.footer/footer'
 import './home.css'
 import { useState, useEffect, Fragment } from 'react'
-
+import ChatBot from "../../components/chatBot/index"
 
 
 
@@ -69,7 +69,8 @@ export default function Home() {
         <div className="home">
             <Fragment>
                 <Navbar y={y} screen={screen} scale={scale} />
-
+                <ChatBot></ChatBot>
+               
                 <div id="apropos">
                     <About />
                 </div>
@@ -84,6 +85,7 @@ export default function Home() {
                     <Contact />
                 </div>
                 <Footer />
+               
             </Fragment>
         </div>
     )

@@ -52,6 +52,8 @@ app.use('/counter',require('./routes/counter/index'))
 
 app.use('/carousel',require('./routes/carousel/index'))
 
+app.use('/contact',require('./routes/contact/index'))
+
 app.use("/courses", courses)
 
 /////////////////////////////////////////////////////////////////////////////////
