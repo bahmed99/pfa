@@ -4,6 +4,7 @@ const Employee = require("../../models/user/employe")
 const Client = require("../../models/user/client")
 const Admin = require("../../models/user/admin")
 const Avis = require("../../models/avis/avis")
+const Contact = require("../../models/contact/index")
 const fs = require('fs')
 const MessageAdmin = require("../../models/message/messageAdmin")
 const Message = require("../../models/message/message")
@@ -367,13 +368,11 @@ router.get('/nbreAvis', (req,res)=>{
         "Dec",
       ]
     
-    Avis.find()
+    Contact.find()
     .then(result=>{
         let tab = [0,0,0,0,0,0,0,0,0,0,0,0]
         for(let i=0 ; i< result.length ; i++)
         {
-            if(result[i].vote >= 3)
-            {
                 for (let j =0 ; j<12 ; j++)
                 {
                     if(result[i].createdAt.getMonth() === j)
@@ -382,9 +381,128 @@ router.get('/nbreAvis', (req,res)=>{
 
                     }
                 }
-            }
         }
         res.json({labels:tab1,series:[tab]})
+    })
+    
+
+})
+
+router.get('/repartitionAvis', (req,res)=>{
+     let labels = ["🤬", "🙁", "😶","😁","😍"]
+    Avis.find()
+    .then(result=>{
+        let datasets = [
+            {
+              label: "Emails",
+              pointRadius: 0,
+              pointHoverRadius: 0,
+              backgroundColor: ["red", "tomato", "orange", "#00e7e7" ,"#369579"],
+              borderWidth: 0,
+              data: [0, 0, 0, 0,0],
+            },
+          ]
+        for(let i=0 ; i< result.length ; i++)
+        {
+            if(result[i].vote === 1)
+            {
+                datasets[0].data[0] += 1
+            }
+            if(result[i].vote === 2)
+            {
+                datasets[0].data[1] += 1
+            }
+            if(result[i].vote === 3)
+            {
+                datasets[0].data[2] += 1
+            }
+            if(result[i].vote === 4)
+            {
+                datasets[0].data[3] += 1
+            }
+            if(result[i].vote === 5)
+            {
+                datasets[0].data[4] += 1
+            }
+        }
+        res.json({labels,datasets})
+    })
+    
+
+})
+
+router.get('/differenceAvis', (req,res)=>{
+    
+    let labels = [
+        "Jan",
+        "Fev",
+        "Mar",
+        "Avr",
+        "Mai",
+        "Juin",
+        "Juil",
+        "Aout",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dec",
+      ]
+    
+    Avis.find()
+    .then(result=>{
+        let datasets = [
+            {
+              label: "Avis positifs" ,
+              data: [0,0,0,0,0,0,0,0,0,0,0,0],
+              fill: false,
+              borderColor: "#369579",
+              backgroundColor: "#369579",
+              pointBorderColor: "#369579",
+              pointRadius: 4,
+              pointHoverRadius: 4,
+              pointBorderWidth: 8,
+              tension: 0.4,
+            },
+            {
+              label:"Avis négatifs" ,
+              data: [0,0,0,0,0,0,0,0,0,0,0,0],
+              fill: false,
+              borderColor: "red",
+              backgroundColor: "red",
+              pointBorderColor: "red",
+              pointRadius: 4,
+              pointHoverRadius: 4,
+              pointBorderWidth: 8,
+              tension: 0.4,
+            },
+          ]
+        for(let i=0 ; i< result.length ; i++)
+        {
+            if(result[i].vote>= 3)
+            {
+                for (let j =0 ; j<12 ; j++)
+                {
+                    if(result[i].createdAt.getMonth() === j)
+                    {
+                        datasets[0].data[j]+=1 
+
+                    }
+                }
+            }
+            else
+            {
+                for (let j =0 ; j<12 ; j++)
+                {
+                    if(result[i].createdAt.getMonth() === j)
+                    {
+                        datasets[1].data[j]+=1
+
+                    }
+                }
+
+            }
+        }
+        res.json({labels,datasets})
     })
     
 

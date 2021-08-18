@@ -25,7 +25,7 @@ const dailySalesChart = {
       tension: 0,
     }),
     low: 0,
-    high: 15, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+    high: 30, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
     chartPadding: {
       top: 0,
       right: 0,
@@ -184,25 +184,23 @@ const completedTasksChart = {
 };
 
 const dashboardEmailStatisticsChart = {
-    data: (canvas) => {
-      return {
-        labels: [1, 2, 3],
+    data:{
+        labels: ["🤬", "🙁", "😶","😁","😍"],
         datasets: [
           {
             label: "Emails",
             pointRadius: 0,
             pointHoverRadius: 0,
-            backgroundColor: ["#e3e3e3", "#4acccd", "#fcc468", "#ef8157"],
+            backgroundColor: ["red", "#00e7e7", "#718a8a", "#3d3e42" ,"#369579"],
             borderWidth: 0,
-            data: [342, 480, 530, 120],
+            data: [342, 480, 530, 120,100],
           },
         ],
-      };
     },
     options: {
       plugins: {
-        legend: { display: false },
-        tooltip: { enabled: false },
+        legend: { display: true },
+        tooltip: { enabled: true },
       },
       maintainAspectRatio: false,
       pieceLabel: {
@@ -223,7 +221,7 @@ const dashboardEmailStatisticsChart = {
         x: {
           barPercentage: 1.6,
           grid: {
-            drawBorder: false,
+            drawBorder: false ,
             display: false,
           },
           ticks: {
@@ -253,18 +251,20 @@ const dashboardEmailStatisticsChart = {
         ],
         datasets: [
           {
-            data: [20, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
+            label: "1" ,
+            data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
             fill: false,
-            borderColor: "#fbc658",
+            borderColor: "#718a8a ",
             backgroundColor: "transparent",
-            pointBorderColor: "#fbc658",
+            pointBorderColor: "#718a8a ",
             pointRadius: 4,
             pointHoverRadius: 4,
             pointBorderWidth: 8,
             tension: 0.4,
           },
           {
-            data: [10, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
+            label:"2" ,
+            data: [20, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
             fill: false,
             borderColor: "#51CACF",
             backgroundColor: "transparent",
@@ -279,7 +279,7 @@ const dashboardEmailStatisticsChart = {
     },
     options: {
       plugins: {
-        legend: { display: false },
+        legend: { display: true },
       },
     },
   };
@@ -289,5 +289,5 @@ module.exports = {
   emailsSubscriptionChart,
   completedTasksChart,
   dashboardEmailStatisticsChart,
-  dashboardNASDAQChart
+    dashboardNASDAQChart
 };

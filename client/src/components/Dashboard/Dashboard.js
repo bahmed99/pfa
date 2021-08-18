@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React , {useState , useEffect} from "react";
 import axios from "axios"
+
+import { useHistory , Link } from "react-router-dom";
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
 // @material-ui/core
@@ -30,6 +32,8 @@ import CardIcon from "./CustomTabs/Cards/CardIcon";
 import CardBody from "./CustomTabs/Cards/CardBody";
 import CardFooter from "./CustomTabs/Cards/CardFooter";
 
+import image1 from '../../pages/o.Signin/o.images/backgroundavis.PNG'
+
 import { bugs, website, server } from "./general.js";
 
 import {
@@ -47,93 +51,125 @@ import './style.css'
 //////////////////////////////////////////
 
 import {
+  
+
+    CardTitle,
+    Row,
+    Col,
+  } from "reactstrap";
+  
+  import { Line, Pie } from "react-chartjs-2";
 
 
-  CardTitle,
-  Row,
-  Col,
-} from "reactstrap";
-
-import { Line, Pie } from "react-chartjs-2";
-
-
-//////////////////
+  //////////////////
 
 const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
-  const classes = useStyles();
-  const [client, setClient] = useState()
-  const [employee, setEmployee] = useState()
-  const [car, setCar] = useState()
-  const [info, setInfo] = useState()
-  const [info1, setInfo1] = useState()
-  const [info2, setInfo2] = useState()
-  const [moyenne, setMoyenne] = useState()
-  const [moyenne1, setMoyenne1] = useState()
-  const [moyenne2, setMoyenne2] = useState()
-  useEffect(() => {
-    axios.get('http://localhost:3001/admin/statistics', {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("jwt")
-      }
-    }).then(res => {
-      setCar(res.data.car)
-      setClient(res.data.client)
-      setEmployee(res.data.employee)
-      console.log(res.data)
+    const classes = useStyles();
+    const [client, setClient] = useState()
+    const [employee, setEmployee] = useState()
+    const [car, setCar] = useState()
+    const [info , setInfo] = useState()
+    const [info1 , setInfo1] = useState()
+    const [info2 , setInfo2] = useState()
+    const [info3 , setInfo3] = useState()
+    const [info4 , setInfo4] = useState()
+    const [moyenne , setMoyenne] = useState()
+    const [moyenne1 , setMoyenne1] = useState()
+    const [moyenne2 , setMoyenne2] = useState()
+    const History = useHistory ()
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/admin/statistics',{
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+              }
+        }).then(res=>{
+            setCar(res.data.car)
+            setClient(res.data.client)
+            setEmployee(res.data.employee)
+            console.log(res.data)
 
 
-    }).catch(err => {
-      console.log(err)
-    })
+        }).catch(err=>{
+            console.log(err)
+        })
 
-    axios.get('http://localhost:3001/admin/nbrSeances', {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("jwt")
-      }
-    }).then(res => {
-      setInfo(res.data)
-      setMoyenne((res.data.series[0].reduce((a, b) => a + b, 0)) / 7)
+        axios.get('http://localhost:3001/admin/nbrSeances',{
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+              }
+        }).then(res=>{
+            setInfo(res.data)
+            setMoyenne(((res.data.series[0].reduce((a, b) => a + b, 0))/7).toFixed(2))
 
-    }).catch(err => {
-      console.log(err)
-    })
-
-
-    axios.get('http://localhost:3001/admin/nbreAvis', {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("jwt")
-      }
-    }).then(res => {
-      setInfo2(res.data)
-      setMoyenne2((res.data.series[0].reduce((a, b) => a + b, 0)) / 12)
+        }).catch(err=>{
+            console.log(err)
+        })
 
 
-    }).catch(err => {
-      console.log(err)
-    })
-
-    axios.get('http://localhost:3001/admin/nbreSub', {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("jwt")
-      }
-    }).then(res => {
-      setInfo1(res.data)
-      setMoyenne1((res.data.series[0].reduce((a, b) => a + b, 0)) / 12)
+        axios.get('http://localhost:3001/admin/nbreAvis',{
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+              }
+        }).then(res=>{
+            setInfo2(res.data)
+            setMoyenne2(((res.data.series[0].reduce((a, b) => a + b, 0))/12).toFixed(2))
 
 
-    }).catch(err => {
-      console.log(err)
-    })
+        }).catch(err=>{
+            console.log(err)
+        })
+
+        axios.get('http://localhost:3001/admin/nbreSub',{
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+              }
+        }).then(res=>{
+            setInfo1(res.data)
+            setMoyenne1(((res.data.series[0].reduce((a, b) => a + b, 0))/12).toFixed(2))
+
+
+        }).catch(err=>{
+            console.log(err)
+        })
+
+      axios.get('http://localhost:3001/admin/repartitionAvis',{
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("jwt")
+          }
+      }).then(res=>{
+          setInfo3(res.data)
 
 
 
-  }, [])
+      }).catch(err=>{
+          console.log(err)
+      })
+
+      axios.get('http://localhost:3001/admin/differenceAvis',{
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("jwt")
+          }
+      }).then(res=>{
+          setInfo4(res.data)
+
+
+
+      }).catch(err=>{
+          console.log(err)
+      })
+
+
+       
+    }, [])
   return (
     <div>
       <GridContainer>
@@ -141,7 +177,7 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
-                <Icon className="fa fa-users" />
+              <Icon className="fa fa-users" />
               </CardIcon>
               <p className={classes.cardCategory}>Nombre de clients</p>
               <h3 className={classes.cardTitle}>
@@ -153,9 +189,9 @@ export default function Dashboard() {
                 <Danger>
                   <Warning />
                 </Danger>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  Get more space
-                </a>
+                <Link onClick={(e) => History.push("/ressources-humaine")}>
+                  Lire plus
+                </Link>
               </div>
             </CardFooter>
           </Card>
@@ -171,8 +207,12 @@ export default function Dashboard() {
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
-                <DateRange />
-                Last 24 Hours
+                <Danger>
+                  <Warning />
+                </Danger>
+                <Link onClick={(e) => History.push("/ressources-humaine")}>
+                  Lire plus
+                </Link>
               </div>
             </CardFooter>
           </Card>
@@ -188,8 +228,12 @@ export default function Dashboard() {
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
-                <LocalOffer />
-                Tracked from Github
+                <Danger>
+                  <Warning />
+                </Danger>
+                <Link onClick={(e) => History.push("/cars")}>
+                  Lire plus
+                </Link>
               </div>
             </CardFooter>
           </Card>
@@ -201,12 +245,16 @@ export default function Dashboard() {
                 <Accessibility />
               </CardIcon>
               <p className={classes.cardCategory}>Total</p>
-              <h3 className={classes.cardTitle}>+{client + employee}</h3>
+              <h3 className={classes.cardTitle}>+{client+employee}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
-                <Update />
-                Just Updated
+                <Danger>
+                  <Warning />
+                </Danger>
+                <Link onClick={(e) => History.push("/ressources-humaine")}>
+                  Lire plus
+                </Link>
               </div>
             </CardFooter>
           </Card>
@@ -235,7 +283,7 @@ export default function Dashboard() {
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
-                <AccessTime /> updated 4 minutes ago
+                <AccessTime /> modifier en temps réel
               </div>
             </CardFooter>
           </Card>
@@ -258,7 +306,7 @@ export default function Dashboard() {
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
-                <AccessTime /> campaign sent 2 days ago
+                <AccessTime /> modifier en temps réel
               </div>
             </CardFooter>
           </Card>
@@ -275,72 +323,60 @@ export default function Dashboard() {
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Avis positifs par mois</h4>
-              <p className={classes.cardCategory}>{moyenne2} Avis positifs en moyenne par mois</p>
+              <h4 className={classes.cardTitle}>Contact par mois</h4>
+              <p className={classes.cardCategory}>{moyenne2} Contact en moyenne par mois</p>
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
-                <AccessTime /> campaign sent 2 days ago
+                <AccessTime /> modifier en temps réel
               </div>
             </CardFooter>
           </Card>
         </GridItem>
       </GridContainer>
-      <Row>
-        <Col md="4">
-          <Card>
-            <CardHeader>
-              <CardTitle tag="h5">Email Statistics</CardTitle>
-              <p className="card-category">Last Campaign Performance</p>
-            </CardHeader>
-            <CardBody style={{ height: "266px" }}>
-              <Pie
-                data={dashboardEmailStatisticsChart.data}
-                options={dashboardEmailStatisticsChart.options}
-              />
-            </CardBody>
-            <CardFooter>
-              <div className="legend">
-                <i className="fa fa-circle text-primary" /> Opened{" "}
-                <i className="fa fa-circle text-warning" /> Read{" "}
-                <i className="fa fa-circle text-danger" /> Deleted{" "}
-                <i className="fa fa-circle text-gray" /> Unopened
-              </div>
-              <hr />
-              <div className="stats">
-                <i className="fa fa-calendar" /> Number of emails sent
-              </div>
-            </CardFooter>
-          </Card>
-        </Col>
-        <Col md="8">
-          <Card className="card-chart">
-            <CardHeader>
-              <CardTitle tag="h5">NASDAQ: AAPL</CardTitle>
-              <p className="card-category">Line Chart with Points</p>
-            </CardHeader>
-            <CardBody>
-              <Line
-                data={dashboardNASDAQChart.data}
-                options={dashboardNASDAQChart.options}
-                width={400}
-                height={100}
-              />
-
-            </CardBody>
-            <CardFooter>
-              <div className="chart-legend">
-                <i className="fa fa-circle text-info" /> Tesla Model S{" "}
-                <i className="fa fa-circle text-warning" /> BMW 5 Series
-              </div>
-              <hr />
-              <div className="card-stats">
-                <i className="fa fa-check" /> Data information certified
-              </div>
-            </CardFooter>
-          </Card>
-        </Col>
-      </Row>
+        <Row>
+          <Col md="4">
+            <Card>
+              <CardHeader>
+                <CardTitle tag="h5">Répartition des avis</CardTitle>
+                <p className="card-category">Analyse en temps réel</p>
+              </CardHeader>
+              <CardBody style={{ height: "237px" }}>
+                <Pie
+                  data={info3}
+                  options={dashboardEmailStatisticsChart.options}
+                />
+              </CardBody>
+              <CardFooter>
+                <hr />
+                <div className="stats" style={{margin:"auto auto"}}>
+                  <i className="fa fa-comments-o" /> Avis
+                </div>
+              </CardFooter>
+            </Card>
+          </Col>
+          <Col md="8">
+            <Card className="card-chart">
+              <CardHeader>
+                <CardTitle tag="h5">Différence entre avis positifs & avis négatifs</CardTitle>
+                <p className="card-category">Analyse en temps réel </p>
+              </CardHeader>
+              <CardBody>
+                <Line
+                  data={info4}
+                  options={dashboardNASDAQChart.options}
+                  width={400}
+                  height={100}
+                />
+              </CardBody>
+              <CardFooter>
+                <div className="card-stats" style={{margin:"auto auto"}}>
+                  <i className="fa fa-star" /> Avis positifs & Avis négatifs
+                </div>
+              </CardFooter>
+            </Card>
+          </Col>
+        </Row>
 
     </div>
   );
