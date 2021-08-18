@@ -28,7 +28,7 @@ class Review extends Component {
         const { name, email, age,message } = this.state;
         return (
             <div style={{ width: '100%' ,height:"100%",wordBreak:'keep-all' }}>
-                <h5>Votre coordonnées</h5>
+                <h5>Vos coordonnées</h5>
                 <table>
                     <tbody>
                         <tr>
@@ -128,6 +128,18 @@ class SimpleForm extends Component {
                     steps={[
                         {
                             id: '1',
+                            message: 'Bienvenue chez iDrive Gears?',
+                            trigger: 'choice',
+                        },
+                        {
+                            id: 'choice',
+                            options: [
+                                { value: 'Oui', label: 'Envoyer un message', trigger: '2' },
+                                { value: 'Non', label: 'Rien', trigger: 'final' },
+                            ],
+                        },
+                        {
+                            id: '2',
                             message: 'Quelle est votre nom?',
                             trigger: 'name',
                         },
@@ -144,9 +156,14 @@ class SimpleForm extends Component {
                             user: true,
                             trigger: '3',
                         },
-                        
                         {
                             id: '3',
+                            message: 'Bonjour {previousValue},ravi de faire votre connaissance!',
+                            trigger: 'pre',
+                          },
+                        
+                        {
+                            id: 'pre',
                             message: 'Quelle est votre âge?',
                             trigger: 'age',
                         },

@@ -1,4 +1,4 @@
-import React , {useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios"
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
@@ -47,93 +47,93 @@ import './style.css'
 //////////////////////////////////////////
 
 import {
-  
-
-    CardTitle,
-    Row,
-    Col,
-  } from "reactstrap";
-  
-  import { Line, Pie } from "react-chartjs-2";
 
 
-  //////////////////
+  CardTitle,
+  Row,
+  Col,
+} from "reactstrap";
+
+import { Line, Pie } from "react-chartjs-2";
+
+
+//////////////////
 
 const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
-    const classes = useStyles();
-    const [client, setClient] = useState()
-    const [employee, setEmployee] = useState()
-    const [car, setCar] = useState()
-    const [info , setInfo] = useState()
-    const [info1 , setInfo1] = useState()
-    const [info2 , setInfo2] = useState()
-    const [moyenne , setMoyenne] = useState()
-    const [moyenne1 , setMoyenne1] = useState()
-    const [moyenne2 , setMoyenne2] = useState()
-    useEffect(() => {
-        axios.get('http://localhost:3001/admin/statistics',{
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + localStorage.getItem("jwt")
-              }
-        }).then(res=>{
-            setCar(res.data.car)
-            setClient(res.data.client)
-            setEmployee(res.data.employee)
-            console.log(res.data)
+  const classes = useStyles();
+  const [client, setClient] = useState()
+  const [employee, setEmployee] = useState()
+  const [car, setCar] = useState()
+  const [info, setInfo] = useState()
+  const [info1, setInfo1] = useState()
+  const [info2, setInfo2] = useState()
+  const [moyenne, setMoyenne] = useState()
+  const [moyenne1, setMoyenne1] = useState()
+  const [moyenne2, setMoyenne2] = useState()
+  useEffect(() => {
+    axios.get('http://localhost:3001/admin/statistics', {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
+      }
+    }).then(res => {
+      setCar(res.data.car)
+      setClient(res.data.client)
+      setEmployee(res.data.employee)
+      console.log(res.data)
 
 
-        }).catch(err=>{
-            console.log(err)
-        })
+    }).catch(err => {
+      console.log(err)
+    })
 
-        axios.get('http://localhost:3001/admin/nbrSeances',{
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + localStorage.getItem("jwt")
-              }
-        }).then(res=>{
-            setInfo(res.data)
-            setMoyenne((res.data.series[0].reduce((a, b) => a + b, 0))/7)
+    axios.get('http://localhost:3001/admin/nbrSeances', {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
+      }
+    }).then(res => {
+      setInfo(res.data)
+      setMoyenne((res.data.series[0].reduce((a, b) => a + b, 0)) / 7)
 
-        }).catch(err=>{
-            console.log(err)
-        })
-
-
-        axios.get('http://localhost:3001/admin/nbreAvis',{
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + localStorage.getItem("jwt")
-              }
-        }).then(res=>{
-            setInfo2(res.data)
-            setMoyenne2((res.data.series[0].reduce((a, b) => a + b, 0))/12)
+    }).catch(err => {
+      console.log(err)
+    })
 
 
-        }).catch(err=>{
-            console.log(err)
-        })
-
-        axios.get('http://localhost:3001/admin/nbreSub',{
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + localStorage.getItem("jwt")
-              }
-        }).then(res=>{
-            setInfo1(res.data)
-            setMoyenne1((res.data.series[0].reduce((a, b) => a + b, 0))/12)
+    axios.get('http://localhost:3001/admin/nbreAvis', {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
+      }
+    }).then(res => {
+      setInfo2(res.data)
+      setMoyenne2((res.data.series[0].reduce((a, b) => a + b, 0)) / 12)
 
 
-        }).catch(err=>{
-            console.log(err)
-        })
+    }).catch(err => {
+      console.log(err)
+    })
+
+    axios.get('http://localhost:3001/admin/nbreSub', {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
+      }
+    }).then(res => {
+      setInfo1(res.data)
+      setMoyenne1((res.data.series[0].reduce((a, b) => a + b, 0)) / 12)
 
 
-       
-    }, [])
+    }).catch(err => {
+      console.log(err)
+    })
+
+
+
+  }, [])
   return (
     <div>
       <GridContainer>
@@ -141,7 +141,7 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
-              <Icon className="fa fa-users" />
+                <Icon className="fa fa-users" />
               </CardIcon>
               <p className={classes.cardCategory}>Nombre de clients</p>
               <h3 className={classes.cardTitle}>
@@ -201,7 +201,7 @@ export default function Dashboard() {
                 <Accessibility />
               </CardIcon>
               <p className={classes.cardCategory}>Total</p>
-              <h3 className={classes.cardTitle}>+{client+employee}</h3>
+              <h3 className={classes.cardTitle}>+{client + employee}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -286,60 +286,61 @@ export default function Dashboard() {
           </Card>
         </GridItem>
       </GridContainer>
-        <Row>
-          <Col md="4">
-            <Card>
-              <CardHeader>
-                <CardTitle tag="h5">Email Statistics</CardTitle>
-                <p className="card-category">Last Campaign Performance</p>
-              </CardHeader>
-              <CardBody style={{ height: "266px" }}>
-                <Pie
-                  data={dashboardEmailStatisticsChart.data}
-                  options={dashboardEmailStatisticsChart.options}
-                />
-              </CardBody>
-              <CardFooter>
-                <div className="legend">
-                  <i className="fa fa-circle text-primary" /> Opened{" "}
-                  <i className="fa fa-circle text-warning" /> Read{" "}
-                  <i className="fa fa-circle text-danger" /> Deleted{" "}
-                  <i className="fa fa-circle text-gray" /> Unopened
-                </div>
-                <hr />
-                <div className="stats">
-                  <i className="fa fa-calendar" /> Number of emails sent
-                </div>
-              </CardFooter>
-            </Card>
-          </Col>
-          <Col md="8">
-            <Card className="card-chart">
-              <CardHeader>
-                <CardTitle tag="h5">NASDAQ: AAPL</CardTitle>
-                <p className="card-category">Line Chart with Points</p>
-              </CardHeader>
-              <CardBody>
-                <Line
-                  data={dashboardNASDAQChart.data}
-                  options={dashboardNASDAQChart.options}
-                  width={400}
-                  height={100}
-                />
-              </CardBody>
-              <CardFooter>
-                <div className="chart-legend">
-                  <i className="fa fa-circle text-info" /> Tesla Model S{" "}
-                  <i className="fa fa-circle text-warning" /> BMW 5 Series
-                </div>
-                <hr />
-                <div className="card-stats">
-                  <i className="fa fa-check" /> Data information certified
-                </div>
-              </CardFooter>
-            </Card>
-          </Col>
-        </Row>
+      <Row>
+        <Col md="4">
+          <Card>
+            <CardHeader>
+              <CardTitle tag="h5">Email Statistics</CardTitle>
+              <p className="card-category">Last Campaign Performance</p>
+            </CardHeader>
+            <CardBody style={{ height: "266px" }}>
+              <Pie
+                data={dashboardEmailStatisticsChart.data}
+                options={dashboardEmailStatisticsChart.options}
+              />
+            </CardBody>
+            <CardFooter>
+              <div className="legend">
+                <i className="fa fa-circle text-primary" /> Opened{" "}
+                <i className="fa fa-circle text-warning" /> Read{" "}
+                <i className="fa fa-circle text-danger" /> Deleted{" "}
+                <i className="fa fa-circle text-gray" /> Unopened
+              </div>
+              <hr />
+              <div className="stats">
+                <i className="fa fa-calendar" /> Number of emails sent
+              </div>
+            </CardFooter>
+          </Card>
+        </Col>
+        <Col md="8">
+          <Card className="card-chart">
+            <CardHeader>
+              <CardTitle tag="h5">NASDAQ: AAPL</CardTitle>
+              <p className="card-category">Line Chart with Points</p>
+            </CardHeader>
+            <CardBody>
+              <Line
+                data={dashboardNASDAQChart.data}
+                options={dashboardNASDAQChart.options}
+                width={400}
+                height={100}
+              />
+
+            </CardBody>
+            <CardFooter>
+              <div className="chart-legend">
+                <i className="fa fa-circle text-info" /> Tesla Model S{" "}
+                <i className="fa fa-circle text-warning" /> BMW 5 Series
+              </div>
+              <hr />
+              <div className="card-stats">
+                <i className="fa fa-check" /> Data information certified
+              </div>
+            </CardFooter>
+          </Card>
+        </Col>
+      </Row>
 
     </div>
   );

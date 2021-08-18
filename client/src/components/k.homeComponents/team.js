@@ -30,7 +30,7 @@ function ImageSlider() {
     return (
         <div style={{ backgroundColor: "#b4b4b4", width: "100% !important" }}>
             <div className="container carousel" >
-                <h1 className="titleEquipe slider_title">Notre Equipes</h1>
+                <h1 className="titleEquipe slider_title">Notre Équipes</h1>
                 <Slider {...settings}>
                     {data.map((element,index)=>(<div className="card-wrapper6">
                         <div className="card6">

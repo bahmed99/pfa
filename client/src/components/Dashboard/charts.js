@@ -253,7 +253,7 @@ const dashboardEmailStatisticsChart = {
         ],
         datasets: [
           {
-            data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
+            data: [20, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
             fill: false,
             borderColor: "#fbc658",
             backgroundColor: "transparent",
@@ -264,7 +264,7 @@ const dashboardEmailStatisticsChart = {
             tension: 0.4,
           },
           {
-            data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
+            data: [10, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
             fill: false,
             borderColor: "#51CACF",
             backgroundColor: "transparent",
@@ -289,5 +289,5 @@ module.exports = {
   emailsSubscriptionChart,
   completedTasksChart,
   dashboardEmailStatisticsChart,
-    dashboardNASDAQChart
+  dashboardNASDAQChart
 };
