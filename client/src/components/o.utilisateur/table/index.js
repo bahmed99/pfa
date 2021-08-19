@@ -82,7 +82,7 @@ function Index() {
   }
   }).then(res=>res.json())
   .then(result=>{
-    console.log(result)
+
     setData1(result)
   })
  
@@ -117,17 +117,11 @@ function Index() {
       filter: 'includes',
     },
   ], [])
-  console.log(data1) 
+ 
   const data = React.useMemo(() => getData(), [])
   return (
     <div className="min-h-screen">
-      <div className="firstdiv" style={{
-            backgroundImage: 'url('+image1+')',
-            backgroundSize: "cover",
-            height: "100vh",
-            backgroundPosition: "center!important" ,
-            marginTop: "60px" ,
-          }}>
+      <div className="firstdiv">
             
             
             <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">

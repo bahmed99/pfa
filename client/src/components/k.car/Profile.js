@@ -27,11 +27,11 @@ export default function Profile() {
         }).then(res => res.json())
         .then(result=>{
             setData(result.car)
-            console.log(result)
+
             })
 
     }, [])
-    console.log(data)
+
     if (!data)
     {
         return ""

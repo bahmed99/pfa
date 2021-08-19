@@ -18,7 +18,7 @@ function Index() {
   }
   }).then(res=>res.json())
   .then(result=>{
-    console.log(result)
+   
     setData1(result)
   })
  
@@ -64,7 +64,7 @@ function Index() {
       filter: 'includes',
     },
   ], [])
-  console.log(data1) 
+  
   return (
     <div className="min-h-screen">
       <div className="firstdiv" style={{

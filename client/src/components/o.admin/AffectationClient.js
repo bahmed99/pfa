@@ -46,10 +46,7 @@ const AffectationClient = (props) => {
     
     if (data1 !=="" && data2 !=="")
     {
-        console.log(JSON.stringify({
-            data1:data1 ,
-            data2:data2
-        }))
+        
         props.setInfoclient(props.infoclient.filter(item => item.cin !== data1))
         fetch(`http://localhost:3001/admin/choixclient-employee`, {
             method: "put",
@@ -63,7 +60,7 @@ const AffectationClient = (props) => {
             })
         }).then(res => res.json())
         .then(result=>{
-            console.log(result)
+    
         })
     }
     if(props.infoclient.length === 1 )

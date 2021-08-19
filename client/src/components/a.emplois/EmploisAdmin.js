@@ -34,7 +34,7 @@ export default function EmploisAdmin() {
     }, [])
 
     function eventClick(eventClick) {
-      console.log(eventClick)
+     
         Alert.fire({
             title: "Informations",
             html:
@@ -137,7 +137,7 @@ function ResourceContent(resource) {
     
     let icon = document.createElement('img');
     let url = resource.resource._resource.extendedProps.url;
-    console.log(resource.el)
+
     icon.src = `./uploads/profile/employes/${url}`;
     icon.height = "50"
     icon.width = "50"

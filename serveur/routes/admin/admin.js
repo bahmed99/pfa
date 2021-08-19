@@ -4,7 +4,7 @@ const Employee = require("../../models/user/employe")
 const Client = require("../../models/user/client")
 const Admin = require("../../models/user/admin")
 const fs = require('fs')
-
+const MessageAdmin = require("../../models/message/messageAdmin")
 
 const requireLoginAdmin = require("../../middleware/requireLoginAdmin")
 
@@ -102,7 +102,14 @@ router.get ("/admin-utilisateur/:id", requireLoginAdmin, (req,res)=>{
                 }
                 else
                 {
-                    res.json({user:employee, role : "Employée"})
+                    MessageAdmin.findOne({employee:req.params.id})
+                    .then(result1=>{
+                        
+                      
+                        res.json({user:employee, role : "Employée",chat:result1._id})
+        
+                    })
+                  
                 }
             })
         }
@@ -143,7 +150,6 @@ router.delete('/deleteEmployee/:id',requireLoginAdmin,(req,res)=>{
     .populate("client","_id cin")
     .populate("employee","_id pic")
     .then(employee=>{
-            console.log(employee)
             Client.find({employee:employee.id})
             .then(result1=>{
                 for (let i=0 ; i< result1.length ; i++ )
@@ -200,6 +206,7 @@ router.put('/choixclient-employee',requireLoginAdmin,(req,res)=>{
                 }, {
                     new: true
                 }).then(r1=>{
+                    MessageAdmin.findOneAndUpdate({})
                     res.json({message:"ok"})
                 })
             })
@@ -207,6 +214,8 @@ router.put('/choixclient-employee',requireLoginAdmin,(req,res)=>{
     })
 
 })
+
+
 router.put('/essai',(req,res)=>{
     Client.findOne({_id:"610b04f544b0dc31dc45ce4a"})
     .then(result=>{

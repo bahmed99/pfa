@@ -35,7 +35,7 @@ export default function AjoutSeanceModal(props) {
                 
                 
             }
-            console.log(seance)
+   
             props.setModal(false)
             axios.put(`http://localhost:3001/employe/emplois`, seance, {
                 headers: {

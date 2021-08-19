@@ -27,7 +27,7 @@ export default function Signin() {
             })
         }).then(res => res.json())
             .then(data => {
-                console.log(data)
+        
                 if (data.error) {
                     setLoading(false)
                     if (password !== "" && email !== "") {
@@ -37,7 +37,7 @@ export default function Signin() {
                 }
                 else {
                     setLoading(false)
-                    console.log(data.token)
+               
                     localStorage.setItem("jwt", data.token)
                     localStorage.setItem("user", JSON.stringify(data.user))
                     localStorage.setItem("detect", JSON.stringify(3))

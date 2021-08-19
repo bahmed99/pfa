@@ -113,7 +113,7 @@ export default function Formulaire() {
             
 
         }
-        console.log(newUser)
+    
 
         fetch(`http://localhost:3001/car/${id}`, {
             method: "PATCH",

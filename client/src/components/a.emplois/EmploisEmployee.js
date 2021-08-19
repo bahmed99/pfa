@@ -24,7 +24,7 @@ export default function Emplois() {
     async function fetchSeances() {
         setData([])
         const seancesData = await getSeances();
-        console.log(seancesData.data)
+     
         seancesData.data.forEach(s => {
             let eventInfo = { title: s.title, start: s.start, end: s.end, eventContent: s.eventContent, color: s.color }
             setData(prevData => ([...prevData, eventInfo]))

@@ -18,7 +18,6 @@ module.exports = (req,res,next) =>{
         }
         const {_id} = payload 
         Client.findById(_id).then(userdata=>{
-            console.log(userdata)
             req.client = userdata
             next()
         })

@@ -115,7 +115,7 @@ export default function Formulaire() {
             
 
         }
-        console.log(newCar)
+       
 
         fetch('http://localhost:3001/car/add', {
             method: "POST",

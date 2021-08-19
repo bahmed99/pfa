@@ -99,11 +99,11 @@ export function StatusPill({ value }) {
 };
 
 export function AvatarCell({ value, column, row }) {
-  console.log(row.original.role)
+ 
   return (
     <div className="flex items-center">
       <div className="flex-shrink-0 h-10 w-10">
-      {console.log(row.original.role)}
+     
       {/* row.original[column.imgAccessor] */}
       { (row.original.role === "Client") ? <img className="h-10 w-10 rounded-full" src={`./uploads/profile/clients/${row.original[column.imgAccessor]}`} alt="" />
       :(row.original.role === "Employée") ? <img className="h-10 w-10 rounded-full" src={`./uploads/profile/employes/${row.original[column.imgAccessor]}`} alt="" />

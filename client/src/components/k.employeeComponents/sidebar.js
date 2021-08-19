@@ -10,11 +10,14 @@ import {
     CDBSidebarMenuItem,
 } from 'cdbreact';
 import { NavLink } from 'react-router-dom';
+import Chat from "../chatEmploye/chat"
+
+
 export default function Sidebar(props) {
     const detect = JSON.parse(localStorage.getItem("detect"))
     return (
 
-        <div style={{ display: 'flex', height: '150vh', overflow: 'scroll initial' }}>
+        <div style={{ display: 'flex', height: '100%', overflow: 'scroll initial' }}>
 
             <CDBSidebar textColor="#fff" backgroundColor="#3d3e42">
                 <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
@@ -54,6 +57,7 @@ export default function Sidebar(props) {
 
 
                     </CDBSidebarMenu>
+                   { detect!==3?<Chat />:""}
                 </CDBSidebarContent>
 
                 <CDBSidebarFooter style={{ textAlign: 'center' }}>
@@ -66,6 +70,8 @@ export default function Sidebar(props) {
                     <Image className="apropos" src={require("../../assets/images/logoBlanc.png").default} />
                 </CDBSidebarFooter>
             </CDBSidebar>
+
+          
         </div>
 
     )

@@ -40,7 +40,7 @@ const clientSchema = new mongoose.Schema({
     } ,
     status: {
         type: String,
-        default: true
+        default: "Payé"
     } ,
     age: {
         type: String,

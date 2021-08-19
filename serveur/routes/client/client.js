@@ -81,7 +81,6 @@ router.put("/updateClientPicture", requireLoginClient, upload.single("pic"), (re
 router.put("/removeNotification",requireLoginClient, (req, res) => {
     
     const data = req.body
-    console.log(data)
     Client.findByIdAndUpdate(req.client._id, {
         $pull: { notifications: data }
     }, {

@@ -49,7 +49,7 @@ export default function AjoutSeanceModal(props) {
         setPic("")
     }
 
-console.log(nom)
+
     return (
         <Modal
             className=" modal-dialog-centered "

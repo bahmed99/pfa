@@ -7,6 +7,9 @@ import { useParams, useHistory } from 'react-router-dom'
 import { date } from 'date-arithmetic'
 import EmploisClientUtilisateur from '../a.emplois/EmploisClientUtilisateur'
 import ModalSupprimerSeance from '../a.emplois/ModalSupprimerSeance'
+
+import Chat from './chat'
+
 export default function Profile() {
     const History = useHistory()
     const [date, setDate] = useState("")
@@ -17,6 +20,8 @@ export default function Profile() {
     const [ajoutSeanceModalOpen, setAjoutSeanceModalOpen] = useState(false)
     const [supprimerSeanceModalOpen, setSupprimerSeanceModalOpen] = useState(false)
     const [selectInfoData, setSelectInfoData] = useState(null);
+
+    const [chat1 , setChat1] = useState()
 
 
 
@@ -29,11 +34,13 @@ export default function Profile() {
             },
         }).then(res => res.json())
             .then(result => {
-                setData(result)
-                setDate(`${result.createdAt[8]}${result.createdAt[9]}/${result.createdAt[5]}${result.createdAt[6]}/${result.createdAt[0]}${result.createdAt[1]}${result.createdAt[2]}${result.createdAt[3]}`)
+                setData(result.result)
+                setChat1(result.result1._id)
+                //setChat(result.Chat)
+                setDate(`${result.result.createdAt[8]}${result.result.createdAt[9]}/${result.result.createdAt[5]}${result.result.createdAt[6]}/${result.result.createdAt[0]}${result.result.createdAt[1]}${result.result.createdAt[2]}${result.result.createdAt[3]}`)
             })
-
     }, [])
+
 
     const deleteClient = (id) => {
         fetch(`http://localhost:3001/employe/deleteClient/${id}`, {
@@ -43,7 +50,7 @@ export default function Profile() {
             }
         }).then(res => res.json())
             .then(result => {
-                console.log(result)
+            
             })
         setTimeout(() => History.push('/utilisateurs'), 1000)
         // fetch("http://localhost:3001/employe/employee-clients",{
@@ -68,6 +75,10 @@ export default function Profile() {
             setStatus(result)
             setTimeout(() =>window.location.reload(), 500)
         })
+    }
+
+    if(!chat1){
+        return "Loading..."
     }
 
 
@@ -141,6 +152,12 @@ export default function Profile() {
                 <EmploisClientUtilisateur dataUtilisateur={data} id={id} supprimerSeanceModalOpen={supprimerSeanceModalOpen} setSupprimerSeanceModalOpen={setSupprimerSeanceModalOpen} />
             </div>          <UpdateProfile isOpen={ajoutSeanceModalOpen}
                 setModal={setAjoutSeanceModalOpen} />
+
+
+            <Chat id={id} pic={data.pic} name={data.name}  Chat={chat1} />
+
+          
+
         </div>
     )
 }
