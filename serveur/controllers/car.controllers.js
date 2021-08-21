@@ -1,4 +1,5 @@
 const Car = require("../models/car/car");
+const dateFormat = require("dateformat");
 
 
 exports.addCar = (req, res) => {
@@ -50,7 +51,7 @@ exports.updateCar = (req, res) => {
 };
 
 exports.getCars = (req, res) => {
-    var dateFormat = require("dateformat");
+
     Car.find().exec()
         .then(cars => {
             if (!cars) {
@@ -81,22 +82,22 @@ exports.getCarById = (req, res) => {
             if (!car) {
                 return res.status(404).send({ message: "No car found" });
             }
-            const response = [];
-            cars.forEach((car) => {
-                response.push({
+            const response = {
                     pic: car.pic,
+                    model:car.model,
                     serie: car.serie,
                     service: car.service,
                     mileage: car.mileage,
                     assuranceDate: dateFormat(car.assuranceDate, "dd/mm/yyyy"),
                     age: car.age,
                     technicVisitDate: dateFormat(car.technicVisitDate, "dd/mm/yyyy"),
-                });
+                    timetable: car.timetable,
+                    id:car._id
+                };
+                return res.status(200).send(response);
+            }).catch((err)=>{
+                return res.status(500).send({error: err});
             });
-            return res.status(200).send(response);
-        }).catch(err => {
-            return res.status(500).send({ message: err });
-        });
 };
 
 exports.addKm = (req, res) =>{

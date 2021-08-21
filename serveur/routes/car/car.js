@@ -13,7 +13,7 @@ router.get("/all",control.getCars);
 router.get("/:id",control.getCarById);
 router.post("/add",control.addCar);
 router.patch("/:id",control.updateCar);
-router.delete("/:id",isAdmin,control.deleteCar);
+router.delete("/:id",control.deleteCar);
 
 
 

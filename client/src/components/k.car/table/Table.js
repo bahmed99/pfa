@@ -81,19 +81,25 @@ export function SelectColumnFilter({
 
 export function StatusPill({ value }) {
   const status = value 
-
+  var Service=""
+  if (status)
+    Service ="En Service"
+  
+  else if (!status)
+  {Service="Hors Service"}
+  
   return (
+   
     <span
       className={
         classNames(
           "px-3 py-1 uppercase leading-wide font-bold text-xs rounded-full shadow-sm",
-          status==false ? "bg-red-100 text-red-800" : null,
-          status==true ? "bg-green-100 text-green-800" : null,
+          Service.startsWith("Hors Service") ? "bg-red-100 text-red-800" : null,
+          Service.startsWith("En Service") ? "bg-green-100 text-green-800" : null,
         )
       }
     >
-      {/* hedhi feha akil active wala le  */}
-      {status} 
+      {Service} 
     </span>
   );
 };
@@ -152,7 +158,7 @@ function Table({ columns, data , setData1 }) {
 
   function Change(e)
     {
-        History.push(`/utilisateur-profile/${e}`)
+        History.push(`/cars/${e}`)
     }
 
   // Render the UI for your table

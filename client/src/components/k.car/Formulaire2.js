@@ -66,7 +66,7 @@ const BootstrapButton = withStyles({
       },
     },
   })(Button);
-export default function Formulaire() {
+export default function Formulaire2(id) {
     const classes = useStyles();
     const [service, setService] = React.useState('');
     const [model, setModel] = useState("");
@@ -75,8 +75,23 @@ export default function Formulaire() {
     const [age, setAge] = useState("");
     const [assuranceDate, setAssuranceDate] = useState("");
     const [technicVisitDate, setTechnicVisitDate] = useState("");
+    const [data, setData] = useState([]);
     const [pic, setPic] = useState("");
-    const { id } = useParams()
+    useEffect(() => {
+        fetch(`http://localhost:3001/car/${id}`, {
+            method: "get",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            },
+        }).then(res => res.json())
+        .then(result=>{
+            setData(result)
+            console.log(data)
+
+            })
+
+    }, [])
     function handleModelChange(e) {
         setModel(e.target.value)
     }
@@ -102,29 +117,30 @@ export default function Formulaire() {
         setAge(e.target.value)
     }
     function handleSave() {
-        const newUser = {
-            first_name: firstname,
-            last_name: lastname,
-            email: email,
-            date_of_birth: date,
-            phone_number: number,
-            pole: pole,
-            role: role,
-            
+        const newCar = {
+            carId: idCar,
+            item: item,
+            service: service,
+            technicVisitDate: technicVisitDate,
+            assuranceDate: assuranceDate,
+
 
         }
     
 
         fetch(`http://localhost:3001/car/${id}`, {
             method: "PATCH",
-            body: JSON.stringify(newUser),
+            body: JSON.stringify(newCar),
             headers: { "Content-type": "application/json; charset=UTF-8" }
         })
             .then(response => response.json())
             .then(json => console.log(json))
             .catch(err => console.log(err))
     }
-   
+    
+    
+
+    
     return (
         <div className="login-box">
             <h1 className="titleH1">Veuillez remplir tous les champs</h1>
@@ -132,22 +148,22 @@ export default function Formulaire() {
                 <Col>
                     <div className="left">
                         <form className={classes.root} noValidate autoComplete="off">
-                            <TextField required id="standard-required" label="Marque" value={model} size="small" onChange={handleModelChange} />
-                            <TextField required id="standard-required" label="Série" value={serie} size="small" onChange={handleSerieChange} />
+                            <TextField required id="standard-required" label="Marque" value={data.model} size="small" onChange={handleModelChange} />
+                            <TextField required id="standard-required" label="Série" value={data.serie} size="small" onChange={handleSerieChange} />
                             <FormControl className={classes.formControl}>
                                 <InputLabel id="demo-simple-select-label">État</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
-                                    value={service}
+                                    value={data.service}
                                     onChange={handleChange}
                                 >
                                     <MenuItem value={1}>En Service</MenuItem>
                                     <MenuItem value={0}>Hors Service</MenuItem>
                                 </Select>
                             </FormControl>
-                            <TextField required id="standard-required" value={age} label="Age" size="small" onChange={handleAgeChange} />
-                            <TextField required id="standard-required" value={mileage} label="Kilométrage" onChange={handleMileageChange} size="small" />
+                            <TextField required id="standard-required" value={data.age} label="Age" size="small" onChange={handleAgeChange} />
+                            <TextField required id="standard-required" value={data.mileage} label="Kilométrage" onChange={handleMileageChange} size="small" />
 
 
                         </form>

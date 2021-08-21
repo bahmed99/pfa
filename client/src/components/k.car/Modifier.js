@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
         padding: 10,
     },
 }));
-function Modifier() {
+function Modifier(id) {
     const [show, setShow] = useState(false);
     const classes = useStyles();
     const handleClose = () => setShow(false);
@@ -58,7 +58,7 @@ function Modifier() {
 
                 </Modal.Header>
 
-                <Formulaire2 />
+                <Formulaire2 id={id}/>
             </Modal>
         </div >
     )
