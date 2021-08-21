@@ -51,7 +51,6 @@ router.post("/",  (req, res) => {
     })
     newCourse.save().then((result) => {
         res.send(result)
-        console.log(result)
     }).catch(err => {
         console.log(err)
         res.send(JSON.stringify({ error: "Error adding this to the db" }))
@@ -63,7 +62,6 @@ router.get("/:id", (req, res) => {
 
     Course.findById(id).then((result) => {
         res.send(result)
-        console.log(JSON.stringify(result))
     }).catch((err) => { console.log(err) }
     )
 })
