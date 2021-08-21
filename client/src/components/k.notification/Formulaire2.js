@@ -71,24 +71,24 @@ const BootstrapButton = withStyles({
         },
     },
 })(Button);
-export default function Formulaire2(idCar, data) {
+export default function Formulaire2(idCar) {
     const classes = useStyles();
     const [service, setService] = React.useState('');
     const [model, setModel] = useState("");
     const [serie, setSerie] = useState("");
     
     const [item, setItem] = React.useState({
-        entre: false,
-        vign: false,
+        entretien: false,
+        vignette: false,
         visite: false,
-        assur:false,
+        assurance:false,
       });
     const [mileage, setMileage] = useState("");
     const [age, setAge] = useState("");
     const [assuranceDate, setAssuranceDate] = useState("");
     const [technicVisitDate, setTechnicVisitDate] = useState("");
     const [pic, setPic] = useState("");
-    const {entre,vign,visite,assur}=item;
+    const {entretien,vignette,visite,assurance}=item;
     function handleModelChange(e) {
         setModel(e.target.value)
     }
@@ -161,15 +161,15 @@ export default function Formulaire2(idCar, data) {
                                 <FormLabel component="legend">Assign responsibility</FormLabel>
                                 <FormGroup>
                                     <FormControlLabel
-                                        control={<Checkbox checked={entre} onChange={handleChangeItem} name="entre" />}
+                                        control={<Checkbox checked={entretien} onChange={handleChangeItem} name="entretien" />}
                                         label="Entretien"
                                     />
                                     <FormControlLabel
-                                        control={<Checkbox checked={vign} onChange={handleChangeItem} name="vign" />}
+                                        control={<Checkbox checked={vignette} onChange={handleChangeItem} name="vignette" />}
                                         label="Vignette"
                                     />
                                     <FormControlLabel
-                                        control={<Checkbox checked={assur} onChange={handleChangeItem} name="assur" />}
+                                        control={<Checkbox checked={assurance} onChange={handleChangeItem} name="assurance" />}
                                         label="assurance"
                                     />
                                 </FormGroup>
@@ -218,28 +218,6 @@ export default function Formulaire2(idCar, data) {
                                     />
                                 </div>
                             </form>
-                            <div>
-                                <br />
-
-                                <input
-                                    accept="image/*"
-                                    className={classes.input}
-                                    id="contained-button-file"
-                                    multiple
-                                    type="file"
-                                />
-                                <label htmlFor="contained-button-file">
-                                    <Button variant="contained" color="default" component="span">
-                                        Photo
-                                    </Button>
-                                </label>
-                                <input accept="image/*" className={classes.input} id="icon-button-file" value={pic} type="file" />
-                                <label htmlFor="icon-button-file">
-                                    <IconButton color="default" aria-label="upload picture" component="span">
-                                        <PhotoCamera />
-                                    </IconButton>
-                                </label>
-                            </div>
                         </div>
 
                         <br />

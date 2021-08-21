@@ -58,7 +58,7 @@ function Modifier(idCar,data) {
 
                 </Modal.Header>
 
-                <Formulaire2 idCar = {idCar} data={data}/>
+                <Formulaire2 idCar = {idCar}/>
             </Modal>
         </div >
     )

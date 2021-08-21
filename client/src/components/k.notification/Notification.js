@@ -80,8 +80,11 @@ export default function Notification() {
       visite.push(Object.values(element))
     }
   });
-  
-const idCar=data[0];
+console.log(data);
+const first=data[0];
+const idCar=first[0];
+console.log(idCar)
+
   
   
 
