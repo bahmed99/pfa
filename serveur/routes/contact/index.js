@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Contact = require("../../models/contact/index")
+const User = require("../../models/user/userRequest")
 const nodemailer = require('nodemailer')
 
 var transporter = nodemailer.createTransport({
@@ -48,6 +49,23 @@ router.post("/", (req, res) => {
     })
 })
 
+
+router.post("/inscription", (req, res) => {
+    const data = req.body
+    const user= new User({
+        name:data.name,
+        email:data.email,
+        tel:data.tel,
+        age:data.age,
+        cin:data.cin
+
+    })
+    user.save().then(resultat=>{
+        res.send(resultat)
+    }).catch(err=>{
+        res.send(err)
+    })
+})
 
 
 module.exports = router
