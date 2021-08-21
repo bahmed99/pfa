@@ -83,7 +83,7 @@ export default function Signin() {
         <div className="firstdiv" style={{
             backgroundImage: 'url('+image1+')',
             backgroundSize: "cover",
-            height: "100vh",
+            height: "90vh",
             color: "#f5f5f5" ,
             backgroundAttachment:"fixed" ,
             backgroundPosition: "center" ,

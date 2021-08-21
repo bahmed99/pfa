@@ -52,7 +52,7 @@ export default function NewPassword() {
         <div className="trydiv" style={{
             backgroundImage: 'url(' + image1 + ')',
             backgroundSize: "cover",
-            height: "100vh",
+            height: "90vh",
             color: "#f5f5f5"
         }}>
             <br />
@@ -77,7 +77,7 @@ export default function NewPassword() {
                             onChange={(e) => setPassword(e.target.value)} />
                     </div>
                     <br />
-                    <button onClick={() => PostData()} className="waves-effect" type="submit" name="action" style={{ opacity: "100% !important", backgroundColor: loading ? "#66CDAA" : '' }} disabled={loading}>{loading ? <ReactLoading height={'20px'} width={'24px'} className="loading1" type="spin" /> : "Envoyer"}
+                    <button onClick={() => PostData()} className="waves-effect505" type="submit" name="action" style={{ opacity: "100% !important", backgroundColor: loading ? "#66CDAA" : '' }} disabled={loading}>{loading ? <ReactLoading height={'20px'} width={'24px'} className="loading1" type="spin" /> : "Envoyer"}
                     </button>
                     <br />
 
