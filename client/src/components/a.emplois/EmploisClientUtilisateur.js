@@ -12,8 +12,25 @@ import './style.css'
 import ModalSupprimerSeance from '../a.emplois/ModalSupprimerSeance'
 import ModalClientAjouter from '../a.emplois/ModalClientAjouter'
 
+import EmploisClientAlert from './EmploisClientAlert'
 
-export default function Emplois({ id, supprimerSeanceModalOpen, setSupprimerSeanceModalOpen , dataUtilisateur}) {
+import 
+{
+    Button,
+    Card,
+    CardHeader,
+    CardBody,
+    FormGroup,
+    Form,
+    Input,
+    Modal,
+    Label
+} from "reactstrap";
+import { set } from 'date-fns';
+
+
+
+export default function Emplois({ id, supprimerSeanceModalOpen, setSupprimerSeanceModalOpen , dataUtilisateur , setDataUtilisateur}) {
 
     const [selectInfoData, setSelectInfoData] = useState(null);
     const [data, setData] = useState([])
@@ -51,46 +68,53 @@ export default function Emplois({ id, supprimerSeanceModalOpen, setSupprimerSean
     }, [])
 
 
-
+//eventClick.event.title
+//eventClick.event.startStr
+//eventClick.event.endStr
     function eventClick(eventClick) {
+        setTitle(eventClick.event.title)
+        setEndStr(eventClick.event.endStr)
+        setStart(eventClick.event.start)
+        setStartStr(eventClick.event.startStr)
+        setAjoutSeanceModalOpen1(true)
+        setColor(eventClick.event._def.ui.backgroundColor)
+        // Alert.fire({
+        //     title: "Informations",
+        //     html:
+        //         `<div class="table-responsive">
+        //   <table class="table">
+        //   <tbody>
+        //   <tr >
+        //   <td>Titre</td>
+        //   <td><strong>` +
+        //         eventClick.event.title +
+        //         `</strong></td>
+        //   </tr>
+        //   <tr >
+        //   <td>Début</td>
+        //   <td><strong>
+        //   ` +
+        //         eventClick.event.startStr +
+        //         `</strong></td>
+        //         </tr>
+        //         <tr >
+        //         <td>Fin</td>
+        //         <td><strong>
+        //         `+ eventClick.event.endStr +
 
-        Alert.fire({
-            title: "Informations",
-            html:
-                `<div class="table-responsive">
-          <table class="table">
-          <tbody>
-          <tr >
-          <td>Titre</td>
-          <td><strong>` +
-                eventClick.event.title +
-                `</strong></td>
-          </tr>
-          <tr >
-          <td>Début</td>
-          <td><strong>
-          ` +
-                eventClick.event.startStr +
-                `</strong></td>
-                </tr>
-                <tr >
-                <td>Fin</td>
-                <td><strong>
-                `+ eventClick.event.endStr +
 
+        //         `
+        //   </strong></td>
+        //   </tr>
+        //   </tbody>
+        //   </table>
+        //   </div>`,
 
-                `
-          </strong></td>
-          </tr>
-          </tbody>
-          </table>
-          </div>`,
+        //     confirmButtonColor: "#d33",
 
-            confirmButtonColor: "#d33",
+        //     confirmButtonText: "Fermer",
 
-            confirmButtonText: "Fermer",
-
-        })
+        // })
     };
 
     function Select(selectInfo) {
@@ -132,6 +156,12 @@ export default function Emplois({ id, supprimerSeanceModalOpen, setSupprimerSean
         }
         return false;
     }
+    const [ajoutSeanceModalOpen1, setAjoutSeanceModalOpen1] = useState(false)
+    const [title, setTitle] = useState("")
+    const [startStr, setStartStr] = useState("")
+    const [endStr, setEndStr] = useState("")
+    const [start, setStart] = useState("")
+    const [color,setColor] = useState("")
 
     return (
         <div style={{ width: "70%", marginRight: "auto", marginLeft: "auto", marginTop: '70px' }}>
@@ -182,9 +212,22 @@ export default function Emplois({ id, supprimerSeanceModalOpen, setSupprimerSean
                  selectInfoData={selectInfoData}
                  fetchSeances={data}
                  setData={setData}
+                 setDataUtilisateur={setDataUtilisateur}
                  isOpen={ajoutSeanceModalOpen}
                  />   
             </div>
+            <EmploisClientAlert isOpen={ajoutSeanceModalOpen1} 
+
+            setModal={setAjoutSeanceModalOpen1}
+            title={title}
+            startStr={startStr}
+            endStr={endStr}
+            start = {start}
+            color={color}
+            id={id}
+            dataUtilisateur={dataUtilisateur}
+            setDataUtilisateur={setDataUtilisateur}
+            setDataEmplois={setData} />
         </div>
     )
 }

@@ -16,19 +16,18 @@ import axios from 'axios'
 export default function AjoutSeanceModal(props) {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
-    const [color, setColor] = useState("#369579")
     const [client, setClient] = useState("")
     const [car,setCar]=useState("")
     const [nom, setNom] = useState("")
 
     const onClickAjouterSeance = async () => {
-        if (color !== "" && title !== "" !== ""&&client!=="") {
+        if (title !== "" !== ""&&client!=="") {
             const seance = {
                 "start": props.selectInfoData.startStr,
                 "end": props.selectInfoData.endStr,
                 "title": title,
                 "eventContent": props.clients[client].name,
-                "color": color,
+                "color": "red",
                 "client":props.clients[client]._id,
                 "nomClient":props.clients[client].name,
                 
@@ -46,12 +45,10 @@ export default function AjoutSeanceModal(props) {
             props.setData(prevData => ([...prevData, seance]))
             setTitle('')
             setDescription('')
-            setColor('#369579')
             setClient('')
         }
         setTitle('')
             setDescription('')
-            setColor('#369579')
             setClient('')
     }
     function HandleChange(e) {
@@ -115,24 +112,13 @@ export default function AjoutSeanceModal(props) {
                                 </Input>
 
                             </FormGroup>
-                            <FormGroup>
-                                <Label>Couleur</Label>
-                                <Input
-                                
-                                    type="color"
-                                    value={color}
-                                    onChange={(e) => { setColor(e.target.value) }}
-                                />
-
-                            </FormGroup>
 
                             <div className="text-center">
                                 <Button
                                     className="my-4"
                                     color="primary"
                                     type="button"
-                                    onClick={(e) => onClickAjouterSeance()}
-                                >
+                                    onClick={(e) => onClickAjouterSeance()}>
                                     Ajouter
                                 </Button>
                             </div>

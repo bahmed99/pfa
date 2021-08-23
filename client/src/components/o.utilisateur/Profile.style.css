@@ -3,7 +3,8 @@
     margin-left: auto;
     margin-right: auto;
     width: 1100px;
-    border-radius: 12px;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 100px;
     background-color: transparent;
     box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
 }
@@ -55,7 +56,8 @@ th td tbody {
 .button-Mod-Style
 {
     float : right ;
-    margin-left: 950px;
+    margin-left: 910px;
+    margin-top: -30px;
     background-color: rgb(34,139,34, 0.75);
     width: 100px;
     border-radius: 10px;
@@ -73,7 +75,8 @@ th td tbody {
 .button-Mod-Style1
 {
     float : right ;
-    margin-left: 950px;
+    margin-left: 910px;
+    margin-top: -30px;
     background-color: rgb(255,0,0, 0.75);
     width: 100px;
     border-radius: 10px;
