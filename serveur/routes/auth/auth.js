@@ -89,11 +89,11 @@ router.post('/login', (req, res) => {
                                     const detect = 2
                                     const token = jwt.sign({ _id: newSavedUser._id }, JWT_SECRET)
                                     const { _id, name, email, cin, pic, timetable, client } = newSavedUser
-                                    MessageAdmin.findOne({employee:newSavedUser._id}).then(resf=>{
+                                    MessageAdmin.findOne({ employee: newSavedUser._id }).then(resf => {
                                         const Chat = resf._id
-                                        res.json({ detect, token, user: { _id, name, email, cin, pic, timetable, client,Chat } })
+                                        res.json({ detect, token, user: { _id, name, email, cin, pic, timetable, client, Chat } })
                                     })
-                                    
+
                                 }
                                 else {
                                     return res.status(422).json({ error: "vérifier votre email ou votre mot de passe" })
@@ -115,13 +115,13 @@ router.post('/login', (req, res) => {
                             const { _id, name, email, cin, pic, timetable, employee, status } = savedUser
                             Message.findOne({ client: savedUser._id })
                                 .then(r => {
-                                    Employee.findOne({_id:savedUser.employee}).then(empl=>{
+                                    Employee.findOne({ _id: savedUser.employee }).then(empl => {
                                         const Chat = r._id
-                                        const emp=empl.name
-                                        res.json({ detect, token, user: { _id, name, email, cin, pic, timetable, employee, status, Chat,emp } })
+                                        const emp = empl.name
+                                        res.json({ detect, token, user: { _id, name, email, cin, pic, timetable, employee, status, Chat, emp } })
                                     })
-                                   
-                                    
+
+
                                 })
 
 
@@ -157,18 +157,20 @@ router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req
                 bcrypt.hash(password, 15)
                     .then(hashedpassword => {
                         let client
-                        if(req.files)
-                       {  client = new Client({
-                            name: name,
-                            email: email,
-                            password: hashedpassword,
-                            cin: cin,
-                            tel: tel,
-                            status: "Payé",
-                            age: age,
-                            pic: req.file.originalname,
-                            employee: req.employee._id
-                        })}
+
+                        if (req.file) {
+                            client = new Client({
+                                name: name,
+                                email: email,
+                                password: hashedpassword,
+                                cin: cin,
+                                tel: tel,
+                                status: "Payé",
+                                age: age,
+                                pic: req.file.originalname,
+                                employee: req.employee._id
+                            })
+                        }
                         else {
                             client = new Client({
                                 name: name,
@@ -251,16 +253,37 @@ router.post('/employee/signup', requireLoginAdmin, upload1.single('image'), (req
                 const password = buffer.toString("hex")
                 bcrypt.hash(password, 15)
                     .then(hashedpassword => {
-                        const employee = new Employee({
-                            name: name,
-                            email: email,
-                            age: age,
-                            tel: tel,
-                            pic: req.file.originalname,
-                            password: hashedpassword,
-                            cin: cin,
-                            car: car
-                        })
+                        let employee
+
+                        if(req.file) {
+                            employee = new Employee({
+                                name: name,
+                                email: email,
+                                age: age,
+                                tel: tel,
+                                pic: req.file.originalname,
+                                password: hashedpassword,
+                                cin: cin,
+                                car: car
+                            })
+                        }
+                        else {
+                            employee = new Employee({
+                                name: name,
+                                email: email,
+                                age: age,
+                                tel: tel,
+                                password: hashedpassword,
+                                cin: cin,
+                                car: car
+                            })
+
+                        }
+
+
+
+
+
                         employee.save()
                             .then(user => {
                                 let mailoptions = {

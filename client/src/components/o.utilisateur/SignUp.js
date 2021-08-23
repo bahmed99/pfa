@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 import axios from "axios"
 
-
+import Alert from 'react-bootstrap/Alert'
 
 const SignUp = (props) => {
   const [loading, setLoading] = useState(false)
@@ -32,7 +32,7 @@ const SignUp = (props) => {
 
   const [imagename, setImagename] = useState("")
   const onClickAjouterSeance = async () => {
-    if (name && email && cin && image) {
+    if (name && email && cin ) {
       let dataform = new FormData()
       dataform.append('name', name)
       dataform.append('email', email)

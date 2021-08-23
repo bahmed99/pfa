@@ -44,7 +44,7 @@ const SignUp = (props) => {
   }, [])
 
   const onClickAjouterSeance =async  () => {
-    if (name && email && cin && image && role) {
+    if (name && email && cin && role) {
       let dataform = new FormData()
       dataform.append('name', name)
       dataform.append('email', email)

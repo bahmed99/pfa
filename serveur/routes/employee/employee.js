@@ -117,8 +117,6 @@ router.put("/emplois", requireLoginEmployee, (req, res) => {
                    
 
 
-                    res.status(200).send({ message: "timetable car updated" });
-
 
                 }).catch(errreur => {
                     res.send({ erreur: errreur })

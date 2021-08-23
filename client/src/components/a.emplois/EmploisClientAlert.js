@@ -35,6 +35,7 @@ const EventClick = (props) => {
       .then(data => {
         setInfo(data)
         props.setModal(false)
+       
         props.setDataUtilisateur(data)
         props.setDataEmplois(data.timetable)
         setMontant("")
