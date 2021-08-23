@@ -40,7 +40,6 @@ export default function Emplois() {
     }, [])
 
     function eventClick(eventClick) {
-
         Alert.fire({
             title: "Informations",
             html:

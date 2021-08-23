@@ -25,7 +25,7 @@ const clientSchema = new mongoose.Schema({
         start: { type: Date },
         end: { type: Date },
         title: { type: String },
-        color: { type: String },
+        color: { type: String , default:"red" },
         eventContent: { type: String },
     }],
     employee: {
@@ -45,6 +45,26 @@ const clientSchema = new mongoose.Schema({
     age: {
         type: String,
         required: true
+    },
+    seanceCode: {
+        type: Number,
+        default: 0
+    },
+    seancePermis: {
+        type: Number,
+        default: 0
+    },
+    seanceCodePayee: {
+        type: Number,
+        default: 0
+    },
+    seancePermisPayee: {
+        type: Number,
+        default: 0
+    },
+    montant: {
+        type: Number,
+        default: 0
     },
     notifications:[{
         title:{type:String},

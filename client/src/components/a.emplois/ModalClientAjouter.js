@@ -16,19 +16,19 @@ import axios from 'axios'
 export default function ModalClientAjouter(props) {
     const [title, setTitle] = useState("")
 
-    const [color, setColor] = useState("#369579")
+
 
    
 
     const onClickAjouterSeance = async () => {
-        if (color !== "" && title !== "" !== "") {
+        if ( title !== "") {
             const seance = {
                 "start": props.selectInfoData.startStr,
                 "end": props.selectInfoData.endStr,
                 "title": title,
                 "eventContent": props.dataUtilisateur.name,
-                "color": color,
                 "client":props.dataUtilisateur._id,
+                "color" : "red" ,
                 "nomClient":props.dataUtilisateur.name
             }
           
@@ -38,14 +38,15 @@ export default function ModalClientAjouter(props) {
                     "Content-Type": "application/json",
                     "Authorization": "Bearer " + localStorage.getItem("jwt")
                 }
+            }).then(result=>{
+                props.setDataUtilisateur(result.data)
+                props.setData(prevData => ([...prevData, seance]))
+                setTitle('')
             })
-            props.setData(prevData => ([...prevData, seance]))
-            setTitle('')
-            setColor('#369579')
+            
         
         }
         setTitle('')
-        setColor('#369579')
     }
 
   
@@ -88,17 +89,6 @@ export default function ModalClientAjouter(props) {
 
                                 </Input>
 
-
-                            </FormGroup>
-
-                            <FormGroup>
-                                <Label>Couleur</Label>
-                                <Input
-                                
-                                    type="color"
-                                    value={color}
-                                    onChange={(e) => { setColor(e.target.value) }}
-                                />
 
                             </FormGroup>
 
