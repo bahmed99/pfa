@@ -48,7 +48,7 @@ export default function Navbar(props) {
                     </div>
                 </ClickAwayListener>} />
                 <div className="video-text" style={{textAlign:"center"}} id="accueil">
-                    <Welcome/>
+                    <Welcome />
                 </div>
         </div>
     )

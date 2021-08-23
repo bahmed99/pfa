@@ -24,7 +24,12 @@ const clientRequestSchema = new mongoose.Schema({
     pic: {
         type: String,
         default: "https://res.cloudinary.com/cnq/image/upload/v1586197723/noimage_d4ipmd.png"
-    } 
+    },
+    done :{
+        type:Boolean,
+        default:false
+    }
+
 
 }, { timestamps: true })
 

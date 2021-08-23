@@ -1,4 +1,4 @@
-import React ,{useState} from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,39 +10,23 @@ import TableCell from "@material-ui/core/TableCell";
 // core components
 import styles from "./tableStyle";
 import axios from "axios";
-import ModelAffecterNouveauClient from "./ModelAffecterNouveauClient"
+import SignUp from "./SignUp"
 const useStyles = makeStyles(styles);
 
 export default function CustomTable(props) {
   const [open, setOpen] = useState(false)
   const [id, setId] = useState("")
+  const [users, setUsers] = useState([])
   const classes = useStyles();
   const { tableHead, tableData, tableHeaderColor } = props;
 
 
-  function Delete(key) {
-    
-    axios.delete(`http://localhost:3001/admin/nouveauClients/${tableData[key][0]}`, {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("jwt")
-      }
-    }).then(resul => {
-      props.setClients(props.clients.filter(item=>item[0]!==tableData[key][0]))
-
-      
-    }).catch(err => {
-      console.log(err)
-    })
-
-  }
-
-
-  function Affecter(key){
+  function Affecter(key) {
     setId(tableData[key][0])
+    setUsers(tableData[key])
     setOpen(true)
-
   }
+
   return (
     <div className={classes.tableResponsive}>
       <Table className={classes.table}>
@@ -76,8 +60,7 @@ export default function CustomTable(props) {
                       </TableCell>
                     ); else return (
                       <TableCell className={classes.tableCell} key={key1}>
-                        <i onClick={() => Affecter(key) }className="fa fa-pencil" style={{ fontSize: "22px", color: "green", cursor: "pointer" }}></i>
-                        <i onClick={() => Delete(key)} className="fa fa-close" style={{ fontSize: "25px", color: "red", cursor: "pointer", marginLeft: "11px" }}></i>
+                        <i onClick={() => Affecter(key)} className="fa fa-pencil" style={{ fontSize: "22px", color: "green", cursor: "pointer" }}></i>
                       </TableCell>
                     )
                   }
@@ -87,7 +70,8 @@ export default function CustomTable(props) {
           })}
         </TableBody>
       </Table>
-      <ModelAffecterNouveauClient isOpen={open}  setModal={setOpen} id={id} clients={props.clients} setClients={props.setClients} />
+     <SignUp isOpen={open} setModal={setOpen} id={id} clients={props.clients} setClients={props.setClients} users={users}
+      />
     </div>
   );
 }

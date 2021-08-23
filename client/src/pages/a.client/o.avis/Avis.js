@@ -264,7 +264,7 @@ export default function Avis() {
                     <img alt="" src={photo} className="photo-Model"/>
                     <br />
                     <p className="parag-Mod">Choisir un émoji pour exprimer votre taux de satisfaction : </p>
-                    <div class="container-Mod">
+                    <div className="container-Mod">
                         <p className="item" style={{opacity:opacity1 , fontSize:fsize1}} onClick={()=>Change1()} onMouseEnter={()=>Change11()} onMouseLeave={()=>stable()}>🤬</p>
                         <p className="item" style={{opacity:opacity2 , fontSize:fsize2}} onClick={()=>Change2()} onMouseEnter={()=>Change22()} onMouseLeave={()=>stable()}>🙁</p>
                         <p className="item" style={{opacity:opacity3 , fontSize:fsize3}} onClick={()=>Change3()} onMouseEnter={()=>Change33()} onMouseLeave={()=>stable()}>😶</p>
@@ -280,7 +280,7 @@ export default function Avis() {
                       onChange={(e)=>setMessage(e.target.value)} />
                     <br />
                     <button onClick={()=>PostData()} className="waves-effect225" type="submit" name="action">Envoyer 
-                    <i class="fa fa-paper-plane" aria-hidden="true" style={{marginLeft:"5px"}}></i>
+                    <i className="fa fa-paper-plane" aria-hidden="true" style={{marginLeft:"5px"}}></i>
                     </button>
                     <br />
                     

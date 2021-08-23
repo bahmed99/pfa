@@ -214,11 +214,14 @@ const theme = {
 };
 
 class SimpleForm extends Component {
+    
+    
     render() {
+      
         return (
             <ThemeProvider theme={theme}>
                 <ChatBot
-                // opened={false}
+           
                     speechSynthesis={{ enable: true, lang: 'fr' }}
                 
                     placeholder="Taper votre message..."

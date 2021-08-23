@@ -142,12 +142,12 @@ router.post('/login', (req, res) => {
 router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req, res) => {
     const { name, email, cin, tel, age } = req.body
     if (!name || !email || !cin || !tel || !age) {
-        return res.status(422).json({ error: "Essayer de remplir tous les champs" })
+        return res.status(422).send({ error: "Essayer de remplir tous les champs" })
     }
     Client.findOne({ email: email })
         .then(savedUser => {
             if (savedUser) {
-                return res.status(422).json({ error: "Il existe un autre utilisateur avec cet email" })
+                return res.status(422).send({ error: "Il existe un autre utilisateur avec cet email" })
             }
             crypto.randomBytes(32, (err, buffer) => {
                 if (err) {
@@ -156,7 +156,9 @@ router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req
                 const password = buffer.toString("hex")
                 bcrypt.hash(password, 15)
                     .then(hashedpassword => {
-                        const client = new Client({
+                        let client
+                        if(req.files)
+                       {  client = new Client({
                             name: name,
                             email: email,
                             password: hashedpassword,
@@ -166,7 +168,20 @@ router.post('/client/signup', requireLoginEmployee, upload.single('image'), (req
                             age: age,
                             pic: req.file.originalname,
                             employee: req.employee._id
-                        })
+                        })}
+                        else {
+                            client = new Client({
+                                name: name,
+                                email: email,
+                                password: hashedpassword,
+                                cin: cin,
+                                tel: tel,
+                                status: "Payé",
+                                age: age,
+                                employee: req.employee._id
+                            })
+
+                        }
                         client.save()
                             .then(user => {
                                 let mailoptions = {

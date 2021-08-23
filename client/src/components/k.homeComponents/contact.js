@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Button, } from "reactstrap";
 import './home.style.css'
-
+import { Fade } from 'react-reveal';
 const useStyles = makeStyles((theme) => ({
     margin: {
       margin: theme.spacing(1),
@@ -21,16 +21,17 @@ export default function Contact() {
     return (
         <div className="bg" >
             <div className="textCenter">
+                
                 <Container>
                             <br />
                             <br />
                             <br />
                             <br />
-                            <h1 className="titleEquipe">Contactez-nous</h1>
+                            <Fade bottom>  <h1 className="titleEquipe">Contactez-nous</h1></Fade>
                             <br />
                             <br />
                             <br />
-                            <br />
+                               <br />   <Fade top>  
                     <Row>
                         <Col >
                             
@@ -69,7 +70,9 @@ export default function Contact() {
                             </Form>
                         </Col>
                     </Row>
+                    </Fade>
                 </Container>
+                
             </div>
         </div>
     )

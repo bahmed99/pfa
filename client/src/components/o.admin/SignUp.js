@@ -12,9 +12,14 @@ import {
   Label
 } from "reactstrap";
 import axios from "axios"
+import ReactLoading from 'react-loading';
+import Alert from 'react-bootstrap/Alert'
+
 
 const SignUp = (props) => {
-
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
+  const [success, setSuccess] = useState(false)
   const [cars, setCars] = useState("")
   const [car, setCar] = useState("")
   const [tel, setTel] = useState("")
@@ -38,7 +43,7 @@ const SignUp = (props) => {
 
   }, [])
 
-  const onClickAjouterSeance = () => {
+  const onClickAjouterSeance =async  () => {
     if (name && email && cin && image && role) {
       let dataform = new FormData()
       dataform.append('name', name)
@@ -47,9 +52,9 @@ const SignUp = (props) => {
       dataform.append('image', image)
       dataform.append("tel", tel)
       dataform.append("age", age)
+      setLoading(true)
 
-
-      const data = { name: name, email: email, cin: cin, imgUrl: imagename }
+      const data = { name: name, email: email, cin: cin, imgUrl: imagename,age:age,tel:tel }
       if (role === "Employée") {
         dataform.append("car", cars[car].id)
         axios.post("http://localhost:3001/auth/employee/signup", dataform, {
@@ -59,22 +64,33 @@ const SignUp = (props) => {
           }
         })
           .then(result => {
-            if (result.data.error) {
-            }
-            else {
-              props.setData1(prevData => ([...prevData, data]))
-              props.setModal(false)
-              setName('')
-              setEmail('')
-              setCin('')
-              setImage('')
-              setImagename('')
-              setTel('')
-              setAge('')
-              setCar('')
-            }
+            setLoading(false)
+
+            props.setData1(prevData => ([...prevData, data]))
+            setTimeout(() => setSuccess(false), 2500)
+            props.setModal(false)
+            setName('')
+            setEmail('')
+            setCin('')
+            setImage('')
+            setImagename('')
+            setTel('')
+            setAge('')
+            setCar('')
+
           }).catch(err => {
-            console.log(err)
+            setName('')
+            setEmail('')
+            setCin('')
+            setImage('')
+            setImagename('')
+            setTel('')
+            setAge('')
+            setCar('')
+            setLoading(false)
+            setError(true)
+            setTimeout(() => setError(false), 2500)
+
           })
 
 
@@ -88,25 +104,34 @@ const SignUp = (props) => {
           }
         })
           .then(result => {
-            if (result.data.error) {
-            }
-            else {
-              props.setData1(prevData => ([...prevData, data]))
-              props.setModal(false)
-              setName('')
-              setEmail('')
-              setCin('')
-              setImage('')
-              setImagename('')
-              setTel('')
-              setAge('')
-              setCar('')
-            }
+            setLoading(false)
+            setTimeout(() => setSuccess(false), 2500)
+            props.setData1(prevData => ([...prevData, data]))
+            props.setModal(false)
+            setName('')
+            setEmail('')
+            setCin('')
+            setImage('')
+            setImagename('')
+            setTel('')
+            setAge('')
+            setCar('')
+
           }).catch(err => {
-            console.log(err)
+            setLoading(false)
+            setError(true)
+            setTimeout(() => setError(false), 2500)
+            setName('')
+            setEmail('')
+            setCin('')
+            setImage('')
+            setImagename('')
+            setTel('')
+            setAge('')
+            setCar('')
           })
 
-        
+
       }
 
     }
@@ -125,7 +150,12 @@ const SignUp = (props) => {
             <h3 style={{ marginLeft: "180px", color: "#718a8a" }}>Ajouter un utilisateur</h3>
           </CardHeader>
           <CardBody className="px-lg-5 py-lg-5">
-
+            <Alert show={error} variant={'danger'} >
+              {"Il existe un autre utilisateur avec cet email"}
+            </Alert>
+            <Alert show={success} variant={'success'} >
+              {"Le compte est bien créé"}
+            </Alert>
             <Form role="form">
               <FormGroup>
                 <Label>Rôle</Label>
@@ -217,8 +247,9 @@ const SignUp = (props) => {
                   color="primary"
                   type="button"
                   onClick={(e) => onClickAjouterSeance()}
+                  style={{ opacity: "100% !important", backgroundColor: loading ? "#66CDAA" : '#369579' }} disabled={loading}
                 >
-                  Ajouter
+                    {loading ? <ReactLoading height={'20px'} width={'24px'} className="loading1" type="spin" /> : "Ajouter"}
                 </Button>
               </div>
             </Form>
