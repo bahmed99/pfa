@@ -6,9 +6,10 @@ const Message = require("../../models/message/message")
 const Car = require("../../models/car/car")
 const requireLoginEmployee = require("../../middleware/requireLoginEmployee")
 const fs = require('fs')
-
+const Avis = require("../../models/avis/avis")
 const multer = require('multer');
-const { countReset } = require('console')
+
+const User = require("../../models/user/userRequest")
 
 
 const storage = multer.diskStorage({
@@ -24,20 +25,20 @@ const upload = multer({
     storage: storage,
 })
 
-router.post('/AjouterCours',requireLoginEmployee,upload.single("file"),(req,res)=>{
-    const {nom} = req.body
+router.post('/AjouterCours', requireLoginEmployee, upload.single("file"), (req, res) => {
+    const { nom } = req.body
     var data = fs.readFileSync("../client/src/data/cours.json");
     var myObject = JSON.parse(data);
     let newData = {
-    nom : nom ,
-    file : req.file.originalname , 
-    id : myObject.length+1 
+        nom: nom,
+        file: req.file.originalname,
+        id: myObject.length + 1
     };
     myObject.push(newData);
     var newData2 = JSON.stringify(myObject);
     fs.writeFile("../client/src/data/cours.json", newData2, (err) => {
-    if (err) throw err;
-    res.json("New data added");
+        if (err) throw err;
+        res.json("New data added");
     });
 
 })
@@ -91,6 +92,7 @@ router.put("/emplois", requireLoginEmployee, (req, res) => {
                         }
                     }
                 }).then(car => {
+
                 Client.findOne({_id:req.body.client})
                 .then(count=>{
                     if(req.body.title === "Séance code")
@@ -114,7 +116,10 @@ router.put("/emplois", requireLoginEmployee, (req, res) => {
                 })
                    
 
-                  
+
+                    res.status(200).send({ message: "timetable car updated" });
+
+
                 }).catch(errreur => {
                     res.send({ erreur: errreur })
                 })
@@ -128,8 +133,8 @@ router.put("/emplois", requireLoginEmployee, (req, res) => {
             res.status(400).send(errs)
         });
 
-        
-        
+
+
 
 
     }).catch(err => {
@@ -152,12 +157,12 @@ router.get("/clients", requireLoginEmployee, (req, res) => {
 
 router.get("/car", requireLoginEmployee, (req, res) => {
 
-    Car.findById({'_id':  req.employee.car })
-    .then(resultat => {
-        res.status(200).send(JSON.stringify(resultat))
-    }).catch(erreur => {
-        res.status(400).send(erreur)
-    })
+    Car.findById({ '_id': req.employee.car })
+        .then(resultat => {
+            res.status(200).send(JSON.stringify(resultat))
+        }).catch(erreur => {
+            res.status(400).send(erreur)
+        })
 
 })
 
@@ -182,11 +187,11 @@ router.get("/employee-clients", requireLoginEmployee, (req, res) => {
 router.get("/employee-client/:id", requireLoginEmployee, (req, res) => {
     Client.findOne({ _id: req.params.id })
         .then(result => {
-            Message.findOne({client:req.params.id})
-            .then(result1=>{
-                res.json({result1,result})
+            Message.findOne({ client: req.params.id })
+                .then(result1 => {
+                    res.json({ result1, result })
 
-            })
+                })
         }).catch(err => {
             console.log(err)
         })
@@ -347,25 +352,188 @@ router.put('/updateEmploye', requireLoginEmployee, (req, res) => {
 
 })
 
-router.put('/updateStatus/:id',(req,res)=>{
-    Client.findOne({_id:req.params.id})
-    .then(result=>{
-        if(result.status === "Payé")
-        {
-            result.status = "Non payé"
-        }
-        else
-        {
-            result.status = "Payé"
-        }
-        result.save()
-        .then(r=>{
-            res.json(r.status)
+router.put('/updateStatus/:id', (req, res) => {
+    Client.findOne({ _id: req.params.id })
+        .then(result => {
+            if (result.status === "Payé") {
+                result.status = "Non payé"
+            }
+            else {
+                result.status = "Payé"
+            }
+            result.save()
+                .then(r => {
+                    res.json(r.status)
+                })
+
+        }).catch(err => {
+            console.log(err)
         })
-        
-    }).catch(err=>{
-        console.log(err)
+
+})
+
+/////////////
+function getweek() {
+    var curr = new Date; // get current date
+    var first = curr.getDate() - curr.getDay() + 1; // First day is the day of the month - the day of the week
+    var last = first + 6; // last day is the first day + 6
+
+    var firstday = new Date(curr.setDate(first));
+    var lastday = new Date(curr.setDate(last));
+    return [firstday, lastday]
+}
+
+
+function nombreSeance(data) {
+    let nb = 0;
+    var curr = new Date;
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].start.getFullYear() === new Date().getFullYear() && data[i].start.getMonth() === new Date().getMonth() && data[i].start.getDate() === curr.getDate()) {
+            nb++;
+        }
+
+    }
+    return nb;
+}
+
+router.get('/statistics', requireLoginEmployee, (req, res) => {
+    Client.find({
+        '_id': { $in: req.employee.client }
+    }).then(resultat => {
+        Car.findOne({ _id: req.employee.car }).then(resu => {
+            let etat
+            if (resu.status === "1") {
+                etat = "En service"
+            }
+            else {
+                etat = "Hors service"
+
+            }
+            res.status(200).send(JSON.stringify({ client: resultat.length, emplois: nombreSeance(req.employee.timetable), car: etat }))
+        }).catch(erreurs => {
+            res.status(400).send(erreurs)
+        })
+
+
+    }).catch(erreur => {
+        res.status(400).send(erreur)
     })
+})
+
+
+router.get('/nbrSeances', requireLoginEmployee, (req, res) => {
+
+    const [fd, ff] = getweek()
+    const tab1 = ["L", "M", "M", "J", "V", "S", "D"]
+    let tab = [0, 0, 0, 0, 0, 0, 0]
+
+    for (let j = 0; j < req.employee.timetable.length; j++) {
+        if (req.employee.timetable[j].start.getFullYear() === new Date().getFullYear() && req.employee.timetable[j].start.getMonth() === new Date().getMonth() && req.employee.timetable[j].start.getDate() >= fd.getDate() && req.employee.timetable[j].start.getDate() <= ff.getDate()) {
+            if (req.employee.timetable[j].start.getDay() === 0) {
+                tab[6] += 1
+            }
+            else if (req.employee.timetable[j].start.getDay() === 1) {
+                tab[0] += 1
+            }
+            else if (req.employee.timetable[j].start.getDay() === 2) {
+                tab[1] += 1
+            }
+            else if (req.employee.timetable[j].start.getDay() === 3) {
+                tab[2] += 1
+            }
+            else if (req.employee.timetable[j].start.getDay() === 4) {
+                tab[3] += 1
+            }
+            else if (req.employee.timetable[j].start.getDay() === 5) {
+                tab[4] += 1
+            }
+            else if (req.employee.timetable[j].start.getDay() === 6) {
+                tab[5] += 1
+            }
+
+
+        }
+    }
+
+    res.json({ labels: tab1, series: [tab] })
+
+})
+
+
+router.get('/nbreSub', requireLoginEmployee, (req, res) => {
+
+    let tab1 = [
+        "Jan",
+        "Fev",
+        "Mar",
+        "Avr",
+        "Mai",
+        "Juin",
+        "Juil",
+        "Aôut",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dec",
+    ]
+
+    Client.find({
+        '_id': { $in: req.employee.client }
+    })
+        .then(result => {
+            let tab = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            for (let i = 0; i < result.length; i++) {
+                for (let j = 0; j < 12; j++) {
+                    if (result[i].createdAt.getMonth() === j) {
+                        tab[j] = tab[j] + 1
+
+                    }
+                }
+            }
+            res.json({ labels: tab1, series: [tab] })
+        })
+
+
+})
+
+
+router.get('/repartitionAvis', requireLoginEmployee, (req, res) => {
+    let labels = ["🤬", "🙁", "😶", "😁", "😍"]
+    Avis.find()
+        .then(result => {
+            let datasets = [
+                {
+                    label: "Emails",
+                    pointRadius: 0,
+                    pointHoverRadius: 0,
+                    backgroundColor: ["red", "tomato", "orange", "#00e7e7", "#369579"],
+                    borderWidth: 0,
+                    data: [0, 0, 0, 0, 0],
+                },
+            ]
+            for (let i = 0; i < result.length; i++) {
+                if (req.employee.client.includes(result[i].postedBy)) {
+
+                    if (result[i].vote === 1) {
+                        datasets[0].data[0] += 1
+                    }
+                    if (result[i].vote === 2) {
+                        datasets[0].data[1] += 1
+                    }
+                    if (result[i].vote === 3) {
+                        datasets[0].data[2] += 1
+                    }
+                    if (result[i].vote === 4) {
+                        datasets[0].data[3] += 1
+                    }
+                    if (result[i].vote === 5) {
+                        datasets[0].data[4] += 1
+                    }
+                }
+            }
+            res.json({ labels, datasets })
+        })
+
 
 })
 
@@ -425,7 +593,100 @@ router.put('/modifierPayement/:id',requireLoginEmployee,(req,res)=>{
 })
 
 
+router.get('/differenceAvis', requireLoginEmployee, (req, res) => {
+
+    let labels = [
+        "Jan",
+        "Fev",
+        "Mar",
+        "Avr",
+        "Mai",
+        "Juin",
+        "Juil",
+        "Aôut",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dec",
+    ]
+
+    Avis.find()
+        .then(result => {
+            let datasets = [
+                {
+                    label: "Avis positifs",
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    fill: false,
+                    borderColor: "#369579",
+                    backgroundColor: "#369579",
+                    pointBorderColor: "#369579",
+                    pointRadius: 4,
+                    pointHoverRadius: 4,
+                    pointBorderWidth: 8,
+                    tension: 0.4,
+                },
+                {
+                    label: "Avis négatifs",
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    fill: false,
+                    borderColor: "red",
+                    backgroundColor: "red",
+                    pointBorderColor: "red",
+                    pointRadius: 4,
+                    pointHoverRadius: 4,
+                    pointBorderWidth: 8,
+                    tension: 0.4,
+                },
+            ]
+            for (let i = 0; i < result.length; i++) {
+                if (req.employee.client.includes(result[i].postedBy)) {
+                    if (result[i].vote >= 3) {
+                        for (let j = 0; j < 12; j++) {
+                            if (result[i].createdAt.getMonth() === j) {
+                                datasets[0].data[j] += 1
+
+                            }
+                        }
+                    }
+                    else {
+                        for (let j = 0; j < 12; j++) {
+                            if (result[i].createdAt.getMonth() === j) {
+                                datasets[1].data[j] += 1
+
+                            }
+                        }
+
+                    }}
+                }
+                res.json({ labels, datasets })
+            })
 
 
+})
 
+router.get("/nouveauClients", requireLoginEmployee, (req, res) => {
+    const data =[]
+    User.find({
+        '_id': { $in: req.employee.clientRequest }
+    }).then(result=>{
+        for (let i = 0; i < result.length; i++) {
+            data[i] = [result[i]._id, result[i].name, result[i].age, result[i].cin, result[i].tel, result[i].email, ""]
+        }
+        res.send(data)
+    })
+})
+
+
+router.delete("/removeClientNouveau/:id",requireLoginEmployee,(req,res)=>{
+    console.log(req.body)
+    User.findOne({_id:req.params.id}).then(resul=>{
+        resul.remove().then(result=>{
+            res.send(result)
+        }).catch(err=>{
+            res.send(err)
+        })
+    }).catch(errs=>{
+        res.send(errs)
+    })
+})
 module.exports = router

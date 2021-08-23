@@ -1,17 +1,22 @@
+import { Fade } from 'react-reveal';
 
 function Technologies() {
-  return (
-            <div className="BgContainer" style={{backgroundColor:"#b4b4b4" , marginTop:"-180px",paddingBottom:"120px"}}>
-               
-                <div className="row justify-content-center div-Style" >
-                    <div className="col-lg-7 col-md-12  ">
-                        <div className="section-title text-center">
+    return (
+
+        <div className="BgContainer" style={{ backgroundColor: "#b4b4b4", marginTop: "-180px", paddingBottom: "120px" }}>
+
+            <div className="row justify-content-center div-Style" >
+                <div className="col-lg-7 col-md-12  ">
+                    <div className="section-title text-center">
+                        <Fade bottom>
                             <h2 className="h2-Title" >Nos Services</h2>
-                            <p  className= "description-technologies">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        </Fade>
+                        <p className="description-technologies">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                             tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
                     </div>
                 </div>
+            </div>
+            <Fade top>
                 <div className="row container-technologies " >
                     <div className="col-lg-4 col-md-6 col-sm-12 " >
                         <div className="single-serviecs-block container-technologie" >
@@ -31,14 +36,14 @@ function Technologies() {
                         <div className="single-serviecs-block">
                             <i className="fa fa-pencil"></i>
                             <h3 className="title-technologie"><a href="services-details.html">Mail Services</a></h3>
-                            <p  className="description-title-style">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                            <p className="description-title-style">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
                         </div>
                     </div>
                 </div>
-                
-            </div>
+            </Fade>
+        </div>
 
-  );
+    );
 }
 
 export default Technologies;

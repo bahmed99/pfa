@@ -12,13 +12,14 @@ import { useState, useEffect, Fragment } from 'react'
 import ChatBot from "../../components/chatBot/index"
 
 
-
+import { Fade } from 'react-reveal';
 
 
 
 export default function Home() {
     let [screen, setScreen] = useState()
     let [scale, setScale] = useState()
+    let [open, setOpen] = useState(false)
     window.onresize = function () {
         if (window.innerWidth > 1200) {
             setScreen(true)
@@ -69,10 +70,12 @@ export default function Home() {
         <div className="home">
             <Fragment>
                 <Navbar y={y} screen={screen} scale={scale} />
-                <ChatBot></ChatBot>
-               
+                <ChatBot ></ChatBot>
+
                 <div id="apropos">
-                    <About />
+                    
+                        <About />
+                   
                 </div>
                 <div id="services">
                     <Services />
@@ -85,7 +88,7 @@ export default function Home() {
                     <Contact />
                 </div>
                 <Footer />
-               
+
             </Fragment>
         </div>
     )

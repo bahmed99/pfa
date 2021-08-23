@@ -68,7 +68,7 @@ export default function NewPassword() {
                 <div className="card auth-card1 input-field #fafafa grey lighten-5">
                     <img alt="" src={image} className="logo-Mod" />
                     <div>
-                        <label><i class="fa fa-lock" style={{ color: "#718a8a", fontSize: "25px", marginLeft: "-50px" }}></i></label>
+                        <label><i className="fa fa-lock" style={{ color: "#718a8a", fontSize: "25px", marginLeft: "-50px" }}></i></label>
                         <input
                             type="password"
                             placeholder=" Nouveau mot de passe*"

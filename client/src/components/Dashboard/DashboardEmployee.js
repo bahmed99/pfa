@@ -9,7 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Warning from "@material-ui/icons/Warning";
-import Table from "./Table/Table.js";
+import Table from "./Table/TableEmploye.js";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import AccessTime from "@material-ui/icons/AccessTime";
 import Accessibility from "@material-ui/icons/Accessibility";
@@ -61,6 +61,7 @@ export default function Dashboard() {
   const [client, setClient] = useState()
   const [employee, setEmployee] = useState()
   const [car, setCar] = useState()
+  const [emplois, setEmplois] = useState()
   const [info, setInfo] = useState()
   const [info1, setInfo1] = useState()
   const [info2, setInfo2] = useState()
@@ -73,23 +74,21 @@ export default function Dashboard() {
   const History = useHistory()
 
   useEffect(() => {
-    axios.get('http://localhost:3001/admin/statistics', {
+    axios.get('http://localhost:3001/employe/statistics', {
       headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + localStorage.getItem("jwt")
       }
     }).then(res => {
-      setCar(res.data.car)
       setClient(res.data.client)
-      setEmployee(res.data.employee)
-      console.log(res.data)
-
-
+      setEmplois(res.data.emplois)
+      setCar(res.data.car)
+    
     }).catch(err => {
       console.log(err)
     })
 
-    axios.get('http://localhost:3001/admin/nbrSeances', {
+    axios.get('http://localhost:3001/employe/nbrSeances', {
       headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + localStorage.getItem("jwt")
@@ -131,7 +130,7 @@ export default function Dashboard() {
       console.log(err)
     })
 
-    axios.get('http://localhost:3001/admin/repartitionAvis', {
+    axios.get('http://localhost:3001/employe/repartitionAvis', {
       headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + localStorage.getItem("jwt")
@@ -145,7 +144,7 @@ export default function Dashboard() {
       console.log(err)
     })
 
-    axios.get('http://localhost:3001/admin/differenceAvis', {
+    axios.get('http://localhost:3001/employe/differenceAvis', {
       headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + localStorage.getItem("jwt")
@@ -159,7 +158,7 @@ export default function Dashboard() {
       console.log(err)
     })
 
-    axios.get('http://localhost:3001/admin/nouveauClients', {
+    axios.get('http://localhost:3001/employe/nouveauClients', {
       headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + localStorage.getItem("jwt")
@@ -193,7 +192,7 @@ export default function Dashboard() {
                 <Danger>
                   <Warning />
                 </Danger>
-                <Link onClick={(e) => History.push("/ressources-humaine")}>
+                <Link onClick={(e) => History.push("/utilisateurs")}>
                   Lire plus
                 </Link>
               </div>
@@ -204,17 +203,17 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="success" stats icon>
               <CardIcon color="success">
-                <Icon className="fas fa-user-tie" />
+                <Icon className="fa fa-calendar" />
               </CardIcon>
-              <p className={classes.cardCategory}>Nombre d'employées</p>
-              <h3 className={classes.cardTitle}>{employee}</h3>
+              <p className={classes.cardCategory}>Séances aujourdh'hui</p>
+              <h3 className={classes.cardTitle}>{emplois}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
                 <Danger>
                   <Warning />
                 </Danger>
-                <Link onClick={(e) => History.push("/ressources-humaine")}>
+                <Link onClick={(e) => History.push("/emplois")}>
                   Lire plus
                 </Link>
               </div>
@@ -227,7 +226,7 @@ export default function Dashboard() {
               <CardIcon color="danger">
                 <Icon className="fas fa-car" />
               </CardIcon>
-              <p className={classes.cardCategory}>Nombre de Voitures</p>
+              <p className={classes.cardCategory}>Êtat Voiture</p>
               <h3 className={classes.cardTitle}>{car}</h3>
             </CardHeader>
             <CardFooter stats>

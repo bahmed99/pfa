@@ -53,7 +53,11 @@ const employeeSchema = new mongoose.Schema({
     car: {
         type: ObjectId,
         ref: "Car"
-    }
+    },
+    clientRequest:[{
+        type :ObjectId,
+        ref: "ClientRequest"
+    }]
 }, { timestamps: true })
 
 

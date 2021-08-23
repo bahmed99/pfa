@@ -106,7 +106,7 @@ export default function Signin() {
                         <img alt="" src={image} className="logo-Mod"/>
 
                             <div style={{display:"flex"}}>
-                                <i class="fa fa-user" style={{color:"#718a8a" , fontSize:"22px"  , marginLeft:"30px" , marginTop:"20px"}}></i>
+                                <i className="fa fa-user" style={{color:"#718a8a" , fontSize:"22px"  , marginLeft:"30px" , marginTop:"20px"}}></i>
                                 <input 
                                 type="text" 
                                 className="input-input-Mod2"
@@ -115,7 +115,7 @@ export default function Signin() {
                                 onChange={(e)=>setEmail(e.target.value)} />
                             </div>
                             <div style={{display:"flex"}}>
-                                <i class="fa fa-lock" style={{color:"#718a8a" , fontSize:"25px" , marginLeft:"30px" , marginTop:"20px"}}></i>
+                                <i className="fa fa-lock" style={{color:"#718a8a" , fontSize:"25px" , marginLeft:"30px" , marginTop:"20px"}}></i>
                                 <input 
                                 type="password" 
                                 className="input-input-Mod1"
