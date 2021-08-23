@@ -116,7 +116,7 @@ export default function Dashboard() {
       console.log(err)
     })
 
-    axios.get('http://localhost:3001/admin/nbreSub', {
+    axios.get('http://localhost:3001/employe/nbreSub', {
       headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + localStorage.getItem("jwt")
