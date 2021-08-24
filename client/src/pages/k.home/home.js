@@ -10,6 +10,7 @@ import Footer from '../../components/k.footer/footer'
 import './home.css'
 import { useState, useEffect, Fragment } from 'react'
 import ChatBot from "../../components/chatBot/index"
+ import Programme from '../../components/k.homeComponents/programme'
 
 
 import { Fade } from 'react-reveal';
@@ -84,8 +85,9 @@ export default function Home() {
                 <div id="equipe">
                     <Equipe />
                 </div>
-                <div id="contact">
-                    <Contact />
+                <div id="contact" style={{backgroundColor:"#b4b4b4"}}>
+                    <hr style={{ width: "50%", margin: "auto auto"}} />
+                    <Programme />
                 </div>
                 <Footer />
 

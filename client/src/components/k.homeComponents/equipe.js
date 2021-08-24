@@ -55,6 +55,7 @@ export default function Equipe() {
             
            
             </div>
+            
        
         
         </div>
