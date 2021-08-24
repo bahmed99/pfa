@@ -22,7 +22,7 @@ export default function Navbar(props) {
                         <li className="list-e"><Link activeClass="active" to="apropos" spy={true} smooth={true}>À propos</Link></li>
                         <li className="list-e"><Link activeClass="active" to="services" spy={true} smooth={true}>Nos Services</Link></li>
                         <li className="list-e"><Link activeClass="active" to="equipe" spy={true} smooth={true}>Notre Équipe</Link></li>
-                        <li className="list-e"><Link activeClass="active" to="contact" spy={true} smooth={true}>Contact</Link></li>
+                        <li className="list-e"><Link activeClass="active" to="contact" spy={true} smooth={true}>Programme</Link></li>
                         <li className="list-e"><RouterLink to="/sign-in" style={{ color: 'white' }}>Se Connecter</RouterLink></li>
                     </ul>
                 </Container>
@@ -42,7 +42,7 @@ export default function Navbar(props) {
                             <li className="list-e-m"><Link activeClass="active" to="apropos" spy={true} smooth={true}>À propos</Link></li>
                             <li className="list-e-m"><Link activeClass="active" to="services" spy={true} smooth={true}>Nos Services</Link></li>
                             <li className="list-e-m"><Link activeClass="active" to="equipe" spy={true} smooth={true}>Notre Équipe</Link></li>
-                            <li className="list-e-m"><Link activeClass="active" to="contact" spy={true} smooth={true}>Contact</Link></li>
+                            <li className="list-e-m"><Link activeClass="active" to="contact" spy={true} smooth={true}>Programme</Link></li>
                             <li className="list-e-m"><RouterLink to="/sign-in" style={{ color: 'white' }}>Se Connecter</RouterLink></li>
                         </ul>
                     </div>

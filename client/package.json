@@ -39,6 +39,7 @@
     "globalize": "^0.1.1",
     "globalize-webpack-plugin": "^3.0.0",
     "history": "^5.0.0",
+    "html-react-parser": "^1.2.8",
     "materialize-css": "^1.0.0-rc.2",
     "moment": "^2.29.1",
     "patch-package": "^6.4.7",
