@@ -77,12 +77,12 @@ padding-right: 100px;
 {
 width: 55% ;
 float: left ;
-background: linear-gradient(0deg,#369579    0%,   #718a8a 70%);
+background: #369579 ;
 padding: 80px ;
 margin-top: 140px; 
 border-top-left-radius: 50px;
 border-bottom-right-radius: 100px;
-opacity: 90%;
+opacity: 90% !important;
 }
 
 .titleEquipe

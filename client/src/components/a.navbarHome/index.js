@@ -16,7 +16,7 @@ export default function Navbar(props) {
     return (
         <div>
             <div className='bar' style={{ backgroundColor: props.y, display: visible[1] && !props.screen ? 'none' : '' }}>
-                <Link to="accueil" spy={true} smooth={true}><img style={{ cursor: 'pointer', marginLeft: "60px" }} src={require("../../assets/images/logoBlanc.png").default} alt="logo-evenement" className='logo' /></Link>
+                <Link to="accueil" spy={true} smooth={true}><img style={{ cursor: 'pointer' ,marginLeft: "60px" }} src={require("../../assets/images/logoBlanc.png").default} alt="logo-evenement" className='logo' /></Link>
                 <Container>
                     <ul className="list" style={{ display: props.screen ? '' : 'none' }}>
                         <li className="list-e"><Link activeClass="active" to="apropos" spy={true} smooth={true}>À propos</Link></li>
