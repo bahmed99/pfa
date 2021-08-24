@@ -19,7 +19,7 @@ import { Fade } from 'react-reveal';
 import Prix from '../../components/k.homeComponents/Prix'
 import Sponsors from '../../components/k.homeComponents/Sponsors'
 import Horaire from '../../components/k.homeComponents/Horaire'
-import Avis from '../../components/k.homeComponents/k.homeimages/Avis'
+import Avis from '../../components/k.homeComponents/Avis'
 
 
 
@@ -103,7 +103,7 @@ export default function Home() {
                 </div>
                 <div style={{ backgroundColor: "#b4b4b4" }}>
                     <Avis />
-                    <hr style={{ width: "50%", margin: "auto auto" }} />
+
                 </div>
                 <div>
 

@@ -348,10 +348,10 @@ padding-right: 4rem; }
 /* Horaire */
 
 .horaires{
-    padding-top: 100px!important;
-    padding-bottom: 50px !important;
+    /* padding-top: 100px!important;
+    padding-bottom: 50px !important; */
 	min-height: 300px;
-	background:#b4b4b4 ;
+	background:url("./k.homeimages/fanfact.jpg") ;
 	background-size: cover;
 	padding-top: 35px;
 }
@@ -522,8 +522,8 @@ figure.snip1192 .author h5 span {
 }
 
 .avis{
-    margin-top: 100px;
-    margin-bottom: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 .avisContainer{
