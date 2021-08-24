@@ -10,11 +10,12 @@ import Footer from '../../components/k.footer/footer'
 import './home.css'
 import { useState, useEffect, Fragment } from 'react'
 import ChatBot from "../../components/chatBot/index"
- import Programme from '../../components/k.homeComponents/programme'
+import Programme from '../../components/k.homeComponents/programme'
 
 
 import { Fade } from 'react-reveal';
 import Prix from '../../components/k.homeComponents/Prix'
+import Sponsors from '../../components/k.homeComponents/Sponsors'
 
 
 
@@ -75,9 +76,9 @@ export default function Home() {
                 <ChatBot ></ChatBot>
 
                 <div id="apropos">
-                    
-                        <About />
-                   
+
+                    <About />
+
                 </div>
                 <div id="services">
                     <Services />
@@ -86,13 +87,16 @@ export default function Home() {
                 <div id="equipe">
                     <Equipe />
                 </div>
-                <div id="programme" style={{backgroundColor:"#b4b4b4"}}>
-                    <hr style={{ width: "50%", margin: "auto auto"}} />
+                <div id="programme" style={{ backgroundColor: "#b4b4b4" }}>
+                    <hr style={{ width: "50%", margin: "auto auto" }} />
                     <Programme />
                 </div>
-                <div id='offre' style={{backgroundColor:"#b4b4b4"}}>
-                <hr style={{ width: "50%", margin: "auto auto"}} />
+                <div id='offre' style={{ backgroundColor: "#b4b4b4" }}>
+                    <hr style={{ width: "50%", margin: "auto auto" }} />
                     <Prix />
+                </div>
+                <div style={{ backgroundColor: "#b4b4b4" }}>
+                    <Sponsors />
                 </div>
                 <Footer />
 
