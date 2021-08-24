@@ -21,6 +21,7 @@
     top: -70px;
     transform: translateX(-50%);
     width: 70px;
+    background-color: white;
 
     @media #{$md-device, $sm-device} {
       top: -50px;
@@ -87,7 +88,7 @@
     }
 
     &-img {
-      background-color: $offWhite;
+      background-color: white;
       border: 2px solid $brandColor;
       -webkit-box-shadow: none;
       box-shadow: none;
