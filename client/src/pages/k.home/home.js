@@ -14,6 +14,7 @@ import ChatBot from "../../components/chatBot/index"
 
 
 import { Fade } from 'react-reveal';
+import Prix from '../../components/k.homeComponents/Prix'
 
 
 
@@ -85,9 +86,13 @@ export default function Home() {
                 <div id="equipe">
                     <Equipe />
                 </div>
-                <div id="contact" style={{backgroundColor:"#b4b4b4"}}>
+                <div id="programme" style={{backgroundColor:"#b4b4b4"}}>
                     <hr style={{ width: "50%", margin: "auto auto"}} />
                     <Programme />
+                </div>
+                <div id='offre' style={{backgroundColor:"#b4b4b4"}}>
+                <hr style={{ width: "50%", margin: "auto auto"}} />
+                    <Prix />
                 </div>
                 <Footer />
 

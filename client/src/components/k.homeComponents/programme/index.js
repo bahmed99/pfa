@@ -45,17 +45,17 @@ export default function Programme() {
                             <Timeline
                                 degree={'educationItem.degree'}
                                 institute={'Inscrivez-vous par le chatbot'}
-                                duration={'Etape 01'}
+                                duration={'Étape 01'}
                             />
                             <Timeline
                                 degree={'educationItem.degree'}
                                 institute={'Apprenez le code avec iDrive Gears'}
-                                duration={'Etape 02'}
+                                duration={'Étape 02'}
                             />
                              <Timeline
                                 degree={'educationItem.degree'}
                                 institute={'Passez votre examen du code'}
-                                duration={'Etape 03'}
+                                duration={'Étape 03'}
                             />
                            
                            
@@ -70,17 +70,17 @@ export default function Programme() {
                                 <Timeline
                                     degree={'educationItem.degree'}
                                     institute={'Apprenez la conduite'}
-                                    duration={'Etape 04'}
+                                    duration={'Étape 04'}
                                 />
                                 <Timeline
                                     degree={'educationItem.degree'}
                                     institute={'Apprenez les créneaux'}
-                                    duration={'Etape 05'}
+                                    duration={'Étape 05'}
                                 />
                                 <Timeline
                                 degree={'educationItem.degree'}
                                 institute={'Passez votre examen de conduite'}
-                                duration={'Etape 06'}
+                                duration={'Étape 06'}
                                 />
                             </TimelineWrap>
                             </Reveal>
