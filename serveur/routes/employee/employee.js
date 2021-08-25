@@ -1,3 +1,4 @@
+
 const express = require("express");
 const router = express.Router();
 const Employee = require("../../models/user/employe");
@@ -10,6 +11,7 @@ const Avis = require("../../models/avis/avis");
 const multer = require("multer");
 
 const User = require("../../models/user/userRequest");
+
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -154,14 +156,18 @@ router.get("/clients", requireLoginEmployee, (req, res) => {
 });
 
 router.get("/car", requireLoginEmployee, (req, res) => {
-  Car.findById({ _id: req.employee.car })
-    .then((resultat) => {
-      res.status(200).send(JSON.stringify(resultat));
+
+    Car.findOne({ _id: req.employee.car })
+    .then(resultat => {
+     console.log(resultat)
+      return  res.status(200).send(JSON.stringify(resultat))
+       
+    }).catch(erreur => {
+       return res.status(400).send(erreur)
     })
-    .catch((erreur) => {
-      res.status(400).send(erreur);
-    });
-});
+    
+})
+
 
 router.get("/employee-clients", requireLoginEmployee, (req, res) => {
   const data = [];

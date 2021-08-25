@@ -38,21 +38,22 @@ import styles from "./dashboardStyle.js";
 const useStyles = makeStyles(styles);
 
 export default function Notification() {
-  const [data1,setData1]= useState([])
-  const data=[];
-  useEffect(()=>{
-  fetch("http://localhost:3001/car/notif",{
-    headers:{
-      "Content-Type":"application/json" ,
-  }
-  }).then(res=>res.json())
-  .then(result=>{
-    console.log(result)
-    setData1(result)
-  })
-  
-},[]);
-  data1.map(obj=> {
+  const [data1, setData1] = useState([])
+
+  const data = [];
+  useEffect(() => {
+    fetch("http://localhost:3001/car/notif", {
+      headers: {
+        "Content-Type": "application/json",
+      }
+    }).then(res => res.json())
+      .then(result => {
+        console.log(result)
+        setData1(result)
+      })
+
+  }, []);
+  data1.map(obj => {
     data.push(Object.values(obj))
   });
   const entr = [];
@@ -80,123 +81,160 @@ export default function Notification() {
       visite.push(Object.values(element))
     }
   });
-console.log(data);
-const first=data[0];
-const idCar=first[0];
-console.log(idCar)
+  console.log(data);
+  console.log(data.length)
 
-  
-  
+
+
 
   const classes = useStyles();
   return (
-    <div>
+    <div style={{ marginLeft: "100px" }} >
+      <div style={{ marginLeft: "230px" }}>
+        <GridContainer  >
+          <GridItem xs={12} sm={8} md={5}>
+            <Card>
+              <CardHeader color="danger" stats icon>
+                <CardIcon color="danger">
+                  <DirectionsCar />
+                </CardIcon>
+                <p className={classes.cardCategory}>Cars's check</p>
+                <h3 className={classes.cardTitle}>
+                  {data.length}
+                </h3>
+              </CardHeader>
+              <CardFooter stats>
+                <div className={classes.stats}>
+                  <Danger>
+                    <Warning />
+                  </Danger>
+                  <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                    Fix Now
+                  </a>
+                </div>
+              </CardFooter>
+            </Card>
+          </GridItem>
+        </GridContainer>
+      </div>
+      <div style={{ marginLeft: "-100px" }} >
+        <GridContainer>
+          <GridItem xs={12} sm={6} md={3}>
+            <Card>
+              <CardHeader color="warning" stats icon>
+                <CardIcon color="warning">
+                  <Build />
+                </CardIcon>
+                <p className={classes.cardCategory}>Entretien</p>
+                <h3 className={classes.cardTitle}>{entr.length}</h3>
+              </CardHeader>
+              <CardFooter stats>
+                <div className={classes.stats}>
+                  <Danger>
+                    <Warning />
+                  </Danger>
+                  <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                    Fix Now
+                  </a>
+                </div>
+              </CardFooter>
+            </Card>
+          </GridItem>
+          <GridItem xs={12} sm={6} md={3}>
+            <Card>
+              <CardHeader color="warning" stats icon>
+                <CardIcon color="warning">
+                  <Vignette />
+                </CardIcon>
+                <p className={classes.cardCategory}>Vignette</p>
+                <h3 className={classes.cardTitle}>{vign.length}</h3>
+              </CardHeader>
+              <CardFooter stats>
+                <div className={classes.stats}>
+                  <Danger>
+                    <Warning />
+                  </Danger>
+                  <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                    Fix Now
+                  </a>
+                </div>
+              </CardFooter>
+            </Card>
+          </GridItem>
+          <GridItem xs={12} sm={6} md={3}>
+            <Card>
+              <CardHeader color="warning" stats icon>
+                <CardIcon color="warning">
+                  <Settings />
+                </CardIcon>
+                <p className={classes.cardCategory}>Visite Technique</p>
+                <h3 className={classes.cardTitle}>{visite.length}</h3>
+              </CardHeader>
+              <CardFooter stats>
+                <div className={classes.stats}>
+                  <Danger>
+                    <Warning />
+                  </Danger>
+                  <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                    Fix Now
+                  </a>
+                </div>
+              </CardFooter>
+            </Card>
+          </GridItem>
+          <GridItem xs={12} sm={6} md={3} >
+            <Card>
+              <CardHeader color="warning" stats icon>
+                <CardIcon color="warning">
+                  <ReportProblem />
+                </CardIcon>
+                <p className={classes.cardCategory}>Assurance</p>
+                <h3 className={classes.cardTitle}>{assur.length}</h3>
+              </CardHeader>
+              <CardFooter stats>
+                <div className={classes.stats}>
+                  <Danger>
+                    <Warning />
+                  </Danger>
+                  <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                    Fix Now
+                  </a>
+                </div>
+              </CardFooter>
+            </Card>
+          </GridItem>
+        </GridContainer>
+      </div>
       <GridContainer>
-        <GridItem xs={12} sm={6} md={3}>
-          <Card>
-            <CardHeader color="danger" stats icon>
-              <CardIcon color="danger">
-                <DirectionsCar/>
-              </CardIcon>
-              <p className={classes.cardCategory}>Cars's check</p>
-              <h3 className={classes.cardTitle}>
-                2/4 
-              </h3>
-            </CardHeader>
-            <CardFooter stats>
-              <div className={classes.stats}>
-                <Danger>
-                  <Warning />
-                </Danger>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                 Fix Now
-                </a>
-              </div>
-            </CardFooter>
-          </Card>
-        </GridItem>
-        <GridItem xs={12} sm={6} md={3}>
-          <Card>
-            <CardHeader color="success" stats icon>
-              <CardIcon color="success">
-                <Store />
-              </CardIcon>
-              <p className={classes.cardCategory}>Revenue</p>
-              <h3 className={classes.cardTitle}>$34245</h3>
-            </CardHeader>
-            <CardFooter stats>
-              <div className={classes.stats}>
-                <DateRange />
-                Last 24 Hours
-              </div>
-            </CardFooter>
-          </Card>
-        </GridItem>
-        <GridItem xs={12} sm={6} md={3}>
-          <Card>
-            <CardHeader color="warning" stats icon>
-              <CardIcon color="warning">
-              <Accessibility />
-              </CardIcon>
-              <p className={classes.cardCategory}>Fixed Issues</p>
-              <h3 className={classes.cardTitle}>75</h3>
-            </CardHeader>
-            <CardFooter stats>
-              <div className={classes.stats}>
-                <LocalOffer />
-                Tracked from Github
-              </div>
-            </CardFooter>
-          </Card>
-        </GridItem>
-        <GridItem xs={12} sm={6} md={3}>
-          <Card>
-            <CardHeader color="danger" stats icon>
-              <CardIcon color="danger">
-                <Accessibility />
-              </CardIcon>
-              <p className={classes.cardCategory}>Followers</p>
-              <h3 className={classes.cardTitle}>+245</h3>
-            </CardHeader>
-            <CardFooter stats>
-              <div className={classes.stats}>
-                <Update />
-                Just Updated
-              </div>
-            </CardFooter>
-          </Card>
-        </GridItem>
-      </GridContainer>
-      <GridContainer>
-        <GridItem xs={12} sm={12} md={12}>
-        
-         <CustomTabs
+        <GridItem xs={12} sm={12} md={10}>
+
+          <CustomTabs
             title="Cars"
             headerColor="info"
             tabs={[
               {
                 tabName: "All",
-                tabIcon: Settings,
+                tabIcon: DirectionsCar,
                 tabContent: (
                   <Table
-               tableHeaderColor="warning"
-                tableHead={["ID", "pic", "Numéro de Série"]}
-                tableData={data}
-              />
-                  
+                    tableHeaderColor="warning"
+                    tableHead={["ID", "pic", "Numéro de Série"]}
+                    tableData={data}
+                  />
+
                 ),
-                
+
               },
-              
+
               {
                 tabName: "Assurance",
                 tabIcon: ReportProblem,
                 tabContent: (
                   <Table
-                 tableHeaderColor="warning"
-                  tableHead={["ID", "pic", "Numéro de Série"]}
-                  tableData={assur}
-                />
+                    tableHeaderColor="warning"
+                    tableHead={["ID", "pic", "Numéro de Série"]}
+                    tableData={assur}
+                  />
                 ),
               },
               {
@@ -204,10 +242,10 @@ console.log(idCar)
                 tabIcon: Vignette,
                 tabContent: (
                   <Table
-                 tableHeaderColor="warning"
-                  tableHead={["ID", "pic", "Numéro de Série"]}
-                  tableData={vign}
-                />
+                    tableHeaderColor="warning"
+                    tableHead={["ID", "pic", "Numéro de Série"]}
+                    tableData={vign}
+                  />
                 ),
               },
               {
@@ -215,10 +253,10 @@ console.log(idCar)
                 tabIcon: Build,
                 tabContent: (
                   <Table
-                tableHeaderColor="warning"
-                  tableHead={["ID", "pic", "Numéro de Série"]}
-                  tableData={entr}
-                />
+                    tableHeaderColor="warning"
+                    tableHead={["ID", "pic", "Numéro de Série"]}
+                    tableData={entr}
+                  />
                 ),
               },
               {
@@ -226,33 +264,17 @@ console.log(idCar)
                 tabIcon: Code,
                 tabContent: (
                   <Table
-                  tableHeaderColor="warning"
-                  tableHead={["ID", "pic", "Numéro de Série"]}
-                  tableData={visite}
-                />
+                    tableHeaderColor="warning"
+                    tableHead={["ID", "pic", "Numéro de Série"]}
+                    tableData={visite}
+                  />
                 ),
               },
             ]}
           />
         </GridItem>
-        <GridItem xs={12} sm={12} md={12}>
-          <Card>
-            <CardHeader color="warning">
-              <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
-              <p className={classes.cardCategoryWhite}>
-                New employees on 15th September, 2016
-              </p>
-            </CardHeader>
-            <CardBody>
-              <Table
-                tableHeaderColor="warning"
-                tableHead={["ID", "pic", "Salary", "Country","hhh","jjjjj"]}
-                tableData={data}
-              />
-            </CardBody>
-          </Card>
-        </GridItem>
       </GridContainer>
+
     </div>
   );
 }

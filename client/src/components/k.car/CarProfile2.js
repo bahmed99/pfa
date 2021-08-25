@@ -3,24 +3,23 @@ import photo from './../../pages/o.Signin/o.images/user.png'
 import '../o.utilisateur/Profile.style.css'
 import { StatusPill } from "./table/Table.js"
 import Modifier from './Modifier'
+
 import image1 from './../../pages/o.Signin/o.images/0004.gif'
 //import UpdateProfile from './UpdateProfile'
 import { useParams , useHistory } from 'react-router-dom'
 import EmploisCar from "../a.emplois/EmploisCar"
 import EmploisAdminUtilisateur from '../a.emplois/EmploisAdminUtilisateur'
+const dateFormat = require("dateformat");
 
 
 
-
-export default function CarProfile() {
+export default function CarProfile2() {
    
     const History = useHistory()
-    const [date, setDate] = useState("")
     const [data, setData] = useState([])
-    const { id } = useParams()
 
     useEffect(() => {
-        fetch(`http://localhost:3001/car/${id}`, {
+        fetch(`http://localhost:3001/employe/car`, {
             method: "get",
             headers: {
                 "Content-Type": "application/json",
@@ -34,11 +33,7 @@ export default function CarProfile() {
             })
 
     }, [])
-
-    if (!data)
-    {
-        return ""
-    }
+ 
 
     const deleteCar = (id) => {
         fetch(`http://localhost:3001/car/${id}`, {
@@ -78,12 +73,12 @@ export default function CarProfile() {
                             <div style={{ float: "left", marginRight: "auto", marginTop: "auto", marginBottom: "auto" }}>
                                 <div style={{ display: "flex", justifyContent: "space-between", width: "110%" }}>
                                     <h5 className="para-Mod1">Date de la visite technique :</h5>
-                                    <h5 className="para-Mod1">{data.technicVisitDate}</h5>
+                                    <h5 className="para-Mod1">{dateFormat(data.technicVisitDate, "dd/mm/yyyy")}</h5>
                                 </div>
                                 <hr style={{ color: 'black', width: "120%", border: "1px" }} />
                                 <div style={{ display: "flex", justifyContent: "space-between", width: "110%" }}>
                                     <h5 className="para-Mod1">Date de l'assurance :</h5>
-                                    <h5 className="para-Mod1">{data.assuranceDate}</h5>
+                                    <h5 className="para-Mod1">{dateFormat(data.assuranceDate, "dd/mm/yyyy")}</h5>
                                 </div>
                                
                             </div>
@@ -91,9 +86,7 @@ export default function CarProfile() {
                                 
                             </div>
                             <div>
-                                <button  className="fa-fa-Mod1" onClick={() => deleteCar(data.id)}>
-                                    <i class="fa fa-trash" aria-hidden="true"  style={{ color: "white" }} ></i>
-                                </button>
+                                
                                 <Modifier id={data.id}/>
                             </div>
 
@@ -109,11 +102,8 @@ export default function CarProfile() {
 
             </div>
             <div style={{ marginTop: "150px" }}>
-           
+               
             </div> 
-
-                {/* <UpdateProfile isOpen={ajoutSeanceModalOpen}
-                setModal={setAjoutSeanceModalOpen} /> */}
         </div>
     )
 }

@@ -34,6 +34,7 @@
     "classnames": "^2.3.1",
     "date-arithmetic": "^4.1.0",
     "date-fns": "^2.23.0",
+    "dateformat": "^4.5.1",
     "font-awesome": "^4.7.0",
     "fontawesome-4.7": "^4.7.0",
     "globalize": "^0.1.1",

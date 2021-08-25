@@ -14,6 +14,8 @@ import Courses from "./pages/a.client/courses";
 import Course from "./pages/a.client/course";
 import Employee from "./pages/k.employee/employee"
 import CarProfile from "./components/k.car/CarProfile"
+import CarProfile2 from "./components/k.car/CarProfile2"
+import CarPro from "./pages/k.employee/cars.js"
 import Reset from "./pages/o.Signin/Reset";
 import NewPassword from "./pages/o.Signin/NewPassword";
 
@@ -132,12 +134,11 @@ export default function MainRouter() {
                 {(user && detect === 2) ?
                     <div>
                         <Route exact path={"/emplois"} component={Emplois} />
-                        <Route exact path={"/cars"} component={Car} />
                         <Route exact path={"/home"} component={Employee} />
                         <Route exact path={"/utilisateurs"} component={Utilisateur} />
                         <Route exact path={"/notifications"} component={Notifications} />
                         <Route exact path={"/client-profile/:id"} component={Profile} />
-                        <Route exact path={"/cars/:id"} component={CarProfile} />
+                        <Route exact path={"/cars"} component={CarPro} />
                         <Route exact path={"/utilisateur-profile/:id"} component={Profile1} />
                         <Route exact path={"/courses"} component={AjouterCours} />
                     </div> : ""}
@@ -146,7 +147,7 @@ export default function MainRouter() {
                         <Route exact path={"/home"} component={HomeAdmin} />
                         <Route exact path={"/ressources-humaine"} component={Utilisateurs} />
                         <Route exact path={"/utilisateur-profile/:id"} component={Profile1} />
-                        
+                        <Route exact path={"/cars/:id"} component={CarProfile} />
                         <Route exact path={"/emplois"} component={EmploisAdmin} />
                         <Route exact path={"/cars"} component={Car} />
                         <Route exact path={"/notifications"} component={Notifications} />
