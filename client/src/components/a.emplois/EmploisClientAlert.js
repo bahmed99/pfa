@@ -92,7 +92,7 @@ const EventClick = (props) => {
                       style={{ backgroundColor: "#369579" }}
                       onClick={ModifierMontant}
                     >
-                      Ajouter
+                      Payée
                     </Button>
                   </div>
                 </div> : ""}
