@@ -49,7 +49,24 @@ router.get("/emplois", requireLoginAdmin, (req, res) => {
         })
 })
 
-
+router.get("/employecar"),requireLoginAdmin, (req, res) => {
+    res.status(200).send({message:"mes"})
+    /*Employee.find({
+        'car': { $in: req.params.id }
+    }).then(resultat => {
+        res.status(200).send(JSON.stringify(resultat))
+    }).catch(erreur => {
+        res.status(400).send(erreur)
+    })*/
+}
+router.patch("/updateCarEmploye",requireLoginAdmin, (req, res) => {
+    Employee.findByIdAndUpdate({_id:req.body.idemployee},{Car:req.body.idcar})
+    .then((result)=>{
+        return res.status(200).send("Updated");
+    }).catch((err)=>{
+        return res.status(500).send({error: err});
+    })
+})
 router.get("/Admin/ressources", requireLoginAdmin, (req, res) => {
     const data = []
     Admin.find()

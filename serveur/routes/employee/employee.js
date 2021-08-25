@@ -5,6 +5,7 @@ const Client = require("../../models/user/client")
 const Message = require("../../models/message/message")
 const Car = require("../../models/car/car")
 const requireLoginEmployee = require("../../middleware/requireLoginEmployee")
+const requireLoginAdmin = require("../../middleware/requireLoginAdmin")
 const fs = require('fs')
 
 const multer = require('multer');
@@ -127,14 +128,15 @@ router.get("/clients", requireLoginEmployee, (req, res) => {
 })
 
 router.get("/car", requireLoginEmployee, (req, res) => {
-
-    Car.findById({'_id':  req.employee.car })
+    Car.findOne({ _id: req.employee.car })
     .then(resultat => {
-        res.status(200).send(JSON.stringify(resultat))
+     console.log(resultat)
+      return  res.status(200).send(JSON.stringify(resultat))
+       
     }).catch(erreur => {
-        res.status(400).send(erreur)
+       return res.status(400).send(erreur)
     })
-
+    
 })
 
 
