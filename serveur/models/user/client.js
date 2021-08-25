@@ -36,7 +36,7 @@ const clientSchema = new mongoose.Schema({
     expireToken: Date,
     pic: {
         type: String,
-        default: "https://res.cloudinary.com/cnq/image/upload/v1586197723/noimage_d4ipmd.png"
+        default: "user1.png"
     } ,
     status: {
         type: String,
