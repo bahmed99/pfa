@@ -20,22 +20,22 @@ export default function Notifications({data , setNotifications,setIndex,nb}) {
         )
     }
     return (
-        <div class="container" >
+        <div className="container" >
             <div>
                 <div>
-                    <div class="container card card-white mb-5">
+                    <div className="container card card-white mb-5">
 
-                        <div class="card-body">
-                            <ul class=" message">
+                        <div className="card-body">
+                            <ul className=" message">
                             {data.map((element, index) => (
                                     <li key={index}>
 
-                                        <div class="media align-items-center">
-                                            <div class="msg-img">
+                                        <div className="media align-items-center">
+                                            <div className="msg-img">
                                                 <img src={`/uploads/profile/employes/${element.pic}`} alt="" />
                                             </div>
-                                            <div class="media-body">
-                                                <h5>{element.nom}<span class="float-right text-primary"><i class="fa fa-trash" onClick={()=>Delete(index)} aria-hidden="true" style={{cursor:"pointer"}}></i></span></h5> {element.title}
+                                            <div className="media-body">
+                                                <h5>{element.nom}<span className="float-right text-primary"><i className="fa fa-trash" onClick={()=>Delete(index)} aria-hidden="true" style={{cursor:"pointer"}}></i></span></h5> {element.title}
                                             </div>
                                         </div>
 
@@ -46,17 +46,17 @@ export default function Notifications({data , setNotifications,setIndex,nb}) {
 
                         </div>
                     </div>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    {/* <nav aria-label="Page navigation example">
+                        <ul className="pagination justify-content-center">
+                            <li className="page-item disabled">
+                                <a className="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
                             </li>
-                            <li class="page-item">
+                            <li className="page-item">
                            
-                                <a class="page-link" href="#">Suivant</a>
+                                <a className="page-link" href="#">Suivant</a>
                             </li>
                         </ul>
-                    </nav>
+                    </nav> */}
                 </div>
             </div>
         </div>

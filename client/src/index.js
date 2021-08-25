@@ -7,6 +7,7 @@ import {
   BrowserRouter as Router, 
 } from "react-router-dom";
 import 'font-awesome/css/font-awesome.min.css';
+import "./index.scss"
 
 ReactDOM.render(
   <React.StrictMode>

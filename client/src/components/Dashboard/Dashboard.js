@@ -1,30 +1,23 @@
-import React , {useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios"
 
-import { useHistory , Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
 // @material-ui/core
 import { makeStyles } from "@material-ui/core/styles";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import Store from "@material-ui/icons/Store";
 import Warning from "@material-ui/icons/Warning";
-import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
-import Update from "@material-ui/icons/Update";
+import Table from "./Table/Table.js";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import AccessTime from "@material-ui/icons/AccessTime";
 import Accessibility from "@material-ui/icons/Accessibility";
-import BugReport from "@material-ui/icons/BugReport";
-import Code from "@material-ui/icons/Code";
-import Cloud from "@material-ui/icons/Cloud";
+
 // core components
 import GridItem from "./Grid/GridItem.js";
 import GridContainer from "./Grid/GridContainer.js";
-import Table from "./Table/Table";
-import Tasks from "./Tasks/Tasks.js";
-import CustomTabs from "./CustomTabs/CustomTabs.js";
+
 import Danger from "./Typography/Danger.js";
 import Card from "./CustomTabs/Cards/Card";
 import CardHeader from "./CustomTabs/Cards/CardHeader";
@@ -32,9 +25,7 @@ import CardIcon from "./CustomTabs/Cards/CardIcon";
 import CardBody from "./CustomTabs/Cards/CardBody";
 import CardFooter from "./CustomTabs/Cards/CardFooter";
 
-import image1 from '../../pages/o.Signin/o.images/backgroundavis.PNG'
 
-import { bugs, website, server } from "./general.js";
 
 import {
   dailySalesChart,
@@ -51,125 +42,138 @@ import './style.css'
 //////////////////////////////////////////
 
 import {
-  
-
-    CardTitle,
-    Row,
-    Col,
-  } from "reactstrap";
-  
-  import { Line, Pie } from "react-chartjs-2";
 
 
-  //////////////////
+  CardTitle,
+  Row,
+  Col,
+} from "reactstrap";
+
+import { Line, Pie } from "react-chartjs-2";
+
+
+//////////////////
 
 const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
-    const classes = useStyles();
-    const [client, setClient] = useState()
-    const [employee, setEmployee] = useState()
-    const [car, setCar] = useState()
-    const [info , setInfo] = useState()
-    const [info1 , setInfo1] = useState()
-    const [info2 , setInfo2] = useState()
-    const [info3 , setInfo3] = useState()
-    const [info4 , setInfo4] = useState()
-    const [moyenne , setMoyenne] = useState()
-    const [moyenne1 , setMoyenne1] = useState()
-    const [moyenne2 , setMoyenne2] = useState()
-    const History = useHistory ()
+  const classes = useStyles();
+  const [client, setClient] = useState()
+  const [employee, setEmployee] = useState()
+  const [car, setCar] = useState()
+  const [info, setInfo] = useState()
+  const [info1, setInfo1] = useState()
+  const [info2, setInfo2] = useState()
+  const [info3, setInfo3] = useState()
+  const [info4, setInfo4] = useState()
+  const [moyenne, setMoyenne] = useState()
+  const [moyenne1, setMoyenne1] = useState()
+  const [moyenne2, setMoyenne2] = useState()
+  const [clients, setClients] = useState([])
+  const History = useHistory()
 
-    useEffect(() => {
-        axios.get('http://localhost:3001/admin/statistics',{
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + localStorage.getItem("jwt")
-              }
-        }).then(res=>{
-            setCar(res.data.car)
-            setClient(res.data.client)
-            setEmployee(res.data.employee)
-            console.log(res.data)
-
-
-        }).catch(err=>{
-            console.log(err)
-        })
-
-        axios.get('http://localhost:3001/admin/nbrSeances',{
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + localStorage.getItem("jwt")
-              }
-        }).then(res=>{
-            setInfo(res.data)
-            setMoyenne(((res.data.series[0].reduce((a, b) => a + b, 0))/7).toFixed(2))
-
-        }).catch(err=>{
-            console.log(err)
-        })
+  useEffect(() => {
+    axios.get('http://localhost:3001/admin/statistics', {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
+      }
+    }).then(res => {
+      setCar(res.data.car)
+      setClient(res.data.client)
+      setEmployee(res.data.employee)
+      console.log(res.data)
 
 
-        axios.get('http://localhost:3001/admin/nbreAvis',{
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + localStorage.getItem("jwt")
-              }
-        }).then(res=>{
-            setInfo2(res.data)
-            setMoyenne2(((res.data.series[0].reduce((a, b) => a + b, 0))/12).toFixed(2))
+    }).catch(err => {
+      console.log(err)
+    })
+
+    axios.get('http://localhost:3001/admin/nbrSeances', {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
+      }
+    }).then(res => {
+      setInfo(res.data)
+      setMoyenne(((res.data.series[0].reduce((a, b) => a + b, 0)) / 7).toFixed(2))
+
+    }).catch(err => {
+      console.log(err)
+    })
 
 
-        }).catch(err=>{
-            console.log(err)
-        })
-
-        axios.get('http://localhost:3001/admin/nbreSub',{
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + localStorage.getItem("jwt")
-              }
-        }).then(res=>{
-            setInfo1(res.data)
-            setMoyenne1(((res.data.series[0].reduce((a, b) => a + b, 0))/12).toFixed(2))
+    axios.get('http://localhost:3001/admin/nbreAvis', {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
+      }
+    }).then(res => {
+      setInfo2(res.data)
+      setMoyenne2(((res.data.series[0].reduce((a, b) => a + b, 0)) / 12).toFixed(2))
 
 
-        }).catch(err=>{
-            console.log(err)
-        })
+    }).catch(err => {
+      console.log(err)
+    })
 
-      axios.get('http://localhost:3001/admin/repartitionAvis',{
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("jwt")
-          }
-      }).then(res=>{
-          setInfo3(res.data)
+    axios.get('http://localhost:3001/admin/nbreSub', {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
+      }
+    }).then(res => {
+      setInfo1(res.data)
+      setMoyenne1(((res.data.series[0].reduce((a, b) => a + b, 0)) / 12).toFixed(2))
 
 
+    }).catch(err => {
+      console.log(err)
+    })
 
-      }).catch(err=>{
-          console.log(err)
-      })
-
-      axios.get('http://localhost:3001/admin/differenceAvis',{
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("jwt")
-          }
-      }).then(res=>{
-          setInfo4(res.data)
+    axios.get('http://localhost:3001/admin/repartitionAvis', {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
+      }
+    }).then(res => {
+      setInfo3(res.data)
 
 
 
-      }).catch(err=>{
-          console.log(err)
-      })
+    }).catch(err => {
+      console.log(err)
+    })
+
+    axios.get('http://localhost:3001/admin/differenceAvis', {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
+      }
+    }).then(res => {
+      setInfo4(res.data)
 
 
-       
-    }, [])
+
+    }).catch(err => {
+      console.log(err)
+    })
+
+    axios.get('http://localhost:3001/admin/nouveauClients', {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
+      }
+    }).then(resul => {
+      setClients(resul.data)
+    }).catch(err => {
+      console.log(err)
+    })
+
+
+
+  }, [])
+
   return (
     <div>
       <GridContainer>
@@ -177,7 +181,7 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
-              <Icon className="fa fa-users" />
+                <Icon className="fa fa-users" />
               </CardIcon>
               <p className={classes.cardCategory}>Nombre de clients</p>
               <h3 className={classes.cardTitle}>
@@ -245,7 +249,7 @@ export default function Dashboard() {
                 <Accessibility />
               </CardIcon>
               <p className={classes.cardCategory}>Total</p>
-              <h3 className={classes.cardTitle}>+{client+employee}</h3>
+              <h3 className={classes.cardTitle}>+{client + employee}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -334,49 +338,68 @@ export default function Dashboard() {
           </Card>
         </GridItem>
       </GridContainer>
-        <Row>
-          <Col md="4">
-            <Card>
-              <CardHeader>
-                <CardTitle tag="h5">Répartition des avis</CardTitle>
-                <p className="card-category">Analyse en temps réel</p>
-              </CardHeader>
-              <CardBody style={{ height: "237px" }}>
-                <Pie
-                  data={info3}
-                  options={dashboardEmailStatisticsChart.options}
-                />
-              </CardBody>
-              <CardFooter>
-                <hr />
-                <div className="stats" style={{margin:"auto auto"}}>
-                  <i className="fa fa-comments-o" /> Avis
-                </div>
-              </CardFooter>
-            </Card>
-          </Col>
-          <Col md="8">
-            <Card className="card-chart">
-              <CardHeader>
-                <CardTitle tag="h5">Différence entre avis positifs & avis négatifs</CardTitle>
-                <p className="card-category">Analyse en temps réel </p>
-              </CardHeader>
-              <CardBody>
-                <Line
-                  data={info4}
-                  options={dashboardNASDAQChart.options}
-                  width={400}
-                  height={100}
-                />
-              </CardBody>
-              <CardFooter>
-                <div className="card-stats" style={{margin:"auto auto"}}>
-                  <i className="fa fa-star" /> Avis positifs & Avis négatifs
-                </div>
-              </CardFooter>
-            </Card>
-          </Col>
-        </Row>
+      <Row>
+        <Col md="4">
+          <Card>
+            <CardHeader>
+              <CardTitle tag="h5">Répartition des avis</CardTitle>
+              <p className="card-category">Analyse en temps réel</p>
+            </CardHeader>
+            <CardBody style={{ height: "237px" }}>
+              <Pie
+                data={info3}
+                options={dashboardEmailStatisticsChart.options}
+              />
+            </CardBody>
+            <CardFooter>
+              <hr />
+              <div className="stats" style={{ margin: "auto auto" }}>
+                <i className="fa fa-comments-o" /> Avis
+              </div>
+            </CardFooter>
+          </Card>
+        </Col>
+        <Col md="8">
+          <Card className="card-chart">
+            <CardHeader>
+              <CardTitle tag="h5">Différence entre avis positifs & avis négatifs</CardTitle>
+              <p className="card-category">Analyse en temps réel </p>
+            </CardHeader>
+            <CardBody>
+              <Line
+                data={info4}
+                options={dashboardNASDAQChart.options}
+                width={400}
+                height={100}
+              />
+            </CardBody>
+            <CardFooter>
+              <div className="card-stats" style={{ margin: "auto auto" }}>
+                <i className="fa fa-star" /> Avis positifs & Avis négatifs
+              </div>
+            </CardFooter>
+          </Card>
+        </Col>
+        <GridItem xs={12} sm={12} md={12}>
+          <Card>
+            <CardHeader color="warning">
+              <h4 className={classes.cardTitleWhite}>Demandes des clients</h4>
+              <p className={classes.cardCategoryWhite}>
+                {/* Nouveau client le {clients?clients[clients.length-1].createdAt:""} */}
+              </p>
+            </CardHeader>
+            <CardBody>
+              <Table
+                tableHeaderColor="warning"
+                tableHead={["ID", "Nom", "Âge", "Cin", "Tel","Email", ""]}
+                tableData={clients}
+                clients={clients}
+                setClients={setClients}
+              />
+            </CardBody>
+          </Card>
+        </GridItem>
+      </Row>
 
     </div>
   );

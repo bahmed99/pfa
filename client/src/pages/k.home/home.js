@@ -5,20 +5,28 @@ import About from '../../components/k.homeComponents/about'
 import Services from '../../components/k.homeComponents/services'
 import Equipe from '../../components/k.homeComponents/team'
 import Funfact from '../../components/k.homeComponents/Counter'
+import Slegon from '../../components/k.homeComponents/Slegon'
+
 import Contact from '../../components/k.homeComponents/contact'
 import Footer from '../../components/k.footer/footer'
 import './home.css'
 import { useState, useEffect, Fragment } from 'react'
 import ChatBot from "../../components/chatBot/index"
+import Programme from '../../components/k.homeComponents/programme'
 
 
-
+import { Fade } from 'react-reveal';
+import Prix from '../../components/k.homeComponents/Prix'
+import Sponsors from '../../components/k.homeComponents/Sponsors'
+import Horaire from '../../components/k.homeComponents/Horaire'
+import Avis from '../../components/k.homeComponents/Avis'
 
 
 
 export default function Home() {
     let [screen, setScreen] = useState()
     let [scale, setScale] = useState()
+    let [open, setOpen] = useState(false)
     window.onresize = function () {
         if (window.innerWidth > 1200) {
             setScreen(true)
@@ -69,10 +77,12 @@ export default function Home() {
         <div className="home">
             <Fragment>
                 <Navbar y={y} screen={screen} scale={scale} />
-                <ChatBot></ChatBot>
-               
+                <ChatBot ></ChatBot>
+
                 <div id="apropos">
+
                     <About />
+
                 </div>
                 <div id="services">
                     <Services />
@@ -81,11 +91,32 @@ export default function Home() {
                 <div id="equipe">
                     <Equipe />
                 </div>
-                <div id="contact">
-                    <Contact />
+                <div id="programme" style={{ backgroundColor: "#b4b4b4" }}>
+                    <hr style={{ width: "50%", margin: "auto auto" }} />
+                    <Programme />
                 </div>
+                <Slegon />
+                <div id='offre' style={{ backgroundColor: "#b4b4b4" }}>
+
+                    <Prix />
+                    <hr style={{ width: "50%", margin: "auto auto" }} />
+                </div>
+                <div style={{ backgroundColor: "#b4b4b4" }}>
+                    <Avis />
+
+                </div>
+                <div>
+
+                    <Horaire />
+                </div>
+
+                <div style={{ backgroundColor: "#b4b4b4" }}>
+
+                    <Sponsors />
+                </div>
+
                 <Footer />
-               
+
             </Fragment>
         </div>
     )

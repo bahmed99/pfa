@@ -54,6 +54,8 @@ app.use('/carousel',require('./routes/carousel/index'))
 
 app.use('/contact',require('./routes/contact/index'))
 
+app.use('/avis',require('./routes/avis/index'))
+
 app.use("/courses", courses)
 
 /////////////////////////////////////////////////////////////////////////////////

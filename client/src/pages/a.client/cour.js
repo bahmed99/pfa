@@ -1,7 +1,7 @@
 import Navbar from '../../components/a.navbarClient'
 import bg from "../../assets/images/bgScore.jpg"
 import Cour from '../../components/a.cours/cour'
-import Footer from '../../components/k.footer/footer'
+
 export default function cour() {
     return (
         <div style={{

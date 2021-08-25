@@ -1,238 +1,250 @@
+
+@font-face {
+    font-family: signature;
+    src: url("../../assets/fonts/Photograph\ Signature.ttf");
+}
+.slegon{
+    font-family: signature;
+    font-size: 50px;
+    margin-top: 25px;
+    color:white;
+}
+
 .welcome
 {
 
-    text-align: center;
-    align-content: center;
-    max-width: 400px;
-    max-height: 400px;
-    margin: 0 auto;
-    border-radius: 10px ;
-    opacity: 60%;
-    margin-left: 30%;
-    box-shadow: black;
-  
-  }
-  
+text-align: center;
+align-content: center;
+max-width: 400px;
+max-height: 400px;
+margin: 0 auto;
+border-radius: 10px ;
+opacity: 60%;
+margin-left: 30%;
+box-shadow: black;
+
+}
+
 .textCenter
 {
-    text-align: center;
-    background-color: transparent;
-    padding-bottom: 15% ;
-    
-    
-   
+text-align: center;
+background-color: transparent;
+padding-bottom: 15% ;
+
+
+
 }
 .bg{
-    background-image: url(./k.homeimages/0123.jpg);
-    background-position: center;
-    background-size: cover;
+background-image: url(./k.homeimages/0123.jpg);
+background-position: center;
+background-size: cover;
 }
 .bg2{
-  padding-top: 15px;
-    background-color: #b4b4b4;
+padding-top: 15px;
+background-color: #b4b4b4;
 }
 
 .dark {
-    background-image: linear-gradient(#3d3e42, #718a8a);
-    text-align: center;
-    margin-top: 5%;
-    margin-bottom: 20px;
-    
-    
-    
+background-image: linear-gradient(#3d3e42, #718a8a);
+text-align: center;
+margin-top: 5%;
+margin-bottom: 20px;
+
+
+
 }
 .gradient{
-    background-image: linear-gradient(#369579, #00e7e7);
+background-image: linear-gradient(#369579, #00e7e7);
 }
 
 
 .cours {
-        max-width: 500px;
-        max-height: 700px;
-        margin:auto;
-       }
+max-width: 500px;
+max-height: 700px;
+margin:auto;
+}
 
 .title{
-    padding-top: 5%;
-    margin-bottom: -100px;
-    font-family: 'Airbnb Cereal App Extra Bold';
-    text-decoration:underline #369579 ;
-    color: black !important;
-    text-decoration-thickness: 11px;
+padding-top: 5%;
+margin-bottom: -100px;
+font-family: 'Airbnb Cereal App Extra Bold';
+text-decoration:underline #369579 ;
+color: black !important;
+text-decoration-thickness: 11px;
 }
 .about 
 {
-    background: url(./k.homeimages/ArriereAvis.gif) no-repeat right ;
-    background-size: 55% ;
-    background-color: transparent;
-    overflow: hidden ;
-    padding-top: 100px ;
-    margin-top: 150px;
-    padding-bottom: 250px;
-    padding-left: 100px;
-    padding-right: 100px;
+background: url(./k.homeimages/ArriereAvis.gif) no-repeat right ;
+background-size: 55% ;
+background-color: transparent;
+overflow: hidden ;
+padding-top: 100px ;
+margin-top: 150px;
+padding-bottom: 250px;
+padding-left: 100px;
+padding-right: 100px;
 
 }
 .inner
 {
-    width: 55% ;
-    float: left ;
-    background: linear-gradient(0deg,#369579    0%,   #718a8a 70%);
-    padding: 80px ;
-    margin-top: 140px; 
-    border-top-left-radius: 50px;
-    border-bottom-right-radius: 100px;
-    opacity: 90%;
+width: 55% ;
+float: left ;
+background: #369579 ;
+padding: 80px ;
+margin-top: 140px; 
+border-top-left-radius: 50px;
+border-bottom-right-radius: 100px;
+opacity: 90% !important;
 }
 
 .titleEquipe
 {
-    font-family: 'Airbnb Cereal App Extra Bold' !important;
-    text-decoration:underline #369579  !important;
-    color: black !important;
-    text-decoration-thickness: 11px !important;
+font-family: 'Airbnb Cereal App Extra Bold' !important;
+text-decoration:underline #369579  !important;
+color: black !important;
+text-decoration-thickness: 11px !important;
 }
 
 /* ---------- */
 
 .section-title h2 {
-    font-family: 'Airbnb Cereal App Extra Bold';
-    font-size: 40px;
-    line-height: 45px;
-    position: relative;
-    margin-left: auto ! important;
-    margin-right: auto ! important;
-    margin-bottom: 20px;
-    text-transform: capitalize;
-    }  
-    .div-Style
-    {
-        text-align: center;
-        /* margin-top: 80px; */
+font-family: 'Airbnb Cereal App Extra Bold';
+font-size: 40px;
+line-height: 45px;
+position: relative;
+margin-left: auto ! important;
+margin-right: auto ! important;
+margin-bottom: 20px;
+text-transform: capitalize;
+}  
+.div-Style
+{
+text-align: center;
+/* margin-top: 80px; */
 
-    }
-    .title-technologie
-    {
-        font-family: 'Airbnb Cereal App Bold';
-        
-    }
-    .description-title-style
-    {
-        font-family:  'Airbnb Cereal App Book' ;
-        color:#595757 !important;
+}
+.title-technologie
+{
+font-family: 'Airbnb Cereal App Bold';
 
-    }
-    .h2-Title
-    {
-        text-decoration:underline #369579 ;
-        color: black !important;
-        text-decoration-thickness: 11px;
-    }
-    .container-technologies
-    {
-        display: flex;
-        justify-content: center;
-         margin-top:60px ; 
-        margin-right: 30px !important;
-        margin-left: 30px !important;
+}
+.description-title-style
+{
+font-family:  'Airbnb Cereal App Book' ;
+color:#595757 !important;
+
+}
+.h2-Title
+{
+text-decoration:underline #369579 ;
+color: black !important;
+text-decoration-thickness: 11px;
+}
+.container-technologies
+{
+display: flex;
+justify-content: center;
+margin-top:60px ; 
+margin-right: 30px !important;
+margin-left: 30px !important;
 
 
-    }
-    .description-technologies
-    {
-        margin-top: 60px;
-        font-family: 'Airbnb Cereal App Medium';
-        font-size: 15px;
-        color:#2b2b2b ;
-        opacity: 80%;
-    }
-    ::-webkit-scrollbar {
-        display: none;
-      }
-    /* .services-area {
-    margin-bottom: -30px;
-    } */
-    .serviecs-block .single-serviecs-block {
-    margin: 30px 0;
-    }
-    .single-serviecs-block {
-    padding: 30px 40px;
-    background-color: rgb(255, 255, 255);
-    opacity: 85%;
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-    display: block;
-    height: 320px;
-    margin-bottom: 30px;
-    }
-    
-    
-    .single-serviecs-block:hover {
-    background: #369579;
-    color: #fff;
-    }
-    .single-serviecs-block:hover h3 a {
-    color: #fff;
-    margin-top: 180px;
-    }
-    /* .single-serviecs-block:hover p {
-    display: none;
-    } */
-    .single-serviecs-block:hover i {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -90%);
-    background: #fff;
-    color: #369579;
-    height: 100px;
-    width: 100px;
-    font-size: 40px;
-    line-height: 100px; 
-    }
-    .single-serviecs-block h3 a {
-    color: #333333;
-    margin-bottom: 15px;
-    margin-top: 80px;
-    display: block;
-    overflow: hidden;
-    transition: 0.5s;
-    }
-    
-    .single-serviecs-block i {
-    color: #fff;
-    font-size: 50px;
-    height: 140px;
-    width: 140px;
-    line-height: 170px;
-    text-align: center;
-    background: #369579;
-    border-radius: 50%;
-    position: absolute;
-    top: -50px;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: 0.6s;
-    }
+}
+.description-technologies
+{
+margin-top: 60px;
+font-family: 'Airbnb Cereal App Medium';
+font-size: 15px;
+color:#2b2b2b ;
+opacity: 80%;
+}
+::-webkit-scrollbar {
+display: none;
+}
+/* .services-area {
+margin-bottom: -30px;
+} */
+.serviecs-block .single-serviecs-block {
+margin: 30px 0;
+}
+.single-serviecs-block {
+padding: 30px 40px;
+background-color: rgb(255, 255, 255);
+opacity: 85%;
+box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+border-radius: 5px;
+text-align: center;
+overflow: hidden;
+position: relative;
+display: block;
+height: 320px;
+margin-bottom: 30px;
+}
 
-    @media (max-width:900px)
-    {
-        .BgContainer
-        {
-            height: 100% !important;
-        }
-    }
 
-    .counter-item{margin-top:40px}
-    .counter-number{
-        color:#f8f9fc;margin-bottom:10px;position:relative;font-size:24px;font-weight:600}
-        @media only screen and (max-width:767.98px)
-        {.counter-number{font-size:20px}
-    }
-    .counter-number.plus:after{content:"+";position:absolute;padding-left:5px}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0, 0, 0, 0);border:0}
+.single-serviecs-block:hover {
+background: #369579;
+color: #fff;
+}
+.single-serviecs-block:hover h3 a {
+color: #fff;
+margin-top: 180px;
+}
+/* .single-serviecs-block:hover p {
+display: none;
+} */
+.single-serviecs-block:hover i {
+top: 50%;
+left: 50%;
+transform: translate(-50%, -90%);
+background: #fff;
+color: #369579;
+height: 100px;
+width: 100px;
+font-size: 40px;
+line-height: 100px; 
+}
+.single-serviecs-block h3 a {
+color: #333333;
+margin-bottom: 15px;
+margin-top: 80px;
+display: block;
+overflow: hidden;
+transition: 0.5s;
+}
+
+.single-serviecs-block i {
+color: #fff;
+font-size: 50px;
+height: 140px;
+width: 140px;
+line-height: 170px;
+text-align: center;
+background: #369579;
+border-radius: 50%;
+position: absolute;
+top: -50px;
+left: 50%;
+transform: translateX(-50%);
+transition: 0.6s;
+}
+
+@media (max-width:900px)
+{
+.BgContainer
+{
+height: 100% !important;
+}
+}
+
+.counter-item{margin-top:40px}
+.counter-number{
+color:#f8f9fc;margin-bottom:10px;position:relative;font-size:24px;font-weight:600}
+@media only screen and (max-width:767.98px)
+{.counter-number{font-size:20px}
+}
+.counter-number.plus:after{content:"+";position:absolute;padding-left:5px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0, 0, 0, 0);border:0}
 
 
 
@@ -241,3 +253,280 @@
 {.counter-txt{font-size:16px}}
 .fun-fact-area{padding:80px 0 75px;position:relative;background-size:cover;background-attachment:fixed}
 .fun-fact-area:before{background-color:rgba(31,33,46,0);content:"";position:absolute;left:0;top:0;height:100%;width:100%}
+
+
+
+
+
+.no-gutters {
+
+margin-right: 0;
+margin-left: 0; }
+.no-gutters > .col,
+.no-gutters > [class*="col-"] {
+padding-right: 0;
+padding-left: 0; }
+
+.offres-home-first {
+margin-right: 0.7rem; }
+
+.offres-home-second {
+margin-left: 0.7rem; }
+
+.offres-home {
+background-color: rgb(197, 195, 195);
+color: #423f3f;
+
+
+border-radius: 30px;
+padding: 1rem;
+text-align: center;
+position: relative;
+box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+min-height: 15rem; }
+.offres-home img {
+width: 90%;
+margin-top: -50px; }
+@media (max-width: 575.98px) {
+.offres-home .btn-rounded, .offres-home .msg_container .btn-cta, .msg_container .offres-home .btn-cta {
+overflow: hidden;
+text-overflow: ellipsis;
+display: block;
+padding-left: 5px;
+padding-right: 5px; } }
+
+
+@media (max-width: 991.98px) {
+.offres-home .btn-rounded, .offres-home .msg_container .btn-cta, .msg_container .offres-home .btn-cta {
+font-size: 1.2rem; } }
+
+.h3-small {
+font-size: 30px !important;
+font-weight: bold; }
+@media (min-width: 992px) {
+.h3-small {
+font-size: 3rem; } }
+
+.h-100 {
+height: 100% !important; }
+
+.offset-lg-1 {
+margin-left: 8.33333%; }
+
+.pr-sm-1,
+.px-sm-1 {
+padding-right: 0.25rem !important; }
+
+@media (min-width: 992px) {
+.btn-rounded-large,
+.btn-rounded-lg {
+padding-left: 6rem;
+padding-right: 6rem; } }
+
+.btn-rounded, .msg_container .btn-cta {
+border-radius: 99px;
+font-weight: bold;
+white-space: nowrap;
+display: inline-block; }
+@media (max-width: 991.98px) {
+.btn-rounded, .msg_container .btn-cta {
+font-weight: 900;
+max-width: 300px; } }
+
+.btn-rounded-small {
+font-size: 12px;
+padding: 0.9rem 2.3rem; }
+
+.btn-rounded-medium {
+padding-left: 4rem;
+padding-right: 4rem; }
+
+.f{
+    padding-bottom: 150px !important;
+}
+
+/* Horaire */
+
+.horaires{
+    /* padding-top: 100px!important;
+    padding-bottom: 50px !important; */
+	min-height: 300px;
+	background:url("./k.homeimages/fanfact.jpg") ;
+	background-size: cover;
+	padding-top: 35px;
+}
+.horaires .title{
+	color: #fff;
+}
+
+.contenu-horaire{
+	display: flex;
+    width: 100%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.left-horaire{
+	border-right: 1px solid #fff;
+	text-align: center;
+}
+.left-horaire li{
+	margin-bottom: 10px;
+    list-style:none;
+}
+
+.left-horaire ul {
+    padding-left:0px;
+}
+
+.left-horaire li button{
+	color: black;
+    letter-spacing: 2px;
+    font-weight: 600;
+	border: 2px solid transparent;
+	padding-top: 2px;
+    padding-bottom: 2px;
+}
+.left-horaire li button:hover,
+.left-horaire li button:focus,
+.left-horaire li button.active{
+	border: 2px solid #fff;
+    border-radius: 25px;
+	color: black;
+}
+.btnHoraire{
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-right: 13px;
+    padding-left: 13px;
+    cursor: pointer;
+}
+
+.title1{
+    text-align: center;
+    color: black  ;
+    text-decoration:underline #369579 ;
+    text-decoration-thickness: 11px;
+  }
+
+  .detail-horaire{
+	display: none;
+}
+.detail-horaire.active{
+	display: block;
+}
+
+.detail-horaire ul li{
+    box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+	width: 100px;
+    height: 100px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    text-align: center;
+    color: black;
+    margin-right: 15px;
+    padding-top: 20px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 18px;
+}
+.detail-horaire ul li:last-child{
+	margin-right: 0;
+}
+
+
+.right-horaire {
+    padding-top: -15px;
+    margin-right: 50px !important;
+   
+}
+
+
+.list-inline{padding-left:0;margin-right:160px;list-style:none}.list-inline>li{display:inline-block;padding-right:5px;padding-left:5px}
+
+/* Avis */
+
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,800);
+figure.snip1192 {
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 220px;
+  max-width: 310px;
+  width: 100%;
+  color: #333;
+  text-align: left;
+  box-shadow: none !important;
+}
+figure.snip1192 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+figure.snip1192 img {
+  max-width: 100%;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  display: inline-block;
+  z-index: 1;
+  position: relative;
+}
+figure.snip1192 blockquote {
+  margin: 0;
+  display: block;
+  border-radius: 8px;
+  position: relative;
+  background-color: #fafafa;
+  padding: 30px 50px 65px 50px;
+  font-size: 0.8em;
+  font-weight: 500;
+  margin: 0 0 -50px;
+  line-height: 1.6em;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+figure.snip1192 blockquote:before,
+figure.snip1192 blockquote:after {
+  font-family: 'FontAwesome';
+  content: "\201C";
+  position: absolute;
+  font-size: 50px;
+  opacity: 0.3;
+  font-style: normal;
+}
+figure.snip1192 blockquote:before {
+  top: 35px;
+  left: 20px;
+}
+figure.snip1192 blockquote:after {
+  content: "\201D";
+  right: 20px;
+  bottom: 35px;
+}
+figure.snip1192 .author {
+  margin: 0;
+  text-transform: uppercase;
+  text-align: center;
+  color: #ffffff;
+}
+figure.snip1192 .author h5 {
+  opacity: 0.8;
+  margin: 0;
+  font-weight: 800;
+}
+figure.snip1192 .author h5 span {
+  font-weight: 400;
+  text-transform: none;
+  display: block;
+}
+
+.avis{
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.avisContainer{
+    padding-top: 60px;
+  
+}

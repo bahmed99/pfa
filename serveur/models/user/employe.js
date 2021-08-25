@@ -29,7 +29,7 @@ const employeeSchema = new mongoose.Schema({
         start: { type: Date },
         end: { type: Date },
         title: { type: String },
-        color: { type: String },
+        color: { type: String , default:"red" },
         eventContent: { type: String },
         client: {
             type: ObjectId,
@@ -53,7 +53,11 @@ const employeeSchema = new mongoose.Schema({
     car: {
         type: ObjectId,
         ref: "Car"
-    }
+    },
+    clientRequest:[{
+        type :ObjectId,
+        ref: "ClientRequest"
+    }]
 }, { timestamps: true })
 
 

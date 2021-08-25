@@ -37,8 +37,6 @@ export default function ModalSupprimerSeance(props) {
          const start =props.fetchSeances[client].start
             props.setData(props.fetchSeances.filter(item => item.start !== start))
             setClient("")
-
-           
         }
         setClient("")
     }
@@ -89,7 +87,6 @@ export default function ModalSupprimerSeance(props) {
                                 ))}
                                 
                                 </Input>
-
                             </FormGroup>
                            
 

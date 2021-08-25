@@ -1,0 +1,32 @@
+[
+    {
+      "id": 1,
+      "logoSrc": "6.png",
+      "URL": "/"
+    },
+    {
+      "id": 2,
+      "logoSrc": "5.png",
+      "URL": "/"
+    },
+    {
+      "id": 3,
+      "logoSrc": "1.png",
+      "URL": "/"
+    },
+    {
+      "id": 4,
+      "logoSrc": "2.png",
+      "URL": "/"
+    },
+    {
+      "id": 5,
+      "logoSrc": "3.png",
+      "URL": "/"
+    },
+    {
+      "id": 6,
+      "logoSrc": "4.png",
+      "URL": "/"
+    }
+  ]

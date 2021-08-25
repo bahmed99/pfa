@@ -86,7 +86,7 @@ export default function Profile() {
         <div className="firstdiv" style={{
             backgroundImage: 'url(' + image1 + ')',
             backgroundSize: "cover",
-            height: "100vh",
+            height: "120vh",
             backgroundPosition: "center !important",
         }}>
             <br />
@@ -137,10 +137,34 @@ export default function Profile() {
                             </div>
 
                         </div>
-                
                         {(data.status === "Payé")?<button className="button-Mod-Style" onClick={() => ChangeStatus(id)}>Payé</button>
                         :(data.status === "Non payé")?<button className="button-Mod-Style1" onClick={() => ChangeStatus(id)}>Non Payée</button>
                         :""}
+                        
+                        <br />
+                        <hr style={{width:"40%" , margin:"auto"}} />
+                        <br />
+                        <div style={{display:"flex" , justifyContent:"space-between" , width:"85%" , margin:"auto"}}>
+                            <div>
+                                <h6>Nombre de séances du code</h6>
+                                <h4>{data.seanceCode}/40</h4>
+                                <h6>Nombre de séances du code payée</h6>
+                                <h4><span style={{color:"red" , cursor:"pointer"}}>-</span> {data.seanceCodePayee}/40 <span style={{color:"green", cursor:"pointer"}}>+</span></h4>
+
+                            </div>
+                            <div>
+                                <h6>Nombre de séances du permis</h6>
+                                <h4>{data.seancePermis}/40</h4>
+                                <h6>Nombre de séances du permis payée</h6>
+                                <h4><span style={{color:"red" , cursor:"pointer"}}>-</span> {data.seancePermisPayee}/40 <span style={{color:"green" , cursor:"pointer"}}>+</span></h4>
+                            </div>
+                            <div>
+                                <h6>le montant à payée</h6>
+                                <h4>200 000 dt</h4>
+                                <h6>le montant déja payée</h6>
+                                <h4>{data.montant} dt</h4>
+                            </div>
+                        </div>
                         <br />
                     </div>
                    
@@ -149,7 +173,7 @@ export default function Profile() {
             </div>
 
             <div style={{ marginTop: "150px" }}>
-                <EmploisClientUtilisateur dataUtilisateur={data} id={id} supprimerSeanceModalOpen={supprimerSeanceModalOpen} setSupprimerSeanceModalOpen={setSupprimerSeanceModalOpen} />
+                <EmploisClientUtilisateur dataUtilisateur={data} setDataUtilisateur={setData} id={id} supprimerSeanceModalOpen={supprimerSeanceModalOpen} setSupprimerSeanceModalOpen={setSupprimerSeanceModalOpen} />
             </div>          <UpdateProfile isOpen={ajoutSeanceModalOpen}
                 setModal={setAjoutSeanceModalOpen} />
 
