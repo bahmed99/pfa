@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Table, { AvatarCell, SelectColumnFilter, StatusPill } from './Table'  // new
-import image1 from './../../../pages/Signin/o.images/0004.gif'
-import SignUp from '../SignUp'
-import './index.style.css'
+
+import '../../../assets/css/components/utilisateur/index.style.css'
 
 
 const getData = () => {
