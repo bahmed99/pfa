@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
-import './Signin.style.css'
+import '../../assets/css/pages/Signin.style.css'
 import image from './o.images/0.png'
 import image1 from './o.images/01234.gif'
 import Alert from 'react-bootstrap/Alert'

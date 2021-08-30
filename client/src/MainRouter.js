@@ -4,19 +4,18 @@ import { Switch, Route, useHistory } from "react-router-dom";
 import Signin from "./pages/Signin/Signin";
 
 import HomeClient from "./pages/client";
-import Home from "./pages/k.home/home";
+import Home from "./pages/home/home";
 import Courses from "./pages/client/courses";
 import Course from "./pages/client/course";
-import Employee from "./pages/k.employee/employee";
-import CarProfile from "./components/k.car/CarProfile";
-import CarProfile2 from "./components/k.car/CarProfile2";
-import CarPro from "./pages/k.employee/cars.js";
+import Employee from "./pages/employee/employee";
+import CarProfile from "./components/car/CarProfile";
+import CarPro from "./pages/employee/cars.js";
 import Reset from "./pages/Signin/Reset";
 import NewPassword from "./pages/Signin/NewPassword";
 
 import Correction from "./pages/client/correction";
 
-import Footer from "./components/k.footer/footer";
+import Footer from "./components/footer/footer";
 
 import Avis from "./pages/client/avis/Avis";
 import NavBarClient from "./components/navbarClient/index";
@@ -29,9 +28,9 @@ import Profile from "./components/utilisateur/Profile";
 import Profile1 from "./components/admin/Profile";
 
 import Emplois from "./pages/employee/Emplois.js";
-import Cars from "./pages/k.employee/cars.js";
-import Car from "./pages/k.admin/cars.js";
-import Notifications from "./pages/k.admin/notifications";
+
+import Car from "./pages/admin/car/cars.js";
+import Notifications from "./pages/admin/car/notifications";
 import EmploisClient from "./pages/client/emplois.js";
 import SigninAdmin from "./pages/admin/auth/signin";
 import ForgotPassword from "./pages/admin/auth/forgotPassword";
@@ -64,6 +63,7 @@ export default function MainRouter() {
     } else if (user && detect === 2) {
       //history.push('/')
     } else if (user && detect === 3) {
+
     } else {
       if (
         !history.location.pathname.startsWith("/reset") &&

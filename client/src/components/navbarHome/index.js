@@ -3,10 +3,10 @@ import { Link } from 'react-scroll'
 import { Container } from 'react-bootstrap'
 import Animation from './Animation.js'
 import { Link as RouterLink } from "react-router-dom";
-import Welcome from '../k.homeComponents/welcome'
+import Welcome from '../homeComponents/welcome'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import "./navbar.css"
 
+import '../../assets/css/components/navbarHome/navbar.css'
 export default function Navbar(props) {
 
     const [visible, setVisible] = useState([false, false]);

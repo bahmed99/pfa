@@ -8,7 +8,7 @@ import frLocale from '@fullcalendar/core/locales/fr';
 import Alert from "sweetalert2";
 import axios from "axios"
 import AjoutSeanceModal from "./ModelClient"
-import './style.css'
+import '../../assets/css/components/emplois/style.css'
 
 export default function EmploisCar(id) {
 

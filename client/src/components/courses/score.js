@@ -1,5 +1,5 @@
 import React from 'react'
-import './courses.css'
+import '../../assets/css/components/tests/courses.css'
 import { Link } from 'react-router-dom'
 
 export default function Score({ score, data }) {

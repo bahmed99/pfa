@@ -1,7 +1,7 @@
 import React from 'react'
 import Dashboard from '../../../components/Dashboard/Dashboard'
-import SideBar from '../../../components/k.employeeComponents/sidebar'
-import Navbar from '../../../components/k.employeeComponents/navbar'
+import SideBar from '../../../components/employeeComponents/sidebar'
+import Navbar from '../../../components/employeeComponents/navbar'
 import image1 from '../../Signin/o.images/backgroundavis.PNG'
 
 export default function HomeAdmin() {

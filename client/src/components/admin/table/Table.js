@@ -6,7 +6,7 @@ import { classNames } from './Utils'
 import { SortIcon, SortUpIcon, SortDownIcon } from './Icons'
 import {useHistory} from 'react-router-dom'
 import SignUp from '../SignUp'
-import './index.style.css'
+import '../../../assets/css/components/index.style.css'
 
 // Define a default UI for filtering
 function GlobalFilter({

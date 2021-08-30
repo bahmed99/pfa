@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from "axios"
 import { useParams } from 'react-router-dom'
-import "./courses.css"
+import "../../assets/css/components/tests/courses.css"
 import Alert from 'react-bootstrap/Alert'
 
 import Score from "./score"

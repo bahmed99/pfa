@@ -2,7 +2,7 @@ import React , {useState} from 'react'
 import Alert from 'react-bootstrap/Alert'
 import image1 from '../../Signin/o.images/backgroundavis.PNG'
 import photo from "../../Signin/o.images/feedback.gif"
-import './Avis.style.css'
+import '../../../assets/css/pages/Avis.style.css'
 
 
 export default function Avis() {

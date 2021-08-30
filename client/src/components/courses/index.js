@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './courses.css'
+import '../../assets/css/components/tests/courses.css'
 import axios from "axios"
 import { Link } from "react-router-dom";
 

@@ -1,0 +1,78 @@
+/* ::-webkit-scrollbar {
+    display: none;
+  } */
+  
+  .bar {
+      height: 12%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0);
+      position: fixed;
+      display: flex;
+      color:white;
+      z-index: 5;
+  }
+  .mobile-menu{
+      height: 100%;
+      background-color: rgba(31, 33, 45,0.3);
+      position: fixed;
+      color: white;
+      z-index: 5;
+  }
+  .mobile{
+      font-Size: '30px';
+      color:"white";
+      margin-left:'70%';
+  }
+  .list{
+      margin-left: 30%;
+      margin-top:  3%;
+  }
+  .list-e {
+      cursor: pointer;
+      display: inline;
+      padding-left: 4%;
+      font-size: 18px;
+  }
+  .list-m{
+      text-align: center;
+      margin-top:30%;
+  }
+  .list-e-m{
+      cursor: pointer;
+      padding:3px!important ;
+      font-size: 20px;
+  }
+  .logo{
+    height: 100%;
+    position: absolute;
+  
+    left: 10%;
+}
+.active{
+    color:#1f212d;
+}
+
+@media (max-width: 800px){
+    .logo{
+        display: none;
+    }
+}
+
+
+.video-text{
+    width: 100%;
+    z-index: 1;
+    text-align:"center";
+    z-index: 1;
+    background-Image: url(../../../../components/navbarHome/bgScore.png);
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: cover;
+    padding-bottom: 22% ;
+    padding-top: 10% ;
+}
+
+.btn-menu{
+    background: transparent;
+    border: transparent;
+}

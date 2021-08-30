@@ -8,7 +8,7 @@ import frLocale from '@fullcalendar/core/locales/fr';
 import Alert from "sweetalert2";
 import axios from "axios"
 import moment from 'moment'
-import './style.css'
+import '../../assets/css/components/emplois/style.css'
 import ModalSupprimerSeance from '../emplois/ModalSupprimerSeance'
 import ModalClientAjouter from '../emplois/ModalClientAjouter'
 

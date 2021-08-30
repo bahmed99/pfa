@@ -1,7 +1,7 @@
 import React from 'react'
-import Sidebar from "../../../components/k.employeeComponents/sidebar";
+import Sidebar from "../../../components/employeeComponents/sidebar";
 import EmploisAdmin from '../../../components/emplois/EmploisAdmin';
-import Navbar from '../../../components/k.employeeComponents/navbar' ;
+import Navbar from '../../../components/employeeComponents/navbar' ;
 import image2 from '../../Signin/o.images/0004.gif'
 export default function Emplois() {
     return (

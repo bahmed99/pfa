@@ -37,7 +37,7 @@ import {
 
 import styles from "./dashboardStyle.js";
 
-import './style.css'
+import '../../assets/css/components/dashboard/style.css'
 
 //////////////////////////////////////////
 

@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import "./signin.css"
+import "../../../assets/css/pages/signin.css"
 import Alert from 'react-bootstrap/Alert'
 import ReactLoading from 'react-loading';
 import { Link, useHistory } from 'react-router-dom'

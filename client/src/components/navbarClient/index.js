@@ -1,6 +1,6 @@
 import {useHistory} from 'react-router-dom'
 import { Container, Navbar, Nav } from "react-bootstrap"
-import "./navbar.css"
+import "../../assets/css/components/navbarClient/navbar.css"
 import Chat from "../chat/chat"
 
 export default function Index() {

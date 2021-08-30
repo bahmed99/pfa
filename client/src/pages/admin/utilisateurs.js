@@ -1,7 +1,7 @@
 import React from 'react'
 import User from '../../components/admin/utilisateurs'
-import SideBar from '../../components/k.employeeComponents/sidebar'
-import Navbar from '../../components/k.employeeComponents/navbar'
+import SideBar from '../../components/employeeComponents/sidebar'
+import Navbar from '../../components/employeeComponents/navbar'
 import image2 from './../Signin/o.images/0004.gif'
 
 export default function utilisateur() {

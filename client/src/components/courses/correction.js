@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom'
 
-import "./courses.css"
+import "../../assets/css/components/tests/courses.css"
 
 
 

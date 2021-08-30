@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import './cours.css'
+import '../../assets/css/components/cours/cours.css'
 
 import data from "../../data/cours.json"
 export default function Index() {

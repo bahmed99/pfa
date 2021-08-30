@@ -1,7 +1,7 @@
 import React , {useState} from 'react'
 import axios from 'axios'
-import image1 from './../../pages/Signin/o.images/0004.gif'
-import './Cours.style.css'
+
+import '../../assets/css/components/employe/Cours.style.css'
 import Alert from 'react-bootstrap/Alert'
 
 export default function Cours() {

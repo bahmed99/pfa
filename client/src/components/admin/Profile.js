@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import photo from './../../pages/Signin/o.images/user.png'
-import '../utilisateur/Profile.style.css'
+
+import '../../assets/css/components/utilisateurs/Profile.style.css'
 import image1 from './../../pages/Signin/o.images/0004.gif'
 //import UpdateProfile from './UpdateProfile'
 import { useParams, useHistory } from 'react-router-dom'

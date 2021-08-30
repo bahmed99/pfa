@@ -8,7 +8,7 @@ import frLocale from '@fullcalendar/core/locales/fr';
 import Alert from "sweetalert2";
 
 
-import "./style.css"
+import '../../assets/css/components/emplois/style.css'
 
 export default function EmploisAdminUtilisateur({ data }) {
     return (

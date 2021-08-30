@@ -1,6 +1,6 @@
 import React , {useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
-import './Signin.style.css'
+import '../../assets/css/pages/Signin.style.css'
 import image from './o.images/0.png'
 import image1 from './o.images/01234.gif'
 import image2 from './o.images/077.PNG'
