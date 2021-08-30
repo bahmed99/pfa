@@ -7,7 +7,7 @@ import listPlugin from '@fullcalendar/list';
 import frLocale from '@fullcalendar/core/locales/fr';
 import Alert from "sweetalert2";
 import axios from "axios"
-import AjoutSeanceModal from "../a.emplois/ModelEmploye"
+import AjoutSeanceModal from "../emplois/ModelEmploye"
 import moment from 'moment'
 
 export default function Emplois() {

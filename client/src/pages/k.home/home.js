@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../../components/a.navbarHome'
+import Navbar from '../../components/navbarHome'
 //import Apropos from '../../components/k.homeComponents/apropos'
 import About from '../../components/k.homeComponents/about'
 import Services from '../../components/k.homeComponents/services'

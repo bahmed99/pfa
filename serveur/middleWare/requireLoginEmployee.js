@@ -20,7 +20,6 @@ module.exports = (req,res,next) =>{
         const {_id} = payload 
         Employee.findById(_id).then(userdata=>{
             req.employee = userdata
-            console.log(req.employee.car)
             next()
         })
     })

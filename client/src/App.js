@@ -6,7 +6,7 @@ const showLoader = () => loader.classList.remove("loader");
 const addClass = () => loader.classList.add("loader-hide");
 export default function App() {
   useEffect(() => {
-    showLoader()
+    showLoader() 
     addClass();
   }, []);
   return (

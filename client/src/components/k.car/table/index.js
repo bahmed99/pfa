@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Table, { AvatarCell, SelectColumnFilter, StatusPill } from './Table'  // new
-import image1 from './../../../pages/o.Signin/o.images/0004.gif'
+import image1 from './../../../pages/Signin/o.images/0004.gif'
 import Modifier from "../Modifier"
 // import SignUp from '../SignUp'
 // import './index.style.css'

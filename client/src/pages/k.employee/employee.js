@@ -2,7 +2,7 @@
 import Sidebar from '../../components/k.employeeComponents/sidebar'
 import Navbar from '../../components/k.employeeComponents/navbar'
 import DashboardEmployee from '../../components/Dashboard/DashboardEmployee'
-import image1 from '../o.Signin/o.images/backgroundavis.PNG'
+import image1 from '../Signin/o.images/backgroundavis.PNG'
 
 
 export default function Employee() {

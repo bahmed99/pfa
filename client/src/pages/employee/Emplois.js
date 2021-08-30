@@ -1,17 +1,12 @@
-import Sidebar from '../../components/k.employeeComponents/sidebar'
+
+import EmploisEmployee from '../../components/emplois/EmploisEmployee'
+import Sidebar from "../../components/k.employeeComponents/sidebar";
 import Navbar from '../../components/k.employeeComponents/navbar'
-import CarsListAdmin from "../../components/k.cars/carsListAdmin"
-import User from "../../components/k.car/utilisateurs"
-import "./cars.css"
-import React from 'react'
 import image2 from './../Signin/o.images/0004.gif'
 
+export default function Emplois() {
 
-
-export default function Car() {
- 
-  return (
-        
+    return (
         <div className="row" style={{
             backgroundImage: 'url('+image2+')',
             backgroundSize: "cover",
@@ -22,11 +17,10 @@ export default function Car() {
             <Navbar/>
                 <Sidebar />
             </div>
-            <div className="col-md-8" style={{marginTop:"80px"}}>
-              
-                <User />
+            <div className="col-md-8" style={{marginTop:"100px"}}> 
+               
+                <EmploisEmployee  />
             </div> 
         </div>
     )
-    
 }

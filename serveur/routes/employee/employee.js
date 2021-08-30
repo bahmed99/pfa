@@ -6,6 +6,7 @@ const Client = require("../../models/user/client");
 const Message = require("../../models/message/message");
 const Car = require("../../models/car/car");
 const requireLoginEmployee = require("../../middleware/requireLoginEmployee");
+const requireLoginAdmin = require("../../middleware/requireLoginAdmin");
 const fs = require("fs");
 const Avis = require("../../models/avis/avis");
 const multer = require("multer");
@@ -29,6 +30,7 @@ const upload = multer({
 router.post(
   "/AjouterCours",
   requireLoginEmployee,
+  requireLoginAdmin,
   upload.single("file"),
   (req, res) => {
     const { nom } = req.body;
@@ -112,9 +114,11 @@ router.put("/emplois", requireLoginEmployee, (req, res) => {
                   .then((count) => {
                     if (req.body.title === "Séance code") {
                       count.seanceCode = count.seanceCode + 1;
+                      count.montantAPaye= count.montantAPaye+8
                     }
                     if (req.body.title === "Séance conduite") {
                       count.seancePermis += 1;
+                      count.montantAPaye= count.montantAPaye+25
                     }
                     count
                       .save()

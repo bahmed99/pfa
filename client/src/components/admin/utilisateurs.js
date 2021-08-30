@@ -9,9 +9,7 @@ import photo from './../../pages/Signin/o.images/user.png'
 import Index from './table/index'
 
 
-
 export default function Utilisateurs() {
-
 
     return (
 

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import photo from './../../pages/o.Signin/o.images/user.png'
-import '../o.utilisateur/Profile.style.css'
+import photo from './../../pages/Signin/o.images/user.png'
+import '../utilisateur/Profile.style.css'
 import { StatusPill } from "./table/Table.js"
 import Modifier from './Modifier'
-import image1 from './../../pages/o.Signin/o.images/0004.gif'
+import image1 from './../../pages/Signin/o.images/0004.gif'
 //import UpdateProfile from './UpdateProfile'
 import { useParams , useHistory } from 'react-router-dom'
-import EmploisCar from "../a.emplois/EmploisCar"
-import EmploisAdminUtilisateur from '../a.emplois/EmploisAdminUtilisateur'
+import EmploisCar from "../emplois/EmploisCar"
+import EmploisAdminUtilisateur from '../emplois/EmploisAdminUtilisateur'
 
 
 

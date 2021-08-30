@@ -66,6 +66,10 @@ const clientSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    montantAPaye: {
+        type: Number,
+        default: 0
+    },
     notifications:[{
         title:{type:String},
         nom:{type:String},
