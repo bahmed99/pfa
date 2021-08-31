@@ -1,4 +1,3 @@
-
 const express = require("express");
 const router = express.Router();
 const Employee = require("../../models/user/employe");
@@ -12,7 +11,6 @@ const Avis = require("../../models/avis/avis");
 const multer = require("multer");
 
 const User = require("../../models/user/userRequest");
-
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -114,11 +112,11 @@ router.put("/emplois", requireLoginEmployee, (req, res) => {
                   .then((count) => {
                     if (req.body.title === "Séance code") {
                       count.seanceCode = count.seanceCode + 1;
-                      count.montantAPaye= count.montantAPaye+8
+                      count.montantAPaye = count.montantAPaye + 8;
                     }
                     if (req.body.title === "Séance conduite") {
                       count.seancePermis += 1;
-                      count.montantAPaye= count.montantAPaye+25
+                      count.montantAPaye = count.montantAPaye + 25;
                     }
                     count
                       .save()
@@ -160,18 +158,15 @@ router.get("/clients", requireLoginEmployee, (req, res) => {
 });
 
 router.get("/car", requireLoginEmployee, (req, res) => {
-
-    Car.findOne({ _id: req.employee.car })
-    .then(resultat => {
-     console.log(resultat)
-      return  res.status(200).send(JSON.stringify(resultat))
-       
-    }).catch(erreur => {
-       return res.status(400).send(erreur)
+  Car.findOne({ _id: req.employee.car })
+    .then((resultat) => {
+      console.log(resultat);
+      return res.status(200).send(JSON.stringify(resultat));
     })
-    
-})
-
+    .catch((erreur) => {
+      return res.status(400).send(erreur);
+    });
+});
 
 router.get("/employee-clients", requireLoginEmployee, (req, res) => {
   const data = [];
@@ -319,21 +314,19 @@ router.delete("/deleteClient/:id", requireLoginEmployee, (req, res) => {
       }
     )
       .then((supp) => {
-          Employee.update(
-           { _id:req.employee._id},
-            {
-              $pull: {
-                timetable: {
-                  client:{ $in:[req.params.id]}
-                }
-              }
-            }
-          ).then(rep=>{
-            client.remove();
-            res.send(supp);
-          })
-        
-        
+        Employee.update(
+          { _id: req.employee._id },
+          {
+            $pull: {
+              timetable: {
+                client: { $in: [req.params.id] },
+              },
+            },
+          }
+        ).then((rep) => {
+          client.remove();
+          res.send(supp);
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -617,6 +610,64 @@ router.put("/modifierPayement/:id", requireLoginEmployee, (req, res) => {
     });
 });
 
+router.put("/modifierExamen/:id", requireLoginEmployee, (req, res) => {
+  const { approuve, start, title } = req.body;
+  Client.findOne({ _id: req.params.id })
+    .then((result) => {
+      for (let i = 0; i < result.timetable.length; i++) {
+        //result.timetable[i].start.getFullYear() === start.getFullYear() && result.timetable[i].start.getMonth() === start.getMonth() && result.timetable[i].start.getDate() === start.getDate() && result.timetable[i].start.getHours() === start.getHours()-1
+        if (
+          new Date(result.timetable[i].start).getTime() ===
+          new Date(start).getTime()
+        ) {
+          if (approuve) {
+            result.timetable[i].color = "blue";
+
+            if (title === "Examen code") {
+              result.code = true;
+            }
+            if (title === "Examen Conduite") {
+              result.conduite = true;
+            }
+          } else {
+            result.timetable[i].color = "black";
+          }
+        }
+      }
+      result
+        .save()
+        .then((r) => {
+          Employee.findOne({ _id: req.employee._id })
+            .then((emp) => {
+              for (let j = 0; j < emp.timetable.length; j++) {
+                if (
+                  new Date(emp.timetable[j].start).getTime() ===
+                  new Date(start).getTime()
+                ) {
+                  if (approuve) {
+                    emp.timetable[j].color = "blue";
+                  } else {
+                    emp.timetable[j].color = "black";
+                  }
+                }
+              }
+              emp.save().then((emps) => {
+                res.json(r);
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 router.get("/differenceAvis", requireLoginEmployee, (req, res) => {
   let labels = [
     "Jan",
@@ -718,4 +769,53 @@ router.delete("/removeClientNouveau/:id", requireLoginEmployee, (req, res) => {
       res.send(errs);
     });
 });
+
+router.get("/approuve", requireLoginEmployee, (req, res) => {
+  Client.find().then((result) => {
+    let nb = 0;
+    for (let i = 0; i < result.length; i++) {
+      if (req.employee.client.includes(result[i]._id)) {
+        if (result[i].code && result[i].conduite) {
+          nb++;
+        }
+      }
+    }
+    res.json(nb);
+  });
+});
+
+router.get("/nbreApprouve", requireLoginEmployee, (req, res) => {
+  let tab1 = [
+    "Jan",
+    "Fev",
+    "Mar",
+    "Avr",
+    "Mai",
+    "Juin",
+    "Juil",
+    "Aôut",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  Client.find().then((result) => {
+    let tab = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    for (let i = 0; i < result.length; i++) {
+      if (req.employee.client.includes(result[i]._id)) {
+        for (let j = 0; j < 12; j++) {
+          if (
+            result[i].createdAt.getMonth() === j &&
+            result[i].code && result[i].conduite
+          ) {
+            tab[j] = tab[j] + 1;
+          }
+        }
+      }
+    }
+    res.json({ labels: tab1, series: [tab] });
+  });
+});
+
 module.exports = router;

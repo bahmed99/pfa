@@ -19,15 +19,28 @@ export default function ModalClientAjouter(props) {
 
   const onClickAjouterSeance = async () => {
     if (title !== "" && localStorage.getItem("car") !== "0") {
-      const seance = {
-        start: props.selectInfoData.startStr,
-        end: props.selectInfoData.endStr,
-        title: title,
-        eventContent: props.dataUtilisateur.name,
-        client: props.dataUtilisateur._id,
-        color: "red",
-        nomClient: props.dataUtilisateur.name,
-      };
+      let seance;
+      if (title === "Séance code" || title === "Séance conduite") {
+        seance = {
+          start: props.selectInfoData.startStr,
+          end: props.selectInfoData.endStr,
+          title: title,
+          eventContent: props.dataUtilisateur.name,
+          client: props.dataUtilisateur._id,
+          color: "red",
+          nomClient: props.dataUtilisateur.name,
+        };
+      } else {
+        seance = {
+          start: props.selectInfoData.startStr,
+          end: props.selectInfoData.endStr,
+          title: title,
+          eventContent: props.dataUtilisateur.name,
+          client: props.dataUtilisateur._id,
+          color: "orange",
+          nomClient: props.dataUtilisateur.name,
+        };
+      }
 
       props.setModal(false);
       axios

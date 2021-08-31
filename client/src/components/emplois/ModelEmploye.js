@@ -14,7 +14,6 @@ import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 
 export default function AjoutSeanceModal(props) {
-    
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [client, setClient] = useState("");
@@ -22,19 +21,30 @@ export default function AjoutSeanceModal(props) {
   const [nom, setNom] = useState("");
   const [error, setError] = useState(false);
 
- 
   const onClickAjouterSeance = async () => {
-    if (title !== ""  && client !== "" && localStorage.getItem("car") !== "0") 
-    {
-      const seance = {
-        start: props.selectInfoData.startStr,
-        end: props.selectInfoData.endStr,
-        title: title,
-        eventContent: props.clients[client].name,
-        color: "red",
-        client: props.clients[client]._id,
-        nomClient: props.clients[client].name,
-      };
+    if (title !== "" && client !== "" && localStorage.getItem("car") !== "0") {
+      let seance;
+      if (title === "Séance code" || title === "Séance conduite") {
+        seance = {
+          start: props.selectInfoData.startStr,
+          end: props.selectInfoData.endStr,
+          title: title,
+          eventContent: props.clients[client].name,
+          client: props.clients[client]._id,
+          color: "red",
+          nomClient: props.clients[client].name,
+        };
+      } else {
+        seance = {
+          start: props.selectInfoData.startStr,
+          end: props.selectInfoData.endStr,
+          title: title,
+          eventContent: props.clients[client].name,
+          client: props.clients[client]._id,
+          color: "orange",
+          nomClient: props.clients[client].name,
+        };
+      }
 
       props.setModal(false);
       axios.put(`http://localhost:3001/employe/emplois`, seance, {
@@ -47,10 +57,8 @@ export default function AjoutSeanceModal(props) {
       setTitle("");
       setDescription("");
       setClient("");
-    } 
-    else if (localStorage.getItem("car") === "0") {
-
-        setError(true)
+    } else if (localStorage.getItem("car") === "0") {
+      setError(true);
       setTimeout(() => setError(false), 2500);
     }
 

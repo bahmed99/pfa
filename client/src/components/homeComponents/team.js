@@ -26,6 +26,8 @@ function ImageSlider() {
     slidesToScroll: 1,
     cssEase: "linear",
   };
+
+  
   return (
     <div style={{ backgroundColor: "#b4b4b4", width: "100% !important" }}>
       <div className="container carousel">

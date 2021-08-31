@@ -1,9 +1,10 @@
-
+import { useState } from "react"
 import axios from "axios"
 import "./style.css"
 export default function Notifications({data , setNotifications,setIndex,nb}) {
   
-    
+    const  [next, setNext] = useState(7)
+    const  [prec, setPrec] = useState(0)
     if(nb===0){
         return "Messagerie vide."
     }
@@ -27,7 +28,7 @@ export default function Notifications({data , setNotifications,setIndex,nb}) {
 
                         <div className="card-body">
                             <ul className=" message">
-                            {data.map((element, index) => (
+                            {data.slice(prec,next).map((element, index) => (
                                     <li key={index}>
 
                                         <div className="media align-items-center">
@@ -46,17 +47,17 @@ export default function Notifications({data , setNotifications,setIndex,nb}) {
 
                         </div>
                     </div>
-                    {/* <nav aria-label="Page navigation example">
+                    <nav aria-label="Page navigation example">
                         <ul className="pagination justify-content-center">
-                            <li className="page-item disabled">
-                                <a className="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                            <li className="page-item">
+                                <button className="page-link" onClick={()=>{setNext(next-7);setPrec(prec-7)}} tabindex="-1" disabled={prec===0?true:false}>Précedent</button>
                             </li>
                             <li className="page-item">
                            
-                                <a className="page-link" href="#">Suivant</a>
+                                <button className="page-link" onClick={()=>{setNext(next+7);setPrec(prec+7)}} disabled={data.length<=next ?true:false}>Suivant</button>
                             </li>
                         </ul>
-                    </nav> */}
+                    </nav>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"
+import axios from "axios";
 
 import { useHistory, Link } from "react-router-dom";
 // react plugin for creating charts
@@ -25,8 +25,6 @@ import CardIcon from "./CustomTabs/Cards/CardIcon";
 import CardBody from "./CustomTabs/Cards/CardBody";
 import CardFooter from "./CustomTabs/Cards/CardFooter";
 
-
-
 import {
   dailySalesChart,
   emailsSubscriptionChart,
@@ -37,20 +35,13 @@ import {
 
 import styles from "./dashboardStyle.js";
 
-import '../../assets/css/components/dashboard/style.css'
+import "../../assets/css/components/dashboard/style.css";
 
 //////////////////////////////////////////
 
-import {
-
-
-  CardTitle,
-  Row,
-  Col,
-} from "reactstrap";
+import { CardTitle, Row, Col } from "reactstrap";
 
 import { Line, Pie } from "react-chartjs-2";
-
 
 //////////////////
 
@@ -58,120 +49,150 @@ const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [client, setClient] = useState()
-  const [employee, setEmployee] = useState()
-  const [car, setCar] = useState()
-  const [emplois, setEmplois] = useState()
-  const [info, setInfo] = useState()
-  const [info1, setInfo1] = useState()
-  const [info2, setInfo2] = useState()
-  const [info3, setInfo3] = useState()
-  const [info4, setInfo4] = useState()
-  const [moyenne, setMoyenne] = useState()
-  const [moyenne1, setMoyenne1] = useState()
-  const [moyenne2, setMoyenne2] = useState()
-  const [clients, setClients] = useState([])
-  const History = useHistory()
+  const [client, setClient] = useState();
+  const [employee, setEmployee] = useState();
+  const [car, setCar] = useState();
+  const [emplois, setEmplois] = useState();
+  const [info, setInfo] = useState();
+  const [info1, setInfo1] = useState();
+  const [info2, setInfo2] = useState();
+  const [info3, setInfo3] = useState();
+  const [info4, setInfo4] = useState();
+  const [moyenne, setMoyenne] = useState();
+  const [moyenne1, setMoyenne1] = useState();
+  const [moyenne2, setMoyenne2] = useState();
+  const [clients, setClients] = useState([]);
+  const [paye, setPaye] = useState(0);
+  const History = useHistory();
 
   useEffect(() => {
-    axios.get('http://localhost:3001/employe/statistics', {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("jwt")
-      }
-    }).then(res => {
-      setClient(res.data.client)
-      setEmplois(res.data.emplois)
-      setCar(res.data.car)
-    
-    }).catch(err => {
-      console.log(err)
-    })
+    axios
+      .get("http://localhost:3001/employe/statistics", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      })
+      .then((res) => {
+        setClient(res.data.client);
+        setEmplois(res.data.emplois);
+        setCar(res.data.car);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    axios.get('http://localhost:3001/employe/nbrSeances', {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("jwt")
-      }
-    }).then(res => {
-      setInfo(res.data)
-      setMoyenne(((res.data.series[0].reduce((a, b) => a + b, 0)) / 7).toFixed(2))
+    axios
+      .get("http://localhost:3001/employe/nbrSeances", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      })
+      .then((res) => {
+        setInfo(res.data);
+        setMoyenne(
+          (res.data.series[0].reduce((a, b) => a + b, 0) / 7).toFixed(2)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    }).catch(err => {
-      console.log(err)
-    })
+    axios
+      .get("http://localhost:3001/employe/nbreApprouve", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      })
+      .then((res) => {
+        setInfo2(res.data);
+        setMoyenne2(
+          (res.data.series[0].reduce((a, b) => a + b, 0) / 12).toFixed(2)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    axios
+      .get("http://localhost:3001/employe/nbreSub", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      })
+      .then((res) => {
+        setInfo1(res.data);
+        setMoyenne1(
+          (res.data.series[0].reduce((a, b) => a + b, 0) / 12).toFixed(2)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    axios
+      .get("http://localhost:3001/employe/repartitionAvis", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      })
+      .then((res) => {
+        setInfo3(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    axios
+      .get("http://localhost:3001/employe/differenceAvis", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      })
+      .then((res) => {
+        setInfo4(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    axios
+      .get("http://localhost:3001/employe/nouveauClients", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      })
+      .then((resul) => {
+        setClients(resul.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+      axios
+      .get("http://localhost:3001/employe/approuve", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      })
+      .then((resul) => {
+        setPaye(resul.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
 
-    axios.get('http://localhost:3001/admin/nbreAvis', {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("jwt")
-      }
-    }).then(res => {
-      setInfo2(res.data)
-      setMoyenne2(((res.data.series[0].reduce((a, b) => a + b, 0)) / 12).toFixed(2))
 
 
-    }).catch(err => {
-      console.log(err)
-    })
-
-    axios.get('http://localhost:3001/employe/nbreSub', {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("jwt")
-      }
-    }).then(res => {
-      setInfo1(res.data)
-      setMoyenne1(((res.data.series[0].reduce((a, b) => a + b, 0)) / 12).toFixed(2))
-
-
-    }).catch(err => {
-      console.log(err)
-    })
-
-    axios.get('http://localhost:3001/employe/repartitionAvis', {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("jwt")
-      }
-    }).then(res => {
-      setInfo3(res.data)
-
-
-
-    }).catch(err => {
-      console.log(err)
-    })
-
-    axios.get('http://localhost:3001/employe/differenceAvis', {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("jwt")
-      }
-    }).then(res => {
-      setInfo4(res.data)
-
-
-
-    }).catch(err => {
-      console.log(err)
-    })
-
-    axios.get('http://localhost:3001/employe/nouveauClients', {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("jwt")
-      }
-    }).then(resul => {
-      setClients(resul.data)
-    }).catch(err => {
-      console.log(err)
-    })
-
-
-
-  }, [])
+  }, []);
 
   return (
     <div>
@@ -183,9 +204,7 @@ export default function Dashboard() {
                 <Icon className="fa fa-users" />
               </CardIcon>
               <p className={classes.cardCategory}>Nombre de clients</p>
-              <h3 className={classes.cardTitle}>
-                {client}
-              </h3>
+              <h3 className={classes.cardTitle}>{client}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -213,9 +232,7 @@ export default function Dashboard() {
                 <Danger>
                   <Warning />
                 </Danger>
-                <Link onClick={(e) => History.push("/emplois")}>
-                  Lire plus
-                </Link>
+                <Link onClick={(e) => History.push("/emplois")}>Lire plus</Link>
               </div>
             </CardFooter>
           </Card>
@@ -234,9 +251,7 @@ export default function Dashboard() {
                 <Danger>
                   <Warning />
                 </Danger>
-                <Link onClick={(e) => History.push("/cars")}>
-                  Lire plus
-                </Link>
+                <Link onClick={(e) => History.push("/cars")}>Lire plus</Link>
               </div>
             </CardFooter>
           </Card>
@@ -247,15 +262,15 @@ export default function Dashboard() {
               <CardIcon color="info">
                 <Accessibility />
               </CardIcon>
-              <p className={classes.cardCategory}>Total</p>
-              <h3 className={classes.cardTitle}>+{client + employee}</h3>
+              <p className={classes.cardCategory}>Total clients validés</p>
+              <h3 className={classes.cardTitle}>{paye}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
                 <Danger>
                   <Warning />
                 </Danger>
-                <Link onClick={(e) => History.push("/ressources-humaine")}>
+                <Link onClick={(e) => History.push("/utilisateurs")}>
                   Lire plus
                 </Link>
               </div>
@@ -279,7 +294,8 @@ export default function Dashboard() {
               <h4 className={classes.cardTitle}>Nombre de séances par jours</h4>
               <p className={classes.cardCategory}>
                 <span className={classes.successText}>
-                  <ArrowUpward className={classes.upArrowCardCategory} /> {moyenne}
+                  <ArrowUpward className={classes.upArrowCardCategory} />{" "}
+                  {moyenne}
                 </span>{" "}
                 en moyenne par jour.
               </p>
@@ -305,7 +321,9 @@ export default function Dashboard() {
             </CardHeader>
             <CardBody>
               <h4 className={classes.cardTitle}>Nombre de client par mois</h4>
-              <p className={classes.cardCategory}>{moyenne1} client en moyenne par mois</p>
+              <p className={classes.cardCategory}>
+                {moyenne1} client en moyenne par mois
+              </p>
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
@@ -326,8 +344,10 @@ export default function Dashboard() {
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Contact par mois</h4>
-              <p className={classes.cardCategory}>{moyenne2} Contact en moyenne par mois</p>
+              <h4 className={classes.cardTitle}>Approuvé par mois</h4>
+              <p className={classes.cardCategory}>
+                {moyenne2} Approuvé en moyenne par mois
+              </p>
             </CardBody>
             <CardFooter chart>
               <div className={classes.stats}>
@@ -361,7 +381,9 @@ export default function Dashboard() {
         <Col md="8">
           <Card className="card-chart">
             <CardHeader>
-              <CardTitle tag="h5">Différence entre avis positifs & avis négatifs</CardTitle>
+              <CardTitle tag="h5">
+                Différence entre avis positifs & avis négatifs
+              </CardTitle>
               <p className="card-category">Analyse en temps réel </p>
             </CardHeader>
             <CardBody>
@@ -390,7 +412,7 @@ export default function Dashboard() {
             <CardBody>
               <Table
                 tableHeaderColor="warning"
-                tableHead={["ID", "Nom", "Âge", "Cin", "Tel","Email", ""]}
+                tableHead={["ID", "Nom", "Âge", "Cin", "Tel", "Email", ""]}
                 tableData={clients}
                 clients={clients}
                 setClients={setClients}
@@ -399,7 +421,6 @@ export default function Dashboard() {
           </Card>
         </GridItem>
       </Row>
-
     </div>
   );
 }

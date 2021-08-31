@@ -11,13 +11,13 @@ import {
   Modal,
   Label
 } from "reactstrap";
-import axios from "axios"
-import { useParams } from "react-router";
+
 
 
 
 const EventClick = (props) => {
   const [montant, setMontant] = useState(0)
+  const [approuve, setApprouve] = useState(false)
   const [info, setInfo] = useState()
   function ModifierMontant() {
     fetch(`http://localhost:3001/employe/modifierPayement/${props.id}`, {
@@ -43,6 +43,31 @@ const EventClick = (props) => {
         console.log(err)
       })
   }
+  function ModifierExamen() {
+    fetch(`http://localhost:3001/employe/modifierExamen/${props.id}`, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
+      },
+      body: JSON.stringify({
+        approuve: approuve,
+        start: props.start,
+        title: props.title
+      })
+    }).then(res => res.json())
+      .then(data => {
+        setInfo(data)
+        props.setModal(false)
+       
+        props.setDataUtilisateur(data)
+        props.setDataEmplois(data.timetable)
+        setMontant("")
+      }).catch(err => {
+        console.log(err)
+      })
+  }
+
 
   return (
     <Modal
@@ -93,6 +118,32 @@ const EventClick = (props) => {
                       onClick={ModifierMontant}
                     >
                       Payée
+                    </Button>
+                  </div>
+                </div> : ""}
+                {(props.color === "orange") ?
+                <div>
+                  <FormGroup>
+                    <Label style={{ marginLeft: "210px", fontFamily: 'Airbnb Cereal App Extra Bold', fontSize: "20px" }}>Résultat:</Label>
+                    <Input
+                      type="select"
+                      onChange={(e) => setApprouve(e.target.value)} >
+                      <option value=""></option>
+                      <option value={true}>Validé</option>
+                      <option value={false}>Non Validé</option>
+
+                      </Input>
+
+                  </FormGroup>
+                  <div className="text-center">
+                    <Button
+                      className="my-4"
+                      color="primary"
+                      type="button"
+                      style={{ backgroundColor: "#369579" }}
+                      onClick={ModifierExamen}
+                    >
+                     Envoyée
                     </Button>
                   </div>
                 </div> : ""}

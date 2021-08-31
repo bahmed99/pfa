@@ -90,11 +90,7 @@ export default function Emplois() {
                     <div className="breadcrumbs">
                         <div>
                             <h1>Votre Calendrier</h1>
-                            <p>Étape obligatoire pour décrocher un jour l'examen du permis de conduire, <span className="strong-medium">le code de la route</span> fait peur à beaucoup
-                                de candidats, alors que pour le réussir il suffit juste de bien y être préparé. C'est pour vous y aider que
-                                iDrive Gears met à votre disposition <span className="strong-medium">des tests de code en ligne</span>, comprenant 30 questions <span className="strong-medium">conformes à
-                                    celles de l'examen.</span>
-                            </p>
+                         
                         </div>
                     </div>
                 </div>

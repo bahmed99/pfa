@@ -29,7 +29,7 @@ const employeeSchema = new mongoose.Schema({
         start: { type: Date },
         end: { type: Date },
         title: { type: String },
-        color: { type: String , default:"red" },
+        color: { type: String },
         eventContent: { type: String },
         client: {
             type: ObjectId,
