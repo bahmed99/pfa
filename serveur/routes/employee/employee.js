@@ -296,13 +296,15 @@ router.delete("/deleteClient/:id", requireLoginEmployee, (req, res) => {
     if (err || !client) {
       return res.status(422).json({ error: err });
     }
-    fs.unlink(
-      `../client/public/uploads/profile/clients/${client.pic}`,
-      function (err) {
-        if (err) return console.log(err);
-        console.log("file deleted successfully");
-      }
-    );
+    if (client.pic !== "user1.png") {
+      fs.unlink(
+        `../client/public/uploads/profile/clients/${client.pic}`,
+        function (err) {
+          if (err) return console.log(err);
+          console.log("file deleted successfully");
+        }
+      );
+    }
 
     Employee.findByIdAndUpdate(
       req.employee._id,
@@ -807,7 +809,8 @@ router.get("/nbreApprouve", requireLoginEmployee, (req, res) => {
         for (let j = 0; j < 12; j++) {
           if (
             result[i].createdAt.getMonth() === j &&
-            result[i].code && result[i].conduite
+            result[i].code &&
+            result[i].conduite
           ) {
             tab[j] = tab[j] + 1;
           }
