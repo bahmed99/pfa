@@ -61,7 +61,7 @@ router.put('/messageClient', requireLoginClient, upload.single('file'), (req, re
     else {
         message = req.body.message
     }
-    console.log(message)
+
     Message.findOneAndUpdate({ client: req.client._id }, {
         $push: { messages: message }
     }, {

@@ -129,8 +129,8 @@ const EventClick = (props) => {
                       type="select"
                       onChange={(e) => setApprouve(e.target.value)} >
                       <option value=""></option>
-                      <option value={true}>Validé</option>
-                      <option value={false}>Non Validé</option>
+                      <option value={"oui"}>Validé</option>
+                      <option value={"non"}>Non Validé</option>
 
                       </Input>
 

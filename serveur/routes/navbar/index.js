@@ -14,7 +14,7 @@ router.get("/:id", (req, res) => {
     } else {
       Car.findOne({ _id: employee.car })
         .then((resul) => {
-            console.log(resul)
+        
           res.json({ user: employee, role: "employes", car: resul.status });
         })
         .catch((errs) => res.send(errs));

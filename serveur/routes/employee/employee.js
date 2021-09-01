@@ -160,7 +160,6 @@ router.get("/clients", requireLoginEmployee, (req, res) => {
 router.get("/car", requireLoginEmployee, (req, res) => {
   Car.findOne({ _id: req.employee.car })
     .then((resultat) => {
-      console.log(resultat);
       return res.status(200).send(JSON.stringify(resultat));
     })
     .catch((erreur) => {
@@ -217,8 +216,6 @@ router.get("/emplois/:id", requireLoginEmployee, (req, res) => {
 router.put("/emplois-delete/:id", requireLoginEmployee, (req, res) => {
   const data = req.body;
 
-  console.log(data);
-
   Employee.findByIdAndUpdate(
     req.employee._id,
     {
@@ -265,7 +262,6 @@ router.put("/emplois-delete/:id", requireLoginEmployee, (req, res) => {
             )
               .then((r) => {
                 Client.findOne({ _id: req.params.id }).then((count) => {
-                  console.log(count);
                   if (req.body.title === "Séance code") {
                     count.seanceCode = count.seanceCode - 1;
                   }
@@ -614,6 +610,7 @@ router.put("/modifierPayement/:id", requireLoginEmployee, (req, res) => {
 
 router.put("/modifierExamen/:id", requireLoginEmployee, (req, res) => {
   const { approuve, start, title } = req.body;
+
   Client.findOne({ _id: req.params.id })
     .then((result) => {
       for (let i = 0; i < result.timetable.length; i++) {
@@ -622,7 +619,7 @@ router.put("/modifierExamen/:id", requireLoginEmployee, (req, res) => {
           new Date(result.timetable[i].start).getTime() ===
           new Date(start).getTime()
         ) {
-          if (approuve) {
+          if (approuve === "oui") {
             result.timetable[i].color = "blue";
 
             if (title === "Examen code") {
@@ -646,7 +643,7 @@ router.put("/modifierExamen/:id", requireLoginEmployee, (req, res) => {
                   new Date(emp.timetable[j].start).getTime() ===
                   new Date(start).getTime()
                 ) {
-                  if (approuve) {
+                  if (approuve === "oui") {
                     emp.timetable[j].color = "blue";
                   } else {
                     emp.timetable[j].color = "black";
@@ -755,7 +752,6 @@ router.get("/nouveauClients", requireLoginEmployee, (req, res) => {
 });
 
 router.delete("/removeClientNouveau/:id", requireLoginEmployee, (req, res) => {
-  console.log(req.body);
   User.findOne({ _id: req.params.id })
     .then((resul) => {
       resul
