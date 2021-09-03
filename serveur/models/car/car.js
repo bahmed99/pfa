@@ -9,7 +9,7 @@ const carSchema = new mongoose.Schema(
     },
     pic: {
       type: String,
-      default: "https://www.linkpicture.com/q/kia.jpg",
+      default: "v.png",
     },
     model: {
       type: String,
