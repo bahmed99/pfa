@@ -91,7 +91,7 @@ function App({ id, name, pic, Chat }) {
     message.data.url=`http://localhost:3000/uploads/messages/${message.data.fileName}`
 
 
-    console.log(message)
+    
     socket.emit('chatroomMessage', {
       chatroomId: Chat,
       message: message,

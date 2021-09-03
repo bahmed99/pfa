@@ -39,6 +39,7 @@ import HomeAdmin from "./pages/admin/home/Home";
 import EmploisAdmin from "./pages/admin/emplois/Emplois";
 import Utilisateurs from "./pages/admin/utilisateurs";
 import AjouterCours from "./pages/employee/AjouterCours";
+import NotificationsEmployee from "./pages/admin/car/notificationEmployee";
 
 export default function MainRouter() {
   const history = useHistory();
@@ -48,7 +49,7 @@ export default function MainRouter() {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     const detect = JSON.parse(localStorage.getItem("detect"));
-    // JSON.parse --> trod une chaine de caractere il objet
+
     if (user && detect === 1) {
       if (
         !history.location.pathname.startsWith("/cours") &&
@@ -61,9 +62,29 @@ export default function MainRouter() {
         history.push("/");
       }
     } else if (user && detect === 2) {
-      //history.push('/')
+      if (
+        !history.location.pathname.startsWith("/emplois") &&
+        !history.location.pathname.startsWith("/home") &&
+        !history.location.pathname.startsWith("/utilisateurs") &&
+        !history.location.pathname.startsWith("/cars") &&
+        !history.location.pathname.startsWith("/utilisateur-profile") &&
+        !history.location.pathname.startsWith("/courses") &&
+        !history.location.pathname.startsWith("/client-profile")
+      ) {
+        history.push("/");
+      }
     } else if (user && detect === 3) {
-
+      if (
+        !history.location.pathname.startsWith("/emplois") &&
+        !history.location.pathname.startsWith("/home") &&
+        !history.location.pathname.startsWith("/ressources-humaine") &&
+        !history.location.pathname.startsWith("/cars") &&
+        !history.location.pathname.startsWith("/utilisateur-profile") &&
+        !history.location.pathname.startsWith("/courses") &&
+        !history.location.pathname.startsWith("/client-profile")
+      ) {
+        history.push("/");
+      }
     } else {
       if (
         !history.location.pathname.startsWith("/reset") &&
@@ -82,12 +103,6 @@ export default function MainRouter() {
           <Signin />
           <Footer />
         </Route>
-
-        <Route exact path={"/khadija"} component={Home} />
-
-        <Route exact path={"/khadija2"} component={Employee} />
-        <Route exact path={"/tests"} component={Courses} />
-        <Route exact path={"/test/:id"} component={Course} />
 
         {user && detect === 1 ? (
           <Route exact path={"/"} component={HomeClient} />
@@ -150,7 +165,11 @@ export default function MainRouter() {
             <Route exact path={"/emplois"} component={Emplois} />
             <Route exact path={"/home"} component={Employee} />
             <Route exact path={"/utilisateurs"} component={Utilisateur} />
-            <Route exact path={"/notifications"} component={Notifications} />
+            <Route
+              exact
+              path={"/notifications"}
+              component={NotificationsEmployee}
+            />
             <Route exact path={"/client-profile/:id"} component={Profile} />
             <Route exact path={"/cars"} component={CarPro} />
             <Route

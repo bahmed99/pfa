@@ -50,7 +50,7 @@ export default function Profile() {
         }).then(res => res.json())
             .then(result => {
                 setInfoclient(result)
-                console.log(result)
+               
                 if (result && result.length > 0) { setAjoutSeanceModalOpen(true) }
                 else {History.push('/ressources-humaine')}
             })

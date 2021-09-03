@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Alert from 'react-bootstrap/Alert'
 import ReactLoading from 'react-loading';
 import { useHistory } from 'react-router-dom'
-
+import image1 from '../../../assets/images/admin.gif'
 export default function ForgotPassword() {
 
     const History = useHistory()
@@ -38,7 +38,15 @@ export default function ForgotPassword() {
             })
     }
     return (
-        <section className="ftco-section">
+        <section className="ftco-section"  style={{
+            backgroundImage: 'url('+image1+')',
+            backgroundSize: "cover",
+            height: "100vh",
+            color: "#f5f5f5" ,
+            backgroundAttachment:"fixed" ,
+            backgroundPosition: "center" ,
+         
+          }}> 
             <Alert show={error} variant={'danger'} style={{ width: "450px", margin: "auto auto" }}>
                 {"Aucun utilisateur avec ce mail"}
             </Alert>

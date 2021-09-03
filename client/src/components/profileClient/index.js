@@ -35,7 +35,7 @@ export default function Index() {
         return "Loading..."
     }
 
-    console.log(data)
+  
 
     return (
         <>

@@ -51,6 +51,12 @@ export default function ModalClientAjouter(props) {
           },
         })
         .then((result) => {
+          axios.put("http://localhost:3001/car/addKm",seance,{
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("jwt"),
+            },
+          })
           props.setDataUtilisateur(result.data);
           props.setData((prevData) => [...prevData, seance]);
           setTitle("");

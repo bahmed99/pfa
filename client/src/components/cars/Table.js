@@ -189,7 +189,7 @@ const useStyles = makeStyles((theme) => ({
 function deleteRow(arr,n){
    
    arr.splice(arr.indexOf(n),1)
-   console.log(n)
+
 }
 /*function replaceByValue( json, field, oldvalue, newvalue ) {
     for( var k = 0; k < json.length; ++k ) {

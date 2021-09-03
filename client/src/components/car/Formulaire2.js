@@ -1,6 +1,6 @@
 
 import React from "react";
-import "./Formulaire.css";
+import "../../assets/css/components/car/Formulaire.css";
 import { Col } from "react-bootstrap";
 import TextField from '@material-ui/core/TextField';
 import { makeStyles,withStyles } from '@material-ui/core/styles';
@@ -66,7 +66,7 @@ const BootstrapButton = withStyles({
       },
     },
   })(Button);
-export default function Formulaire2(id) {
+export default function Formulaire2({id}) {
     const classes = useStyles();
     const [service, setService] = React.useState('');
     const [model, setModel] = useState("");
@@ -87,7 +87,7 @@ export default function Formulaire2(id) {
         }).then(res => res.json())
         .then(result=>{
             setData(result)
-            console.log(data)
+         
 
             })
 
@@ -118,13 +118,9 @@ export default function Formulaire2(id) {
     }
     function handleSave() {
         const newCar = {
-            carId: idCar,
-            item: item,
             service: service,
             technicVisitDate: technicVisitDate,
             assuranceDate: assuranceDate,
-
-
         }
     
 

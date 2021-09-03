@@ -1,10 +1,10 @@
 import Sidebar from "../../../components/employeeComponents/sidebar";
 import Navbar from "../../../components/employeeComponents/navbar";
-import Notification from "../../../components/notification/Notification";
+import NotificationEmployee from "../../../components/notification/notificationEmployee";
 import React from "react";
 import "../../../assets/css/pages/notification.css";
 
-export default function Notifications() {
+export default function NotificationsEmployee() {
   return (
     <div className="bg row">
       <div className="col-md-3">
@@ -16,7 +16,7 @@ export default function Notifications() {
         <br />
         <br />
         <br />
-        <Notification />
+        <NotificationEmployee />
       </div>
     </div>
   );

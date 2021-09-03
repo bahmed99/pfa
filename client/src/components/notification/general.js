@@ -10,11 +10,12 @@ function Data() {
       }
     }).then(res => res.json())
       .then(result => {
-        console.log(result)
+       
         setData1(result)
       })
 
   }, []);
+
   data1.map(obj => {
     data.push(Object.values(obj))
   });

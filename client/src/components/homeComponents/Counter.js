@@ -15,7 +15,7 @@ function Funfact() {
             setCar(res.data.car)
             setClient(res.data.client)
             setEmployee(res.data.employee)
-            console.log(res.data)
+        
 
 
         }).catch(err=>{

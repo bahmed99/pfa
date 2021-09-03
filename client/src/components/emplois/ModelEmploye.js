@@ -53,6 +53,12 @@ export default function AjoutSeanceModal(props) {
           Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
       });
+      axios.put("http://localhost:3001/car/addKm",seance,{
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        }
+      })
       props.setData((prevData) => [...prevData, seance]);
       setTitle("");
       setDescription("");

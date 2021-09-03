@@ -65,7 +65,7 @@ function Ajouter() {
 
                 </Modal.Header>
 
-                <Formulaire />
+                <Formulaire setShow={setShow} />
             </Modal>
         </div >
     )

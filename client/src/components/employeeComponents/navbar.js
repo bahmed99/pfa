@@ -27,7 +27,7 @@ export default function Navbar(props) {
             setRole(res.data.role)
             setName(res.data.user.name)
             setData(res.data.user)
-            console.log(res.data)
+       
             localStorage.setItem("car",res.data.car)
             
         })

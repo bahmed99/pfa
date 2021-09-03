@@ -7,7 +7,7 @@ import Equipe from '../../components/homeComponents/team'
 import Funfact from '../../components/homeComponents/Counter'
 import Slegon from '../../components/homeComponents/Slegon'
 
-import Contact from '../../components/homeComponents/contact'
+
 import Footer from '../../components/footer/footer'
 import '../../assets/css/pages/home.css'
 import { useState, useEffect, Fragment } from 'react'
@@ -15,7 +15,7 @@ import ChatBot from "../../components/chatBot/index"
 import Programme from '../../components/homeComponents/programme'
 
 
-import { Fade } from 'react-reveal';
+
 import Prix from '../../components/homeComponents/Prix'
 import Sponsors from '../../components/homeComponents/Sponsors'
 import Horaire from '../../components/homeComponents/Horaire'
@@ -26,7 +26,7 @@ import Avis from '../../components/homeComponents/Avis'
 export default function Home() {
     let [screen, setScreen] = useState()
     let [scale, setScale] = useState()
-    let [open, setOpen] = useState(false)
+
     window.onresize = function () {
         if (window.innerWidth > 1200) {
             setScreen(true)

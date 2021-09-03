@@ -42,13 +42,14 @@ export default function Notification() {
 
   const data = [];
   useEffect(() => {
-    fetch("http://localhost:3001/car/notif", {
+    fetch("http://localhost:3001/car/notifEmp", {
       headers: {
         "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("jwt")
       }
     }).then(res => res.json())
       .then(result => {
-    
+        console.log(result)
         setData1(result)
       })
 
@@ -83,7 +84,7 @@ export default function Notification() {
   });
  
 
-
+console.log(data1)
 
 
 

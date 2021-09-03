@@ -7,35 +7,37 @@ import listPlugin from '@fullcalendar/list';
 import frLocale from '@fullcalendar/core/locales/fr';
 import Alert from "sweetalert2";
 import axios from "axios"
-import AjoutSeanceModal from "./ModelClient"
+
 import '../../assets/css/components/emplois/style.css'
 
-export default function EmploisCar(id) {
+export default function EmploisCar({id}) {
 
 
     const [data, setData] = useState([])
 
+    // async function fetchSeances() {
+    //     setData([])
+    //     const seancesData = await getSeances(id);
 
-    const [ajoutSeanceModalOpen, setAjoutSeanceModalOpen] = useState(false)
-    const [selectInfoData, setSelectInfoData] = useState(null);
+    //     seancesData.data.timetable.forEach(s => {
+    //         let eventInfo = { title: s.title, start: s.start, end: s.end, eventContent: s.eventContent, color: s.color }
+    //         setData(prevData => ([...prevData, eventInfo]))
+    //     }
+    //     )
 
-
-
-    async function fetchSeances() {
-        setData([])
-        const seancesData = await getSeances(id);
-
-        seancesData.data.forEach(s => {
-            let eventInfo = { title: s.title, start: s.start, end: s.end, eventContent: s.eventContent, color: s.color }
-            setData(prevData => ([...prevData, eventInfo]))
-        }
-        )
-
-    }
+    // }
 
 
     useEffect(() => {
-        fetchSeances()
+        axios.get(`http://localhost:3001/car/${id}`, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("jwt")
+        }
+    }).then(res=>{
+        setData(res.data.timetable)
+        
+    })
 
     }, [])
 
@@ -86,21 +88,7 @@ export default function EmploisCar(id) {
 
     return (
         <div style={{ width: "70%", marginRight: "auto", marginLeft: "auto", marginTop: '70px' }}>
-            <div className="container textContainerCourses">
-                <div>
-                    <div className="breadcrumbs">
-                        <div>
-                            <h1>Votre Calendrier</h1>
-                            <p>Étape obligatoire pour décrocher un jour l'examen du permis de conduire, <span className="strong-medium">le code de la route</span> fait peur à beaucoup
-                                de candidats, alors que pour le réussir il suffit juste de bien y être préparé. C'est pour vous y aider que
-                                iDrive Gears met à votre disposition <span className="strong-medium">des tests de code en ligne</span>, comprenant 30 questions <span className="strong-medium">conformes à
-                                    celles de l'examen.</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+           
             <div id='calendrier' style={{ marginTop: '60px' }}>
                 <FullCalendar
                     plugins={[timeGridPlugin, interactionPlugin, listPlugin]}
@@ -136,13 +124,7 @@ export default function EmploisCar(id) {
                
 
                 />
-                <AjoutSeanceModal isOpen={ajoutSeanceModalOpen}
-                    setModal={setAjoutSeanceModalOpen}
-                    selectInfoData={selectInfoData}
-                    fetchSeances={data}
-                    setData={setData}
-                    
-                />
+            
             </div>
         </div>
     )
