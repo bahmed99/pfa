@@ -69,7 +69,8 @@ export default function MainRouter() {
         !history.location.pathname.startsWith("/cars") &&
         !history.location.pathname.startsWith("/utilisateur-profile") &&
         !history.location.pathname.startsWith("/courses") &&
-        !history.location.pathname.startsWith("/client-profile")
+        !history.location.pathname.startsWith("/client-profile")&&
+        !history.location.pathname.startsWith("/notifications")
       ) {
         history.push("/");
       }
@@ -81,7 +82,8 @@ export default function MainRouter() {
         !history.location.pathname.startsWith("/cars") &&
         !history.location.pathname.startsWith("/utilisateur-profile") &&
         !history.location.pathname.startsWith("/courses") &&
-        !history.location.pathname.startsWith("/client-profile")
+        !history.location.pathname.startsWith("/client-profile")&&
+        !history.location.pathname.startsWith("/notifications")
       ) {
         history.push("/");
       }
