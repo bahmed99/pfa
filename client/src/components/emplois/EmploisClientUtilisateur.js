@@ -36,7 +36,7 @@ export default function Emplois({ id, supprimerSeanceModalOpen, setSupprimerSean
     const [data, setData] = useState([])
     const [ajoutSeanceModalOpen, setAjoutSeanceModalOpen] = useState(false)
     const [data2, setData2] = useState([])
-
+    const [car, setCar] = useState()
 
     async function fetchSeances() {
         setData([])
@@ -49,6 +49,13 @@ export default function Emplois({ id, supprimerSeanceModalOpen, setSupprimerSean
         )
 
     }
+
+    async function fetchCar() {
+        setCar()
+        const employeeCar = await getCar();
+        setCar(employeeCar.data.timetable)
+    }
+
     async function fetchSeancesEmployés() {
         setData2([])
         const seancesData = await getSeancesEmployee();
@@ -65,6 +72,7 @@ export default function Emplois({ id, supprimerSeanceModalOpen, setSupprimerSean
     useEffect(() => {
         fetchSeances()
         fetchSeancesEmployés() 
+        fetchCar()
     }, [])
 
 
@@ -138,8 +146,8 @@ export default function Emplois({ id, supprimerSeanceModalOpen, setSupprimerSean
 
     function isAnOverlapEvent(eventStartDay, eventEndDay) {
 
-        for (let i = 0; i < data2.length; i++) {
-            const eventA = data2[i];
+        for (let i = 0; i < car.length; i++) {
+            const eventA = car[i];
 
 
             if (moment(eventStartDay).isAfter(eventA.start) && moment(eventStartDay).isBefore(eventA.end)) {
@@ -261,6 +269,19 @@ async function getSeances(id) {
 
 async function getSeancesEmployee() {
     const resp = await axios.get("http://localhost:3001/employe/emplois", {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("jwt")
+        }
+    })
+        .catch(error => {
+            return error.response;
+        })
+    return resp
+}
+
+async function getCar(){
+    const resp = await axios.get(`http://localhost:3001/employe/car` , {
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + localStorage.getItem("jwt")

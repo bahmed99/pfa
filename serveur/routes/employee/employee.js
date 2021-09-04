@@ -426,7 +426,7 @@ router.get("/statistics", requireLoginEmployee, (req, res) => {
       Car.findOne({ _id: req.employee.car })
         .then((resu) => {
           let etat;
-          if (resu.status === "1") {
+          if (resu.service === true) {
             etat = "En service";
           } else {
             etat = "Hors service";

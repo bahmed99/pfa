@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import 'font-awesome/css/font-awesome.min.css';
 import "./index.scss"
-
+import "./assets/css/font.css"
 ReactDOM.render(
   <React.StrictMode>
    

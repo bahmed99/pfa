@@ -111,6 +111,7 @@ export default function Formulaire({ setShow }) {
       assuranceDate: assuranceDate,
     };
     let fd = new FormData();
+    
     fd.append("image", pic);
     fd.append("model", model);
     fd.append("serie", serie);
