@@ -322,8 +322,11 @@ router.delete("/deleteClient/:id", requireLoginEmployee, (req, res) => {
             },
           }
         ).then((rep) => {
-          client.remove();
-          res.send(supp);
+          Avis.deleteMany({postedBy:client._id}).then(t=>{
+            client.remove();
+            res.send(supp);
+          })
+        
         });
       })
       .catch((err) => {
