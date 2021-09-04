@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../fonts/Gilroy-Bold.woff');
+  }
+  @font-face {
+    font-family: 'Proxima Nova';
+    src: url('../fonts/proxima-nova-light-webfont.woff');
+  }
+
+
+  p{
+      font-family: "Proxima Nova" !important;
+  }
+  h1,h2,h3,h4,h5,h6{
+    font-family: "Gilroy" !important;
+  }

@@ -16,7 +16,7 @@ function Funfact() {
                 <div className="row mtn-40">
                
                            
-                        <h1 className="slegon">Tu en as marre d'être piétons ? Rejoins-nous à l'auto école iDrive Gears ! </h1>
+                        <div className="slegon">Tu en as marre d'être piétons ? Rejoins-nous à l'auto école iDrive Gears ! </div>
                       
                     
                 </div>

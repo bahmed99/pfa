@@ -2,8 +2,9 @@ const Car = require("../models/car/car");
 const dateFormat = require("dateformat");
 
 exports.addCar = (req, res) => {
+
   let car;
-  console.log(req.file);
+
   if (req.file) {
     car = new Car({
       pic: req.file.originalname,
@@ -13,7 +14,7 @@ exports.addCar = (req, res) => {
       mileage: req.body.mileage,
       assuranceDate: req.body.assuranceDate,
       age: req.body.age,
-      technicVisitDate: req.body.technicVisitDate,
+      technicVisitDate: req.body.technicVisitDate
     });
   } else {
     car = new Car({
@@ -23,7 +24,7 @@ exports.addCar = (req, res) => {
       mileage: req.body.mileage,
       assuranceDate: req.body.assuranceDate,
       age: req.body.age,
-      technicVisitDate: req.body.technicVisitDate,
+      technicVisitDate: req.body.technicVisitDate
     });
   }
   car.save((error, car) => {

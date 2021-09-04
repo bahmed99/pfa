@@ -51,7 +51,7 @@ function GlobalFilter({
           setValue(e.target.value);
           onChange(e.target.value);
         }}
-        placeholder={`${count} records...`}
+        placeholder={`${count} voitures...`}
       />
     </label>
   );
@@ -284,10 +284,10 @@ function Table({ columns, data, setData1 }) {
       <div className="py-3 flex items-center justify-between">
         <div className="flex-1 flex justify-between sm:hidden">
           <Button onClick={() => previousPage()} disabled={!canPreviousPage}>
-            Previous
+            Précedent
           </Button>
           <Button onClick={() => nextPage()} disabled={!canNextPage}>
-            Next
+            Suivant
           </Button>
         </div>
         <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
@@ -297,7 +297,7 @@ function Table({ columns, data, setData1 }) {
               <span className="font-medium">{pageOptions.length}</span>
             </span>
             <label>
-              <span className="sr-only">Items Per Page</span>
+              <span className="sr-only">Voiture Par Page</span>
               <select
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 value={state.pageSize}
@@ -323,7 +323,7 @@ function Table({ columns, data, setData1 }) {
                 onClick={() => gotoPage(0)}
                 disabled={!canPreviousPage}
               >
-                <span className="sr-only">First</span>
+                <span className="sr-only">Premier</span>
                 <ChevronDoubleLeftIcon
                   className="h-5 w-5 text-gray-400"
                   aria-hidden="true"
@@ -333,14 +333,14 @@ function Table({ columns, data, setData1 }) {
                 onClick={() => previousPage()}
                 disabled={!canPreviousPage}
               >
-                <span className="sr-only">Previous</span>
+                <span className="sr-only">Précedent</span>
                 <ChevronLeftIcon
                   className="h-5 w-5 text-gray-400"
                   aria-hidden="true"
                 />
               </PageButton>
               <PageButton onClick={() => nextPage()} disabled={!canNextPage}>
-                <span className="sr-only">Next</span>
+                <span className="sr-only">Suivant</span>
                 <ChevronRightIcon
                   className="h-5 w-5 text-gray-400"
                   aria-hidden="true"
@@ -351,7 +351,7 @@ function Table({ columns, data, setData1 }) {
                 onClick={() => gotoPage(pageCount - 1)}
                 disabled={!canNextPage}
               >
-                <span className="sr-only">Last</span>
+                <span className="sr-only">Dernier</span>
                 <ChevronDoubleRightIcon
                   className="h-5 w-5 text-gray-400"
                   aria-hidden="true"

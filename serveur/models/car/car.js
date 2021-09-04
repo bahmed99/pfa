@@ -4,8 +4,7 @@ const carSchema = new mongoose.Schema(
   {
     status: {
       type: String,
-      enum: ["0", "1"],
-      default: "0",
+    
     },
     pic: {
       type: String,
