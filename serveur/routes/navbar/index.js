@@ -19,7 +19,7 @@ router.get("/:id", (req, res) => {
         })
         .catch((errs) => res.send(errs));
     }
-  });
+  }); 
 });
 
 module.exports = router;
