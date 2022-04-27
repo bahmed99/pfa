@@ -1,5 +1,4 @@
-# pfa
-Plateforme de gestion d'une auto école
+#Plateforme de gestion d'une auto école
 L'application est destinée aux bureaux d'auto-école. Elle permet :
 - le suivi des candidats (inscription ....)
 - la gestion des séances de code, de conduite et d'examen
